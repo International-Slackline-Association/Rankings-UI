@@ -1,0 +1,20 @@
+.icon:before {
+	font-family: "cb";
+		-webkit-font-smoothing: antialiased;
+		-moz-osx-font-smoothing: grayscale;
+	font-style: normal;
+	font-variant: normal;
+	font-weight: normal;
+	/* speak: none; only necessary if not using the private unicode range (firstGlyph option) */
+	text-decoration: none;
+	text-transform: none;
+}
+
+
+.i-drop:before {
+	content: "\E001";
+}
+
+.i-faucet:before {
+	content: "\E002";
+}
