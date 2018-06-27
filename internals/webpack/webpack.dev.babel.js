@@ -59,7 +59,12 @@ module.exports = require('./webpack.base.babel')({
   // Add development plugins
   plugins: dependencyHandlers().concat(plugins), // eslint-disable-line no-use-before-define
 
-  tsLoaders: ['awesome-typescript-loader'],
+  tsLoaders: [
+    {
+      loader: 'awesome-typescript-loader',
+    },
+  ],
+
   // Emit a source map for easier debugging
   // See https://webpack.js.org/configuration/devtool/#devtool
   devtool: 'eval-source-map',

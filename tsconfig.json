@@ -8,19 +8,11 @@
     "preserveConstEnums": true,
     "moduleResolution": "node",
     "experimentalDecorators": true,
-    "jsx": "preserve",
+    "jsx": "react",
     "lib": ["dom", "es5", "es6", "es7", "es2017"],
     "allowSyntheticDefaultImports": true,
     "typeRoots": ["node_modules/@types"],
-    "baseUrl": "./app",
-    "paths": {
-      "*": ["*"]
-    }
+    "baseUrl": "./app"
   },
-  "exclude": ["node_modules"],
-  "awesomeTypescriptLoaderOptions": {
-    "useBabel": true,
-    "forkChecker": true,
-    "useCache": false
-  }
+  "exclude": ["node_modules"]
 }

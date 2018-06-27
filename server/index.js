@@ -1,7 +1,7 @@
 /* eslint consistent-return:0 */
 
-import * as express from 'express';
-import logger from './logger';
+const express = require('express');
+const logger = require('./logger');
 
 const argv = require('./argv');
 const port = require('./port');
