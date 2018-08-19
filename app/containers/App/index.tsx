@@ -10,34 +10,48 @@ import * as React from 'react';
 import Helmet from 'react-helmet';
 
 // Import the CSS reset, which HtmlWebpackPlugin transfers to the build folder
-import styled, { ThemeProvider } from 'styled-components';
+// import styled, { ThemeProvider } from 'styled-components';
+import styled, { theme, ThemeProvider } from 'styles/styled-components';
 import { Switch, Route } from 'react-router';
-import theme from 'styles/theme';
-import NotFoundPage from 'containers/NotFoundPage';
-import HomePage from 'containers/HomePage';
+import NotFoundPage from '../NotFoundPage';
+import HomePage from '../HomePage';
 import { hot } from 'react-hot-loader';
+import NavBar from 'components/NavBar';
+import media from 'styles/media';
+import TopBarTabs from '../TopBarTabs';
+import TabContent from 'components/TabContent';
 
 const AppWrapper = styled.div`
-  max-width: calc(768px + 16px * 2);
-  margin: 0 auto;
+  width: 100%;
+  height: 100%;
   display: flex;
-  min-height: 100%;
-  padding: 0px 16px;
   flex-direction: column;
+  /* flex: 1; */
+  background-color: ${props => props.theme.appBackground};
+  color: ${props => props.theme.textPrimary};
+  /* padding-top: 48px; */
+  -webkit-font-smoothing: antialiased;
+
+  ${media.tablet`
+    /* padding-top: 64px; */
+  `};
 `;
 
 class App extends React.Component<{}, {}> {
   public render() {
     return (
-      <ThemeProvider theme={theme.dark}>
+      <ThemeProvider theme={theme.default}>
         <AppWrapper>
           <Helmet titleTemplate="%s - ISA Rankings" defaultTitle="ISA Rankings">
             <meta name="description" content="ISA Rankings" />
           </Helmet>
-          <Switch>
+          <NavBar />
+          <TopBarTabs />
+          <TabContent />
+          {/* <Switch>
             <Route exact path="/" component={HomePage} />} />
             <Route component={NotFoundPage} />
-          </Switch>
+          </Switch> */}
         </AppWrapper>
       </ThemeProvider>
     );
