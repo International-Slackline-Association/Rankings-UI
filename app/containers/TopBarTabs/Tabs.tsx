@@ -13,20 +13,16 @@ const Tabs = styled(React_Tabs)`
     margin: 0;
     padding: 0;
     height: ${AppConstants.TopBarHeight(breakpoints.mobile)}px;
-    width: 250px;
+    width: 100%;
     display: flex;
     ${media.tablet`
       height: ${AppConstants.TopBarHeight(breakpoints.tablet)}px;
     `};
 
-    /* flex-direction: row; */
-
     .react-tabs__tab {
-      flex: 1;
-      width: 100%;
       height: 100%;
-      padding: 0 10px 0 10px;
-      margin: 0px 0px 0px 16px;
+      padding: 0 16px 0 16px;
+      /* margin: 0px 0px 0px 16px; */
       outline: none;
       display: flex;
       align-items: center;
@@ -58,7 +54,7 @@ const Tabs = styled(React_Tabs)`
     display: none;
 
     &.react-tabs__tab-panel--selected {
-      display: block;
+      display: none;
     }
   }
 `;

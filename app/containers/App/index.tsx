@@ -12,14 +12,12 @@ import Helmet from 'react-helmet';
 // Import the CSS reset, which HtmlWebpackPlugin transfers to the build folder
 // import styled, { ThemeProvider } from 'styled-components';
 import styled, { theme, ThemeProvider } from 'styles/styled-components';
-import { Switch, Route } from 'react-router';
-import NotFoundPage from '../NotFoundPage';
-import HomePage from '../HomePage';
+import { Switch, Route, Redirect } from 'react-router';
+import NotFoundPage from 'containers/NotFoundPage';
+import HomePage from 'containers/HomePage';
 import { hot } from 'react-hot-loader';
 import NavBar from 'components/NavBar';
 import media from 'styles/media';
-import TopBarTabs from '../TopBarTabs';
-import TabContent from 'components/TabContent';
 
 const AppWrapper = styled.div`
   width: 100%;
@@ -46,12 +44,12 @@ class App extends React.Component<{}, {}> {
             <meta name="description" content="ISA Rankings" />
           </Helmet>
           <NavBar />
-          <TopBarTabs />
-          <TabContent />
-          {/* <Switch>
-            <Route exact path="/" component={HomePage} />} />
+          <Switch>
+            <Route exact path="/" component={HomePage} />
+            <Route exact path="/contests" component={HomePage} />
+            <Redirect from="/rankings" to="/" />
             <Route component={NotFoundPage} />
-          </Switch> */}
+          </Switch>
         </AppWrapper>
       </ThemeProvider>
     );

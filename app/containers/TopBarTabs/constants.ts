@@ -1,0 +1,1 @@
+export const CHANGE_TOPBAR_INDEX = 'app/TopBar/CHANGE_TOPBAR_INDEX';

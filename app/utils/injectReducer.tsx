@@ -1,8 +1,8 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import hoistNonReactStatics from 'hoist-non-react-statics';
-
+import * as React from 'react';
+import * as PropTypes from 'prop-types';
+import hoistNonReactStatics = require('hoist-non-react-statics');
 import getInjectors from './reducerInjectors';
+import { InjectReducerParams } from 'types';
 
 /**
  * Dynamically injects a reducer
@@ -13,23 +13,23 @@ import getInjectors from './reducerInjectors';
  */
 export default ({ key, reducer }) => WrappedComponent => {
   class ReducerInjector extends React.Component {
-    static WrappedComponent = WrappedComponent;
-    static contextTypes = {
+    public static WrappedComponent = WrappedComponent;
+    public static contextTypes = {
       store: PropTypes.object.isRequired,
     };
-    static displayName = `withReducer(${WrappedComponent.displayName ||
+    public static displayName = `withReducer(${WrappedComponent.displayName ||
       WrappedComponent.name ||
       'Component'})`;
 
-    componentWillMount() {
+    public componentWillMount() {
       const { injectReducer } = this.injectors;
 
       injectReducer(key, reducer);
     }
 
-    injectors = getInjectors(this.context.store);
+    public injectors = getInjectors(this.context.store);
 
-    render() {
+    public render() {
       return <WrappedComponent {...this.props} />;
     }
   }

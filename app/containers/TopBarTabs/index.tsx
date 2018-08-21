@@ -19,12 +19,46 @@ import { TabList, TabPanel, Tab } from 'react-tabs';
 import Tabs from './Tabs';
 import breakpoints from 'styles/breakpoints';
 import AppConstants from 'styles/AppConstants';
+import Wrapper from './Wrapper';
+import { createStructuredSelector } from 'reselect';
+import { connect } from 'react-redux';
+import injectReducer from 'utils/injectReducer';
+import injectSaga from 'utils/injectSaga';
+import { compose } from 'redux';
+import reducer from './reducer';
+import { makeSelectIndex } from './selectors';
+import { changeTopBarIndex } from './actions';
 
-class TopBarTabs extends React.Component<{}, {}> {
+interface IProps {
+  selectedIndex?: number;
+  selectedItem?: {
+    contestId?: string;
+    athleteId?: string;
+  };
+  changeSelectedIndex?(index: number): void;
+}
+
+interface IDefaultProps {
+  selectedIndex: number;
+}
+
+class TopBarTabs extends React.Component<IProps> {
+  public static defaultProps: IDefaultProps = {
+    selectedIndex: 0,
+  };
+
+  constructor(props: IProps) {
+    super(props);
+  }
+
   public render() {
     return (
       <Wrapper>
-        <Tabs onSelect={null} selectedIndex={0} forceRenderTabPanel>
+        <Tabs
+          onSelect={this.props.changeSelectedIndex}
+          selectedIndex={this.props.selectedIndex}
+          forceRenderTabPanel
+        >
           <TabList>
             <Tab>
               <FormattedMessage {...messages.rankings} />
@@ -41,33 +75,25 @@ class TopBarTabs extends React.Component<{}, {}> {
   }
 }
 
-const padding = (size: number) => AppConstants.LeftPadding(size);
+export function mapDispatchToProps(dispatch) {
+  return {
+    changeSelectedIndex: (index: number) => dispatch(changeTopBarIndex(index)),
+  };
+}
 
-const Wrapper = styled.div`
-  background-color: ${colors.white};
-  /* border-bottom: 1px solid ${props => props.theme.border}; */
-  height:  ${AppConstants.TopBarHeight(breakpoints.mobile)}px;
-  padding: 0 0 0 0;
-  display: flex;
-  align-items: center;
-  /* top: 0; */
-  width: 100%;
-  z-index: ${zIndex('TopBarTabs')};
-  justify-content: flex-start;
-  box-shadow: 3px 1px 10px ${colors.grayLight};
-  ${media.tablet`
-    height: ${AppConstants.TopBarHeight(breakpoints.tablet)}px;
-    padding: 0 ${padding(breakpoints.tablet)}px 0 ${padding(
-    breakpoints.tablet,
-  )}px;
-    align-items: center;
-  `};
+const mapStateToProps = createStructuredSelector({
+  selectedIndex: makeSelectIndex(),
+});
 
-  ${media.desktop`
-    padding: 0 ${padding(breakpoints.desktop)}px 0 ${padding(
-    breakpoints.desktop,
-  )}px;
-  `};
-`;
+const withConnect = connect<{}, {}, IProps>(
+  mapStateToProps,
+  mapDispatchToProps,
+);
+const withReducer = injectReducer({ key: 'topBarTabs', reducer: reducer });
 
-export default TopBarTabs;
+
+// FIX: remove casting any after implementing type-safe reducers
+export default compose(
+  withReducer,
+  withConnect,
+)(TopBarTabs) as any;

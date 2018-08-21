@@ -1,6 +1,8 @@
 {
   "extends": ["tslint:latest", "tslint-react"],
   "rules": {
+    "interface-name": false,
+    "object-literal-shorthand": [true, "never"],
     "indent": [true, "spaces"],
     "quotemark": [true, "single", "jsx-double"],
     "no-var-requires": false,
