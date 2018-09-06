@@ -33,7 +33,21 @@ class MainTable extends React.Component<{}, {}> {
             </thead>
             <tbody>
               <tr key={123}>
-                <td>1</td>
+                <td>#1</td>
+                <td>Can Sahin</td>
+                <td>27</td>
+                <td>TR</td>
+                <td>240</td>
+              </tr>
+              <tr key={1231}>
+                <td>#1</td>
+                <td>Can Sahin</td>
+                <td>27</td>
+                <td>TR</td>
+                <td>240</td>
+              </tr>
+              <tr key={1232}>
+                <td>#1</td>
                 <td>Can Sahin</td>
                 <td>27</td>
                 <td>TR</td>
@@ -50,8 +64,8 @@ class MainTable extends React.Component<{}, {}> {
 const Wrapper = styled.div`
   /* background-color: ${colors.green}; */
   width: 100%;
-  min-height: 600px;
-  margin-top: 8px;
+  height: 100%;
+  margin-top: 24px;
 
   ${media.tablet`
 

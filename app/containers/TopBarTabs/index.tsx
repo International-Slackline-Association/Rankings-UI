@@ -28,6 +28,7 @@ import { compose } from 'redux';
 import reducer from './reducer';
 import { makeSelectIndex } from './selectors';
 import { changeTopBarIndex } from './actions';
+import Link from './Link';
 
 interface IProps {
   selectedIndex?: number;
@@ -61,10 +62,14 @@ class TopBarTabs extends React.Component<IProps> {
         >
           <TabList>
             <Tab>
-              <FormattedMessage {...messages.rankings} />
+              <Link to="/">
+                <FormattedMessage {...messages.rankings} />
+              </Link>
             </Tab>
             <Tab>
-              <FormattedMessage {...messages.contests} />
+              <Link to="/contests">
+                <FormattedMessage {...messages.contests} />
+              </Link>
             </Tab>
           </TabList>
           <TabPanel />
@@ -90,7 +95,6 @@ const withConnect = connect<{}, {}, IProps>(
   mapDispatchToProps,
 );
 const withReducer = injectReducer({ key: 'topBarTabs', reducer: reducer });
-
 
 // FIX: remove casting any after implementing type-safe reducers
 export default compose(

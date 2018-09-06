@@ -1,8 +1,10 @@
-import { injectGlobal } from 'styled-components';
+import { injectGlobal } from './styled-components';
 
-/* eslint no-unused-expressions: 0 */
+// tslint:disable-next-line:no-unused-expression
 injectGlobal`
-  html,
+  html {
+    font-size: 75%;
+  }
   body {
     height: 100%;
     width: 100%;

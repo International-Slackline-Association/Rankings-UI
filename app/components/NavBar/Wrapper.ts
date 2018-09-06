@@ -1,13 +1,15 @@
-import styled from 'styles/styled-components';
+import styled, { colors } from 'styles/styled-components';
 import media from 'styles/media';
 import zIndex from 'styles/zIndex';
 import breakpoints from 'styles/breakpoints';
 import AppConstants from 'styles/AppConstants';
+import { rgba } from 'polished';
 
 const padding = (size: number) => AppConstants.LeftPadding(size);
 
 const Wrapper = styled.div`
-  background-color: ${props => props.theme.componentBackground};
+
+  background-color: ${rgba(colors.paleBlue, 1)};
   border-bottom: 1px solid ${props => props.theme.border};
   height: ${AppConstants.NavBarHeight(breakpoints.mobile)}px;
   padding: 0 ${padding(breakpoints.mobile)}px 0 ${padding(breakpoints.mobile)}px;

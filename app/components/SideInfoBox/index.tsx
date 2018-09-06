@@ -8,8 +8,10 @@ const SideInfoBox: React.SFC<{}> = () => {
 };
 
 const Wrapper = styled.div`
-  background-color: ${colors.white};
-  box-shadow: 0px 0px 8px 1px ${colors.grayLight};
+  background-color: ${props => props.theme.componentBackground};
+  border: 1px solid ${props => props.theme.border};
+  border-radius: 0.5em;
+  box-shadow: 0px 0px 8px 1px ${props => props.theme.border};
   display: none;
   min-height: 100%;
   margin: 0 0px 0px 30px;

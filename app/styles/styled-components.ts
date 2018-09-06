@@ -13,7 +13,7 @@ export interface IThemeInterface {
   warning: string;
   popBackground: string;
   modalBackground: string;
-  fontFamily: string;
+  // fontFamily: string;
   breakpoints: IBreakpoints;
 }
 
@@ -22,22 +22,23 @@ import * as styledComponents from 'styled-components';
 export const colors = {
   green: '#21D38E',
   gray: '#575757',
-  grayDark: '#4A4A4A',
+  grayDark: '#474F60',
   grayDarker: '#404040',
   white: '#FFF',
-  grayLight: '#AEB0AF',
+  grayLight: '#9098A6',
   red: '#F46060',
   orange: '#F7931A',
-  paleBlue: '#00A099',
-  paleWhite: '#D9D9D9',
+  paleBlue: '#0DBFB7',
+  paleWhite: '#e7ebee',
+  lightBorder: '#DCDADA',
 };
 
 export const theme = {
   default: {
     primary: colors.green,
-    componentBackground: colors.paleBlue,
+    componentBackground: colors.white,
     appBackground: colors.paleWhite,
-    border: colors.grayLight,
+    border: colors.lightBorder,
     textPrimary: colors.grayDark,
     textSecondary: colors.grayLight,
     textInverted: colors.white,
@@ -45,8 +46,8 @@ export const theme = {
     warning: colors.orange,
     popBackground: colors.white,
     modalBackground: '#222',
-    fontFamily: '\'Source Sans Pro\', sans-serif;',
-    breakpoints,
+    // fontFamily: '\'Source Sans Pro\', sans-serif;',
+    breakpoints: breakpoints,
   },
 };
 

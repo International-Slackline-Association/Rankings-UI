@@ -26,13 +26,15 @@ const Title: React.SFC<{}> = () => {
 };
 
 const Text = styled.div`
-  color: ${colors.white};
-  font-size: 12px;
+  color: ${props => props.theme.textPrimary};
+  font-size: 1rem;
   font-weight: 700;
+  letter-spacing: -1px;
 
   ${media.tablet`
-    font-weight: 700;
-    font-size: 20px;
+    font-weight: bold;
+    font-size: 1.66rem;
+    letter-spacing: -1.75px;
   `};
 `;
 

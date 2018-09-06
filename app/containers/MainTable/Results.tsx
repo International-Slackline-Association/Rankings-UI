@@ -2,7 +2,7 @@ import * as React from 'react';
 // import PropTypes from 'prop-types';
 import { rgba } from 'polished';
 import media from 'styles/media';
-import { injectIntl, intlShape } from 'react-intl';
+import { injectIntl } from 'react-intl';
 import messages from './messages';
 import styled, { colors } from 'styles/styled-components';
 
@@ -16,20 +16,22 @@ interface IResultsWrapperProps {
 const Wrapper = styled.div`
   /* border: 1px solid ${props => props.theme.border}; */
   /* background-color: ${colors.orange}; */
-  border-radius: 3px;
+  /* border-radius: 3px; */
   position: relative;
   margin-bottom: 24px;
 
   table {
     width: 100%;
     text-align: center;
-
+    /* border-top: 1px solid ${props => props.theme.border}; */
+    border-bottom: 1px solid ${props => props.theme.border};
     thead {
       text-transform: uppercase;
-      font-size: 14px;
-      font-weight: 600;
-      /* background-color: ${props => props.theme.border}; */
-      /* color: ${props => props.theme.textSecondary}; */
+      border-bottom: 2px solid ${props => props.theme.border};
+      font-size: 1.25rem;
+      font-weight: bold;
+      background-color: ${rgba(colors.paleBlue, 0.6)};
+      color: ${props => props.theme.textPrimary};
       display: none;
 
       ${media.desktop`
@@ -55,7 +57,7 @@ const Wrapper = styled.div`
         display: flex;
         flex-wrap: wrap;
         padding-top: 12px;
-        border-bottom: 1px solid ${props => props.theme.border};
+        border-bottom: 2px solid ${props => props.theme.border};
 
         ${media.desktop`
           display: table-row;
@@ -64,8 +66,7 @@ const Wrapper = styled.div`
         `};
 
         &:nth-child(even) {
-          background-color: ${props =>
-            rgba(colors.paleWhite, 0.6)};
+          background-color: ${props => rgba(props.theme.appBackground, 0.6)};
         }
 
         td {
@@ -75,13 +76,16 @@ const Wrapper = styled.div`
           display: flex;
           align-items: center;
           margin-bottom: 12px;
-
-          &:nth-child(1) { &::before { content: "${(props: IResultsWrapperProps) =>
-            props.rankMsg} :"; }}
+          font-size: 1.25rem;
+          &:nth-child(1) {
+            &::before { content: "${(props: IResultsWrapperProps) =>
+              props.rankMsg} :";
+            };
+            font-weight: bold;
+            }
           &:nth-child(2) { &::before { content: "${props =>
             props.nameMsg} :"; }}
-          &:nth-child(3) { &::before { content: "${props =>
-            props.ageMsg} :"; }}
+          &:nth-child(3) { &::before { content: "${props => props.ageMsg} :"; }}
           &:nth-child(4) { &::before { content: "${props =>
             props.countryMsg} :"; }}
           &:nth-child(5) { &::before { content: "${props =>
@@ -90,7 +94,7 @@ const Wrapper = styled.div`
           &::before {
             display: block;
             text-transform: uppercase;
-            font-size: 12px;
+            font-size: 1rem;
             color: ${props => props.theme.textSecondary};
             width: 40%;
             display: block;

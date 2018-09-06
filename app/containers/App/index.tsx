@@ -19,6 +19,10 @@ import { hot } from 'react-hot-loader';
 import NavBar from 'components/NavBar';
 import media from 'styles/media';
 
+import 'bootstrap/dist/css/bootstrap.min.css';
+import TopBarTabs from 'containers/TopBarTabs';
+import TabContent from 'components/TabContent';
+
 const AppWrapper = styled.div`
   width: 100%;
   height: 100%;
@@ -44,9 +48,10 @@ class App extends React.Component<{}, {}> {
             <meta name="description" content="ISA Rankings" />
           </Helmet>
           <NavBar />
+          <TopBarTabs />
           <Switch>
-            <Route exact path="/" component={HomePage} />
-            <Route exact path="/contests" component={HomePage} />
+            <Route exact path="/" component={TabContent} />
+            <Route exact path="/contests" component={TabContent} />
             <Redirect from="/rankings" to="/" />
             <Route component={NotFoundPage} />
           </Switch>

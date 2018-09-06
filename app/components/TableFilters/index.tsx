@@ -25,10 +25,10 @@ const TableFilters: React.SFC<{}> = () => {
 };
 
 const Wrapper = styled.div`
-  background-color: ${colors.white};
   display: flex;
   flex-grow: 1;
   margin-left: 10px;
+  margin-top: 8px;
   ${media.tablet`
   `};
 
@@ -41,6 +41,11 @@ const TableFiltersWrapper = styled.div`
   flex-grow: 1;
   ${media.tablet`
     display: flex;
+    font-size: 1rem;
+  `};
+  ${media.desktop`
+    display: flex;
+    font-size: 1rem;
   `};
 `;
 

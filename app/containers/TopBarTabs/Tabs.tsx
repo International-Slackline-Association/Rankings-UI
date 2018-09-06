@@ -22,18 +22,17 @@ const Tabs = styled(React_Tabs)`
     .react-tabs__tab {
       height: 100%;
       padding: 0 16px 0 16px;
-      /* margin: 0px 0px 0px 16px; */
+      /* margin: 1px 0px 5px 0px; */
       outline: none;
       display: flex;
       align-items: center;
       justify-content: center;
-      border-bottom: 2px solid ${colors.white};
       color: ${props => props.theme.textSecondary};
       font-weight: bold;
       text-transform: uppercase;
       cursor: pointer;
       /* transition: all 0.2s; */
-      font-size: 12px;
+      font-size: 1rem;
 
       &:hover {
         color: ${props => props.theme.textPrimary};
@@ -41,11 +40,12 @@ const Tabs = styled(React_Tabs)`
 
       &.react-tabs__tab--selected {
         color: ${props => props.theme.textPrimary};
+        border-bottom: 2px solid ${colors.white};
         border-color: ${colors.red};
       }
       ${media.tablet`
         margin: 0;
-        font-size: 16px;
+        font-size: 1.33rem;
       `};
     }
   }

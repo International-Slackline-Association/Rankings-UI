@@ -1,4 +1,4 @@
-import { css } from 'styled-components';
+import { css } from './styled-components';
 import breakpoints from './breakpoints';
 
 const media = Object.keys(breakpoints).reduce(

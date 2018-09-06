@@ -11,8 +11,11 @@ const MainTableSection: React.SFC<{}> = () => {
     <Wrapper>
       <TableSearchInput />
       <TableFilters />
-      {/* <LineBreak /> */}
       <SelectedFiltersArea>
+        <SelectedFilterButton />
+        <SelectedFilterButton />
+        <SelectedFilterButton />
+        <SelectedFilterButton />
         <SelectedFilterButton />
       </SelectedFiltersArea>
       <MainTable />
@@ -21,26 +24,22 @@ const MainTableSection: React.SFC<{}> = () => {
 };
 
 const SelectedFiltersArea = styled.div`
-  margin-top: 8px;
+  margin: 24px 8px 0px 8px;
   display: flex;
   flex-wrap: wrap;
   flex-basis: 100%;
-  /* width: 0px;
-  height: 0px;
-  overflow: hidden; */
 `;
 
 const Wrapper = styled.div`
-  background-color: ${colors.white};
+  background-color: ${props => props.theme.componentBackground};
+  border: 1px solid ${props => props.theme.border};
   display: flex;
   flex-wrap: wrap;
-  box-shadow: 0px 0px 8px 1px ${colors.grayLight};
-  /* justify-content: flex-start; */
-  /* align-content: space-between; */
+  border-radius: 0.5em;
+  box-shadow: 0px 0px 8px 1px ${props => props.theme.border};
+  overflow: hidden;
   width: 100%;
   min-height: 100%;
-  /* min-width: 200px; */
-  /* min-height: 200px; */
   ${media.tablet`
 
   `};

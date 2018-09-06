@@ -1,4 +1,3 @@
-
 import * as React from 'react';
 import { FormattedMessage } from 'react-intl';
 import messages from './messages';
@@ -7,11 +6,6 @@ import TabContent from 'components/TabContent';
 
 export default class HomePage extends React.PureComponent {
   public render() {
-    return (
-      <React.Fragment>
-        <TopBarTabs/>
-        <TabContent />
-      </React.Fragment>
-    );
+    return <TabContent />;
   }
 }
