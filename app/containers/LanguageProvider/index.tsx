@@ -14,13 +14,13 @@ import { IntlProvider } from 'react-intl';
 
 import { makeSelectLocale } from './selectors';
 
-interface IProps {
+export interface ILanguageProviderProps {
   locale?: string;
   messages: { [locale: string]: { [id: string]: string } };
   children?: React.ReactNode;
 }
 
-export class LanguageProvider extends React.PureComponent<IProps, {}> {
+export class LanguageProvider extends React.PureComponent<ILanguageProviderProps, {}> {
   public render() {
     return (
       <IntlProvider
@@ -35,15 +35,15 @@ export class LanguageProvider extends React.PureComponent<IProps, {}> {
 }
 
 const mapStateToProps = createSelector(makeSelectLocale(), locale => ({
-  locale,
+  locale: locale,
 }));
 
 function mapDispatchToProps(dispatch) {
   return {
-    dispatch,
+    dispatch: dispatch,
   };
 }
-export default connect<{}, {}, IProps>(
+export default connect<{}, {}, ILanguageProviderProps>(
   mapStateToProps,
   mapDispatchToProps,
 )(LanguageProvider);

@@ -11,28 +11,64 @@ import { InjectReducerParams } from 'types';
  * @param {function} reducer A reducer that will be injected
  *
  */
-export default ({ key, reducer }) => WrappedComponent => {
-  class ReducerInjector extends React.Component {
-    public static WrappedComponent = WrappedComponent;
-    public static contextTypes = {
-      store: PropTypes.object.isRequired,
-    };
-    public static displayName = `withReducer(${WrappedComponent.displayName ||
-      WrappedComponent.name ||
-      'Component'})`;
 
-    public componentWillMount() {
-      const { injectReducer } = this.injectors;
+export default function hocWithReducer<P>({ key, reducer }: InjectReducerParams) {
+  function wrap(WrappedComponent: React.ComponentType<P>): React.ComponentType<P> {
+    // dont wanna give access to HOC. Child only
+    class ReducerInjector extends React.Component {
+      public static WrappedComponent = WrappedComponent;
+      public static contextTypes = {
+        store: PropTypes.object.isRequired,
+      };
+      public static displayName = `withReducer(${WrappedComponent.displayName ||
+        WrappedComponent.name ||
+        'Component'})`;
 
-      injectReducer(key, reducer);
+      public componentWillMount() {
+        const { injectReducer } = this.injectors;
+
+        injectReducer(key, reducer);
+      }
+
+      public injectors = getInjectors(this.context.store);
+
+      public render() {
+        return <WrappedComponent {...this.props} />;
+      }
     }
 
-    public injectors = getInjectors(this.context.store);
-
-    public render() {
-      return <WrappedComponent {...this.props} />;
-    }
+    return hoistNonReactStatics(ReducerInjector, WrappedComponent) as any;
   }
+  return wrap;
+}
 
-  return hoistNonReactStatics(ReducerInjector, WrappedComponent);
-};
+// const m = hocWithReducer({ key: 'a', reducer: null });
+
+// export default ({ key, reducer }) => WrappedComponent => {
+//   class ReducerInjector extends React.Component {
+//     public static WrappedComponent = WrappedComponent;
+//     public static contextTypes = {
+//       store: PropTypes.object.isRequired,
+//     };
+//     public static displayName = `withReducer(${WrappedComponent.displayName ||
+//       WrappedComponent.name ||
+//       'Component'})`;
+
+//     public componentWillMount() {
+//       const { injectReducer } = this.injectors;
+
+//       injectReducer(key, reducer);
+//     }
+
+//     public injectors = getInjectors(this.context.store);
+
+//     public render() {
+//       return <WrappedComponent {...this.props} />;
+//     }
+//   }
+
+//   const x = hoistNonReactStatics(ReducerInjector, WrappedComponent);
+//   return x;
+// };
+
+// export default hocWithReducer;

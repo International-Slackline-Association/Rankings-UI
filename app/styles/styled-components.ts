@@ -27,9 +27,10 @@ export const colors = {
   white: '#FFF',
   grayLight: '#9098A6',
   red: '#F46060',
+  isaRed: '#f04d32',
   orange: '#F7931A',
-  paleBlue: '#0DBFB7',
-  paleWhite: '#e7ebee',
+  isaBlue: '#26a69c',
+  paleWhite: '#FBFBFB',
   lightBorder: '#DCDADA',
 };
 
@@ -57,9 +58,7 @@ const {
   injectGlobal,
   keyframes,
   ThemeProvider,
-} = styledComponents as styledComponents.ThemedStyledComponentsModule<
-  IThemeInterface
->;
+} = styledComponents as styledComponents.ThemedStyledComponentsModule<IThemeInterface>;
 
 export { css, injectGlobal, keyframes, ThemeProvider };
 export default styled;

@@ -50,7 +50,7 @@ const TableFiltersWrapper = styled.div`
 `;
 
 const ShowFilterButton = styled.button`
-  background-color: ${colors.paleBlue};
+  background-color: ${colors.isaBlue};
 
   position: relative;
   width: 70%;

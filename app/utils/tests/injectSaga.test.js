@@ -7,9 +7,9 @@ import { put } from 'redux-saga/effects';
 import { shallow } from 'enzyme';
 import React from 'react';
 
-import configureStore from '../../configureStore';
-import injectSaga from '../injectSaga';
-import * as sagaInjectors from '../sagaInjectors';
+import configureStore from '../../configureStore.ts';
+import injectSaga from '../injectSaga.tsx';
+import * as sagaInjectors from '../sagaInjectors.ts';
 
 // Fixtures
 const Component = () => null;
@@ -46,11 +46,7 @@ describe('injectSaga decorator', () => {
     shallow(<ComponentWithSaga {...props} />, { context: { store } });
 
     expect(injectors.injectSaga).toHaveBeenCalledTimes(1);
-    expect(injectors.injectSaga).toHaveBeenCalledWith(
-      'test',
-      { saga: testSaga, mode: 'testMode' },
-      props,
-    );
+    expect(injectors.injectSaga).toHaveBeenCalledWith('test', { saga: testSaga, mode: 'testMode' }, props);
   });
 
   it('should eject on unmount with a correct saga key', () => {
@@ -66,9 +62,7 @@ describe('injectSaga decorator', () => {
 
   it('should set a correct display name', () => {
     expect(ComponentWithSaga.displayName).toBe('withSaga(Component)');
-    expect(
-      injectSaga({ key: 'test', saga: testSaga })(() => null).displayName,
-    ).toBe('withSaga(Component)');
+    expect(injectSaga({ key: 'test', saga: testSaga })(() => null).displayName).toBe('withSaga(Component)');
   });
 
   it('should propagate props', () => {

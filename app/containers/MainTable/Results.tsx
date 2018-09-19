@@ -30,7 +30,7 @@ const Wrapper = styled.div`
       border-bottom: 2px solid ${props => props.theme.border};
       font-size: 1.25rem;
       font-weight: bold;
-      background-color: ${rgba(colors.paleBlue, 0.6)};
+      background-color: ${rgba(colors.isaBlue, 0.6)};
       color: ${props => props.theme.textPrimary};
       display: none;
 

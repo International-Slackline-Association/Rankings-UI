@@ -264,6 +264,10 @@
   version "2.2.29"
   resolved "https://registry.yarnpkg.com/@types/invariant/-/invariant-2.2.29.tgz#aa845204cd0a289f65d47e0de63a6a815e30cc66"
 
+"@types/jest@^23.3.2":
+  version "23.3.2"
+  resolved "https://registry.yarnpkg.com/@types/jest/-/jest-23.3.2.tgz#07b90f6adf75d42c34230c026a2529e56c249dbb"
+
 "@types/lodash@^4.14.61":
   version "4.14.110"
   resolved "https://registry.yarnpkg.com/@types/lodash/-/lodash-4.14.110.tgz#fb07498f84152947f30ea09d89207ca07123461e"
@@ -279,6 +283,10 @@
 "@types/node@*":
   version "10.3.6"
   resolved "https://registry.yarnpkg.com/@types/node/-/node-10.3.6.tgz#ea8aab9439b59f40d19ec5f13b44642344872b11"
+
+"@types/node@^10.9.4":
+  version "10.9.4"
+  resolved "https://registry.yarnpkg.com/@types/node/-/node-10.9.4.tgz#0f4cb2dc7c1de6096055357f70179043c33e9897"
 
 "@types/node@^8.0.19":
   version "8.10.20"
@@ -379,13 +387,6 @@
     "@types/react" "*"
     redux "^3.6.0"
 
-"@types/redux-immutable@^3.0.33":
-  version "3.0.38"
-  resolved "https://registry.yarnpkg.com/@types/redux-immutable/-/redux-immutable-3.0.38.tgz#9e2fcce4a9c64e60f13de2165d2765f7af85d487"
-  dependencies:
-    immutable "^3.8.1"
-    redux "^3.6.0"
-
 "@types/serve-static@*":
   version "1.13.2"
   resolved "https://registry.yarnpkg.com/@types/serve-static/-/serve-static-1.13.2.tgz#f5ac4d7a6420a99a6a45af4719f4dcd8cd907a48"
@@ -411,7 +412,7 @@
   dependencies:
     source-map "^0.6.1"
 
-"@types/webpack-env@^1.13.0":
+"@types/webpack-env@^1.13.6":
   version "1.13.6"
   resolved "https://registry.yarnpkg.com/@types/webpack-env/-/webpack-env-1.13.6.tgz#128d1685a7c34d31ed17010fc87d6a12c1de6976"
 
@@ -5249,7 +5250,7 @@ imagemin@^5.3.1:
     pify "^2.3.0"
     replace-ext "^1.0.0"
 
-immutable@3.8.2, immutable@^3.8.1:
+immutable@3.8.2:
   version "3.8.2"
   resolved "https://registry.yarnpkg.com/immutable/-/immutable-3.8.2.tgz#c2439951455bb39913daf281376f1530e104adf3"
 
@@ -10468,9 +10469,13 @@ typedarray@^0.0.6:
   version "0.0.6"
   resolved "https://registry.yarnpkg.com/typedarray/-/typedarray-0.0.6.tgz#867ac74e3864187b1d3d47d996a78ec5c8830777"
 
-typescript@^2.9.2:
-  version "2.9.2"
-  resolved "https://registry.yarnpkg.com/typescript/-/typescript-2.9.2.tgz#1cbf61d05d6b96269244eb6a3bce4bd914e0f00c"
+typesafe-actions@^2.0.4:
+  version "2.0.4"
+  resolved "https://registry.yarnpkg.com/typesafe-actions/-/typesafe-actions-2.0.4.tgz#31c8f8df3566d549eb52edb64a75997e970c17d0"
+
+typescript@^3.0.3:
+  version "3.0.3"
+  resolved "https://registry.yarnpkg.com/typescript/-/typescript-3.0.3.tgz#4853b3e275ecdaa27f78fda46dc273a7eb7fc1c8"
 
 ua-parser-js@^0.7.18:
   version "0.7.18"

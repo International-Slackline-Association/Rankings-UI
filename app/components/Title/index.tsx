@@ -26,7 +26,7 @@ const Title: React.SFC<{}> = () => {
 };
 
 const Text = styled.div`
-  color: ${props => props.theme.textPrimary};
+  color: ${colors.paleWhite};
   font-size: 1rem;
   font-weight: 700;
   letter-spacing: -1px;

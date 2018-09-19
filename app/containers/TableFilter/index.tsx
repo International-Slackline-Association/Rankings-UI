@@ -42,7 +42,7 @@ class TableFilter extends React.PureComponent<{}, State> {
       <Wrapper>
         <CustomDropdown>
           <CustomDropdownToggle
-            tag="div"
+            tag="button"
             // onClick={this.toggle}
             data-toggle="dropdown"
             aria-expanded={this.state.dropdownOpen}
@@ -65,18 +65,9 @@ class TableFilter extends React.PureComponent<{}, State> {
   }
 }
 const Wrapper = styled.div`
-  /* background-color: ${colors.gray}; */
-  /* border-bottom: 1px solid ${props => props.theme.border}; */
-  /* margin: 0 4px 0 4px; */
   display: flex;
   justify-content: center;
   width: 100%;
-
-
-  /* height: 40px; */
-  /* ${media.tablet`
-    width: 120px;
-  `}; */
 `;
 
 const CustomDropdown = styled(UncontrolledDropdown)`

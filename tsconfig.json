@@ -4,15 +4,34 @@
     "target": "es6",
     "module": "commonjs",
     "noImplicitAny": false,
-    "sourceMap": true,
     "preserveConstEnums": true,
-    "moduleResolution": "node",
-    "experimentalDecorators": true,
-    "jsx": "react",
-    "lib": ["dom", "es5", "es6", "es7", "es2017"],
-    "allowSyntheticDefaultImports": true,
     "typeRoots": ["node_modules/@types"],
-    "baseUrl": "./app"
+    "baseUrl": "./app",
+    "jsx": "react", // process JSX
+    "lib": ["dom", "es5", "es6", "es7", "es2017"],
+    "allowSyntheticDefaultImports": true, // no errors with commonjs modules interop
+    // "esModuleInterop": true,
+    // "allowJs": true, // include js files
+    // "declaration": false,
+    // "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    // "forceConsistentCasingInFileNames": true,
+    // "importHelpers": true, // importing helper functions from tslib
+    // "noEmitHelpers": true, // disable emitting inline helper functions
+
+    "types": ["jest", "node"],
+    "moduleResolution": "node",
+    // "noEmitOnError": true,
+    // "noFallthroughCasesInSwit ch": true,
+    // "noImplicitAny": true,
+    // "noImplicitReturns": true,
+    // "noImplicitThis": true,
+    // "noUnusedLocals": true,
+    // "strict": true,
+    // "strictFunctionTypes": false,
+    // "pretty": true,
+    // "removeComments": true,
+    "sourceMap": true
   },
   "exclude": ["node_modules"]
 }

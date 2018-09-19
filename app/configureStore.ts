@@ -6,9 +6,14 @@ import { createStore, applyMiddleware, compose } from 'redux';
 import { fromJS } from 'immutable';
 import { routerMiddleware } from 'react-router-redux';
 import createSagaMiddleware from 'redux-saga';
-import createReducer from './reducers.ts';
+import createReducer from './reducers';
 
 const sagaMiddleware = createSagaMiddleware();
+
+declare interface IWindow extends Window {
+  __REDUX_DEVTOOLS_EXTENSION_COMPOSE__: any; // redux-dev-tools definitions not needed
+}
+declare const window: IWindow;
 
 export default function configureStore(initialState = {}, history) {
   // Create the store with two middlewares
@@ -36,7 +41,7 @@ export default function configureStore(initialState = {}, history) {
     createReducer(),
     fromJS(initialState),
     composeEnhancers(...enhancers),
-  );
+  ) as any; // FIX: disable any
 
   // Extensions
   store.runSaga = sagaMiddleware.run;
@@ -45,8 +50,8 @@ export default function configureStore(initialState = {}, history) {
 
   // Make reducers hot reloadable, see http://mxs.is/googmo
   /* istanbul ignore next */
-  if (module.hot) {
-    module.hot.accept('./reducers', () => {
+  if (module['hot']) {
+    module['hot'].accept('./reducers', () => {
       store.replaceReducer(createReducer(store.injectedReducers));
     });
   }

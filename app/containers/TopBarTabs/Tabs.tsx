@@ -40,8 +40,8 @@ const Tabs = styled(React_Tabs)`
 
       &.react-tabs__tab--selected {
         color: ${props => props.theme.textPrimary};
-        border-bottom: 2px solid ${colors.white};
-        border-color: ${colors.red};
+        border-bottom: 2px solid ${colors.isaRed};
+        /* border-color: ${colors.isaRed}; */
       }
       ${media.tablet`
         margin: 0;

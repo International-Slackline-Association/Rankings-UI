@@ -48,10 +48,10 @@ class App extends React.Component<{}, {}> {
             <meta name="description" content="ISA Rankings" />
           </Helmet>
           <NavBar />
-          <TopBarTabs />
+          <TopBarTabs/>
           <Switch>
             <Route exact path="/" component={TabContent} />
-            <Route exact path="/contests" component={TabContent} />
+            <Route exact path="/contests/:id" component={TabContent} />
             <Redirect from="/rankings" to="/" />
             <Route component={NotFoundPage} />
           </Switch>

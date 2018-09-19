@@ -9,7 +9,7 @@ const padding = (size: number) => AppConstants.LeftPadding(size);
 
 const Wrapper = styled.div`
 
-  background-color: ${rgba(colors.paleBlue, 1)};
+  background-color: ${props => props.theme.textPrimary};
   border-bottom: 1px solid ${props => props.theme.border};
   height: ${AppConstants.NavBarHeight(breakpoints.mobile)}px;
   padding: 0 ${padding(breakpoints.mobile)}px 0 ${padding(breakpoints.mobile)}px;

@@ -7,9 +7,9 @@ import { shallow } from 'enzyme';
 import React from 'react';
 import identity from 'lodash/identity';
 
-import configureStore from '../../configureStore';
-import injectReducer from '../injectReducer';
-import * as reducerInjectors from '../reducerInjectors';
+import configureStore from '../../configureStore.ts';
+import injectReducer from '../injectReducer.tsx';
+import * as reducerInjectors from '../reducerInjectors.ts';
 
 // Fixtures
 const Component = () => null;
@@ -43,9 +43,7 @@ describe('injectReducer decorator', () => {
 
   it('should set a correct display name', () => {
     expect(ComponentWithReducer.displayName).toBe('withReducer(Component)');
-    expect(
-      injectReducer({ key: 'test', reducer })(() => null).displayName,
-    ).toBe('withReducer(Component)');
+    expect(injectReducer({ key: 'test', reducer })(() => null).displayName).toBe('withReducer(Component)');
   });
 
   it('should propagate props', () => {

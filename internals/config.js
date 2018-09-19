@@ -20,15 +20,7 @@ const ReactBoilerplate = {
        * we need to exclude dependencies which are not intended for the browser
        * by listing them here.
        */
-      exclude: [
-        'chalk',
-        'compression',
-        'cross-env',
-        'express',
-        'ip',
-        'minimist',
-        'sanitize.css',
-      ],
+      exclude: ['chalk', 'compression', 'cross-env', 'express', 'ip', 'minimist', 'sanitize.css'],
 
       /**
        * Specify any additional dependencies here. We include core-js and lodash
@@ -42,10 +34,8 @@ const ReactBoilerplate = {
 
     entry(pkg) {
       const dependencyNames = Object.keys(pkg.dependencies);
-      const exclude =
-        pkg.dllPlugin.exclude || ReactBoilerplate.dllPlugin.defaults.exclude;
-      const include =
-        pkg.dllPlugin.include || ReactBoilerplate.dllPlugin.defaults.include;
+      const exclude = pkg.dllPlugin.exclude || ReactBoilerplate.dllPlugin.defaults.exclude;
+      const include = pkg.dllPlugin.include || ReactBoilerplate.dllPlugin.defaults.include;
       const includeDependencies = uniq(dependencyNames.concat(include));
 
       return {

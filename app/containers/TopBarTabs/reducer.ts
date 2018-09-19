@@ -1,16 +1,25 @@
-import { CHANGE_TOPBAR_INDEX } from './constants';
 import { combineReducers } from 'redux-immutable';
+import { ActionType, getType } from 'typesafe-actions';
+import * as actions from './actions';
+import ActionTypes, * as constants from './constants';
 
-
-function selectedIndexReducer(state = 0, action) {
-  switch (action.type) {
-    case CHANGE_TOPBAR_INDEX:
-      return action.payload.index;
-    default:
-      return state;
-  }
+export interface TopBarTabsState {
+  selectedIndex: number;
 }
 
-export default combineReducers({
-  selectedIndex: selectedIndexReducer,
+export type TopBarTabsActions = ActionType<typeof actions>;
+
+
+
+export default combineReducers<TopBarTabsState, TopBarTabsActions>({
+  selectedIndex: (state = 0, action) => {
+    console.log('State: ', state);
+    console.log('Action: ', action);
+    switch (action.type) {
+      case ActionTypes.CHANGE_TOPBAR_INDEX:
+        return action.payload;
+      default:
+        return state;
+    }
+  },
 });

@@ -18,6 +18,6 @@ const NavBar: React.SFC<{}> = () => {
   );
 };
 
-NavBar.propTypes = {};
+// NavBar.propTypes = {};
 
 export default NavBar;
