@@ -61,13 +61,13 @@ module.exports = {
     const actions = [
       {
         type: 'add',
-        path: '../../app/components/{{properCase name}}/index.js',
+        path: '../../app/components/{{properCase name}}/index.tsx',
         templateFile: componentTemplate,
         abortOnFail: true,
       },
       {
         type: 'add',
-        path: '../../app/components/{{properCase name}}/tests/index.test.js',
+        path: '../../app/components/{{properCase name}}/tests/index.test.ts',
         templateFile: './component/test.js.hbs',
         abortOnFail: true,
       },
@@ -77,7 +77,7 @@ module.exports = {
     if (data.wantMessages) {
       actions.push({
         type: 'add',
-        path: '../../app/components/{{properCase name}}/messages.js',
+        path: '../../app/components/{{properCase name}}/messages.ts',
         templateFile: './component/messages.js.hbs',
         abortOnFail: true,
       });
@@ -87,7 +87,7 @@ module.exports = {
     if (data.wantLoadable) {
       actions.push({
         type: 'add',
-        path: '../../app/components/{{properCase name}}/Loadable.js',
+        path: '../../app/components/{{properCase name}}/Loadable.ts',
         templateFile: './component/loadable.js.hbs',
         abortOnFail: true,
       });
