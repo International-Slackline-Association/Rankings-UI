@@ -13,11 +13,15 @@ declare module '*.svg?file' {
   export default content;
 }
 
-declare module 'redux-immutable' {
-  import { combineReducers as rcr } from 'redux';
-  const combineReducers: typeof rcr;
-  export { combineReducers };
-}
+// Redux immutable typings are not compatible and type-forcing. Override and fix
+// declare module 'redux-immutable' {
+//   import { ImmutableState } from 'types';
+//   import { Action, Reducer, AnyAction } from 'redux';
+//   type ReducersMapObject<S = any, A extends Action = Action> = { [K in keyof S]: Reducer< S[K] extends object ? ImmutableState<S[K]> : S[K], A> };
+//   function combineReducers<S, A extends Action = AnyAction>(reducers: ReducersMapObject<S, A>): Reducer<S, A>;
+//   export { combineReducers };
+// }
+
 // declare module '*!raw' {
 //   const content: string|any;
 //   export default content;

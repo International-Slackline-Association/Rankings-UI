@@ -1,14 +1,15 @@
 import { createSelector } from 'reselect';
+import { ApplicationRootState } from 'types';
 
-import { ApplicationState } from 'types';
 
-const selectTopBarDomain = (state: ApplicationState) => {
-  return state.get('topBarTabs');
+const selectTopBarDomain = (state: ApplicationRootState) => {
+  return state.topBarTabs;
 };
 
-const makeSelectIndex = () =>
-  createSelector(selectTopBarDomain, topBarState => {
-    return topBarState.get('selectedIndex');
+const makeSelectTabItems = () =>
+  createSelector(selectTopBarDomain, state => {
+    return state.items; // return all items
   });
 
-export { makeSelectIndex };
+
+export { makeSelectTabItems };

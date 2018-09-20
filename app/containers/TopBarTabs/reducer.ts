@@ -1,25 +1,41 @@
-import { combineReducers } from 'redux-immutable';
-import { ActionType, getType } from 'typesafe-actions';
-import * as actions from './actions';
-import ActionTypes, * as constants from './constants';
+import { combineReducers } from 'redux';
 
-export interface TopBarTabsState {
-  selectedIndex: number;
+import ActionTypes from './constants';
+import { ContainerState, ContainerActions } from './types';
+
+export enum TopBarTabType {
+  Static = 'Static',
+  Dynamic = 'Dynamic',
 }
 
-export type TopBarTabsActions = ActionType<typeof actions>;
+const defaultTabs: ContainerState['items'] = [
+  {
+    id: null,
+    isSelected: true,
+    name: 'Rankings',
+    type: TopBarTabType.Static,
+  },
 
+  {
+    id: null,
+    isSelected: false,
+    name: 'Contests',
+    type: TopBarTabType.Static,
+  },
+];
 
-
-export default combineReducers<TopBarTabsState, TopBarTabsActions>({
-  selectedIndex: (state = 0, action) => {
-    console.log('State: ', state);
-    console.log('Action: ', action);
+export default combineReducers<ContainerState, ContainerActions>({
+  items: (state, action) => {
+    // console.log('State: ', state);
+    // console.log('Action: ', action);
     switch (action.type) {
       case ActionTypes.CHANGE_TOPBAR_INDEX:
-        return action.payload;
-      default:
+        console.log('ChangeIndex');
+        const index = action.payload;
         return state;
+      default:
+        return defaultTabs;
     }
   },
+
 });

@@ -11,17 +11,17 @@ import injectSaga from 'utils/injectSaga';
 import { compose, Dispatch } from 'redux';
 import reducer from './reducer';
 import saga from './saga';
-import { makeSelectIndex } from './selectors';
-import { changeTopBarIndex, getSampleData } from './actions';
+import { makeSelectTabItems } from './selectors';
+import { changeTopBarIndex } from './actions';
 import Link from './Link';
-import { ApplicationState, ReduxState } from 'types';
+import { ContainerState } from './types';
+import { ApplicationRootState } from 'types';
 
 // tslint:disable-next-line:no-empty-interface
-interface OwnProps {
-}
+interface OwnProps {}
 
 interface StateProps {
-  selectedIndex: number;
+  tabItems: ContainerState['items'];
 }
 
 interface DispatchProps {
@@ -30,23 +30,16 @@ interface DispatchProps {
 
 type Props = StateProps & DispatchProps & OwnProps;
 
-interface DefaultOwnProps {
-  selectedIndex: number;
-}
-
 class TopBarTabs extends React.Component<Props> {
-  public static defaultProps: DefaultOwnProps = {
-    selectedIndex: 0,
-  };
-
   constructor(props: Props) {
     super(props);
   }
 
   public render() {
+    console.log('Items: ', this.props.tabItems);
     return (
       <Wrapper>
-        <Tabs onSelect={this.props.onSelectedIndexChanged} selectedIndex={this.props.selectedIndex} forceRenderTabPanel>
+        <Tabs onSelect={this.props.onSelectedIndexChanged} selectedIndex={0} forceRenderTabPanel>
           <TabList>
             <Tab>
               <Link to="/">
@@ -71,13 +64,12 @@ export function mapDispatchToProps(dispatch: Dispatch, ownProps: OwnProps): Disp
   return {
     onSelectedIndexChanged: (index: number) => {
       dispatch(changeTopBarIndex(index));
-      dispatch(getSampleData());
     },
   };
 }
 
-const mapStateToProps = createStructuredSelector<ApplicationState, StateProps>({
-  selectedIndex: makeSelectIndex(),
+const mapStateToProps = createStructuredSelector<ApplicationRootState, StateProps>({
+  tabItems: makeSelectTabItems(),
 });
 
 const withConnect = connect(

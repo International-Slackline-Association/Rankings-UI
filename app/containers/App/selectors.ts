@@ -1,12 +1,13 @@
 import { createSelector } from 'reselect';
+import { ApplicationRootState } from 'types';
 
-const selectGlobal = (state) => state.get('global');
+const selectGlobal = (state: ApplicationRootState) => state.global;
 
-const selectRoute = (state) => state.get('route');
+const selectRoute = (state: ApplicationRootState) => state.route;
 
 const makeSelectLocation = () => createSelector(
   selectRoute,
-  (routeState) => routeState.get('location').toJS(),
+  (routeState) => routeState.location,
 );
 
 export {

@@ -51,7 +51,7 @@ class App extends React.Component<{}, {}> {
           <TopBarTabs/>
           <Switch>
             <Route exact path="/" component={TabContent} />
-            <Route exact path="/contests/:id" component={TabContent} />
+            <Route exact path="/contests" component={TabContent} />
             <Redirect from="/rankings" to="/" />
             <Route component={NotFoundPage} />
           </Switch>
