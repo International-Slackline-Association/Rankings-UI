@@ -1,15 +1,19 @@
 import { createSelector } from 'reselect';
 import { ApplicationRootState } from 'types';
-
+import { initialState } from './reducer';
 
 const selectTopBarDomain = (state: ApplicationRootState) => {
-  return state.topBarTabs;
+  return state.topBarTabs ? state.topBarTabs : initialState;
 };
 
-const makeSelectTabItems = () =>
+const selectTabItems = () =>
   createSelector(selectTopBarDomain, state => {
     return state.items; // return all items
   });
 
+const selectSelectedId = () =>
+  createSelector(selectTopBarDomain, state => {
+    return state.selectedId;
+  });
 
-export { makeSelectTabItems };
+export { selectTabItems, selectSelectedId };

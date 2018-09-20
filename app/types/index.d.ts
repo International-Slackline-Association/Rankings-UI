@@ -1,9 +1,10 @@
-import { Dispatch, Reducer, Unsubscribe, ReducersMapObject, Store, Action } from 'redux';
+import { Reducer } from 'redux';
 import { RouterState } from 'react-router-redux';
 import { ILanguageProviderProps } from 'containers/LanguageProvider';
 import {} from 'containers/TopBarTabs/reducer';
 // import { Map } from 'immutable';
 import { ContainerState as TopBarState } from 'containers/TopBarTabs/types';
+import { ContainerState as RankingsState } from 'containers/Rankings/types';
 
 export interface InjectReducerParams {
   key: keyof ApplicationRootState;
@@ -21,6 +22,7 @@ export interface ApplicationRootState {
   readonly global: object;
   readonly language: ILanguageProviderProps;
   readonly topBarTabs: TopBarState;
+  readonly rankings: RankingsState;
 }
 
 // export interface ImmutableMap<T, K, V> extends Map<K, V> {

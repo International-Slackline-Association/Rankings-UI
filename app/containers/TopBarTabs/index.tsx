@@ -11,21 +11,24 @@ import injectSaga from 'utils/injectSaga';
 import { compose, Dispatch } from 'redux';
 import reducer from './reducer';
 import saga from './saga';
-import { makeSelectTabItems } from './selectors';
+import { selectTabItems, selectSelectedId } from './selectors';
 import { changeTopBarIndex } from './actions';
 import Link from './Link';
-import { ContainerState } from './types';
+import { ContainerState, RootState } from './types';
 import { ApplicationRootState } from 'types';
+import TopBarButton from 'components/TopBarButton';
+import { TopBarTabType } from 'types/enums';
 
 // tslint:disable-next-line:no-empty-interface
 interface OwnProps {}
 
 interface StateProps {
   tabItems: ContainerState['items'];
+  selectedId: ContainerState['selectedId'];
 }
 
 interface DispatchProps {
-  onSelectedIndexChanged: any;
+  onSelectedIndexChanged(id: string): any;
 }
 
 type Props = StateProps & DispatchProps & OwnProps;
@@ -35,52 +38,56 @@ class TopBarTabs extends React.Component<Props> {
     super(props);
   }
 
+  private onButtonSelect = (id: string) => {
+    this.props.onSelectedIndexChanged(id);
+  };
+
   public render() {
-    console.log('Items: ', this.props.tabItems);
+    const { tabItems, selectedId } = this.props;
     return (
       <Wrapper>
-        <Tabs onSelect={this.props.onSelectedIndexChanged} selectedIndex={0} forceRenderTabPanel>
-          <TabList>
-            <Tab>
-              <Link to="/">
-                <FormattedMessage {...messages.rankings} />
-              </Link>
-            </Tab>
-            <Tab>
-              <Link to="/contests">
-                <FormattedMessage {...messages.contests} />
-              </Link>
-            </Tab>
-          </TabList>
-          <TabPanel />
-          <TabPanel />
-        </Tabs>
+        {tabItems.map((item, index) => {
+          return (
+            <TopBarButton
+              key={item.id}
+              id={item.id}
+              name={item.name}
+              type={item.type}
+              onSelect={this.onButtonSelect}
+              isSelected={item.id === selectedId}
+              isFirstDynamicTab={
+                item.type === TopBarTabType.Dynamic && tabItems[index - 1].type === TopBarTabType.Static
+              }
+            />
+          );
+        })}
       </Wrapper>
     );
   }
 }
 
-export function mapDispatchToProps(dispatch: Dispatch, ownProps: OwnProps): DispatchProps {
+const mapStateToProps = createStructuredSelector<RootState, StateProps>({
+  tabItems: selectTabItems(),
+  selectedId: selectSelectedId(),
+});
+
+function mapDispatchToProps(dispatch: Dispatch, ownProps: OwnProps): DispatchProps {
   return {
-    onSelectedIndexChanged: (index: number) => {
-      dispatch(changeTopBarIndex(index));
+    onSelectedIndexChanged: (id: string) => {
+      dispatch(changeTopBarIndex(id));
     },
   };
 }
 
-const mapStateToProps = createStructuredSelector<ApplicationRootState, StateProps>({
-  tabItems: makeSelectTabItems(),
+const withReducer = injectReducer<OwnProps>({
+  key: 'topBarTabs',
+  reducer: reducer,
 });
 
 const withConnect = connect(
   mapStateToProps,
   mapDispatchToProps,
 );
-
-const withReducer = injectReducer<OwnProps>({
-  key: 'topBarTabs',
-  reducer: reducer,
-});
 
 const withSaga = injectSaga<OwnProps>({ key: 'topBarTabs', saga: saga });
 

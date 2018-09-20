@@ -5,7 +5,6 @@ import styled, { colors } from 'styles/styled-components';
 import media from 'styles/media';
 import zIndex from 'styles/zIndex';
 import breakpoints from 'styles/breakpoints';
-import { rgba } from 'polished';
 import clearIconSvg = require('./clear.svg');
 
 const SelectedFilterButton: React.SFC<{}> = () => {

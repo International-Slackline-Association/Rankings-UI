@@ -10,26 +10,25 @@ const Wrapper = styled.div`
   background-color: ${props => props.theme.componentBackground};
   border-bottom: 1px solid ${props => props.theme.border};
   height:  ${AppConstants.TopBarHeight(breakpoints.mobile)}px;
-  /* padding: 0 0 0 0; */
+  /* padding-bottom: 2px; */
   display: flex;
   align-items: center;
   /* top: 0; */
   /* width: 100%; */
   z-index: ${zIndex('TopBarTabs')};
   justify-content: flex-start;
-  /* box-shadow: 3px 1px 10px ${colors.grayLight}; */
+  overflow-y: scroll;
+
   ${media.tablet`
     height: ${AppConstants.TopBarHeight(breakpoints.tablet)}px;
-    padding: 0 ${padding(breakpoints.tablet)}px 0 ${padding(
-    breakpoints.tablet,
-  )}px;
+    padding-left: ${padding(breakpoints.tablet)}px;
+    padding-right: ${padding(breakpoints.tablet)}px;
     align-items: center;
   `};
 
   ${media.desktop`
-    padding: 0 ${padding(breakpoints.desktop)}px 0 ${padding(
-    breakpoints.desktop,
-  )}px;
+    padding-left: ${padding(breakpoints.desktop)}px;
+    padding-right: ${padding(breakpoints.desktop)}px;
   `};
 `;
 

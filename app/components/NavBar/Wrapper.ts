@@ -3,7 +3,6 @@ import media from 'styles/media';
 import zIndex from 'styles/zIndex';
 import breakpoints from 'styles/breakpoints';
 import AppConstants from 'styles/AppConstants';
-import { rgba } from 'polished';
 
 const padding = (size: number) => AppConstants.LeftPadding(size);
 

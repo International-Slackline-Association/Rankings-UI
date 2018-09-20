@@ -23,8 +23,6 @@ const TitleLogo: React.SFC<{}> = () => {
   );
 };
 
-TitleLogo.propTypes = {};
-
 const Wrapper = styled.div`
   text-align: center;
   line-height: 0;
