@@ -1,5 +1,5 @@
 import AppConstants from 'styles/AppConstants';
-import styled, { colors } from 'styles/styled-components';
+import styled from 'styles/styled-components';
 import breakpoints from 'styles/breakpoints';
 import zIndex from 'styles/zIndex';
 import media from 'styles/media';

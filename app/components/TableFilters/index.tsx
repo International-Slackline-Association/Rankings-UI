@@ -1,10 +1,7 @@
 import * as React from 'react';
-import MainTableSection from 'components/MainTableSection';
 
 import styled, { colors } from 'styles/styled-components';
 import media from 'styles/media';
-import breakpoints from 'styles/breakpoints';
-import AppConstants from 'styles/AppConstants';
 import TableFilter from 'containers/TableFilter';
 
 const TableFilters: React.SFC<{}> = () => {

@@ -1,10 +1,7 @@
 import * as React from 'react';
 
-import { FormattedMessage } from 'react-intl';
-import styled, { colors } from 'styles/styled-components';
+import styled from 'styles/styled-components';
 
-import Autosuggest = require('react-autosuggest');
-import media from 'styles/media';
 import {
   UncontrolledDropdown,
   DropdownToggle,

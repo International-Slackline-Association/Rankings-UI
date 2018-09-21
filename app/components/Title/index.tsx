@@ -8,7 +8,6 @@ import * as React from 'react';
 import { default as styled, colors } from 'styles/styled-components';
 import { FormattedMessage } from 'react-intl';
 
-import TitleSvg from './title.svg';
 import messages from './messages';
 import media from 'styles/media';
 

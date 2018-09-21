@@ -14,7 +14,6 @@ import Helmet from 'react-helmet';
 import styled, { theme, ThemeProvider } from 'styles/styled-components';
 import { Switch, Route, Redirect } from 'react-router';
 import NotFoundPage from 'containers/NotFoundPage';
-import HomePage from 'containers/HomePage';
 import { hot } from 'react-hot-loader';
 import NavBar from 'components/NavBar';
 import media from 'styles/media';

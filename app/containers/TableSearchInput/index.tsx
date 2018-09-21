@@ -1,7 +1,5 @@
 import * as React from 'react';
 
-import { FormattedMessage } from 'react-intl';
-import messages from './messages';
 import styled, { colors } from 'styles/styled-components';
 import searchIconSvg = require('./search.svg?file');
 
@@ -46,9 +44,7 @@ const languages = [
 const getSuggestionValue = (suggestion: ISuggestion) => suggestion.name;
 
 // Use your imagination to render suggestions.
-const renderSuggestion = (suggestion: ISuggestion) => (
-  <span>{suggestion.name}</span>
-);
+const renderSuggestion = (suggestion: ISuggestion) => <span>{suggestion.name}</span>;
 
 class TableSearchInput extends React.PureComponent<{}, State> {
   constructor(props) {
@@ -67,15 +63,15 @@ class TableSearchInput extends React.PureComponent<{}, State> {
 
     return inputLength === 0
       ? []
-      : languages.filter(
-          lang => lang.name.toLowerCase().slice(0, inputLength) === inputValue,
-        );
+      : languages.filter(lang => lang.name.toLowerCase().slice(0, inputLength) === inputValue);
   };
 
-  private onChange = (event, params: { newValue: string }) => {
-    this.setState({
-      value: params.newValue,
-    });
+  private onChange = (event, params?: { newValue: string }) => {
+    if (params) {
+      this.setState({
+        value: params.newValue,
+      });
+    }
   };
 
   // Autosuggest will call this function every time you need to update suggestions.
@@ -115,18 +111,18 @@ class TableSearchInput extends React.PureComponent<{}, State> {
     );
   }
 }
-const Wrapper = styled.div`
-  background-color: ${colors.green};
-  border: 1px solid ${props => props.theme.border};
-  border-radius: 1em;
-  margin-left: 8px;
-  width: 40%;
-  height: 24px;
-  align-self: center;
-  ${media.tablet`
-    width: 140px;
-  `};
-`;
+// const Wrapper = styled.div`
+//   background-color: ${colors.green};
+//   border: 1px solid ${props => props.theme.border};
+//   border-radius: 1em;
+//   margin-left: 8px;
+//   width: 40%;
+//   height: 24px;
+//   align-self: center;
+//   ${media.tablet`
+//     width: 140px;
+//   `};
+// `;
 
 const classNames: any = {
   container: 'react-autosuggest__container',
@@ -192,72 +188,5 @@ const AutosuggestWrapper = styled.div.attrs(classNames)`
 
   }
   `;
-
-const CustomAutoSuggest = styled(Autosuggest as any)`
-  .react-autosuggest__container {
-    position: relative;
-    background-color: #f00;
-  }
-
-  .react-autosuggest__input {
-    width: 50px;
-    height: 30px;
-    padding: 10px 20px;
-    font-family: Helvetica, sans-serif;
-    font-weight: 300;
-    font-size: 16px;
-    border: 1px solid #aaa;
-    border-radius: 4px;
-  }
-
-  .react-autosuggest__input--focused {
-    outline: none;
-  }
-
-  .react-autosuggest__input--open {
-    border-bottom-left-radius: 0;
-    border-bottom-right-radius: 0;
-  }
-
-  .react-autosuggest__suggestions-container {
-    display: none;
-  }
-
-  .react-autosuggest__suggestions-container--open {
-    display: block;
-    position: absolute;
-    top: 51px;
-    width: 280px;
-    border: 1px solid #aaa;
-    background-color: #fff;
-    font-family: Helvetica, sans-serif;
-    font-weight: 300;
-    font-size: 16px;
-    border-bottom-left-radius: 4px;
-    border-bottom-right-radius: 4px;
-    z-index: 2;
-  }
-
-  .react-autosuggest__suggestions-list {
-    margin: 0;
-    padding: 0;
-    list-style-type: none;
-  }
-
-  .react-autosuggest__suggestion {
-    cursor: pointer;
-    padding: 10px 20px;
-  }
-
-  .react-autosuggest__suggestion--highlighted {
-    background-color: #ddd;
-  }
-
-  .footer {
-    margin: 9px 20px;
-    font-size: 12px;
-    color: #777;
-  }
-`;
 
 export default TableSearchInput;

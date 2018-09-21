@@ -1,7 +1,8 @@
 import { ActionType } from 'typesafe-actions';
 import * as actions from './actions';
 import { ApplicationRootState } from 'types';
-import { TopBarTabType } from 'types/enums';
+import { TopBarTabType, TopBarTabContentType } from 'types/enums';
+import { LocationChangeAction } from 'react-router-redux';
 
 /* --- EXPORTS --- */
 
@@ -21,7 +22,9 @@ interface TopBarTabsItem {
   readonly id: string;
   readonly name: string;
   readonly type: TopBarTabType;
+  readonly contentType: TopBarTabContentType;
 }
 
 /* --- ACTIONS --- */
-type TopBarTabsActions = ActionType<typeof actions>;
+type TopBarTabsActions = ActionType<typeof actions> | LocationChangeAction;
+

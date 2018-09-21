@@ -1,7 +1,7 @@
-import { takeLatest, call, put, select } from 'redux-saga/effects';
-import ActionTypes from './constants';
+// import { takeLatest, call, put, select } from 'redux-saga/effects';
+// import ActionTypes from './constants';
 
-import request from 'utils/request';
+// import request from 'utils/request';
 
 // export function* getSampleData() {
 //   // TODO: fix return value

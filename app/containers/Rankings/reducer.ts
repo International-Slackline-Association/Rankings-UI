@@ -6,7 +6,7 @@
 
 import { combineReducers } from 'redux';
 
-import ActionTypes from './constants';
+// import ActionTypes from './constants';
 import { ContainerState, ContainerActions } from './types';
 
 export const initialState: ContainerState = {};

@@ -79,15 +79,18 @@ const withConnect = connect(
   mapDispatchToProps,
 );
 
+// <OwnProps> restricts access to the HOC's other props. This component must not do anything with reducer hoc
 const withReducer = injectReducer<OwnProps>({ key: '{{ camelCase name }}', reducer: reducer });
 {{else}}
 const withConnect = connect(null, mapDispatchToProps);
 {{/if}}
 {{#if wantSaga}}
+// <OwnProps> restricts access to the HOC's other props. This component must not do anything with saga hoc
 const withSaga = injectSaga<OwnProps>({ key: '{{ camelCase name }}', saga: saga });
 {{/if}}
 
-export default compose(
+// export default withReducer(withSaga(withConnect({{ properCase name }}))); // identical to compose function, but requires no explicit type declaration
+export default compose<TReducer, TSaga, TConnect, ReturnType>(
 {{#if wantActionsAndReducer}}
   withReducer,
 {{/if}}
@@ -96,3 +99,8 @@ export default compose(
 {{/if}}
   withConnect
 )({{ properCase name }});
+
+type ReturnType = React.ComponentType<OwnProps>;
+type TReducer = ReturnType;
+type TSaga = ReturnType;
+type TConnect = typeof {{ properCase name }};

@@ -8,7 +8,7 @@ import { ContainerState as RankingsState } from 'containers/Rankings/types';
 
 export interface InjectReducerParams {
   key: keyof ApplicationRootState;
-  reducer: Reducer<any>;
+  reducer: Reducer<any, any>;
 }
 
 export interface InjectSagaParams {

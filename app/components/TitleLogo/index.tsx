@@ -11,7 +11,7 @@ import * as React from 'react';
 import { FormattedMessage } from 'react-intl';
 import isaLogo = require('./isaLogo.svg');
 import messages from './messages';
-import { default as styled, colors } from 'styles/styled-components';
+import styled from 'styles/styled-components';
 
 const TitleLogo: React.SFC<{}> = () => {
   return (

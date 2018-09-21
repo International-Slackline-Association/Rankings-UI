@@ -1,10 +1,6 @@
 import * as React from 'react';
-import MainTableSection from 'components/MainTableSection';
 
-import styled, { colors } from 'styles/styled-components';
-import media from 'styles/media';
-import zIndex from 'styles/zIndex';
-import breakpoints from 'styles/breakpoints';
+import styled from 'styles/styled-components';
 import clearIconSvg = require('./clear.svg');
 
 const SelectedFilterButton: React.SFC<{}> = () => {

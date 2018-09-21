@@ -1,6 +1,5 @@
 import * as React from 'react';
-import TableSearchInput from 'containers/TableSearchInput';
-import styled, { colors } from 'styles/styled-components';
+import styled from 'styles/styled-components';
 import media from 'styles/media';
 
 const SideInfoBox: React.SFC<{}> = () => {

@@ -26,7 +26,7 @@ export class LanguageProvider extends React.PureComponent<ILanguageProviderProps
       <IntlProvider
         locale={this.props.locale}
         key={this.props.locale}
-        messages={this.props.messages[this.props.locale]}
+        messages={this.props.messages[this.props.locale as string]}
       >
         {React.Children.only(this.props.children)}
       </IntlProvider>
@@ -43,7 +43,7 @@ function mapDispatchToProps(dispatch) {
     dispatch: dispatch,
   };
 }
-export default connect<{}, {}, ILanguageProviderProps>(
+export default connect(
   mapStateToProps,
   mapDispatchToProps,
 )(LanguageProvider);

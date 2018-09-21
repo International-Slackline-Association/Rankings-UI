@@ -1,10 +1,8 @@
 import * as React from 'react';
 import styled, { colors } from 'styles/styled-components';
-import { TopBarTabType } from 'types/enums';
+import { TopBarTabType, TopBarTabContentType } from 'types/enums';
 
 import media from 'styles/media';
-import breakpoints from 'styles/breakpoints';
-import AppConstants from 'styles/AppConstants';
 import { rgba } from 'polished';
 
 interface OwnProps {
@@ -12,8 +10,9 @@ interface OwnProps {
   isSelected: boolean;
   name: string;
   type: TopBarTabType;
+  contentType: TopBarTabContentType;
   isFirstDynamicTab: boolean;
-  onSelect: (id: string) => void;
+  onSelect(id: string, contentType: TopBarTabContentType);
 }
 
 interface ButtonProps {
@@ -29,7 +28,7 @@ interface BorderProps {
 
 class TopBarButton extends React.PureComponent<OwnProps> {
   private handleSelect = () => {
-    this.props.onSelect(this.props.id);
+    this.props.onSelect(this.props.id, this.props.contentType);
   };
   public render() {
     return (

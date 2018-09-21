@@ -8,7 +8,7 @@ const selectTopBarDomain = (state: ApplicationRootState) => {
 
 const selectTabItems = () =>
   createSelector(selectTopBarDomain, state => {
-    return state.items; // return all items
+    return state.items;
   });
 
 const selectSelectedId = () =>

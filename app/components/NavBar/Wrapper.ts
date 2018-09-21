@@ -1,4 +1,4 @@
-import styled, { colors } from 'styles/styled-components';
+import styled from 'styles/styled-components';
 import media from 'styles/media';
 import zIndex from 'styles/zIndex';
 import breakpoints from 'styles/breakpoints';

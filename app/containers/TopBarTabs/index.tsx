@@ -1,8 +1,4 @@
 import * as React from 'react';
-import { FormattedMessage } from 'react-intl';
-import messages from './messages';
-import { TabList, TabPanel, Tab } from 'react-tabs';
-import Tabs from './Tabs';
 import Wrapper from './Wrapper';
 import { createStructuredSelector } from 'reselect';
 import { connect } from 'react-redux';
@@ -13,11 +9,10 @@ import reducer from './reducer';
 import saga from './saga';
 import { selectTabItems, selectSelectedId } from './selectors';
 import { changeTopBarIndex } from './actions';
-import Link from './Link';
 import { ContainerState, RootState } from './types';
-import { ApplicationRootState } from 'types';
 import TopBarButton from 'components/TopBarButton';
-import { TopBarTabType } from 'types/enums';
+import { TopBarTabType, TopBarTabContentType } from 'types/enums';
+import { replace } from 'react-router-redux';
 
 // tslint:disable-next-line:no-empty-interface
 interface OwnProps {}
@@ -28,7 +23,8 @@ interface StateProps {
 }
 
 interface DispatchProps {
-  onSelectedIndexChanged(id: string): any;
+  onSelectedIndexChanged(id: string);
+  updateLocation(path: string, id: string);
 }
 
 type Props = StateProps & DispatchProps & OwnProps;
@@ -38,8 +34,11 @@ class TopBarTabs extends React.Component<Props> {
     super(props);
   }
 
-  private onButtonSelect = (id: string) => {
+  private onButtonSelect = (id: string, contentType: TopBarTabContentType) => {
     this.props.onSelectedIndexChanged(id);
+    // const path = contentType;
+    // const idParam = id === '-2' || id === '-1' ? null : id;
+    this.props.updateLocation('contest', '1');
   };
 
   public render() {
@@ -53,6 +52,7 @@ class TopBarTabs extends React.Component<Props> {
               id={item.id}
               name={item.name}
               type={item.type}
+              contentType={item.contentType}
               onSelect={this.onButtonSelect}
               isSelected={item.id === selectedId}
               isFirstDynamicTab={
@@ -76,23 +76,36 @@ function mapDispatchToProps(dispatch: Dispatch, ownProps: OwnProps): DispatchPro
     onSelectedIndexChanged: (id: string) => {
       dispatch(changeTopBarIndex(id));
     },
+    updateLocation: (path: string, id?: string) => {
+      if (id) {
+        dispatch(replace(`/${path}/${id}`));
+      } else {
+        dispatch(replace(`/${path}`));
+      }
+    },
   };
 }
-
-const withReducer = injectReducer<OwnProps>({
-  key: 'topBarTabs',
-  reducer: reducer,
-});
 
 const withConnect = connect(
   mapStateToProps,
   mapDispatchToProps,
 );
 
+const withReducer = injectReducer<OwnProps>({
+  key: 'topBarTabs',
+  reducer: reducer,
+});
+
 const withSaga = injectSaga<OwnProps>({ key: 'topBarTabs', saga: saga });
 
-export default compose(
+// export default withReducer(withSaga(withConnect(TopBarTabs))); // identical to compose function, but requires no type definition
+export default compose<TReducer, TSaga, TConnect, ReturnType>(
   withReducer,
   withSaga,
   withConnect,
 )(TopBarTabs);
+
+type ReturnType = React.ComponentType<OwnProps>;
+type TReducer = ReturnType;
+type TSaga = ReturnType;
+type TConnect = typeof TopBarTabs;
