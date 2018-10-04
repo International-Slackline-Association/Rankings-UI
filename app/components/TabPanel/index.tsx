@@ -1,19 +1,12 @@
 import * as React from 'react';
-import MainTableSection from 'components/MainTableSection';
 
 import styled from 'styles/styled-components';
 import media from 'styles/media';
 import breakpoints from 'styles/breakpoints';
 import AppConstants from 'styles/AppConstants';
-import SideInfoBox from 'components/SideInfoBox';
 
-const TabContent: React.SFC<{}> = () => {
-  return (
-    <Wrapper>
-      <MainTableSection />
-      <SideInfoBox/>
-    </Wrapper>
-  );
+const TabPanel: React.SFC<{}> = props => {
+  return <Wrapper>{props.children}</Wrapper>;
 };
 
 const padding = (size: number) => AppConstants.LeftPadding(size);
@@ -33,17 +26,13 @@ const Wrapper = styled.div`
 
   ${media.tablet`
     min-height: calc(100vh - 36px - 36px - 36px);
-    padding: 24px ${padding(breakpoints.tablet)}px 8px ${padding(
-    breakpoints.tablet,
-  )}px;
+    padding: 24px ${padding(breakpoints.tablet)}px 8px ${padding(breakpoints.tablet)}px;
   `};
 
   ${media.desktop`
     min-height: calc(100vh - 36px - 36px - 36px);
-    padding: 24px ${padding(breakpoints.desktop)}px 8px ${padding(
-    breakpoints.desktop,
-  )}px;
+    padding: 24px ${padding(breakpoints.desktop)}px 8px ${padding(breakpoints.desktop)}px;
 
   `};
 `;
-export default TabContent;
+export default TabPanel;

@@ -5,9 +5,11 @@ import isString = require('lodash/isString');
 
 import checkStore from './checkStore';
 import createReducer from '../reducers';
+import { LifeStore } from 'types';
+import { Reducer } from 'redux';
 
-export function injectReducerFactory(store, isValid) {
-  return function injectReducer(key, reducer) {
+export function injectReducerFactory(store: LifeStore, isValid: boolean) {
+  return function injectReducer(key: string, reducer: Reducer<object>) {
     if (!isValid) {
       checkStore(store);
     }
@@ -30,7 +32,7 @@ export function injectReducerFactory(store, isValid) {
   };
 }
 
-export default function getInjectors(store) {
+export default function getInjectors(store: LifeStore) {
   checkStore(store);
 
   return {

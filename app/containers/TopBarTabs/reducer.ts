@@ -24,14 +24,47 @@ export const initialState: ContainerState = {
   selectedId: '-2',
 };
 
-function modifyTabBarItemsByURL(items: TopBarTabsItem[], pathname: string) {
-  const [{}, path, id] = pathname.split('/')[1];
-  if (!path) {
-    return items;
-  }
+function isPathStaticType(path: string) {
+  return path ? path === TopBarTabContentType.rankings || path === TopBarTabContentType.contests : false;
+}
+
+function idOfStaticPath(path: string) {
   if (path === TopBarTabContentType.rankings || path === TopBarTabContentType.contests) {
-    return items;
-  } else if (path === TopBarTabContentType.contest || path === TopBarTabContentType.athlete) {
+    const item = initialState.items.find(i => i.contentType === path);
+    if (item) {
+      return item.id;
+    }
+  }
+  return '';
+}
+
+export function findPathAndId(pathname: string) {
+  if (pathname) {
+    const [{}, path, id] = pathname.split('/');
+    if (!id) {
+      const staticId = isPathStaticType(path) ? idOfStaticPath(path) : null;
+      if (staticId) {
+        return { path: path, id: staticId };
+      }
+    }
+    return { path: path, id: id };
+  }
+  return { path: null, id: null };
+}
+export function modifyTabBarItemsByURL(items: TopBarTabsItem[], pathname: string) {
+  const { path, id } = findPathAndId(pathname);
+  // let name = '';
+  // if (query) {
+  //   console.log('query: ', query);
+  //   const urlname = JSON.parse(
+  //     '{"' + decodeURI(query.replace(/&/g, '","').replace(/=/g, '":"')).replace('?', '') + '"}',
+  //   ).name;
+  //   if (urlname) {
+  //     name = urlname;
+  //   }
+  // }
+
+  if ((path && path === TopBarTabContentType.contest) || path === TopBarTabContentType.athlete) {
     if (id) {
       const oldTab = items.find(t => t.id === id);
       if (!oldTab) {
@@ -43,7 +76,7 @@ function modifyTabBarItemsByURL(items: TopBarTabsItem[], pathname: string) {
           replaceTab.name = '';
           items[index] = replaceTab;
         } else {
-          items.push({ id: id, contentType: TopBarTabContentType[path], type: TopBarTabType.Dynamic, name: '' });
+          items.push({ id: id, contentType: TopBarTabContentType[path], type: TopBarTabType.Dynamic, name: name });
         }
       }
     }
@@ -71,6 +104,12 @@ export default combineReducers<ContainerState, ContainerActions>({
   },
   selectedId: (state = initialState.selectedId, action) => {
     switch (action.type) {
+      case LOCATION_CHANGE:
+        const { path, id } = findPathAndId(action.payload.pathname);
+        if (id && path != null) {
+          return isPathStaticType(path) ? idOfStaticPath(path) : state;
+        }
+        return id ? id : state;
       case ActionTypes.CHANGE_TOPBAR_INDEX:
         return action.payload;
       default:

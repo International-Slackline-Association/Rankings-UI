@@ -1,6 +1,6 @@
-import * as React from 'react';
 import styled from 'styles/styled-components';
 import media from 'styles/media';
+import * as React from 'react';
 
 const SideInfoBox: React.SFC<{}> = () => {
   return <Wrapper />;

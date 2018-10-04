@@ -69,7 +69,7 @@ const mapStateToProps = createStructuredSelector<RootState, StateProps>({
 
 function mapDispatchToProps(dispatch: Dispatch, ownProps: OwnProps): DispatchProps {
   return {
-    dispatch,
+    dispatch: dispatch,
   };
 }
 
@@ -97,7 +97,7 @@ export default compose<TReducer, TSaga, TConnect, ReturnType>(
 {{#if wantSaga}}
   withSaga,
 {{/if}}
-  withConnect
+  withConnect,
 )({{ properCase name }});
 
 type ReturnType = React.ComponentType<OwnProps>;

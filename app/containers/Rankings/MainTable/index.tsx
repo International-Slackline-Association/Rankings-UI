@@ -5,9 +5,27 @@ import messages from './messages';
 import styled, { colors } from 'styles/styled-components';
 import media from 'styles/media';
 import Results from './Results';
+import Empty from './Empty';
+import { SmallLoading } from 'components/Loading';
 
-class MainTable extends React.Component<{}, {}> {
+interface Props {
+  items: TableItem[];
+  onRowSelected(id: string): void;
+  isItemsLoading?: boolean;
+}
+
+interface TableItem {
+  id: string;
+  rank: number;
+  name: string;
+  age: string;
+  country: string;
+  points: number;
+}
+
+class MainTable extends React.PureComponent<Props, {}> {
   public render() {
+    const { isItemsLoading, items, onRowSelected } = this.props;
     return (
       <Wrapper>
         <Results>
@@ -32,29 +50,29 @@ class MainTable extends React.Component<{}, {}> {
               </tr>
             </thead>
             <tbody>
-              <tr key={123}>
-                <td>#1</td>
-                <td>Can Sahin</td>
-                <td>27</td>
-                <td>TR</td>
-                <td>240</td>
-              </tr>
-              <tr key={1231}>
-                <td>#1</td>
-                <td>Can Sahin</td>
-                <td>27</td>
-                <td>TR</td>
-                <td>240</td>
-              </tr>
-              <tr key={1232}>
-                <td>#1</td>
-                <td>Can Sahin</td>
-                <td>27</td>
-                <td>TR</td>
-                <td>240</td>
-              </tr>
+              {items.map(item => {
+                return (
+                  <tr key={item.id}>
+                    <td>{item.rank}</td>
+                    <td>{item.name}</td>
+                    <td>{item.age}</td>
+                    <td>{item.country}</td>
+                    <td>{item.points}</td>
+                  </tr>
+                );
+              })}
             </tbody>
           </table>
+          {isItemsLoading ? (
+            <Empty>
+              <SmallLoading />
+            </Empty>
+          ) : !items || !items.length ? (
+            <Empty>
+              There is no data to display
+              {/* <FormattedMessage {...messages.} /> */}
+            </Empty>
+          ) : null}
         </Results>
       </Wrapper>
     );

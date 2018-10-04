@@ -6,6 +6,6 @@ export enum TopBarTabType {
 export enum TopBarTabContentType {
   rankings = 'rankings',
   contests = 'contests',
-  athlete = 'athelete',
+  athlete = 'athlete',
   contest = 'contest',
 }

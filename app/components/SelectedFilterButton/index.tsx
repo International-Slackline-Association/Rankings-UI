@@ -3,10 +3,15 @@ import * as React from 'react';
 import styled from 'styles/styled-components';
 import clearIconSvg = require('./clear.svg');
 
-const SelectedFilterButton: React.SFC<{}> = () => {
+interface Props {
+  id;
+  name: string;
+  onCancel: (id) => void;
+}
+const SelectedFilterButton: React.SFC<Props> = (props) => {
   return (
     <Wrapper>
-      <Text>12412314 sadd</Text>
+      <Text>{props.name}</Text>
       <ClearButton />
     </Wrapper>
   );
@@ -14,9 +19,9 @@ const SelectedFilterButton: React.SFC<{}> = () => {
 
 const ClearButtonWrapper = styled.button`
   background: transparent;
-  padding: 0;
+  padding: 1px 22px 2px 7px;
+
   /* margin: 0 0 0 0px; */
-  display: block;
   width: 24px;
   height: 24px;
   border: none;
@@ -51,7 +56,8 @@ const ClearButton = props => (
 );
 
 const Wrapper = styled.div`
-  background-color: ${props => props.theme.appBackground};
+  background-color: #707682;
+  height: 100%;
   margin-right: 8px;
   min-width: 5%;
   /* max-height: 25px; */
@@ -59,15 +65,16 @@ const Wrapper = styled.div`
   flex-wrap: nowrap;
   align-items: center;
   justify-content: center;
-  border: 1px solid ${props => props.theme.border};
-  border-radius: 1em;
+  /* border: 1px solid ${props => props.theme.border}; */
+  border-radius: 20px;
   /* box-shadow: 0px 0px 8px 0px ${props => props.theme.border}}; */
 `;
 
 const Text = styled.div`
   padding-left: 8px;
   padding-right: 0px;
-  color: ${props => props.theme.textPrimary};
+  font-size: 1em;
+  color: ${props => props.theme.textInverted};
   /* min-width: 10%; */
 `;
 

@@ -1,10 +1,15 @@
-import { Reducer } from 'redux';
+import { Reducer, Store } from 'redux';
 import { RouterState } from 'react-router-redux';
 import { ILanguageProviderProps } from 'containers/LanguageProvider';
-import {} from 'containers/TopBarTabs/reducer';
 // import { Map } from 'immutable';
 import { ContainerState as TopBarState } from 'containers/TopBarTabs/types';
 import { ContainerState as RankingsState } from 'containers/Rankings/types';
+
+export interface LifeStore extends Store<{}> {
+  injectedReducers?: any;
+  injectedSagas?: any;
+  runSaga(saga: () => IterableIterator<any>, args: any): any;
+}
 
 export interface InjectReducerParams {
   key: keyof ApplicationRootState;
@@ -14,7 +19,7 @@ export interface InjectReducerParams {
 export interface InjectSagaParams {
   key: keyof ApplicationRootState;
   saga: () => IterableIterator<any>;
-  mode?: string;
+  mode?: string | undefined;
 }
 
 export interface ApplicationRootState {

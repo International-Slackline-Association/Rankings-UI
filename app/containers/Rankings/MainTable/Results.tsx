@@ -30,7 +30,7 @@ const Wrapper = styled.div`
       border-bottom: 2px solid ${props => props.theme.border};
       font-size: 1.25rem;
       font-weight: bold;
-      background-color: ${rgba(colors.isaBlue, 0.6)};
+      background-color: ${props => props.theme.componentBackgroundSecondary};
       color: ${props => props.theme.textPrimary};
       display: none;
 
@@ -46,7 +46,6 @@ const Wrapper = styled.div`
         &:nth-child(4) { width: 17%; }
         &:nth-child(5) { width: 17%; }
         &:nth-child(6) { width: 17%; }
-
       }
     }
 
@@ -64,6 +63,18 @@ const Wrapper = styled.div`
           padding-top: 0;
           border-bottom: none;
         `};
+        transition:0.25s;
+        &:hover {
+          transform:scale(1.05,1.05);
+          transform-origin:center;
+        }
+
+        &:active {
+          color: ${colors.isaRed};
+        }
+        &:focus {
+          color: ${colors.isaRed};
+        }
 
         &:nth-child(even) {
           background-color: ${props => rgba(props.theme.appBackground, 0.6)};
@@ -78,18 +89,15 @@ const Wrapper = styled.div`
           margin-bottom: 12px;
           font-size: 1.25rem;
           &:nth-child(1) {
-            &::before { content: "${(props: IResultsWrapperProps) =>
-              props.rankMsg} :";
+            &::before { content: "${(props: IResultsWrapperProps) => props.rankMsg} :";
             };
             font-weight: bold;
+            color: ${colors.isaRed};
             }
-          &:nth-child(2) { &::before { content: "${props =>
-            props.nameMsg} :"; }}
+          &:nth-child(2) { &::before { content: "${props => props.nameMsg} :"; }}
           &:nth-child(3) { &::before { content: "${props => props.ageMsg} :"; }}
-          &:nth-child(4) { &::before { content: "${props =>
-            props.countryMsg} :"; }}
-          &:nth-child(5) { &::before { content: "${props =>
-            props.pointsMsg} :"; }}
+          &:nth-child(4) { &::before { content: "${props => props.countryMsg} :"; }}
+          &:nth-child(5) { &::before { content: "${props => props.pointsMsg} :"; }}
 
           &::before {
             display: block;
@@ -137,10 +145,5 @@ function Results(props) {
     </Wrapper>
   );
 }
-
-// Transactions.propTypes = {
-//   children: PropTypes.oneOfType([PropTypes.array, PropTypes.element]),
-//   intl: intlShape,
-// };
 
 export default injectIntl(Results);

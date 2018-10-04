@@ -8,12 +8,22 @@ type RootState = ApplicationRootState;
 type ContainerState = RankingsState;
 type ContainerActions = RankingsActions;
 
-export { RootState, ContainerState, ContainerActions };
+export { RootState, ContainerState, ContainerActions, SearchSuggestion };
 
 /* --- STATE --- */
 
-// tslint:disable-next-line:no-empty-interface
-interface RankingsState {}
+interface RankingsState {
+  selectedFilters: SelectedFilter[];
+}
 
+interface SelectedFilter {
+  id: string;
+  category: string;
+  name: string;
+}
+
+interface SearchSuggestion {
+  name: string;
+}
 /* --- ACTIONS --- */
 type RankingsActions = ActionType<typeof actions>;

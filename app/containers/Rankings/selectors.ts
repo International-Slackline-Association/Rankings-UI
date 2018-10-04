@@ -2,18 +2,22 @@ import { createSelector } from 'reselect';
 import { ApplicationRootState } from 'types';
 import { initialState } from './reducer';
 
-
 /**
  * Direct selector to the rankings state domain
  */
 
 const selectRankingsDomain = (state: ApplicationRootState) => {
-  return state ? state : initialState;
+  return state.rankings ? state.rankings : initialState;
 };
 
 /**
  * Other specific selectors
  */
+
+const selectSelectedFilters = () =>
+  createSelector(selectRankingsDomain, substate => {
+    return substate.selectedFilters;
+  });
 
 /**
  * Default selector used by Rankings
@@ -25,4 +29,4 @@ const selectRankings = () =>
   });
 
 export default selectRankings;
-export { selectRankingsDomain };
+export { selectRankingsDomain, selectSelectedFilters };

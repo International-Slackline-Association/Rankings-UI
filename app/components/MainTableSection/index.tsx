@@ -1,33 +1,32 @@
 import * as React from 'react';
-import TableSearchInput from 'containers/TableSearchInput';
 import styled from 'styles/styled-components';
 import media from 'styles/media';
-import TableFilters from 'components/TableFilters';
-import SelectedFilterButton from 'components/SelectedFilterButton';
-import MainTable from 'containers/MainTable';
 
-const MainTableSection: React.SFC<{}> = () => {
-  return (
-    <Wrapper>
-      <TableSearchInput />
-      <TableFilters />
-      <SelectedFiltersArea>
-        <SelectedFilterButton />
-        <SelectedFilterButton />
-        <SelectedFilterButton />
-        <SelectedFilterButton />
-        <SelectedFilterButton />
-      </SelectedFiltersArea>
-      <MainTable />
-    </Wrapper>
-  );
+const MainTableSection: React.SFC<{}> = props => {
+  return <Wrapper>{props.children}</Wrapper>;
+};
+
+const FilterAreaText = styled.span`
+  color: ${props => props.theme.textPrimary};
+  font-style: italic;
+  flex-basis: 100;
+  text-align: left;
+`;
+
+export const SelectedFilters: React.SFC<{}> = props => {
+  return props.children ? (
+    <FiltersWrapper>
+      <FilterAreaText>Currently Displaying</FilterAreaText>
+      <SelectedFiltersArea>{props.children}</SelectedFiltersArea>
+    </FiltersWrapper>
+  ) : null;
 };
 
 const SelectedFiltersArea = styled.div`
-  margin: 24px 8px 0px 8px;
   display: flex;
   flex-wrap: wrap;
   flex-basis: 100%;
+  margin-top: 1em;
 `;
 
 const Wrapper = styled.div`
@@ -40,6 +39,20 @@ const Wrapper = styled.div`
   overflow: hidden;
   width: 100%;
   min-height: 100%;
+  ${media.tablet`
+
+  `};
+
+  ${media.desktop`
+
+  `};
+`;
+
+const FiltersWrapper = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  margin: 2em 1.2em 0px 1.2em;
+  width: 100%;
   ${media.tablet`
 
   `};

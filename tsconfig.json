@@ -17,14 +17,14 @@
     "experimentalDecorators": true,
     "forceConsistentCasingInFileNames": true,
     // "importHelpers": true, // importing helper functions from tslib
-    "noEmitHelpers": true, // disable emitting inline helper functions
+    // "noEmitHelpers": true, // disable emitting inline helper functions
     "types": ["jest", "node"],
     "moduleResolution": "node",
     "noEmitOnError": true,
     "noFallthroughCasesInSwitch": true,
     "noImplicitReturns": true,
     "noImplicitThis": true,
-    "noUnusedLocals": true,
+    // "noUnusedLocals": true,
     "strict": true,
     "strictFunctionTypes": false,
     "pretty": true,

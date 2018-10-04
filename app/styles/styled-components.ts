@@ -4,11 +4,13 @@ import breakpoints, { IBreakpoints } from './breakpoints';
 export interface IThemeInterface {
   primary: string;
   componentBackground: string;
+  componentBackgroundSecondary: string;
   appBackground: string;
   border: string;
   textPrimary: string;
   textSecondary: string;
   textInverted: string;
+  textInvertedSecondary: string;
   error: string;
   warning: string;
   popBackground: string;
@@ -36,13 +38,15 @@ export const colors = {
 
 export const theme = {
   default: {
-    primary: colors.green,
+    primary: colors.isaBlue,
     componentBackground: colors.white,
+    componentBackgroundSecondary: colors.isaBlue,
     appBackground: colors.paleWhite,
     border: colors.lightBorder,
     textPrimary: colors.grayDark,
     textSecondary: colors.grayLight,
     textInverted: colors.white,
+    textInvertedSecondary: colors.isaBlue,
     error: colors.red,
     warning: colors.orange,
     popBackground: colors.white,

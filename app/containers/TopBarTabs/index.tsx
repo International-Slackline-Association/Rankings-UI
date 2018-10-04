@@ -5,10 +5,10 @@ import { connect } from 'react-redux';
 import injectReducer from 'utils/injectReducer';
 import injectSaga from 'utils/injectSaga';
 import { compose, Dispatch } from 'redux';
-import reducer from './reducer';
+import reducer, { modifyTabBarItemsByURL, findPathAndId } from './reducer';
 import saga from './saga';
-import { selectTabItems, selectSelectedId } from './selectors';
-import { changeTopBarIndex } from './actions';
+import { selectTabItems, selectSelectedId, selectLocationPath } from './selectors';
+import { changeTopBarIndex, setTopBarTabs } from './actions';
 import { ContainerState, RootState } from './types';
 import TopBarButton from 'components/TopBarButton';
 import { TopBarTabType, TopBarTabContentType } from 'types/enums';
@@ -20,10 +20,12 @@ interface OwnProps {}
 interface StateProps {
   tabItems: ContainerState['items'];
   selectedId: ContainerState['selectedId'];
+  locationPath: string;
 }
 
 interface DispatchProps {
   onSelectedIndexChanged(id: string);
+  setTabBarTabs(items: ContainerState['items']);
   updateLocation(path: string, id: string);
 }
 
@@ -32,13 +34,27 @@ type Props = StateProps & DispatchProps & OwnProps;
 class TopBarTabs extends React.Component<Props> {
   constructor(props: Props) {
     super(props);
+    this.modifyItemsByUrl();
   }
+  private modifyItemsByUrl() {
+    if (this.props.locationPath) {
+      const items = modifyTabBarItemsByURL(
+        this.props.tabItems,
+        this.props.locationPath,
+      );
+      this.props.setTabBarTabs(items);
 
+      const { id } = findPathAndId(this.props.locationPath);
+      if (id) {
+        this.props.onSelectedIndexChanged(id);
+      }
+    }
+  }
   private onButtonSelect = (id: string, contentType: TopBarTabContentType) => {
-    this.props.onSelectedIndexChanged(id);
-    // const path = contentType;
-    // const idParam = id === '-2' || id === '-1' ? null : id;
-    this.props.updateLocation('contest', '1');
+    // this.props.onSelectedIndexChanged(id);
+    const path = contentType;
+    const idParam = id === '-2' || id === '-1' ? '' : id;
+    this.props.updateLocation(path, idParam);
   };
 
   public render() {
@@ -69,12 +85,16 @@ class TopBarTabs extends React.Component<Props> {
 const mapStateToProps = createStructuredSelector<RootState, StateProps>({
   tabItems: selectTabItems(),
   selectedId: selectSelectedId(),
+  locationPath: selectLocationPath(),
 });
 
 function mapDispatchToProps(dispatch: Dispatch, ownProps: OwnProps): DispatchProps {
   return {
     onSelectedIndexChanged: (id: string) => {
       dispatch(changeTopBarIndex(id));
+    },
+    setTabBarTabs: items => {
+      dispatch(setTopBarTabs(items));
     },
     updateLocation: (path: string, id?: string) => {
       if (id) {

@@ -29,9 +29,12 @@ const routeInitialState: RouterState = {
  * Merge route into the global application state
  */
 export function routeReducer(state = routeInitialState, action) {
+  // console.log('Action: ', action);
+
   switch (action.type) {
     /* istanbul ignore next */
     case LOCATION_CHANGE:
+      // console.log('State: ', action.payload);
       return { location: action.payload };
     default:
       return state;

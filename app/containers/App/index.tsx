@@ -20,7 +20,7 @@ import media from 'styles/media';
 
 import 'bootstrap/dist/css/bootstrap.min.css';
 import TopBarTabs from 'containers/TopBarTabs';
-import TabContent from 'components/TabContent';
+import { Rankings } from '../Rankings';
 
 const AppWrapper = styled.div`
   width: 100%;
@@ -49,8 +49,8 @@ class App extends React.Component<{}, {}> {
           <NavBar />
           <TopBarTabs/>
           <Switch>
-            <Route exact path="/" component={TabContent} />
-            <Route exact path="/contests" component={TabContent} />
+            <Route exact path="/" component={Rankings} />
+            {/* <Route exact path="/contests" component={TabContent} /> */}
             <Redirect from="/rankings" to="/" />
             <Route component={NotFoundPage} />
           </Switch>
