@@ -20,7 +20,7 @@ interface RankingsState {
   selectedSearchInput: SearchSuggestion | null;
   tableItems: TableItem[] | null;
   isRankingsLoading: boolean | null;
-  dropdownFilters: DropdownFilter[]
+  dropdownFilters: DropdownFilter[];
 }
 
 interface SelectedFilter {
