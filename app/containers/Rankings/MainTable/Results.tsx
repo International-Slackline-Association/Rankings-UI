@@ -24,7 +24,7 @@ const Wrapper = styled.div`
     width: 100%;
     text-align: center;
     /* border-top: 1px solid ${props => props.theme.border}; */
-    border-bottom: 1px solid ${props => props.theme.border};
+    /* border-bottom: 1px solid ${props => props.theme.border}; */
     thead {
       text-transform: uppercase;
       border-bottom: 2px solid ${props => props.theme.border};

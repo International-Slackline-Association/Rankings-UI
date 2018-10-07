@@ -19,6 +19,30 @@ const selectSelectedFilters = () =>
     return substate.selectedFilters;
   });
 
+const selectSelectedSearchInput = () =>
+  createSelector(selectRankingsDomain, substate => {
+    return substate.selectedSearchInput;
+  });
+
+const selectSuggestions = () =>
+  createSelector(selectRankingsDomain, substate => {
+    return substate.suggestions;
+  });
+
+const selectRankingItems = () =>
+  createSelector(selectRankingsDomain, substate => {
+    return substate.tableItems;
+  });
+
+const selectIsRankingsLoading = () =>
+  createSelector(selectRankingsDomain, substate => {
+    return substate.isRankingsLoading;
+  });
+const selectDropdownFilters = () =>
+  createSelector(selectRankingsDomain, substate => {
+    return substate.dropdownFilters;
+  });
+
 /**
  * Default selector used by Rankings
  */
@@ -29,4 +53,12 @@ const selectRankings = () =>
   });
 
 export default selectRankings;
-export { selectRankingsDomain, selectSelectedFilters };
+export {
+  selectRankingsDomain,
+  selectSelectedFilters,
+  selectSelectedSearchInput,
+  selectSuggestions,
+  selectRankingItems,
+  selectIsRankingsLoading,
+  selectDropdownFilters,
+};

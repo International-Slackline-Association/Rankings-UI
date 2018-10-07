@@ -5,6 +5,7 @@ export interface IThemeInterface {
   primary: string;
   componentBackground: string;
   componentBackgroundSecondary: string;
+  componentBackgroundInverted: string;
   appBackground: string;
   border: string;
   textPrimary: string;
@@ -31,7 +32,7 @@ export const colors = {
   red: '#F46060',
   isaRed: '#f04d32',
   orange: '#F7931A',
-  isaBlue: '#26a69c',
+  isaBlue: '#2AB4AA',
   paleWhite: '#FBFBFB',
   lightBorder: '#DCDADA',
 };
@@ -41,6 +42,7 @@ export const theme = {
     primary: colors.isaBlue,
     componentBackground: colors.white,
     componentBackgroundSecondary: colors.isaBlue,
+    componentBackgroundInverted: colors.grayDark,
     appBackground: colors.paleWhite,
     border: colors.lightBorder,
     textPrimary: colors.grayDark,

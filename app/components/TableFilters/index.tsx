@@ -2,12 +2,15 @@ import * as React from 'react';
 
 import styled, { colors } from 'styles/styled-components';
 import media from 'styles/media';
+import SideBoxButton from '../SideBoxButton';
 
 const TableFilters: React.SFC<{}> = props => {
   return (
     <Wrapper>
       <TableFiltersWrapper>{props.children}</TableFiltersWrapper>
-      <ShowFilterButton> Show Filters </ShowFilterButton>
+      <ShowFilterSection>
+        <SideBoxButton small> Show Filters </SideBoxButton>
+      </ShowFilterSection>
     </Wrapper>
   );
 };
@@ -33,8 +36,7 @@ const TableFiltersWrapper = styled.div`
   `};
 `;
 
-const ShowFilterButton = styled.button`
-  background-color: ${colors.isaBlue};
+const ShowFilterSection = styled.div`
 
   position: relative;
   width: 70%;

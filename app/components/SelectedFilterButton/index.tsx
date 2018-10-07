@@ -6,18 +6,27 @@ import clearIconSvg = require('./clear.svg');
 interface Props {
   id;
   name: string;
+  isDisabled: boolean;
   onCancel: (id) => void;
 }
-const SelectedFilterButton: React.SFC<Props> = (props) => {
+
+const SelectedFilterButton: React.SFC<Props> = props => {
+  function onCancel() {
+    props.onCancel(props.id);
+  }
   return (
     <Wrapper>
       <Text>{props.name}</Text>
-      <ClearButton />
+      <ClearButton isDisabled={props.isDisabled} onClick={onCancel} />
     </Wrapper>
   );
 };
 
 const ClearButtonWrapper = styled.button`
+  :disabled {
+    opacity: 0.65;
+    /* cursor: not-allowed; */
+  }
   background: transparent;
   padding: 1px 22px 2px 7px;
 
@@ -27,7 +36,6 @@ const ClearButtonWrapper = styled.button`
   border: none;
   outline: none;
   cursor: pointer;
-
   &:hover {
     img {
       opacity: 0.8;
@@ -50,15 +58,16 @@ const ClearIcon = props => {
 };
 
 const ClearButton = props => (
-  <ClearButtonWrapper onClick={props.onClick}>
+  <ClearButtonWrapper disabled={props.isDisabled} onClick={props.onClick}>
     <ClearIcon />
   </ClearButtonWrapper>
 );
 
 const Wrapper = styled.div`
   background-color: #707682;
-  height: 100%;
+  /* height: 100%; */
   margin-right: 8px;
+  margin-top: 8px;
   min-width: 5%;
   /* max-height: 25px; */
   display: flex;
@@ -71,9 +80,9 @@ const Wrapper = styled.div`
 `;
 
 const Text = styled.div`
-  padding-left: 8px;
+  padding-left: 12px;
   padding-right: 0px;
-  font-size: 1em;
+  font-size: 0.9em;
   color: ${props => props.theme.textInverted};
   /* min-width: 10%; */
 `;

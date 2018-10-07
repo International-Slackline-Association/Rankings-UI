@@ -1,11 +1,12 @@
-/*
- *
- * Rankings constants
- *
- */
-
 enum ActionTypes {
-  DEFAULT_ACTION = 'app/Rankings/DEFAULT_ACTION',
+  LOAD_SUGGESTIONS = 'app/Rankings/LOAD_SUGGESTIONS',
+  SUGGESTIONS_LOADED = 'app/Rankings/SUGGESTIONS_LOADED',
+  SELECT_SUGGESTION = 'app/Rankings/SELECT_SUGGESTION',
+  CLEAR_SUGGESTIONS = 'app/Rankings/CLEAR_SUGGESTIONS',
+  CHANGE_SELECTED_FILTERS = 'app/Rankings/CHANGE_SELECTED_FILTERS',
+  SELECT_TABLE_ROW = 'app/Rankings/SELECT_TABLE_ROW',
+  LOAD_RANKINGS = 'app/Rankings/LOAD_RANKINGS',
+  SET_RANKINGS = 'app/Rankings/SET_RANKINGS',
 }
 
 export default ActionTypes;

@@ -110,7 +110,7 @@ class TableDropdownSearchableFilter extends React.PureComponent<Props, State> {
           </CustomDropdownToggle>
           <CustomDropdownMenu>
             <CustomDropdownItem>
-              <AutosuggestWrapper>
+              <AutosuggestWrapper isLoading={false}>
                 <Autosuggest
                   suggestions={suggestions}
                   onSuggestionsFetchRequested={this.onSuggestionsFetchRequested}

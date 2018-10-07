@@ -20,7 +20,7 @@ import media from 'styles/media';
 
 import 'bootstrap/dist/css/bootstrap.min.css';
 import TopBarTabs from 'containers/TopBarTabs';
-import { Rankings } from '../Rankings';
+import Rankings from '../Rankings';
 
 const AppWrapper = styled.div`
   width: 100%;

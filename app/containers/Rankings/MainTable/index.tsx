@@ -9,18 +9,18 @@ import Empty from './Empty';
 import { SmallLoading } from 'components/Loading';
 
 interface Props {
-  items: TableItem[];
+  items: TableItem[] | null;
   onRowSelected(id: string): void;
-  isItemsLoading?: boolean;
+  isItemsLoading: boolean | null;
 }
 
 interface TableItem {
   id: string;
   rank: number;
   name: string;
-  age: string;
+  age: number;
   country: string;
-  points: number;
+  points: string;
 }
 
 class MainTable extends React.PureComponent<Props, {}> {
@@ -50,7 +50,7 @@ class MainTable extends React.PureComponent<Props, {}> {
               </tr>
             </thead>
             <tbody>
-              {items.map(item => {
+              {items && items.map(item => {
                 return (
                   <tr key={item.id}>
                     <td>{item.rank}</td>

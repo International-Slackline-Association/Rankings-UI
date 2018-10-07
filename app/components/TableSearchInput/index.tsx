@@ -33,12 +33,13 @@ interface ISuggestion {
 
 interface State {
   value: string;
+  isLoading: boolean;
   // suggestions: ISuggestion[];
 }
 
 interface Props {
   placeholder: string;
-  suggestions?: ISuggestion[];
+  suggestions?: ISuggestion[] | null;
   loadSuggestions(searchValue: string);
   suggestionSelected(value: ISuggestion);
   clearSuggestions();
@@ -52,10 +53,19 @@ class TableSearchInput extends React.PureComponent<Props, State> {
     suggestions: [],
   };
 
+  public componentWillReceiveProps(nextProps: Props, nextContext: any) {
+    if (nextProps.suggestions) {
+      this.setState({
+        isLoading: false,
+      });
+    }
+  }
+
   constructor(props) {
     super(props);
     this.state = {
       value: '',
+      isLoading: false,
       // suggestions: this.props.suggestions ? this.props.suggestions : [],
     };
   }
@@ -86,13 +96,15 @@ class TableSearchInput extends React.PureComponent<Props, State> {
   // You already implemented this logic above, so just use it.
   private onSuggestionsFetchRequested = ({ value }) => {
     this.props.loadSuggestions(value);
-    // this.setState({
-    //   suggestions: this.getSuggestions(value),
-    // });
+
+    this.setState({
+      isLoading: true,
+    });
   };
 
   // Autosuggest will call this function every time you need to clear suggestions.
   private onSuggestionsClearRequested = () => {
+    console.log('Value:', this.state.value);
     this.props.clearSuggestions();
     // this.setState({
     //   suggestions: [],
@@ -110,7 +122,7 @@ class TableSearchInput extends React.PureComponent<Props, State> {
       onChange: this.onChange,
     };
     return (
-      <AutosuggestWrapper>
+      <AutosuggestWrapper isLoading={this.state.isLoading}>
         <Autosuggest
           suggestions={suggestions}
           onSuggestionsFetchRequested={this.onSuggestionsFetchRequested}

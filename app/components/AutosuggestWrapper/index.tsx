@@ -1,7 +1,9 @@
 import styled, { colors } from 'styles/styled-components';
 import searchIconSvg = require('./search.svg?file');
 
+import * as React from 'react';
 import media from 'styles/media';
+import { TinyLoading } from '../Loading';
 
 const classNames: any = {
   container: 'react-autosuggest__container',
@@ -15,13 +17,51 @@ const classNames: any = {
   suggestion_highlighted: 'react-autosuggest__suggestion--highlighted',
 };
 
-export const AutosuggestWrapper = styled.div.attrs(classNames)`
+interface Props {
+  isLoading: boolean;
+}
+
+export const AutosuggestWrapper: React.SFC<Props> = props => {
+  return (
+    <Wrapper>
+      <AutosuggestWrapperDiv>{props.children}</AutosuggestWrapperDiv>
+      {props.isLoading && (
+        <Empty>
+          <TinyLoading />
+        </Empty>
+      )}
+    </Wrapper>
+  );
+};
+
+const Wrapper = styled.div`
   display: flex;
+  flex-wrap: nowrap;
+  position: relative;
+  margin-left: 1.2em;
+  margin-top: 1.2em;
+`;
+
+const Empty = styled.div`
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  right: 10px;
+  align-items: center;
+  align-self: center;
+  font-weight: normal;
+  color: ${props => props.theme.textSecondary};
+  padding: 0 8px;
+  text-align: center;
+`;
+
+const AutosuggestWrapperDiv = styled.div.attrs(classNames)`
+  display: flex;
+  align-items: center;
     .${classNames.container} {
       position: relative;
       /* background-color: ${colors.green}; */
-      margin-left: 1.2em;
-      margin-top: 1.2em;
+
       align-self: center;
     }
     .${classNames.input} {

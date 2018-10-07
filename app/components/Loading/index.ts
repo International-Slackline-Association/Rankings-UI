@@ -29,10 +29,19 @@ const Loading = styled.div`
   }
 `;
 
+
+export const TinyLoading = Loading.extend`
+  &::after {
+    width: 1em;
+    height: 1em;
+    border-width: 2px;
+  }
+`;
+
 export const SmallLoading = Loading.extend`
   &::after {
-    width: 18px;
-    height: 18px;
+    width: 1.5em;
+    height: 1.5em;
     border-width: 2px;
   }
 `;

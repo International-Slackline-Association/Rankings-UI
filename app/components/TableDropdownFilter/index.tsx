@@ -1,9 +1,11 @@
 import * as React from 'react';
 
 import styled, { colors } from 'styles/styled-components';
+import { rgba, lighten, darken } from 'polished';
 
 import { UncontrolledDropdown, DropdownToggle, DropdownMenu, DropdownItem } from 'reactstrap';
 import media from 'styles/media';
+import { isMetaProperty } from 'typescript';
 
 interface FilterItem {
   id: string;
@@ -55,7 +57,12 @@ class TableDropdownFilter extends React.PureComponent<Props, State> {
             {items.map(item => {
               return (
                 <React.Fragment key={item.id}>
-                  <CustomDropdownItem key={item.id} onClick={this.onDropdownSelected(item.id)}>
+                  <CustomDropdownItem
+                    disabled={item.isSelected}
+                    key={item.id}
+                    isFilterSelected={item.isSelected}
+                    onClick={this.onDropdownSelected(item.id)}
+                  >
                     {item.name}
                   </CustomDropdownItem>
                   {/* <DropdownItem divider /> */}
@@ -89,6 +96,7 @@ const CustomDropdownToggle = styled(DropdownToggle)`
   background-color: ${props => props.theme.componentBackgroundSecondary};
   border-radius: 4px;
   outline: none;
+  cursor: pointer;
 
   ${media.desktop`
     /* width: 70px; */
@@ -100,11 +108,11 @@ const CustomDropdownToggle = styled(DropdownToggle)`
   `};
 
   &:hover {
-    opacity: 0.8;
+    background-color: ${props => lighten(0.09, props.theme.componentBackgroundSecondary)};
   }
   &:focus {
     outline: none;
-    opacity: 0.8;
+    background-color: ${props => lighten(0.09, props.theme.componentBackgroundSecondary)};
   }
 `;
 
@@ -161,20 +169,26 @@ const CustomDropdownMenu = styled(DropdownMenu)`
 `;
 
 interface DropdownItemProps {
-  isSelected: boolean;
+  isFilterSelected: boolean;
 }
 const CustomDropdownItem = styled<DropdownItemProps, any>(DropdownItem)`
+  :disabled {
+    opacity: 0.65;
+    /* cursor: not-allowed; */
+  }
   &.dropdown-item {
-    color: ${props => (props.isSelected ? colors.isaRed : props.theme.textPrimary)};
+    cursor: pointer;
+    color: ${props => (props.isFilterSelected ? colors.isaRed : props.theme.textPrimary)};
     text-align: center;
-    background-color: ${props => props.theme.componentBackground};
+    background-color: ${props => props.theme.appBackground};
     border: none;
     width: 100%;
     padding: 10px 0px;
     :hover {
       background-color: ${props => props.theme.componentBackgroundSecondary};
-      color: ${props => props.theme.textPrimary};
+      /* background-color: ${props => lighten(0.09, props.theme.componentBackgroundSecondary)}; */
     }
+
     :active {
       background-color: ${props => props.theme.componentBackgroundSecondary};
       color: ${props => props.theme.textPrimary};
