@@ -14,25 +14,26 @@ import injectReducer from 'utils/injectReducer';
 import {
   selectSelectedFilters,
   selectSuggestions,
-  selectRankingItems,
-  selectIsRankingsLoading,
   selectDropdownFilters,
   selectSelectedSearchInput,
+  selectTableItems,
+  selectIsTableItemsLoading,
 } from './selectors';
 import reducer from './reducer';
 import saga from './saga';
 
-import { RootState, ContainerState, SearchSuggestion, SelectedFilter } from './types';
+import { RootState, ContainerState, SearchSuggestion, SelectedFilter, TableItem } from './types';
 import TabPanel from 'components/TabPanel';
 import MainTableSection, { SelectedFilters } from 'components/MainTableSection';
 import SelectedFilterButton from 'components/SelectedFilterButton';
 import MainTable from './MainTable';
 import TableFilters from 'components/TableFilters';
 import TableDropdownFilter from 'components/TableDropdownFilter';
-import AthleteSideInfoBox from 'components/AthleteSideInfoBox';
+import SideInfoBoxAthlete from 'components/SideInfoBoxAthlete';
 import { defaultFilters } from './filters';
 import TableSearchInput from 'components/TableSearchInput';
 import * as actions from './actions';
+import SideInfoBoxRankings from 'components/SideInfoBoxRankings';
 
 // tslint:disable-next-line:no-empty-interface
 interface OwnProps {}
@@ -42,8 +43,8 @@ interface StateProps {
   selectedFilters: ContainerState['selectedFilters'];
   suggestions: ContainerState['suggestions'];
   selectedSearchInput: ContainerState['selectedSearchInput'];
-  rankingItems: ContainerState['tableItems'];
-  isRankingsLoading: ContainerState['isRankingsLoading'];
+  tableItems: ContainerState['tableItems'];
+  isTableItemsLoading: ContainerState['isRankingsLoading'];
   dropdownFilters: ContainerState['dropdownFilters'];
 }
 
@@ -54,8 +55,11 @@ interface DispatchProps {
 
 type Props = StateProps & DispatchProps & OwnProps;
 
-class Rankings extends React.PureComponent<Props> {
+interface State {
+  selectedTableItem: TableItem;
+}
 
+class Rankings extends React.PureComponent<Props, State> {
   constructor(props) {
     super(props);
     this.props.dispatch(actions.loadRankings());
@@ -78,6 +82,13 @@ class Rankings extends React.PureComponent<Props> {
       }
     }
     return null;
+  };
+
+  private findTableItemById = (id: string) => {
+    if (!this.props.tableItems) {
+      return undefined;
+    }
+    return this.props.tableItems.find(item => item.id === id);
   };
 
   private removeFromSelectedFilters(item: SelectedFilter) {
@@ -126,11 +137,17 @@ class Rankings extends React.PureComponent<Props> {
   };
 
   private onTableRowSelected = (id: string) => {
-    //
+    const selectedItem = this.findTableItemById(id);
+    if (selectedItem) {
+      this.setState({
+        selectedTableItem: selectedItem,
+      });
+    }
   };
 
   public render() {
     const { selectedFilters } = this.props;
+    const selectedTableItem = this.state && this.state.selectedTableItem;
     return (
       <TabPanel>
         <MainTableSection>
@@ -168,12 +185,12 @@ class Rankings extends React.PureComponent<Props> {
               })}
           </SelectedFilters>
           <MainTable
-            items={this.props.rankingItems}
+            items={this.props.tableItems}
             onRowSelected={this.onTableRowSelected}
-            isItemsLoading={this.props.isRankingsLoading}
+            isItemsLoading={this.props.isTableItemsLoading}
           />
         </MainTableSection>
-        <AthleteSideInfoBox />
+        {selectedTableItem ? <SideInfoBoxAthlete item={selectedTableItem} /> : <SideInfoBoxRankings />}
       </TabPanel>
     );
   }
@@ -183,8 +200,8 @@ const mapStateToProps = createStructuredSelector<RootState, StateProps>({
   selectedFilters: selectSelectedFilters(),
   suggestions: selectSuggestions(),
   selectedSearchInput: selectSelectedSearchInput(),
-  rankingItems: selectRankingItems(),
-  isRankingsLoading: selectIsRankingsLoading(),
+  tableItems: selectTableItems(),
+  isTableItemsLoading: selectIsTableItemsLoading(),
   dropdownFilters: selectDropdownFilters(),
 });
 

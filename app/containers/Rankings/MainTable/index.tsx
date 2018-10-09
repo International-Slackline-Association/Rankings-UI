@@ -18,17 +18,23 @@ interface TableItem {
   id: string;
   rank: number;
   name: string;
+  surname: string;
   age: number;
   country: string;
   points: string;
 }
 
 class MainTable extends React.PureComponent<Props, {}> {
+  private onTableRowClick = (item: TableItem) => {
+    return () => {
+      this.props.onRowSelected(item.id);
+    };
+  };
   public render() {
     const { isItemsLoading, items, onRowSelected } = this.props;
     return (
       <Wrapper>
-        <Results>
+        <Results selected>
           <table>
             <thead>
               <tr>
@@ -50,17 +56,18 @@ class MainTable extends React.PureComponent<Props, {}> {
               </tr>
             </thead>
             <tbody>
-              {items && items.map(item => {
-                return (
-                  <tr key={item.id}>
-                    <td>{item.rank}</td>
-                    <td>{item.name}</td>
-                    <td>{item.age}</td>
-                    <td>{item.country}</td>
-                    <td>{item.points}</td>
-                  </tr>
-                );
-              })}
+              {items &&
+                items.map(item => {
+                  return (
+                    <tr onClick={this.onTableRowClick(item)} key={item.id}>
+                      <td>{item.rank}</td>
+                      <td>{item.name + ' ' + item.surname}</td>
+                      <td>{item.age}</td>
+                      <td>{item.country}</td>
+                      <td>{item.points}</td>
+                    </tr>
+                  );
+                })}
             </tbody>
           </table>
           {isItemsLoading ? (

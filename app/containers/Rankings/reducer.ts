@@ -33,6 +33,7 @@ export const initialState: ContainerState = {
   suggestions: [],
   isRankingsLoading: false,
   dropdownFilters: filters,
+  // selectedTableItem: null;
 };
 
 // function rankingsReducer(state: ContainerState = initialState, action: ContainerActions ) {
@@ -117,4 +118,13 @@ export default combineReducers<ContainerState, ContainerActions>({
     }
     return state;
   },
+  // selectedTableItem: (state = null, action) => {
+  //   switch (action.type) {
+  //     case ActionTypes.LOAD_SUGGESTIONS:
+  //       return true;
+  //     case ActionTypes.SUGGESTIONS_LOADED:
+  //       return false;
+  //   }
+  //   return state;
+  // },
 });

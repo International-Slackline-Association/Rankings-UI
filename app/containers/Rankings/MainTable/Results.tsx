@@ -13,6 +13,8 @@ interface IResultsWrapperProps {
   countryMsg: string;
   pointsMsg: string;
 }
+const x = styled.tr ``;
+
 const Wrapper = styled.div`
   /* border: 1px solid ${props => props.theme.border}; */
   /* background-color: ${colors.orange}; */
@@ -67,6 +69,7 @@ const Wrapper = styled.div`
         &:hover {
           transform:scale(1.05,1.05);
           transform-origin:center;
+          color: ${colors.isaRed};
         }
 
         &:active {
@@ -98,7 +101,7 @@ const Wrapper = styled.div`
           &:nth-child(3) { &::before { content: "${props => props.ageMsg} :"; }}
           &:nth-child(4) { &::before { content: "${props => props.countryMsg} :"; }}
           &:nth-child(5) { &::before { content: "${props => props.pointsMsg} :"; }}
-
+          &selected
           &::before {
             display: block;
             text-transform: uppercase;

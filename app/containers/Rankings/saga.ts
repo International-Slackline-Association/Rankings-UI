@@ -6,56 +6,27 @@ import { SearchSuggestion, TableItem } from './types';
 import { takeLatest, call, put, select } from 'redux-saga/effects';
 import { delay } from 'redux-saga';
 
-const rankings: TableItem[] = [
-  {
-    id: '1',
-    age: 27,
-    country: 'TR',
-    name: 'Can Sahin',
-    points: '240',
-    rank: 1,
-  },
-  {
-    id: '2',
-    age: 27,
-    country: 'TR',
-    name: 'Can Sahin',
-    points: '240',
-    rank: 1,
-  },
-  {
-    id: '3',
-    age: 27,
-    country: 'TR',
-    name: 'Can Sahin',
-    points: '240',
-    rank: 1,
-  },
-  {
-    id: '4',
-    age: 27,
-    country: 'TR',
-    name: 'Can Sahin',
-    points: '240',
-    rank: 1,
-  },
-  {
-    id: '5',
-    age: 27,
-    country: 'TR',
-    name: 'Can Sahin',
-    points: '240',
-    rank: 1,
-  },
-];
-export function* getRankings() {
-  const username = yield select(selectSelectedSearchInput());
-  yield delay(2000);
+import { apiGetRankings, APIRankingResultsResponse, APIGetRankingResultsRequest } from './api';
 
+// import getRankingResults from 'api/rankings/results';
+
+export function* getRankings() {
+  // const username = yield select(selectSelectedSearchInput());
+
+  const request: APIGetRankingResultsRequest = {
+    filters: [
+      {
+        id: '',
+        name: '',
+      },
+    ],
+    searchInput: '',
+  };
   try {
-    // const repos = yield call(request, requestURL);
-    yield put(setRankings(rankings));
+    const results: APIRankingResultsResponse = yield call(apiGetRankings, request);
+    yield put(setRankings(results.items));
   } catch (err) {
+    console.log('err: ', err);
     // yield put(repoLoadingError(err));
   }
 }

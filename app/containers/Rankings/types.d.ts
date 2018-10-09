@@ -21,6 +21,7 @@ interface RankingsState {
   tableItems: TableItem[] | null;
   isRankingsLoading: boolean | null;
   dropdownFilters: DropdownFilter[];
+  // selectedTableItem: TableItem | null;
 }
 
 interface SelectedFilter {
@@ -34,9 +35,13 @@ interface TableItem {
   id: string;
   rank: number;
   name: string;
+  surname: string;
   age: number;
   country: string;
   points: string;
+  profileUrl: string;
+  overallRank: number;
+  topDisciplines: string[];
 }
 
 interface SearchSuggestion {

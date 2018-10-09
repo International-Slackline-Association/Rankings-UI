@@ -29,12 +29,12 @@ const selectSuggestions = () =>
     return substate.suggestions;
   });
 
-const selectRankingItems = () =>
+const selectTableItems = () =>
   createSelector(selectRankingsDomain, substate => {
     return substate.tableItems;
   });
 
-const selectIsRankingsLoading = () =>
+const selectIsTableItemsLoading = () =>
   createSelector(selectRankingsDomain, substate => {
     return substate.isRankingsLoading;
   });
@@ -58,7 +58,7 @@ export {
   selectSelectedFilters,
   selectSelectedSearchInput,
   selectSuggestions,
-  selectRankingItems,
-  selectIsRankingsLoading,
+  selectTableItems,
+  selectIsTableItemsLoading,
   selectDropdownFilters,
 };
