@@ -32,10 +32,19 @@ export function* getRankings() {
 }
 export function* getSuggestions() {
   const username = yield select(selectSelectedSearchInput());
-  yield delay(2000);
+  yield delay(1000);
   try {
     // const repos = yield call(request, requestURL);
-    const suggestions: SearchSuggestion[] = [{ name: 'Temp1' }, { name: 'Temp2' }, { name: 'Temp3' }];
+    const suggestions: SearchSuggestion[] = [
+      { name: 'Temp 123' },
+      { name: 'Temp2' },
+      { name: 'Temp3' },
+      { name: 'Temp4' },
+      { name: 'Temp5' },
+      { name: 'Temp5' },
+      { name: 'Temp5' },
+      { name: 'Temp5' },
+    ];
     yield put(setSuggestions(suggestions));
   } catch (err) {
     // yield put(repoLoadingError(err));

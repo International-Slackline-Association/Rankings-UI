@@ -96,17 +96,22 @@ class Rankings extends React.PureComponent<Props, State> {
   }
 
   private onLoadSearchSuggestions = (searchValue: string) => {
+    console.log('Load Suggestions: ', searchValue);
     this.props.dispatch(actions.loadSuggestions(searchValue));
   };
 
-  private onClearSearchSuggestions = () => {
-    this.props.dispatch(actions.clearSuggestions());
-    if (this.props.selectedSearchInput) {
+  private onClearSearchSuggestions = (value: string) => {
+    console.log('Clear Suggestions: ', value);
+    if ((!value || value.length === 0) && this.props.selectedSearchInput) {
+      this.props.dispatch(actions.clearSuggestions(true));
       this.props.dispatch(actions.loadRankings());
+    } else {
+      this.props.dispatch(actions.clearSuggestions(false));
     }
   };
 
   private onSearchSuggestionSelected = (suggestion: SearchSuggestion) => {
+    console.log('Select Suggestion: ', suggestion);
     this.props.dispatch(actions.selectSuggestion(suggestion));
     this.props.dispatch(actions.loadRankings());
   };

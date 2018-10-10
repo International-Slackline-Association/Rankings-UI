@@ -32,7 +32,7 @@ export const colors = {
   red: '#F46060',
   isaRed: '#f04d32',
   orange: '#F7931A',
-  isaBlue: '#2AB4AA',
+  isaBlue: '#28ABA1',
   paleWhite: '#FBFBFB',
   lightBorder: '#DCDADA',
 };

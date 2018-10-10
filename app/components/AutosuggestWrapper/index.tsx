@@ -4,6 +4,7 @@ import searchIconSvg = require('./search.svg?file');
 import * as React from 'react';
 import media from 'styles/media';
 import { TinyLoading } from '../Loading';
+import { lighten } from 'polished';
 
 const classNames: any = {
   container: 'react-autosuggest__container',
@@ -125,6 +126,14 @@ const AutosuggestWrapperDiv = styled.div.attrs(classNames)`
     .${classNames.suggestion} {
       cursor: pointer;
       padding: 10px 20px;
+      &:hover {
+        background-color: ${props => lighten(0.6, props.theme.textPrimary)};
+      }
+      span {
+        b {
+          font-weight:bold;
+        }
+      }
     }
     .${classNames.suggestion_highlighted} {
       background-color: ${props => props.theme.border};

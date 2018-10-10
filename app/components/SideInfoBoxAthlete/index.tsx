@@ -43,7 +43,7 @@ class SideInfoBoxAthlete extends React.PureComponent<Props> {
         </StatsSection>
         <DisciplineSection>
           <FullDiv>
-            <TitledField title={'Top Disciplines'} value={item.topDisciplines.join(',')} />
+            <TitledField title={'Top Disciplines'} value={item.topDisciplines.join(', ')} />
           </FullDiv>
         </DisciplineSection>
         <ButtonSection>

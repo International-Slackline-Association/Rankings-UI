@@ -24,14 +24,27 @@ interface TableItem {
   points: string;
 }
 
-class MainTable extends React.PureComponent<Props, {}> {
+interface State {
+  selectedItem: TableItem | null;
+}
+
+class MainTable extends React.PureComponent<Props, State> {
+  public constructor(props) {
+    super(props);
+    this.state = {
+      selectedItem: null,
+    };
+  }
   private onTableRowClick = (item: TableItem) => {
     return () => {
+      this.setState({
+        selectedItem: item,
+      });
       this.props.onRowSelected(item.id);
     };
   };
   public render() {
-    const { isItemsLoading, items, onRowSelected } = this.props;
+    const { isItemsLoading, items } = this.props;
     return (
       <Wrapper>
         <Results selected>
@@ -59,7 +72,11 @@ class MainTable extends React.PureComponent<Props, {}> {
               {items &&
                 items.map(item => {
                   return (
-                    <tr onClick={this.onTableRowClick(item)} key={item.id}>
+                    <tr
+                      onClick={this.onTableRowClick(item)}
+                      key={item.id}
+                      className={item === this.state.selectedItem ? 'selected' : ''}
+                    >
                       <td>{item.rank}</td>
                       <td>{item.name + ' ' + item.surname}</td>
                       <td>{item.age}</td>

@@ -3,30 +3,6 @@ import * as React from 'react';
 import Autosuggest = require('react-autosuggest');
 import { AutosuggestWrapper } from 'components/AutosuggestWrapper';
 
-// Imagine you have a list of languages that you'd like to autosuggest.
-// const languages = [
-//   {
-//     name: 'C',
-//     year: 1972,
-//   },
-//   {
-//     name: 'C1',
-//     year: 1972,
-//   },
-//   {
-//     name: 'C2',
-//     year: 1972,
-//   },
-//   {
-//     name: 'C3',
-//     year: 1972,
-//   },
-//   {
-//     name: 'Elm',
-//     year: 2012,
-//   },
-// ];
-
 interface ISuggestion {
   name: string;
 }
@@ -42,10 +18,8 @@ interface Props {
   suggestions?: ISuggestion[] | null;
   loadSuggestions(searchValue: string);
   suggestionSelected(value: ISuggestion);
-  clearSuggestions();
+  clearSuggestions(value: string);
 }
-
-const renderSuggestion = (suggestion: ISuggestion) => <span>{suggestion.name}</span>;
 
 class TableSearchInput extends React.PureComponent<Props, State> {
   public static defaultProps = {
@@ -72,6 +46,22 @@ class TableSearchInput extends React.PureComponent<Props, State> {
   private getSuggestionValue = (suggestion: ISuggestion) => {
     this.props.suggestionSelected(suggestion);
     return suggestion.name;
+  };
+  private renderSuggestion = (suggestion: ISuggestion) => {
+    const name = suggestion.name.toLowerCase();
+    const value = this.state.value.toLowerCase();
+    const index = name.indexOf(value);
+    if (index === 0) {
+      const x = suggestion.name.substring(0, this.state.value.length);
+      const y = suggestion.name.substring(this.state.value.length);
+      return (
+        <span>
+          {x}
+          <b>{y}</b>
+        </span>
+      );
+    }
+    return <span>{suggestion.name}</span>;
   };
 
   // Teach Autosuggest how to calculate suggestions for any given input value.
@@ -104,8 +94,7 @@ class TableSearchInput extends React.PureComponent<Props, State> {
 
   // Autosuggest will call this function every time you need to clear suggestions.
   private onSuggestionsClearRequested = () => {
-    console.log('Value:', this.state.value);
-    this.props.clearSuggestions();
+    this.props.clearSuggestions(this.state.value);
     // this.setState({
     //   suggestions: [],
     // });
@@ -121,6 +110,7 @@ class TableSearchInput extends React.PureComponent<Props, State> {
       value: value,
       onChange: this.onChange,
     };
+
     return (
       <AutosuggestWrapper isLoading={this.state.isLoading}>
         <Autosuggest
@@ -128,7 +118,7 @@ class TableSearchInput extends React.PureComponent<Props, State> {
           onSuggestionsFetchRequested={this.onSuggestionsFetchRequested}
           onSuggestionsClearRequested={this.onSuggestionsClearRequested}
           getSuggestionValue={this.getSuggestionValue}
-          renderSuggestion={renderSuggestion}
+          renderSuggestion={this.renderSuggestion}
           inputProps={inputProps}
         />
       </AutosuggestWrapper>

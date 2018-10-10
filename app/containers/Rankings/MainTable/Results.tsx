@@ -1,6 +1,6 @@
 import * as React from 'react';
 // import PropTypes from 'prop-types';
-import { rgba } from 'polished';
+import { rgba, lighten, darken } from 'polished';
 import media from 'styles/media';
 import { injectIntl } from 'react-intl';
 import messages from './messages';
@@ -13,8 +13,6 @@ interface IResultsWrapperProps {
   countryMsg: string;
   pointsMsg: string;
 }
-const x = styled.tr ``;
-
 const Wrapper = styled.div`
   /* border: 1px solid ${props => props.theme.border}; */
   /* background-color: ${colors.orange}; */
@@ -29,11 +27,11 @@ const Wrapper = styled.div`
     /* border-bottom: 1px solid ${props => props.theme.border}; */
     thead {
       text-transform: uppercase;
-      border-bottom: 2px solid ${props => props.theme.border};
-      font-size: 1.25rem;
+      /* border-bottom: 2px solid ${props => props.theme.border}; */
+      font-size: 1.2em;
       font-weight: bold;
       background-color: ${props => props.theme.componentBackgroundSecondary};
-      color: ${props => props.theme.textPrimary};
+      color: ${props => props.theme.textInverted};
       display: none;
 
       ${media.desktop`
@@ -59,29 +57,36 @@ const Wrapper = styled.div`
         flex-wrap: wrap;
         padding-top: 12px;
         border-bottom: 2px solid ${props => props.theme.border};
+        /* cursor: pointer; */
+        &.selected {
+          font-weight: bold;
+          color: ${darken(0.11, colors.isaRed)};
+        }
+        ${media.tablet`
+          transition:0.25s;
+          &:hover {
+            transform:scale(1.01,1.01);
+            transform-origin:center;
+            font-weight: bold;
+          }
+
+          &:active {
+            color: ${props => lighten(0.11, props.theme.textPrimary)};
+          }
+          &:focus {
+            color: ${props => lighten(0.11, props.theme.textPrimary)};
+          }
+
+          &:nth-child(even) {
+            /* background-color: ${props => rgba(props.theme.appBackground, 0.6)}; */
+          }
+        `};
 
         ${media.desktop`
           display: table-row;
           padding-top: 0;
           border-bottom: none;
         `};
-        transition:0.25s;
-        &:hover {
-          transform:scale(1.05,1.05);
-          transform-origin:center;
-          color: ${colors.isaRed};
-        }
-
-        &:active {
-          color: ${colors.isaRed};
-        }
-        &:focus {
-          color: ${colors.isaRed};
-        }
-
-        &:nth-child(even) {
-          background-color: ${props => rgba(props.theme.appBackground, 0.6)};
-        }
 
         td {
           padding: 0;
@@ -94,19 +99,19 @@ const Wrapper = styled.div`
           &:nth-child(1) {
             &::before { content: "${(props: IResultsWrapperProps) => props.rankMsg} :";
             };
-            font-weight: bold;
+            font-weight: bolder;
+            font-size: 1.25em
             color: ${colors.isaRed};
             }
-          &:nth-child(2) { &::before { content: "${props => props.nameMsg} :"; }}
-          &:nth-child(3) { &::before { content: "${props => props.ageMsg} :"; }}
-          &:nth-child(4) { &::before { content: "${props => props.countryMsg} :"; }}
-          &:nth-child(5) { &::before { content: "${props => props.pointsMsg} :"; }}
-          &selected
+          &:nth-child(2) { &::before { content: "${props => props.nameMsg} : "; }}
+          &:nth-child(3) { &::before { content: "${props => props.ageMsg} : "; }}
+          &:nth-child(4) { &::before { content: "${props => props.countryMsg} : "; }}
+          &:nth-child(5) { &::before { content: "${props => props.pointsMsg} : "; }}
           &::before {
             display: block;
             text-transform: uppercase;
-            font-size: 1rem;
-            color: ${props => props.theme.textSecondary};
+            font-size: 12px;
+            color: ${(props) => props.theme.textSecondary};
             width: 40%;
             display: block;
             padding-right: 10px;

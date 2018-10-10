@@ -6,7 +6,7 @@ import { APIGetRankingResultsRequest, APIRankingResultsResponse } from './types'
 
 const requestURL = '';
 const getRankingResults = (request: APIGetRankingResultsRequest): Promise<APIRankingResultsResponse> => {
-  return axios.post(requestURL, request, dummyResponseConfig(dummyResponse, 2000)).then(resp => {
+  return axios.post(requestURL, request, dummyResponseConfig(dummyResponse, 1000)).then(resp => {
     const result = resp.data as APIRankingResultsResponse;
     return result;
   });

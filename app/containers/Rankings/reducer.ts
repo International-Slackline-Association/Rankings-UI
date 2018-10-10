@@ -69,7 +69,7 @@ export default combineReducers<ContainerState, ContainerActions>({
       case ActionTypes.SELECT_SUGGESTION:
         return action.payload;
       case ActionTypes.CLEAR_SUGGESTIONS:
-        return state;
+        return action.payload ? null : state;
     }
     return state;
   },
