@@ -35,6 +35,7 @@ export const colors = {
   isaBlue: '#28ABA1',
   paleWhite: '#FBFBFB',
   lightBorder: '#DCDADA',
+  overlayBackground: 'rgba(22, 18, 32, 0.85)',
 };
 
 export const theme = {

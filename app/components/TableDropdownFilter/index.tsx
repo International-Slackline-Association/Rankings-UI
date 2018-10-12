@@ -60,7 +60,6 @@ class TableDropdownFilter extends React.PureComponent<Props, State> {
                   <CustomDropdownItem
                     disabled={item.isSelected}
                     key={item.id}
-                    isFilterSelected={item.isSelected}
                     onClick={this.onDropdownSelected(item.id)}
                   >
                     {item.name}
@@ -78,7 +77,11 @@ class TableDropdownFilter extends React.PureComponent<Props, State> {
 const Wrapper = styled.div`
   display: flex;
   justify-content: center;
-  margin-right: 1em;
+  margin-bottom: 3em;
+  ${media.tablet`
+    margin-right: 1em;
+    margin-bottom: 0;
+  `};
 `;
 
 const CustomDropdown = styled(UncontrolledDropdown)`
@@ -91,18 +94,18 @@ const CustomDropdownToggle = styled(DropdownToggle)`
   color: ${props => props.theme.textInverted};
   height: 28px;
   padding: 0px 10px;
-  /* width: 70px; */
+  width: 100px;
   border: none;
   background-color: ${props => props.theme.componentBackgroundSecondary};
   border-radius: 4px;
   outline: none;
   cursor: pointer;
 
-  ${media.desktop`
-    /* width: 70px; */
+  ${media.tablet`
+    width: auto;
   `};
 
-  ${media.desktopLarge`
+  ${media.desktop`
     padding: 0px;
     width: 100px;
   `};
@@ -168,17 +171,15 @@ const CustomDropdownMenu = styled(DropdownMenu)`
   max-height: 350px;
 `;
 
-interface DropdownItemProps {
-  isFilterSelected: boolean;
-}
-const CustomDropdownItem = styled<DropdownItemProps, any>(DropdownItem)`
+
+const CustomDropdownItem = styled<any>(DropdownItem)`
   :disabled {
     opacity: 0.65;
     /* cursor: not-allowed; */
   }
   &.dropdown-item {
     cursor: pointer;
-    color: ${props => (props.isFilterSelected ? colors.isaRed : props.theme.textPrimary)};
+    color: ${props => props.theme.textPrimary};
     text-align: center;
     background-color: ${props => props.theme.appBackground};
     border: none;

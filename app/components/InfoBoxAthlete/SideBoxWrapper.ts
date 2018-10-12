@@ -1,7 +1,7 @@
 import styled from 'styles/styled-components';
 import media from 'styles/media';
 
-const Wrapper = styled.div`
+const SideBoxWrapper = styled.div`
   background-color: ${props => props.theme.componentBackgroundInverted};
   border: 1px solid ${props => props.theme.border};
   border-radius: 0.5em;
@@ -11,15 +11,13 @@ const Wrapper = styled.div`
   margin: 0 0px 0px 30px;
   padding: 8px;
   ${media.tablet`
-  /* display: flex; */
-  /* width: 100%; */
   `};
 
-  ${media.desktop`
+  ${media.desktopLarge`
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     width: 33%;
   `};
 `;
-export default Wrapper;
+export default SideBoxWrapper;

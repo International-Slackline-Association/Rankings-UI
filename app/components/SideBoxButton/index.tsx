@@ -7,7 +7,7 @@ interface ButtonProps {
   small?: boolean;
 }
 
-const size = props => {
+const size = (props: ButtonProps) => {
   if (props.small) {
     return css`
       font-size: 1em;
@@ -47,9 +47,5 @@ const SideBoxButton = styled<ButtonProps, 'button'>('button')`
     background-color: ${props => darken(0.11, props.theme.componentBackgroundSecondary)};
     /* box-shadow: inset 0 1px 0 0 rgba(0, 0, 0, 0.1); */
   }
-  /* &:focus {
-    background-color: ${props => darken(0.11, props.theme.componentBackgroundSecondary)};
-    /* box-shadow: inset 0 1px 0 0 rgba(0, 0, 0, 0.1); */
-  } */
 `;
 export default SideBoxButton;

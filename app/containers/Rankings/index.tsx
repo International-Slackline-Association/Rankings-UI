@@ -29,11 +29,12 @@ import SelectedFilterButton from 'components/SelectedFilterButton';
 import MainTable from './MainTable';
 import TableFilters from 'components/TableFilters';
 import TableDropdownFilter from 'components/TableDropdownFilter';
-import SideInfoBoxAthlete from 'components/SideInfoBoxAthlete';
 import { defaultFilters } from './filters';
 import TableSearchInput from 'components/TableSearchInput';
 import * as actions from './actions';
-import SideInfoBoxRankings from 'components/SideInfoBoxRankings';
+import InfoBoxRankings from 'components/InfoBoxRankings';
+import { SideInfoBoxAthlete, ModalInfoBoxAthlete } from 'components/InfoBoxAthlete';
+import Modal from 'components/Modal';
 
 // tslint:disable-next-line:no-empty-interface
 interface OwnProps {}
@@ -56,13 +57,28 @@ interface DispatchProps {
 type Props = StateProps & DispatchProps & OwnProps;
 
 interface State {
-  selectedTableItem: TableItem;
+  selectedTableItem?: TableItem;
+  isModalOpen: boolean;
 }
 
 class Rankings extends React.PureComponent<Props, State> {
   constructor(props) {
     super(props);
+    this.state = {
+      isModalOpen: false,
+      selectedTableItem: undefined,
+    };
+    this.closeModal = this.closeModal.bind(this);
     this.props.dispatch(actions.loadRankings());
+  }
+
+  private closeModal() {
+    this.setState(state => {
+      return {
+        ...this.state,
+        isModalOpen: false,
+      };
+    });
   }
 
   private findFilterById = (id: string) => {
@@ -96,12 +112,10 @@ class Rankings extends React.PureComponent<Props, State> {
   }
 
   private onLoadSearchSuggestions = (searchValue: string) => {
-    console.log('Load Suggestions: ', searchValue);
     this.props.dispatch(actions.loadSuggestions(searchValue));
   };
 
   private onClearSearchSuggestions = (value: string) => {
-    console.log('Clear Suggestions: ', value);
     if ((!value || value.length === 0) && this.props.selectedSearchInput) {
       this.props.dispatch(actions.clearSuggestions(true));
       this.props.dispatch(actions.loadRankings());
@@ -111,7 +125,6 @@ class Rankings extends React.PureComponent<Props, State> {
   };
 
   private onSearchSuggestionSelected = (suggestion: SearchSuggestion) => {
-    console.log('Select Suggestion: ', suggestion);
     this.props.dispatch(actions.selectSuggestion(suggestion));
     this.props.dispatch(actions.loadRankings());
   };
@@ -146,6 +159,7 @@ class Rankings extends React.PureComponent<Props, State> {
     if (selectedItem) {
       this.setState({
         selectedTableItem: selectedItem,
+        isModalOpen: true,
       });
     }
   };
@@ -195,7 +209,12 @@ class Rankings extends React.PureComponent<Props, State> {
             isItemsLoading={this.props.isTableItemsLoading}
           />
         </MainTableSection>
-        {selectedTableItem ? <SideInfoBoxAthlete item={selectedTableItem} /> : <SideInfoBoxRankings />}
+        {selectedTableItem ? <SideInfoBoxAthlete item={selectedTableItem} /> : <InfoBoxRankings />}
+        {selectedTableItem && (
+          <Modal isOpen={this.state.isModalOpen} onRequestClose={this.closeModal}>
+            <ModalInfoBoxAthlete item={selectedTableItem} />
+          </Modal>
+        )}
       </TabPanel>
     );
   }

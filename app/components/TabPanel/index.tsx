@@ -17,6 +17,7 @@ const Wrapper = styled.div`
   height: 100%;
   display: flex;
   justify-content: space-between;
+  /* align-items: flex-start; */
   /* max-width: 100%;
   max-height: 100%; */
   padding: 24px ${padding(breakpoints.mobile)}px 8px

@@ -1,8 +1,9 @@
 import * as React from 'react';
-import Wrapper from './Wrapper';
+import SideBoxWrapper from './SideBoxWrapper';
 import styled from 'styles/styled-components';
 import TitledField from './TitledField';
 import SideBoxButton from '../SideBoxButton';
+import ModalWrapper from './ModalWrapper';
 
 interface Props {
   item: {
@@ -17,11 +18,33 @@ interface Props {
   };
 }
 
-class SideInfoBoxAthlete extends React.PureComponent<Props> {
+export class SideInfoBoxAthlete extends React.PureComponent<Props> {
+  public render() {
+    return (
+      <SideBoxWrapper>
+        <InfoBoxAthlete {...this.props} />
+      </SideBoxWrapper>
+    );
+  }
+}
+
+// tslint:disable-next-line:max-classes-per-file
+export class ModalInfoBoxAthlete extends React.PureComponent<Props> {
+  public render() {
+    return (
+      <ModalWrapper>
+        <InfoBoxAthlete {...this.props} />
+      </ModalWrapper>
+    );
+  }
+}
+
+// tslint:disable-next-line:max-classes-per-file
+class InfoBoxAthlete extends React.PureComponent<Props> {
   public render() {
     const item = this.props.item;
     return (
-      <Wrapper>
+      <React.Fragment>
         <PhotoSection>
           <Img src={item.profileUrl} />
         </PhotoSection>
@@ -51,7 +74,7 @@ class SideInfoBoxAthlete extends React.PureComponent<Props> {
             <SideBoxButton>Contests</SideBoxButton>
           </FullDiv>
         </ButtonSection>
-      </Wrapper>
+      </React.Fragment>
     );
   }
 }
@@ -73,6 +96,7 @@ const FullDiv = styled.div`
 `;
 
 const Img = styled.img`
+  flex: none;
   max-width: 50%;
   border: 1px solid ${props => props.theme.appBackground};
 `;
@@ -102,4 +126,3 @@ const ButtonSection = styled.div`
   display: flex;
   height: 50%;
 `;
-export default SideInfoBoxAthlete;
