@@ -10,6 +10,7 @@ import IconClose from 'components/Icons/IconClose';
 export interface ModalComponentProps {
   onRequestClose();
   showCloseButton?: boolean;
+  className?: string;
   content?: {
     component: any;
     props?: object;
@@ -52,14 +53,14 @@ class ModalComponent extends React.PureComponent<ModalComponentProps> {
   }
 
   public render() {
-    const { onRequestClose, children, content, showCloseButton } = this.props;
+    const { onRequestClose, children, content, showCloseButton, className } = this.props;
     const Component = content && content.component;
     const componentProps = (content && content.props) || {};
     return (
       <Portal>
-        <Container>
-          <Overlay innerRef={this.overlayRef} onClick={onRequestClose} />
-          <Window innerRef={this.windowRef}>
+        <Container className={className}>
+          <Overlay ref={this.overlayRef} onClick={onRequestClose} />
+          <Window ref={this.windowRef}>
             {showCloseButton && <CloseButton onClick={onRequestClose} inverted={true} icon={IconClose} />}
             {children || <Component {...componentProps} /> || null}
           </Window>

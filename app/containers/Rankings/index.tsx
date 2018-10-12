@@ -34,7 +34,7 @@ import TableSearchInput from 'components/TableSearchInput';
 import * as actions from './actions';
 import InfoBoxRankings from 'components/InfoBoxRankings';
 import { SideInfoBoxAthlete, ModalInfoBoxAthlete } from 'components/InfoBoxAthlete';
-import Modal from 'components/Modal';
+import Modal, { MobileOnlyModal } from 'components/Modal';
 
 // tslint:disable-next-line:no-empty-interface
 interface OwnProps {}
@@ -211,9 +211,9 @@ class Rankings extends React.PureComponent<Props, State> {
         </MainTableSection>
         {selectedTableItem ? <SideInfoBoxAthlete item={selectedTableItem} /> : <InfoBoxRankings />}
         {selectedTableItem && (
-          <Modal isOpen={this.state.isModalOpen} onRequestClose={this.closeModal}>
+          <MobileOnlyModal isOpen={this.state.isModalOpen} onRequestClose={this.closeModal}>
             <ModalInfoBoxAthlete item={selectedTableItem} />
-          </Modal>
+          </MobileOnlyModal>
         )}
       </TabPanel>
     );

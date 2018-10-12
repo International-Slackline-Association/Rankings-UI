@@ -1,7 +1,9 @@
 import styled from 'styles/styled-components';
 import zIndex from 'styles/zIndex';
 
-interface OwnProps {}
+interface OwnProps {
+  className?: string;
+}
 
 const Container = styled<OwnProps, 'div'>('div')`
   position: fixed;

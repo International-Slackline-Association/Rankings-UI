@@ -30,7 +30,7 @@ const Loading = styled.div`
 `;
 
 
-export const TinyLoading = Loading.extend`
+export const TinyLoading = styled(Loading)`
   &::after {
     width: 1em;
     height: 1em;
@@ -38,7 +38,7 @@ export const TinyLoading = Loading.extend`
   }
 `;
 
-export const SmallLoading = Loading.extend`
+export const SmallLoading = styled(Loading)`
   &::after {
     width: 1.5em;
     height: 1.5em;
@@ -46,13 +46,13 @@ export const SmallLoading = Loading.extend`
   }
 `;
 
-export const InlineLoading = Loading.extend`
+export const InlineLoading = styled(Loading)`
   width: auto;
   height: auto;
   position: static;
 `;
 
-export const InlineSmallLoading = SmallLoading.extend`
+export const InlineSmallLoading = styled(Loading)`
   width: auto;
   height: auto;
   position: static;

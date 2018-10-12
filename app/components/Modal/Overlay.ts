@@ -12,7 +12,7 @@ const Overlay = styled<OwnProps, 'div'>('div')`
   bottom: 0;
   right: 0;
   background-color: ${colors.overlayBackground};
-  opacity: 0.001;
+  /* opacity: 0.001; */
 `;
 
 export default Overlay;

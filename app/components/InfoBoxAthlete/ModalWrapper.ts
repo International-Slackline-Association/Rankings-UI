@@ -12,7 +12,8 @@ const ModalWrapper = styled.div`
   padding: 8px;
   width: 75vw;
   height: 75vh;
-
+  max-height: 600px;
+  max-width: 300px;
   ${media.desktopLarge`
     display: none;
   `};

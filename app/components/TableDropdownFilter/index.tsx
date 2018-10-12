@@ -3,7 +3,7 @@ import * as React from 'react';
 import styled, { colors } from 'styles/styled-components';
 import { rgba, lighten, darken } from 'polished';
 
-import { UncontrolledDropdown, DropdownToggle, DropdownMenu, DropdownItem } from 'reactstrap';
+import { UncontrolledDropdown, DropdownToggle, DropdownMenu, DropdownItem, ButtonDropdown } from 'reactstrap';
 import media from 'styles/media';
 import { isMetaProperty } from 'typescript';
 
@@ -35,6 +35,11 @@ class TableDropdownFilter extends React.PureComponent<Props, State> {
       dropdownOpen: false,
     };
   }
+  private toggle = () => {
+    this.setState({
+      dropdownOpen: !this.state.dropdownOpen,
+    });
+  };
 
   private onDropdownSelected = id => {
     return () => this.props.onItemSelected(id);
@@ -49,7 +54,7 @@ class TableDropdownFilter extends React.PureComponent<Props, State> {
 
     return (
       <Wrapper>
-        <CustomDropdown>
+        <CustomDropdown isOpen={this.state.dropdownOpen} toggle={this.toggle}>
           <CustomDropdownToggle tag="button" data-toggle="dropdown" aria-expanded={this.state.dropdownOpen}>
             <DropdownContent filterName={name} selectedFilter={this.getSelectedName()} />
           </CustomDropdownToggle>
@@ -84,7 +89,7 @@ const Wrapper = styled.div`
   `};
 `;
 
-const CustomDropdown = styled(UncontrolledDropdown)`
+const CustomDropdown = styled(ButtonDropdown)`
   display: flex;
   align-content: center;
   align-items: center;
@@ -170,7 +175,6 @@ const CustomDropdownMenu = styled(DropdownMenu)`
   overflow-y: scroll;
   max-height: 350px;
 `;
-
 
 const CustomDropdownItem = styled<any>(DropdownItem)`
   :disabled {

@@ -62,10 +62,11 @@ export const theme = {
 const {
   default: styled,
   css,
-  injectGlobal,
+  createGlobalStyle,
   keyframes,
   ThemeProvider,
+  withTheme,
 } = styledComponents as styledComponents.ThemedStyledComponentsModule<IThemeInterface>;
 
-export { css, injectGlobal, keyframes, ThemeProvider };
+export { css, createGlobalStyle, keyframes, ThemeProvider, withTheme };
 export default styled;

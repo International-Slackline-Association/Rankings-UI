@@ -33,7 +33,7 @@ class TableFilters extends React.PureComponent<{}, State> {
         <TableFiltersWrapper>{this.props.children}</TableFiltersWrapper>
         <ShowFilterSection>
           <SideBoxButton onClick={this.openModal} small>
-            Show Filters
+            Filters
           </SideBoxButton>
           <Modal isOpen={this.state.isModalOpen} onRequestClose={this.closeModal}>
             <TableFiltersModalWrapper>{this.props.children}</TableFiltersModalWrapper>
