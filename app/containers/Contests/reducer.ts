@@ -1,12 +1,5 @@
-/*
- *
- * Rankings reducer
- *
- */
-
 import { combineReducers } from 'redux';
 
-// import ActionTypes from './constants';
 import { ContainerState, ContainerActions } from './types';
 import { defaultFilters } from './filters';
 import ActionTypes from './constants';
@@ -34,6 +27,7 @@ export const initialState: ContainerState = {
   isTableItemsLoading: false,
   dropdownFilters: filters,
 };
+
 
 export default combineReducers<ContainerState, ContainerActions>({
   selectedFilters: (state = initialState.selectedFilters, action) => {

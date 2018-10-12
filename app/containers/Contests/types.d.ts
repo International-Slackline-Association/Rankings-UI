@@ -6,26 +6,26 @@ import { TabContentState } from 'containers/GenericTabContent/types';
 /* --- EXPORTS --- */
 
 type RootState = ApplicationRootState;
-type ContainerState = RankingsState;
-type ContainerActions = RankingsActions;
+type ContainerState = ContestsState;
+type ContainerActions = ContestsActions;
 
 export { RootState, ContainerState, ContainerActions, TableItem };
 
 /* --- STATE --- */
-interface RankingsState extends TabContentState<TableItem> {}
+
+interface ContestsState extends TabContentState<TableItem> {}
 
 interface TableItem {
   id: string;
-  rank: number;
   name: string;
-  surname: string;
-  age: number;
-  country: string;
-  points: string;
+  discipline: string;
+  prize: string;
+  size: string;
+  date: string;
+  location: string;
+  disciplines: string[];
   profileUrl: string;
-  overallRank: number;
-  topDisciplines: string[];
 }
 
 /* --- ACTIONS --- */
-type RankingsActions = ActionType<typeof actions>;
+type ContestsActions = ActionType<typeof actions>;

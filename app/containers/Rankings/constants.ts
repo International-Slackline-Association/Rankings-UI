@@ -5,8 +5,8 @@ enum ActionTypes {
   CLEAR_SUGGESTIONS = 'app/Rankings/CLEAR_SUGGESTIONS',
   CHANGE_SELECTED_FILTERS = 'app/Rankings/CHANGE_SELECTED_FILTERS',
   SELECT_TABLE_ROW = 'app/Rankings/SELECT_TABLE_ROW',
-  LOAD_RANKINGS = 'app/Rankings/LOAD_RANKINGS',
-  SET_RANKINGS = 'app/Rankings/SET_RANKINGS',
+  LOAD_TABLE_ITEMS = 'app/Rankings/LOAD_TABLE_ITEMS',
+  SET_TABLE_ITEMS = 'app/Rankings/SET_TABLE_ITEMS',
 }
 
 export default ActionTypes;

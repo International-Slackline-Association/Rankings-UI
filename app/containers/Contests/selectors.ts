@@ -7,7 +7,7 @@ import { initialState } from './reducer';
  */
 
 const selectRankingsDomain = (state: ApplicationRootState) => {
-  return state.rankings ? state.rankings : initialState;
+  return state.contests ? state.contests : initialState;
 };
 
 /**

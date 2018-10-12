@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Img, HalfDiv, FullDiv, PhotoSection } from '..';
+import {Img, HalfDiv, FullDiv, PhotoSection } from '../common';
 import TitledField from '../TitledField';
 import SideBoxButton from 'components/SideBoxButton';
 import styled from 'styles/styled-components';
@@ -12,7 +12,7 @@ export interface ContestProps {
     prize: string;
     size: string;
     date: string;
-    Disciplines: string[];
+    disciplines: string[];
     profileUrl: string;
   };
 }
@@ -50,7 +50,7 @@ class InfoBoxContest extends React.PureComponent<ContestProps> {
         </DateSection>
         <DisciplineSection>
           <FullDiv>
-            <TitledField title={'Disciplines'} value={item.Disciplines.join(', ')} />
+            <TitledField title={'Disciplines'} value={item.disciplines.join(', ')} />
           </FullDiv>
         </DisciplineSection>
         <ButtonSection>
@@ -64,26 +64,26 @@ class InfoBoxContest extends React.PureComponent<ContestProps> {
 }
 const NameSection = styled.div`
   display: flex;
-  height: 33%;
+  height: 25%;
 `;
 const LocationSection = styled.div`
   display: flex;
-  height: 33%;
+  height: 25%;
 `;
 
 const StatsSection = styled.div`
   display: flex;
-  height: 33%;
+  height: 25%;
 `;
 
 const DateSection = styled.div`
   display: flex;
-  height: 33%;
+  height: 20%;
 `;
 
 const DisciplineSection = styled.div`
   display: flex;
-  height: 33%;
+  height: 25%;
 `;
 
 const ButtonSection = styled.div`

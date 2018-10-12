@@ -1,4 +1,4 @@
-import countries from 'containers/GenericTabContent/countries';
+import countries from '../GenericTabContent/countries';
 import { FilterItem } from 'containers/GenericTabContent/FilterItem';
 import { DropdownFilter } from 'containers/GenericTabContent/types';
 
@@ -26,38 +26,6 @@ export function defaultFilters(markDefaultsAsSelected = true): DropdownFilter[] 
       new FilterItem(category, '2018', markDefaultsAsSelected ? true : false, true),
       new FilterItem(category, '2017', false, true),
     ],
-  });
-  category = 'Gender';
-  result.push({
-    category: category,
-    items: [new FilterItem(category, 'Men'), new FilterItem(category, 'Women')],
-  });
-
-  category = 'Country';
-  result.push({
-    category: category,
-    items: countries.map(country => {
-      return new FilterItem(category, country.name);
-    }),
-  });
-
-  category = 'Continent';
-  result.push({
-    category: category,
-    items: [
-      new FilterItem(category, 'Europe'),
-      new FilterItem(category, 'North America'),
-      new FilterItem(category, 'South America'),
-      new FilterItem(category, 'Asia'),
-      new FilterItem(category, 'Australia'),
-      new FilterItem(category, 'Africa'),
-    ],
-  });
-
-  category = 'Age';
-  result.push({
-    category: category,
-    items: [new FilterItem(category, 'Youth')],
   });
 
   return result;

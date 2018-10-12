@@ -31,7 +31,7 @@ import TableFilters from 'components/TableFilters';
 import TableDropdownFilter from 'components/TableDropdownFilter';
 import TableSearchInput from 'components/TableSearchInput';
 import * as actions from './actions';
-import { SideInfoBoxAthlete, ModalInfoBoxAthlete, SideInfoBoxRankings } from 'components/InfoBox';
+import { SideInfoBoxAthlete, ModalInfoBoxAthlete, SideInfoBoxRankings, SideInfoBoxContest, SideInfoBoxContests, ModalInfoBoxContest } from 'components/InfoBox';
 import Modal, { MobileOnlyModal } from 'components/Modal';
 import { SelectedFilter, SearchSuggestion } from 'containers/GenericTabContent/types';
 
@@ -60,7 +60,7 @@ interface State {
   isModalOpen: boolean;
 }
 
-class Rankings extends React.PureComponent<Props, State> {
+class Contests extends React.PureComponent<Props, State> {
   constructor(props) {
     super(props);
     this.state = {
@@ -170,7 +170,7 @@ class Rankings extends React.PureComponent<Props, State> {
       <TabPanel>
         <MainTableSection>
           <TableSearchInput
-            placeholder={'Search Athlete'}
+            placeholder={'Search Contest'}
             loadSuggestions={this.onLoadSearchSuggestions}
             clearSuggestions={this.onClearSearchSuggestions}
             suggestionSelected={this.onSearchSuggestionSelected}
@@ -208,10 +208,10 @@ class Rankings extends React.PureComponent<Props, State> {
             isItemsLoading={this.props.isTableItemsLoading}
           />
         </MainTableSection>
-        {selectedTableItem ? <SideInfoBoxAthlete item={selectedTableItem} /> : <SideInfoBoxRankings />}
+        {selectedTableItem ? <SideInfoBoxContest item={selectedTableItem} /> : <SideInfoBoxContests/>}
         {selectedTableItem && (
           <MobileOnlyModal isOpen={this.state.isModalOpen} onRequestClose={this.closeModal}>
-            <ModalInfoBoxAthlete item={selectedTableItem} />
+            <ModalInfoBoxContest large item={selectedTableItem} />
           </MobileOnlyModal>
         )}
       </TabPanel>
@@ -239,11 +239,11 @@ const withConnect = connect(
   mapDispatchToProps,
 );
 
-const withReducer = injectReducer<OwnProps>({ key: 'rankings', reducer: reducer });
-const withSaga = injectSaga<OwnProps>({ key: 'rankings', saga: saga });
+const withReducer = injectReducer<OwnProps>({ key: 'contests', reducer: reducer });
+const withSaga = injectSaga<OwnProps>({ key: 'contests', saga: saga });
 
 export default compose(
   withReducer,
   withSaga,
   withConnect,
-)(Rankings);
+)(Contests);

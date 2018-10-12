@@ -50,11 +50,14 @@ export class SideInfoBoxRankings extends React.PureComponent<RankingsProps> {
   }
 }
 
+interface ModalProps {
+  large?: boolean;
+}
 // tslint:disable-next-line:max-classes-per-file
-export class ModalInfoBoxAthlete extends React.PureComponent<AthleteProps> {
+export class ModalInfoBoxAthlete extends React.PureComponent<AthleteProps & ModalProps> {
   public render() {
     return (
-      <ModalWrapper>
+      <ModalWrapper large={this.props.large}>
         <InfoBoxAthlete {...this.props} />
       </ModalWrapper>
     );
@@ -62,10 +65,10 @@ export class ModalInfoBoxAthlete extends React.PureComponent<AthleteProps> {
 }
 
 // tslint:disable-next-line:max-classes-per-file
-export class ModalInfoBoxContest extends React.PureComponent<ContestProps> {
+export class ModalInfoBoxContest extends React.PureComponent<ContestProps & ModalProps> {
   public render() {
     return (
-      <ModalWrapper>
+      <ModalWrapper large={this.props.large}>
         <InfoBoxContest {...this.props} />
       </ModalWrapper>
     );
@@ -73,10 +76,10 @@ export class ModalInfoBoxContest extends React.PureComponent<ContestProps> {
 }
 
 // tslint:disable-next-line:max-classes-per-file
-export class ModalInfoBoxContests extends React.PureComponent<ContestsProps> {
+export class ModalInfoBoxContests extends React.PureComponent<ContestsProps & ModalProps> {
   public render() {
     return (
-      <ModalWrapper>
+      <ModalWrapper large={this.props.large}>
         <InfoBoxContests {...this.props} />
       </ModalWrapper>
     );
@@ -84,43 +87,12 @@ export class ModalInfoBoxContests extends React.PureComponent<ContestsProps> {
 }
 
 // tslint:disable-next-line:max-classes-per-file
-export class ModalInfoBoxRankings extends React.PureComponent<RankingsProps> {
+export class ModalInfoBoxRankings extends React.PureComponent<RankingsProps & ModalProps> {
   public render() {
     return (
-      <ModalWrapper>
+      <ModalWrapper large={this.props.large}>
         <InfoBoxRankings {...this.props} />
       </ModalWrapper>
     );
   }
 }
-
-
-
-export const HalfDiv = styled.div`
-  display: flex;
-  width: 50%;
-  height: 100%;
-  align-items: center;
-  justify-content: center;
-`;
-
-export const FullDiv = styled.div`
-  display: flex;
-  width: 100%;
-  height: 100%;
-  align-items: center;
-  justify-content: center;
-`;
-
-export const PhotoSection = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-basis: 80%;
-`;
-
-export const Img = styled.img`
-  flex: none;
-  max-width: 50%;
-  border: 1px solid ${props => props.theme.appBackground};
-`;

@@ -1,5 +1,5 @@
 import * as React from 'react';
-import {Img, HalfDiv, FullDiv, PhotoSection } from '..';
+import {Img, HalfDiv, FullDiv, PhotoSection } from '../common';
 import TitledField from '../TitledField';
 import SideBoxButton from 'components/SideBoxButton';
 import styled from 'styles/styled-components';
