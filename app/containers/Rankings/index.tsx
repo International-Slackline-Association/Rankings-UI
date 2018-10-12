@@ -29,7 +29,6 @@ import SelectedFilterButton from 'components/SelectedFilterButton';
 import MainTable from './MainTable';
 import TableFilters from 'components/TableFilters';
 import TableDropdownFilter from 'components/TableDropdownFilter';
-import { defaultFilters } from './filters';
 import TableSearchInput from 'components/TableSearchInput';
 import * as actions from './actions';
 import InfoBoxRankings from 'components/InfoBoxRankings';

@@ -1,3 +1,4 @@
+import { startCase } from 'lodash';
 import { combineReducers } from 'redux';
 
 import ActionTypes from './constants';
@@ -38,6 +39,13 @@ function idOfStaticPath(path: string) {
   return '';
 }
 
+function parseNameFromId(id: string): string {
+  // example swiss-open_2018, slackline_2019, can-sahin, can-sahin_2, can, can_2
+  const dashedName = id.split('_')[0];
+  const name = startCase(dashedName);
+  return name;
+}
+
 export function findPathAndId(pathname: string) {
   if (pathname) {
     const [{}, path, id] = pathname.split('/');
@@ -51,18 +59,9 @@ export function findPathAndId(pathname: string) {
   }
   return { path: null, id: null };
 }
+
 export function modifyTabBarItemsByURL(items: TopBarTabsItem[], pathname: string) {
   const { path, id } = findPathAndId(pathname);
-  // let name = '';
-  // if (query) {
-  //   console.log('query: ', query);
-  //   const urlname = JSON.parse(
-  //     '{"' + decodeURI(query.replace(/&/g, '","').replace(/=/g, '":"')).replace('?', '') + '"}',
-  //   ).name;
-  //   if (urlname) {
-  //     name = urlname;
-  //   }
-  // }
 
   if ((path && path === TopBarTabContentType.contest) || path === TopBarTabContentType.athlete) {
     if (id) {
@@ -73,10 +72,10 @@ export function modifyTabBarItemsByURL(items: TopBarTabsItem[], pathname: string
           const index = items.indexOf(sameTypeTab);
           const replaceTab = { ...sameTypeTab };
           replaceTab.id = id;
-          replaceTab.name = '';
+          replaceTab.name = parseNameFromId(id);
           items[index] = replaceTab;
         } else {
-          items.push({ id: id, contentType: TopBarTabContentType[path], type: TopBarTabType.Dynamic, name: name });
+          items.push({ id: id, contentType: TopBarTabContentType[path], type: TopBarTabType.Dynamic, name: parseNameFromId(id) });
         }
       }
     }
@@ -86,8 +85,6 @@ export function modifyTabBarItemsByURL(items: TopBarTabsItem[], pathname: string
 
 export default combineReducers<ContainerState, ContainerActions>({
   items: (state = initialState.items, action) => {
-    // console.log('State: ', state);
-    // console.log('Action: ', action);
     switch (action.type) {
       case LOCATION_CHANGE:
         const items = modifyTabBarItemsByURL([...state], action.payload.pathname);
@@ -107,7 +104,7 @@ export default combineReducers<ContainerState, ContainerActions>({
       case LOCATION_CHANGE:
         const { path, id } = findPathAndId(action.payload.pathname);
         if (id && path != null) {
-          return isPathStaticType(path) ? idOfStaticPath(path) : state;
+          return isPathStaticType(path) ? idOfStaticPath(path) : id;
         }
         return id ? id : state;
       case ActionTypes.CHANGE_TOPBAR_INDEX:

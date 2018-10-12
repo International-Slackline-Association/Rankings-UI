@@ -22,6 +22,8 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import TopBarTabs from 'containers/TopBarTabs';
 import Rankings from '../Rankings';
 import GlobalStyle from './GlobalStyle';
+import Contests from 'containers/Contests';
+import Contest from 'containers/Contest';
 
 const AppWrapper = styled.div`
   width: 100%;
@@ -51,7 +53,8 @@ class App extends React.Component<{}, {}> {
           <TopBarTabs />
           <Switch>
             <Route exact path="/" component={Rankings} />
-            {/* <Route exact path="/contests" component={TabContent} /> */}
+            <Route exact path="/contests" component={Contests} />
+            <Route exact path="/contest/:id" component={Contest} />
             <Redirect from="/rankings" to="/" />
             <Route component={NotFoundPage} />
           </Switch>

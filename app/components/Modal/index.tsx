@@ -21,7 +21,6 @@ class Modal extends React.PureComponent<OwnProps> {
 }
 
 const MobileOnlyModal = styled(Modal)`
-  /* display: flex; */
   ${media.desktopLarge`
     display: none;
   `};
