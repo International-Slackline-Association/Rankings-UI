@@ -1,5 +1,5 @@
 import moment from 'moment';
-import getContests, { APIGetContestsRequest, APIGetContestsResponse } from 'api/contests/results';
+import getContests, { APIGetContestsRequest, APIGetContestsResponse } from 'api/contests/contests';
 import { takeLatest, call, put, select } from 'redux-saga/effects';
 import { TableItem } from './types';
 

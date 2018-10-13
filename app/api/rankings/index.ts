@@ -1,18 +1,18 @@
 import axios, { dummyResponseConfig } from 'api/axios';
-import { AxiosRequestConfig, AxiosResponse } from 'axios';
+import { AxiosResponse } from 'axios';
 
 import mockResponse from './__mocks__/rankings_mock';
-import { APIGetRankingResultsRequest, APIRankingResultsResponse } from './types';
+import { APIGetRankingsRequest, APIRankingsResponse } from './types';
 
 const requestURL = '';
-const getRankingResults = (request: APIGetRankingResultsRequest): Promise<APIRankingResultsResponse> => {
+const getRankingResults = (request: APIGetRankingsRequest): Promise<APIRankingsResponse> => {
   return axios.post(requestURL, request, dummyResponseConfig(dummyResponse, 1000)).then(resp => {
-    const result = resp.data as APIRankingResultsResponse;
+    const result = resp.data as APIRankingsResponse;
     return result;
   });
 };
 
-const dummyResponse = (): AxiosResponse<APIRankingResultsResponse> => {
+const dummyResponse = (): AxiosResponse<APIRankingsResponse> => {
   return {
     data: mockResponse(),
     status: 200,
@@ -23,5 +23,5 @@ const dummyResponse = (): AxiosResponse<APIRankingResultsResponse> => {
   };
 };
 
-export { APIGetRankingResultsRequest, APIRankingResultsResponse };
+export { APIGetRankingsRequest, APIRankingsResponse };
 export default getRankingResults;

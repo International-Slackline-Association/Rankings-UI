@@ -14,7 +14,7 @@ const ModalWrapper = styled<Props, 'div'>('div')`
   /* margin: 0 0px 0px 30px; */
   padding: 8px;
   width: 75vw;
-  height: ${props => props.large ? 85 : 75}vh
+  height: ${props => props.large ? 90 : 75}vh
   max-height: 1024px;
   max-width: 300px;
   ${media.desktopLarge`

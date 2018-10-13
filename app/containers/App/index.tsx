@@ -23,7 +23,8 @@ import TopBarTabs from 'containers/TopBarTabs';
 import Rankings from '../Rankings';
 import GlobalStyle from './GlobalStyle';
 import Contests from 'containers/Contests';
-// import Contest from 'containers/Contest';
+import Contest from 'containers/Contest';
+import Athlete from 'containers/Athlete';
 
 const AppWrapper = styled.div`
   width: 100%;
@@ -54,7 +55,8 @@ class App extends React.Component<{}, {}> {
           <Switch>
             <Route exact path="/" component={Rankings} />
             <Route exact path="/contests" component={Contests} />
-            {/* <Route exact path="/contest/:id" component={Contest} /> */}
+            <Route exact path="/contest/:id" component={Contest} />
+            <Route exact path="/athlete/:id" component={Athlete} />
             <Redirect from="/rankings" to="/" />
             <Route component={NotFoundPage} />
           </Switch>

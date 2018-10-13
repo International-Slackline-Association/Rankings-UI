@@ -6,23 +6,28 @@ import InfoBoxAthlete, { AthleteProps } from './Athlete';
 import InfoBoxContest, { ContestProps } from './Contest';
 import InfoBoxContests, { ContestsProps } from './Contests';
 import InfoBoxRankings, { RankingsProps } from './Rankings';
+import { SmallLoading } from 'components/Loading';
 
-export class SideInfoBoxAthlete extends React.PureComponent<AthleteProps> {
+interface InfoBoxProps {
+  isLoading?: boolean;
+}
+
+export class SideInfoBoxAthlete extends React.PureComponent<AthleteProps & InfoBoxProps> {
   public render() {
     return (
       <SideBoxWrapper>
-        <InfoBoxAthlete {...this.props} />
+        {this.props.isLoading ? <SmallLoading /> : <InfoBoxAthlete {...this.props} />}
       </SideBoxWrapper>
     );
   }
 }
 
 // tslint:disable-next-line:max-classes-per-file
-export class SideInfoBoxContest extends React.PureComponent<ContestProps> {
+export class SideInfoBoxContest extends React.PureComponent<ContestProps & InfoBoxProps> {
   public render() {
     return (
       <SideBoxWrapper>
-        <InfoBoxContest {...this.props} />
+        {this.props.isLoading ? <SmallLoading /> : <InfoBoxContest {...this.props} />}
       </SideBoxWrapper>
     );
   }
@@ -53,6 +58,7 @@ export class SideInfoBoxRankings extends React.PureComponent<RankingsProps> {
 interface ModalProps {
   large?: boolean;
 }
+
 // tslint:disable-next-line:max-classes-per-file
 export class ModalInfoBoxAthlete extends React.PureComponent<AthleteProps & ModalProps> {
   public render() {

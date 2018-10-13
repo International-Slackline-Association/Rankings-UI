@@ -72,11 +72,14 @@ const Button = styled<ButtonProps, 'button'>('button')`
   font-style: ${props => (props.isDynamicType ? 'italic' : 'inherit')};
   text-transform: ${props => (props.isDynamicType ? 'none' : 'uppercase')};
   cursor: pointer;
-  transition: all 0.1s;
   font-size: ${props => (props.isDynamicType ? '0.8em' : '1em')};
   border: none;
+  transition: border 0.2s;
   color: ${props => (props.isSelected ? props.theme.textPrimary : props.theme.textSecondary)};
   border-bottom: ${props => (props.isSelected ? `2px solid ${colors.isaRed}` : 'none')};
+
+  white-space: nowrap;
+  text-align: center;
 
   ${media.tablet`
       font-size: ${props => (props.isDynamicType ? '1.25em' : '1.33em')};

@@ -1,4 +1,4 @@
-export interface APIGetRankingResultsRequest {
+export interface APIGetRankingsRequest {
   filters: SelectedFilter[];
   searchInput: string;
 }
@@ -7,7 +7,7 @@ interface SelectedFilter {
   name: string;
 }
 
-export interface APIRankingResultsResponse {
+export interface APIRankingsResponse {
   items: RankingsItem[];
   isNextPageAvailable: boolean;
 }

@@ -5,7 +5,7 @@ import { setSuggestions, setTableItems } from './actions';
 import { takeLatest, call, put, select } from 'redux-saga/effects';
 import { delay } from 'redux-saga';
 
-import { apiGetRankings, APIRankingResultsResponse, APIGetRankingResultsRequest } from './api';
+import { apiGetRankings, APIRankingsResponse, APIGetRankingsRequest } from './api';
 import { SearchSuggestion } from 'containers/GenericTabContent/types';
 
 // import getRankingResults from 'api/rankings/results';
@@ -13,7 +13,7 @@ import { SearchSuggestion } from 'containers/GenericTabContent/types';
 export function* getRankings() {
   // const username = yield select(selectSelectedSearchInput());
 
-  const request: APIGetRankingResultsRequest = {
+  const request: APIGetRankingsRequest = {
     filters: [
       {
         id: '',
@@ -23,7 +23,7 @@ export function* getRankings() {
     searchInput: '',
   };
   try {
-    const results: APIRankingResultsResponse = yield call(apiGetRankings, request);
+    const results: APIRankingsResponse = yield call(apiGetRankings, request);
     yield put(setTableItems(results.items));
   } catch (err) {
     console.log('err: ', err);

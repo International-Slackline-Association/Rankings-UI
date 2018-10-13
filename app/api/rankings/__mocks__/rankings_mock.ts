@@ -1,10 +1,10 @@
-import { APIRankingResultsResponse } from '../types';
+import { APIRankingsResponse } from '../types';
 
-const resultsDefaultGenerator = (): APIRankingResultsResponse => {
+const resultsDefaultGenerator = (): APIRankingsResponse => {
   return {
     items: [
       {
-        id: '1',
+        id: 'can-sahin',
         rank: 1,
         name: 'Can',
         surname: 'Sahin',
@@ -18,11 +18,10 @@ const resultsDefaultGenerator = (): APIRankingResultsResponse => {
           'https://scontent-ams3-1.cdninstagram.com/vp/401008e3ae8d67f3922cc63d7b863fec/5C18CB5B/t51.2885-15/sh0.08/e35/c180.0.720.720/s640x640/37960412_802453559925345_1127308561626431488_n.jpg',
       },
       {
-        id: '2',
+        id: 'thomas-buckingham',
         rank: 2,
         name: 'Thomas',
         surname: 'Buckingham',
-
         age: 32,
         country: 'CH',
         points: '230',
@@ -31,7 +30,7 @@ const resultsDefaultGenerator = (): APIRankingResultsResponse => {
         profileUrl: 'http://www.slackattack.ch/wp-content/uploads/2015/11/Vorstand_Tom.jpg',
       },
       {
-        id: '3',
+        id: 'snould-veryLongSurname',
         rank: 3,
         name: 'Snould',
         surname: 'VeryLongSurname',
@@ -43,7 +42,7 @@ const resultsDefaultGenerator = (): APIRankingResultsResponse => {
         profileUrl: 'http://www.slackattack.ch/wp-content/uploads/2015/11/Vorstand_Tom.jpg',
       },
       {
-        id: '4',
+        id: 'marc-thompson',
         rank: 4,
         name: 'Marc',
         surname: 'Thompson',
@@ -55,7 +54,7 @@ const resultsDefaultGenerator = (): APIRankingResultsResponse => {
         profileUrl: 'http://www.slackattack.ch/wp-content/uploads/2015/11/Vorstand_Tom.jpg',
       },
       {
-        id: '5',
+        id: 'lukas-irmler',
         rank: 5,
         name: 'Lukas',
         surname: 'Irmler',
@@ -67,7 +66,7 @@ const resultsDefaultGenerator = (): APIRankingResultsResponse => {
         profileUrl: 'http://www.slackattack.ch/wp-content/uploads/2015/11/Vorstand_Tom.jpg',
       },
       {
-        id: '6',
+        id: 'samuel-volery',
         rank: 6,
         name: 'Samuel',
         surname: 'Volery',

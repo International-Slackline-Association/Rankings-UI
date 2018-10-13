@@ -31,9 +31,18 @@ import TableFilters from 'components/TableFilters';
 import TableDropdownFilter from 'components/TableDropdownFilter';
 import TableSearchInput from 'components/TableSearchInput';
 import * as actions from './actions';
-import { SideInfoBoxAthlete, ModalInfoBoxAthlete, SideInfoBoxRankings, SideInfoBoxContest, SideInfoBoxContests, ModalInfoBoxContest } from 'components/InfoBox';
+import {
+  SideInfoBoxAthlete,
+  ModalInfoBoxAthlete,
+  SideInfoBoxRankings,
+  SideInfoBoxContest,
+  SideInfoBoxContests,
+  ModalInfoBoxContest,
+} from 'components/InfoBox';
 import Modal, { MobileOnlyModal } from 'components/Modal';
 import { SelectedFilter, SearchSuggestion } from 'containers/GenericTabContent/types';
+import { TopBarTabContentType } from 'types/enums';
+import { replace } from 'react-router-redux';
 
 // tslint:disable-next-line:no-empty-interface
 interface OwnProps {}
@@ -51,6 +60,7 @@ interface StateProps {
 // tslint:disable-next-line:no-empty-interface
 interface DispatchProps {
   dispatch: Dispatch;
+  updateLocation(path: string, id: string);
 }
 
 type Props = StateProps & DispatchProps & OwnProps;
@@ -68,7 +78,9 @@ class Contests extends React.PureComponent<Props, State> {
       selectedTableItem: undefined,
     };
     this.closeModal = this.closeModal.bind(this);
-    this.props.dispatch(actions.loadTableItems());
+    if (!this.props.tableItems || this.props.tableItems.length === 0) {
+      this.props.dispatch(actions.loadTableItems());
+    }
   }
 
   private closeModal() {
@@ -163,6 +175,14 @@ class Contests extends React.PureComponent<Props, State> {
     }
   };
 
+  private onInfoBoxButtonClick = () => {
+    const path = TopBarTabContentType.contest;
+    const idParam = this.state.selectedTableItem && this.state.selectedTableItem.id;
+    if (idParam) {
+      this.props.updateLocation(path, idParam);
+    }
+  };
+
   public render() {
     const { selectedFilters } = this.props;
     const selectedTableItem = this.state && this.state.selectedTableItem;
@@ -208,10 +228,14 @@ class Contests extends React.PureComponent<Props, State> {
             isItemsLoading={this.props.isTableItemsLoading}
           />
         </MainTableSection>
-        {selectedTableItem ? <SideInfoBoxContest item={selectedTableItem} /> : <SideInfoBoxContests/>}
+        {selectedTableItem ? (
+          <SideInfoBoxContest onButtonClick={this.onInfoBoxButtonClick} item={selectedTableItem} />
+        ) : (
+          <SideInfoBoxContests />
+        )}
         {selectedTableItem && (
           <MobileOnlyModal isOpen={this.state.isModalOpen} onRequestClose={this.closeModal}>
-            <ModalInfoBoxContest large item={selectedTableItem} />
+            <ModalInfoBoxContest large onButtonClick={this.onInfoBoxButtonClick} item={selectedTableItem} />
           </MobileOnlyModal>
         )}
       </TabPanel>
@@ -231,6 +255,11 @@ const mapStateToProps = createStructuredSelector<RootState, StateProps>({
 function mapDispatchToProps(dispatch: Dispatch, ownProps: OwnProps): DispatchProps {
   return {
     dispatch: dispatch,
+    updateLocation: (path: string, id: string) => {
+      if (id) {
+        dispatch(replace(`/${path}/${id}`));
+      }
+    },
   };
 }
 

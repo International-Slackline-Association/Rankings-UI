@@ -6,13 +6,13 @@ import { APIGetContestsRequest, APIGetContestsResponse } from './types';
 
 const requestURL = '';
 const getContests = (request: APIGetContestsRequest): Promise<APIGetContestsResponse> => {
-  return axios.post(requestURL, request, dummyResponseConfig(dummyResponse, 1000)).then(resp => {
+  return axios.post(requestURL, request, dummyResponseConfig(dummyContestsResponse, 1000)).then(resp => {
     const result = resp.data as APIGetContestsResponse;
     return result;
   });
 };
 
-const dummyResponse = (): AxiosResponse<APIGetContestsResponse> => {
+const dummyContestsResponse = (): AxiosResponse<APIGetContestsResponse> => {
   return {
     data: mockResponse(),
     status: 200,

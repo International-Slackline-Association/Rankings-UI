@@ -1,5 +1,5 @@
 import * as React from 'react';
-import {Img, HalfDiv, FullDiv, PhotoSection } from '../common';
+import { Img, HalfDiv, FullDiv, PhotoSection } from '../common';
 import TitledField from '../TitledField';
 import SideBoxButton from 'components/SideBoxButton';
 import styled from 'styles/styled-components';
@@ -15,11 +15,14 @@ export interface ContestProps {
     disciplines: string[];
     profileUrl: string;
   };
+  showButton?: boolean;
+  onButtonClick?();
 }
 
 class InfoBoxContest extends React.PureComponent<ContestProps> {
   public render() {
-    const item = this.props.item;
+    const { item, onButtonClick } = this.props;
+    const showButton = this.props.showButton === undefined ? true : this.props.showButton ;
     return (
       <React.Fragment>
         <PhotoSection>
@@ -54,9 +57,7 @@ class InfoBoxContest extends React.PureComponent<ContestProps> {
           </FullDiv>
         </DisciplineSection>
         <ButtonSection>
-          <FullDiv>
-            <SideBoxButton>Details</SideBoxButton>
-          </FullDiv>
+          <FullDiv>{showButton && <SideBoxButton onClick={onButtonClick}>Details</SideBoxButton>}</FullDiv>
         </ButtonSection>
       </React.Fragment>
     );
