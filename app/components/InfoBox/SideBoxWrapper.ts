@@ -7,10 +7,10 @@ const SideBoxWrapper = styled.div`
   border-radius: 0.5em;
   box-shadow: 0px 0px 8px 1px ${props => props.theme.border};
   display: none;
-  min-height: 100%;
+  /* min-height: 100%; */
+
   margin: 0 0px 0px 30px;
   padding: 8px;
-  position: relative;
 
   ${media.tablet`
   `};

@@ -1,8 +1,9 @@
 import * as React from 'react';
-import { Img, HalfDiv, FullDiv, PhotoSection } from '../common';
+import { Img, HalfDiv, FullDiv, PhotoSection, IsaBackground } from '../common';
 import TitledField from '../TitledField';
 import SideBoxButton from 'components/SideBoxButton';
 import styled from 'styles/styled-components';
+import isaLogo = require('../isaLogo.svg');
 
 export interface ContestProps {
   item: {
@@ -22,10 +23,11 @@ export interface ContestProps {
 class InfoBoxContest extends React.PureComponent<ContestProps> {
   public render() {
     const { item, onButtonClick } = this.props;
-    const showButton = this.props.showButton === undefined ? true : this.props.showButton ;
+    const showButton = this.props.showButton === undefined ? true : this.props.showButton;
     return (
       <React.Fragment>
         <PhotoSection>
+          <IsaBackground isBlur={true} src={isaLogo as any} />
           <Img src={item.profileUrl} />
         </PhotoSection>
         <NameSection>

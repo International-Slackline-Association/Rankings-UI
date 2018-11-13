@@ -8,14 +8,12 @@ const padding = (size: number) => AppConstants.LeftPadding(size);
 
 const Wrapper = styled.div`
 
-  background-color: ${props => props.theme.componentBackgroundInverted};
+  background-color: ${props => props.theme.componentBackgroundSecondary};
   border-bottom: 1px solid ${props => props.theme.border};
   height: ${AppConstants.NavBarHeight(breakpoints.mobile)}px;
   padding: 0 ${padding(breakpoints.mobile)}px 0 ${padding(breakpoints.mobile)}px;
   display: flex;
   align-items: center;
-  /* position: fixed; */
-  /* top: 0; */
   width: 100%;
   z-index: ${zIndex('NavBar')};
   justify-content: space-between;

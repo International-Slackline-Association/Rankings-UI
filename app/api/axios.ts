@@ -1,7 +1,7 @@
 import axios, { AxiosRequestConfig, AxiosResponse } from 'axios';
 
 const baseURL = process.env.API_BASE_URL as string;
-const isDummy = baseURL === undefined;
+const isDummy = baseURL === undefined && process.env.NODE_ENV !== 'production' ;
 
 export const dummyResponseConfig = (dummyResponse: () => AxiosResponse, sleep?: number) => {
   if (!isDummy) {

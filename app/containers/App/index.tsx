@@ -15,7 +15,7 @@ import styled, { theme, ThemeProvider } from 'styles/styled-components';
 import { Switch, Route, Redirect } from 'react-router';
 import NotFoundPage from 'containers/NotFoundPage';
 import { hot } from 'react-hot-loader';
-import NavBar from 'components/NavBar';
+import HeaderBar from 'components/NavBar';
 import media from 'styles/media';
 
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -50,7 +50,7 @@ class App extends React.Component<{}, {}> {
           <Helmet titleTemplate="%s - ISA Rankings" defaultTitle="ISA Rankings">
             <meta name="description" content="ISA Rankings" />
           </Helmet>
-          <NavBar />
+          <HeaderBar />
           <TopBarTabs />
           <Switch>
             <Route exact path="/" component={Rankings} />

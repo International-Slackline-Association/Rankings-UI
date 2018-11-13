@@ -9,7 +9,7 @@ import Wrapper from './Wrapper';
 import Title from 'components/Title';
 import TitleLogo from 'components/TitleLogo';
 
-const NavBar: React.SFC<{}> = () => {
+const HeaderBar: React.SFC<{}> = () => {
   return (
     <Wrapper>
       <Title />
@@ -20,4 +20,4 @@ const NavBar: React.SFC<{}> = () => {
 
 // NavBar.propTypes = {};
 
-export default NavBar;
+export default HeaderBar;

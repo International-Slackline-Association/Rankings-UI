@@ -96,13 +96,14 @@ const CustomDropdown = styled(ButtonDropdown)`
 `;
 
 const CustomDropdownToggle = styled(DropdownToggle)`
-  color: ${props => props.theme.textInverted};
+  color: ${props => props.theme.textInvertedSecondary};
   height: 28px;
   padding: 0px 10px;
   width: 100px;
-  border: none;
-  background-color: ${props => props.theme.componentBackgroundSecondary};
+  /* border: none; */
+  background-color: transparent;
   border-radius: 4px;
+  border-color: ${props => rgba(props.theme.componentBackgroundSecondary, 0.5)};
   outline: none;
   cursor: pointer;
 
@@ -116,11 +117,11 @@ const CustomDropdownToggle = styled(DropdownToggle)`
   `};
 
   &:hover {
-    background-color: ${props => lighten(0.09, props.theme.componentBackgroundSecondary)};
+    border-color: ${props => lighten(0.09, props.theme.componentBackgroundSecondary)};
   }
   &:focus {
     outline: none;
-    background-color: ${props => lighten(0.09, props.theme.componentBackgroundSecondary)};
+    border-color: ${props => lighten(0.09, props.theme.componentBackgroundSecondary)};
   }
 `;
 
@@ -150,7 +151,7 @@ const DropdownContentHeader = styled.div`
     height: 0;
     border-left: 3px solid transparent;
     border-right: 3px solid transparent;
-    border-top: 3px solid #fff;
+    border-top: 3px solid ${props => props.theme.componentBackgroundSecondary};
   }
 `;
 
@@ -185,7 +186,7 @@ const CustomDropdownItem = styled<any>(DropdownItem)`
     cursor: pointer;
     color: ${props => props.theme.textPrimary};
     text-align: center;
-    background-color: ${props => props.theme.appBackground};
+    background-color: ${props => props.theme.componentBackground};
     border: none;
     width: 100%;
     padding: 10px 0px;

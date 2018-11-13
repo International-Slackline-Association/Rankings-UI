@@ -1,6 +1,6 @@
 import * as React from 'react';
 // import PropTypes from 'prop-types';
-import { rgba, lighten, darken } from 'polished';
+import { rgba, lighten, darken, opacify } from 'polished';
 import media from 'styles/media';
 import { injectIntl } from 'react-intl';
 import messages from './messages';
@@ -30,8 +30,9 @@ const Wrapper = styled.div`
       /* border-bottom: 2px solid ${props => props.theme.border}; */
       font-size: 1.2em;
       font-weight: bold;
-      background-color: ${props => props.theme.componentBackgroundSecondary};
-      color: ${props => props.theme.textInverted};
+      background-color: ${props => rgba(props.theme.appBackground, 0.6)};
+      /* opacity: 0.6; */
+      color: ${props => props.theme.textPrimary};
       display: none;
 
       ${media.desktop`
@@ -57,7 +58,7 @@ const Wrapper = styled.div`
         flex-wrap: wrap;
         padding-top: 12px;
         border-bottom: 2px solid ${props => props.theme.border};
-        /* cursor: pointer; */
+        cursor: pointer;
         &.selected {
           font-weight: bold;
           color: ${darken(0.11, colors.isaRed)};
@@ -67,7 +68,8 @@ const Wrapper = styled.div`
           &:hover {
             transform:scale(1.01,1.01);
             transform-origin:center;
-            font-weight: bold;
+            /* font-weight: bold; */
+            background-color: ${props => lighten(0.5, props.theme.componentBackgroundSecondary)};
           }
 
           &:active {
@@ -76,9 +78,8 @@ const Wrapper = styled.div`
           &:focus {
             color: ${props => lighten(0.11, props.theme.textPrimary)};
           }
-
           &:nth-child(even) {
-            /* background-color: ${props => rgba(props.theme.appBackground, 0.6)}; */
+            background-color: ${props => rgba(props.theme.appBackground, 0.6)};
           }
         `};
 
@@ -86,6 +87,9 @@ const Wrapper = styled.div`
           display: table-row;
           padding-top: 0;
           border-bottom: none;
+          &:nth-child(even) {
+            background-color: transparent;
+          }
         `};
 
         td {
@@ -99,9 +103,9 @@ const Wrapper = styled.div`
           &:nth-child(1) {
             &::before { content: "${(props: IResultsWrapperProps) => props.rankMsg} :";
             };
-            font-weight: bolder;
-            font-size: 1.25em
-            color: ${colors.isaRed};
+            /* font-weight: bolder; */
+            /* font-size: 1.25em */
+            /* color: ${colors.isaRed}; */
             }
           &:nth-child(2) { &::before { content: "${props => props.nameMsg} : "; }}
           &:nth-child(3) { &::before { content: "${props => props.ageMsg} : "; }}
@@ -110,8 +114,8 @@ const Wrapper = styled.div`
           &::before {
             display: block;
             text-transform: uppercase;
-            font-size: 12px;
-            color: ${(props) => props.theme.textSecondary};
+            font-size: 1em;
+            color: ${props => props.theme.textSecondary};
             width: 40%;
             display: block;
             padding-right: 10px;

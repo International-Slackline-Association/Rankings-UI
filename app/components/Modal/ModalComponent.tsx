@@ -61,8 +61,8 @@ class ModalComponent extends React.PureComponent<ModalComponentProps> {
         <Container className={className}>
           <Overlay ref={this.overlayRef} onClick={onRequestClose} />
           <Window ref={this.windowRef}>
-            {showCloseButton && <CloseButton onClick={onRequestClose} inverted={true} icon={IconClose} />}
             {children || <Component {...componentProps} /> || null}
+            {showCloseButton && <CloseButton onClick={onRequestClose} inverted={true} icon={IconClose} />}
           </Window>
         </Container>
       </Portal>

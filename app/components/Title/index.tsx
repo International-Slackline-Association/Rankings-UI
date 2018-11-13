@@ -29,7 +29,7 @@ const Text = styled.div`
   font-size: 1rem;
   font-weight: 700;
   letter-spacing: -1px;
-
+  display: flex;
   ${media.tablet`
     font-weight: bold;
     font-size: 1.66rem;
@@ -38,13 +38,9 @@ const Text = styled.div`
 `;
 
 const Wrapper = styled.div`
+  display: flex;
   text-align: center;
   line-height: 0;
-
-  img {
-    max-width: 100%;
-    display: block;
-  }
 `;
 
 export default Title;

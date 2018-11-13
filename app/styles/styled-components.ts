@@ -32,8 +32,8 @@ export const colors = {
   red: '#F46060',
   isaRed: '#f04d32',
   orange: '#F7931A',
-  isaBlue: '#28ABA1',
-  paleWhite: '#FBFBFB',
+  isaBlue: '#13A89E',
+  paleWhite: '#F0F0F0',
   lightBorder: '#DCDADA',
   overlayBackground: 'rgba(22, 18, 32, 0.85)',
 };

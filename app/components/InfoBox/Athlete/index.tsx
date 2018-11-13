@@ -1,8 +1,9 @@
 import * as React from 'react';
-import { Img, HalfDiv, FullDiv, PhotoSection } from '../common';
+import { Img, HalfDiv, FullDiv, PhotoSection, IsaBackground } from '../common';
 import TitledField from '../TitledField';
 import SideBoxButton from 'components/SideBoxButton';
 import styled from 'styles/styled-components';
+import isaLogo = require('../isaLogo.svg');
 
 export interface AthleteProps {
   item: {
@@ -25,6 +26,7 @@ class InfoBoxAthlete extends React.PureComponent<AthleteProps> {
     return (
       <React.Fragment>
         <PhotoSection>
+          <IsaBackground isBlur={true} src={isaLogo as any} />
           <Img src={item.profileUrl} />
         </PhotoSection>
         <NameSection>
