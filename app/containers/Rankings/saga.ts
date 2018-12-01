@@ -5,7 +5,11 @@ import { setSuggestions, setTableItems } from './actions';
 import { takeLatest, call, put, select } from 'redux-saga/effects';
 import { delay } from 'redux-saga';
 
-import { apiGetRankings, APIRankingsResponse, APIGetRankingsRequest } from './api';
+import {
+  apiGetRankings,
+  APIRankingsResponse,
+  APIGetRankingsRequest,
+} from './api';
 import { SearchSuggestion } from 'containers/GenericTabContent/types';
 
 // import getRankingResults from 'api/rankings/results';

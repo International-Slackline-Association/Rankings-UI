@@ -8,7 +8,12 @@ export class FilterItem {
     return this.category + '-' + this.name;
   }
 
-  constructor(category: string, name: string, isSelected = false, isSticky = false) {
+  constructor(
+    category: string,
+    name: string,
+    isSelected = false,
+    isSticky = false,
+  ) {
     this.category = category;
     this.name = name;
     this.isSelected = isSelected;

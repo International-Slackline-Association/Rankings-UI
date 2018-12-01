@@ -3,14 +3,9 @@ import { ApplicationRootState } from 'types';
 
 const selectGlobal = (state: ApplicationRootState) => state.global;
 
-const selectRoute = (state: ApplicationRootState) => state.route;
+const selectRouter = (state: ApplicationRootState) => state.router;
 
-const makeSelectLocation = () => createSelector(
-  selectRoute,
-  (routeState) => routeState.location,
-);
+const makeSelectLocation = () =>
+  createSelector(selectRouter, routeState => routeState.location);
 
-export {
-  selectGlobal,
-  makeSelectLocation,
-};
+export { selectGlobal, makeSelectLocation };

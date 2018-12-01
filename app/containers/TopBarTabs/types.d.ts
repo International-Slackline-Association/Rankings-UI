@@ -2,7 +2,7 @@ import { ActionType } from 'typesafe-actions';
 import * as actions from './actions';
 import { ApplicationRootState } from 'types';
 import { TopBarTabType, TopBarTabContentType } from 'types/enums';
-import { LocationChangeAction } from 'react-router-redux';
+import { LocationChangeAction } from 'connected-react-router';
 
 /* --- EXPORTS --- */
 
@@ -10,7 +10,13 @@ type RootState = ApplicationRootState;
 type ContainerState = TopBarTabsState;
 type ContainerActions = TopBarTabsActions;
 
-export { RootState, ContainerState, ContainerActions, TopBarTabsItem, TopBarTabType };
+export {
+  RootState,
+  ContainerState,
+  ContainerActions,
+  TopBarTabsItem,
+  TopBarTabType,
+};
 
 /* --- STATE --- */
 interface TopBarTabsState {
@@ -27,4 +33,3 @@ interface TopBarTabsItem {
 
 /* --- ACTIONS --- */
 type TopBarTabsActions = ActionType<typeof actions> | LocationChangeAction;
-

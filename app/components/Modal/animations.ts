@@ -1,4 +1,4 @@
-import { TweenLite, Back, Power1} from 'gsap';
+import { TweenLite, Back, Power1 } from 'gsap';
 
 export const open = (overlayEl, windowEl, callback) => {
   TweenLite.fromTo(
@@ -28,24 +28,15 @@ export const open = (overlayEl, windowEl, callback) => {
   );
 };
 
-
 export const close = (overlayEl, windowEl, callback) => {
-  TweenLite.to(
-    overlayEl,
-    0.2,
-    {
-      opacity: 0,
-      ease: Power1.easeOut,
-      onComplete: callback,
-    },
-  );
-  TweenLite.to(
-    windowEl,
-    0.2,
-    {
-      opacity: 0,
-      scale: 0.9,
-      ease: Power1.easeOut,
-    },
-  );
+  TweenLite.to(overlayEl, 0.2, {
+    opacity: 0,
+    ease: Power1.easeOut,
+    onComplete: callback,
+  });
+  TweenLite.to(windowEl, 0.2, {
+    opacity: 0,
+    scale: 0.9,
+    ease: Power1.easeOut,
+  });
 };

@@ -22,13 +22,13 @@ const Loading = styled.div`
     content: '';
     width: 44px;
     height: 44px;
-    border: 5px solid ${props => props.theme.primary && rgba(props.theme.primary, 0.1)};
+    border: 5px solid
+      ${props => props.theme.primary && rgba(props.theme.primary, 0.1)};
     border-top-color: ${props => props.theme.primary};
     border-radius: 50%;
     animation: ${loadingAnimationSpin} 1s linear infinite;
   }
 `;
-
 
 export const TinyLoading = styled(Loading)`
   &::after {

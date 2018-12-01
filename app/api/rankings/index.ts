@@ -5,11 +5,15 @@ import mockResponse from './__mocks__/rankings_mock';
 import { APIGetRankingsRequest, APIRankingsResponse } from './types';
 
 const requestURL = '';
-const getRankingResults = (request: APIGetRankingsRequest): Promise<APIRankingsResponse> => {
-  return axios.post(requestURL, request, dummyResponseConfig(dummyResponse, 1000)).then(resp => {
-    const result = resp.data as APIRankingsResponse;
-    return result;
-  });
+const getRankingResults = (
+  request: APIGetRankingsRequest,
+): Promise<APIRankingsResponse> => {
+  return axios
+    .post(requestURL, request, dummyResponseConfig(dummyResponse, 1000))
+    .then(resp => {
+      const result = resp.data as APIRankingsResponse;
+      return result;
+    });
 };
 
 const dummyResponse = (): AxiosResponse<APIRankingsResponse> => {

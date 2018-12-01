@@ -7,7 +7,7 @@ export const IsaBackground = styled<IsaBackgroundProps, 'img'>('img')`
   position: absolute;
   align-self: center;
   z-index: 0;
-  filter: ${props => props.isBlur ? 'blur(4px)' : 'none'};
+  filter: ${props => (props.isBlur ? 'blur(4px)' : 'none')};
 `;
 export const HalfDiv = styled.div`
   display: flex;

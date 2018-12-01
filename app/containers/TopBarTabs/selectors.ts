@@ -7,7 +7,7 @@ const selectTopBarDomain = (state: ApplicationRootState) => {
 };
 
 const selectRouterDomain = (state: ApplicationRootState) => {
-  return state.route;
+  return state.router;
 };
 
 const selectTabItems = () =>

@@ -1,5 +1,8 @@
 import moment from 'moment';
-import getContests, { APIGetContestsRequest, APIGetContestsResponse } from 'api/contests/contests';
+import getContests, {
+  APIGetContestsRequest,
+  APIGetContestsResponse,
+} from 'api/contests/contests';
 import { takeLatest, call, put, select } from 'redux-saga/effects';
 import { TableItem } from './types';
 
@@ -17,7 +20,8 @@ export async function apiGetContests(request: APIGetContestsRequest) {
   for (const item of result.items) {
     resp.items.push({
       date: moment.unix(item.date).format('DD/MM/YYYY'),
-      discipline: item.disciplines.length > 1 ? 'Multi-Discipline' : item.disciplines[0],
+      discipline:
+        item.disciplines.length > 1 ? 'Multi-Discipline' : item.disciplines[0],
       disciplines: item.disciplines,
       id: item.id,
       location: `${item.city}, ${item.country}`,

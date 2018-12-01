@@ -35,7 +35,7 @@ import { SideInfoBoxAthlete, ModalInfoBoxAthlete, SideInfoBoxRankings } from 'co
 import Modal, { MobileOnlyModal } from 'components/Modal';
 import { SelectedFilter, SearchSuggestion } from 'containers/GenericTabContent/types';
 import { TopBarTabContentType } from 'types/enums';
-import { replace } from 'react-router-redux';
+import { replace } from 'connected-react-router';
 
 // tslint:disable-next-line:no-empty-interface
 interface OwnProps {}

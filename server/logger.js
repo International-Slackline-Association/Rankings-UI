@@ -8,14 +8,14 @@ const divider = chalk.gray('\n-----------------------------------');
 /**
  * Logger middleware, you can customize it to make messages more personal
  */
-class Logger {
+const logger = {
   // Called whenever there's an error on the server we want to print
-  static error(err) {
+  error: err => {
     console.error(chalk.red(err));
-  }
+  },
 
   // Called when express.js app starts on given port w/o errors
-  static appStarted(port, host, tunnelStarted) {
+  appStarted: (port, host, tunnelStarted) => {
     console.log(`Server started ! ${chalk.green('✓')}`);
 
     // If the tunnel started, log that and the URL it's available at
@@ -27,10 +27,12 @@ class Logger {
 ${chalk.bold('Access URLs:')}${divider}
 Localhost: ${chalk.magenta(`http://${host}:${port}`)}
       LAN: ${chalk.magenta(`http://${ip.address()}:${port}`) +
-        (tunnelStarted ? `\n    Proxy: ${chalk.magenta(tunnelStarted)}` : '')}${divider}
+        (tunnelStarted
+          ? `\n    Proxy: ${chalk.magenta(tunnelStarted)}`
+          : '')}${divider}
 ${chalk.blue(`Press ${chalk.italic('CTRL-C')} to stop`)}
     `);
-  }
-}
+  },
+};
 
-module.exports = Logger;
+module.exports = logger;

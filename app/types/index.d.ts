@@ -1,5 +1,5 @@
 import { Reducer, Store } from 'redux';
-import { RouterState } from 'react-router-redux';
+import { RouterState } from 'connected-react-router';
 import { ILanguageProviderProps } from 'containers/LanguageProvider';
 // import { Map } from 'immutable';
 import { ContainerState as TopBarState } from 'containers/TopBarTabs/types';
@@ -26,7 +26,7 @@ export interface InjectSagaParams {
 }
 
 export interface ApplicationRootState {
-  readonly route: RouterState;
+  readonly router: RouterState;
   readonly global: object;
   readonly language: ILanguageProviderProps;
   readonly topBarTabs: TopBarState;
@@ -35,18 +35,3 @@ export interface ApplicationRootState {
   readonly contest: ContestState;
   readonly athlete: AthleteState;
 }
-
-// export interface ImmutableMap<T, K, V> extends Map<K, V> {
-//   toJS(): T;
-//   get<I extends keyof T>(key: I & K): T[I] & V;
-//   set<S extends keyof T>(key: S & K, value: T[S] & V): Map<K, V>;
-// }
-
-// export interface ImmutableState<T> extends Map<keyof T, any> {
-//   type: T;
-//   toJS(): T;
-//   get<K extends keyof T>(key: K): T[K] extends object ? ImmutableState<T[K]> : T[K];
-//   // set<S extends keyof T>(key: S & K, value: T[S] & V): Map<K, V>;
-// }
-
-// export type ImmutableApplicationState = ImmutableState<ApplicationRootState>;

@@ -5,7 +5,7 @@ import { setSuggestions, setTableItems, setAthlete } from './actions';
 import { takeLatest, call, put, select } from 'redux-saga/effects';
 import { delay } from 'redux-saga';
 
-import { apiGetAthlete, APIGetAthleteRequest, GetAthleteResponse  } from './api';
+import { apiGetAthlete, APIGetAthleteRequest, GetAthleteResponse } from './api';
 import { SearchSuggestion } from 'containers/GenericTabContent/types';
 
 // import getRankingResults from 'api/rankings/results';

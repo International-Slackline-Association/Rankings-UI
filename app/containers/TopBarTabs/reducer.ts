@@ -4,7 +4,7 @@ import { combineReducers } from 'redux';
 import ActionTypes from './constants';
 import { ContainerState, ContainerActions, TopBarTabsItem } from './types';
 import { TopBarTabType, TopBarTabContentType } from 'types/enums';
-import { LOCATION_CHANGE } from 'react-router-redux';
+import { LOCATION_CHANGE } from 'connected-react-router';
 
 export const initialState: ContainerState = {
   items: [
@@ -26,11 +26,17 @@ export const initialState: ContainerState = {
 };
 
 function isPathStaticType(path: string) {
-  return path ? path === TopBarTabContentType.rankings || path === TopBarTabContentType.contests : false;
+  return path
+    ? path === TopBarTabContentType.rankings ||
+        path === TopBarTabContentType.contests
+    : false;
 }
 
 function idOfStaticPath(path: string) {
-  if (path === TopBarTabContentType.rankings || path === TopBarTabContentType.contests) {
+  if (
+    path === TopBarTabContentType.rankings ||
+    path === TopBarTabContentType.contests
+  ) {
     const item = initialState.items.find(i => i.contentType === path);
     if (item) {
       return item.id;
@@ -60,10 +66,16 @@ export function findPathAndId(pathname: string) {
   return { path: null, id: null };
 }
 
-export function modifyTabBarItemsByURL(items: TopBarTabsItem[], pathname: string) {
+export function modifyTabBarItemsByURL(
+  items: TopBarTabsItem[],
+  pathname: string,
+) {
   const { path, id } = findPathAndId(pathname);
 
-  if ((path && path === TopBarTabContentType.contest) || path === TopBarTabContentType.athlete) {
+  if (
+    (path && path === TopBarTabContentType.contest) ||
+    path === TopBarTabContentType.athlete
+  ) {
     if (id) {
       const oldTab = items.find(t => t.id === id);
       if (!oldTab) {
@@ -75,7 +87,12 @@ export function modifyTabBarItemsByURL(items: TopBarTabsItem[], pathname: string
           replaceTab.name = parseNameFromId(id);
           items[index] = replaceTab;
         } else {
-          items.push({ id: id, contentType: TopBarTabContentType[path], type: TopBarTabType.Dynamic, name: parseNameFromId(id) });
+          items.push({
+            id: id,
+            contentType: TopBarTabContentType[path],
+            type: TopBarTabType.Dynamic,
+            name: parseNameFromId(id),
+          });
         }
       }
     }
@@ -87,7 +104,10 @@ export default combineReducers<ContainerState, ContainerActions>({
   items: (state = initialState.items, action) => {
     switch (action.type) {
       case LOCATION_CHANGE:
-        const items = modifyTabBarItemsByURL([...state], action.payload.pathname);
+        const items = modifyTabBarItemsByURL(
+          [...state],
+          action.payload.location.pathname,
+        );
         return items;
       case ActionTypes.CHANGE_TOPBAR_INDEX:
         return state;
@@ -102,7 +122,7 @@ export default combineReducers<ContainerState, ContainerActions>({
   selectedId: (state = initialState.selectedId, action) => {
     switch (action.type) {
       case LOCATION_CHANGE:
-        const { path, id } = findPathAndId(action.payload.pathname);
+        const { path, id } = findPathAndId(action.payload.location.pathname);
         if (id && path != null) {
           return isPathStaticType(path) ? idOfStaticPath(path) : id;
         }

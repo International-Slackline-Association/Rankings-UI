@@ -1,5 +1,8 @@
 import moment from 'moment';
-import getContest, { APIGetAthleteRequest, APIGetAthleteResponse } from 'api/athlete';
+import getContest, {
+  APIGetAthleteRequest,
+  APIGetAthleteResponse,
+} from 'api/athlete';
 import { TableItem, AthleteItem } from './types';
 
 interface GetAthleteResponse {

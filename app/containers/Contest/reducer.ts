@@ -3,7 +3,7 @@ import { combineReducers } from 'redux';
 import { ContainerState, ContainerActions } from './types';
 import { defaultFilters } from './filters';
 import ActionTypes from './constants';
-import { LOCATION_CHANGE } from 'react-router-redux';
+import { LOCATION_CHANGE } from 'connected-react-router';
 
 const filters = defaultFilters();
 export const initialState: ContainerState = {
@@ -23,7 +23,6 @@ export const initialState: ContainerState = {
   dropdownFilters: filters,
   contest: null,
 };
-
 
 export default combineReducers<ContainerState, ContainerActions>({
   contest: (state = initialState.contest, action) => {

@@ -43,7 +43,7 @@ import {
 import Modal, { MobileOnlyModal } from 'components/Modal';
 import { SelectedFilter, SearchSuggestion } from 'containers/GenericTabContent/types';
 import { RouteProps } from 'react-router';
-import { replace } from 'react-router-redux';
+import { replace } from 'connected-react-router';
 import { TopBarTabContentType } from 'types/enums';
 
 // tslint:disable-next-line:no-empty-interface

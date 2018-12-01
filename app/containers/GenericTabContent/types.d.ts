@@ -32,4 +32,3 @@ interface DropdownFilter {
   category: string;
   items: FilterItem[];
 }
-

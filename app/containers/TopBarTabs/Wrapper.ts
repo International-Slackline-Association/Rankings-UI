@@ -9,7 +9,7 @@ const padding = (size: number) => AppConstants.LeftPadding(size);
 const Wrapper = styled.div`
   background-color: ${props => props.theme.componentBackground};
   border-bottom: 1px solid ${props => props.theme.border};
-  height:  ${AppConstants.TopBarHeight(breakpoints.mobile)}px;
+  height: ${AppConstants.TopBarHeight(breakpoints.mobile)}px;
   /* padding-bottom: 2px; */
   display: flex;
   align-items: center;

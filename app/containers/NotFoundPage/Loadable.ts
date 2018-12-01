@@ -1,9 +1,11 @@
 /**
- * Asynchronously loads the component for NotFoundPage
+ *
+ * Asynchronously loads the component for Rankings
+ *
  */
-import Loadable from 'react-loadable';
 
-export default Loadable({
-  loader: () => import('./index'),
-  loading: () => null,
+import loadable from 'loadable-components';
+
+export default loadable(() => import('./index'), {
+  LoadingComponent: undefined,
 });

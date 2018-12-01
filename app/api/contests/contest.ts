@@ -5,11 +5,15 @@ import mockResponse from './__mocks__/contest_mock';
 import { APIGetContestRequest, APIGetContestResponse } from './types';
 
 const requestURL = '';
-const getContest = (request: APIGetContestRequest): Promise<APIGetContestResponse> => {
-  return axios.post(requestURL, request, dummyResponseConfig(dummyContestsResponse, 1000)).then(resp => {
-    const result = resp.data as APIGetContestResponse;
-    return result;
-  });
+const getContest = (
+  request: APIGetContestRequest,
+): Promise<APIGetContestResponse> => {
+  return axios
+    .post(requestURL, request, dummyResponseConfig(dummyContestsResponse, 1000))
+    .then(resp => {
+      const result = resp.data as APIGetContestResponse;
+      return result;
+    });
 };
 
 const dummyContestsResponse = (): AxiosResponse<APIGetContestResponse> => {

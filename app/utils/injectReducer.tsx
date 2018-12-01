@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 import * as PropTypes from 'prop-types';
 import hoistNonReactStatics = require('hoist-non-react-statics');
 import getInjectors from './reducerInjectors';
@@ -41,34 +41,3 @@ export default function hocWithReducer<P>({ key, reducer }: InjectReducerParams)
   }
   return wrap;
 }
-
-// const m = hocWithReducer({ key: 'a', reducer: null });
-
-// export default ({ key, reducer }) => WrappedComponent => {
-//   class ReducerInjector extends React.Component {
-//     public static WrappedComponent = WrappedComponent;
-//     public static contextTypes = {
-//       store: PropTypes.object.isRequired,
-//     };
-//     public static displayName = `withReducer(${WrappedComponent.displayName ||
-//       WrappedComponent.name ||
-//       'Component'})`;
-
-//     public componentWillMount() {
-//       const { injectReducer } = this.injectors;
-
-//       injectReducer(key, reducer);
-//     }
-
-//     public injectors = getInjectors(this.context.store);
-
-//     public render() {
-//       return <WrappedComponent {...this.props} />;
-//     }
-//   }
-
-//   const x = hoistNonReactStatics(ReducerInjector, WrappedComponent);
-//   return x;
-// };
-
-// export default hocWithReducer;

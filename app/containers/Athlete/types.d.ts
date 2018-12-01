@@ -2,7 +2,7 @@ import { ActionType } from 'typesafe-actions';
 import * as actions from './actions';
 import { ApplicationRootState } from 'types';
 import { TabContentState } from 'containers/GenericTabContent/types';
-import { LocationChangeAction } from 'react-router-redux';
+import { LocationChangeAction } from 'connected-react-router';
 
 /* --- EXPORTS --- */
 

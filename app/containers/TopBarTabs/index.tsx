@@ -12,7 +12,7 @@ import { changeTopBarIndex, setTopBarTabs } from './actions';
 import { ContainerState, RootState } from './types';
 import TopBarButton from 'components/TopBarButton';
 import { TopBarTabType, TopBarTabContentType } from 'types/enums';
-import { replace } from 'react-router-redux';
+import { replace } from 'connected-react-router';
 
 // tslint:disable-next-line:no-empty-interface
 interface OwnProps {}
@@ -118,6 +118,7 @@ const withReducer = injectReducer<OwnProps>({
 
 const withSaga = injectSaga<OwnProps>({ key: 'topBarTabs', saga: saga });
 
+// tslint:disable-next-line:max-line-length
 // export default withReducer(withSaga(withConnect(TopBarTabs))); // identical to compose function, but requires no type definition
 export default compose<TReducer, TSaga, TConnect, ReturnType>(
   withReducer,

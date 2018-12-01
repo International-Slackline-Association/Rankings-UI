@@ -7,7 +7,6 @@ import AppConstants from 'styles/AppConstants';
 const padding = (size: number) => AppConstants.LeftPadding(size);
 
 const Wrapper = styled.div`
-
   background-color: ${props => props.theme.componentBackgroundSecondary};
   border-bottom: 1px solid ${props => props.theme.border};
   height: ${AppConstants.NavBarHeight(breakpoints.mobile)}px;
@@ -20,12 +19,16 @@ const Wrapper = styled.div`
 
   ${media.tablet`
     height: ${AppConstants.NavBarHeight(breakpoints.tablet)}px;
-    padding: 0 ${padding(breakpoints.tablet)}px 0 ${padding(breakpoints.tablet)}px
+    padding: 0 ${padding(breakpoints.tablet)}px 0 ${padding(
+    breakpoints.tablet,
+  )}px
     align-items: center;
   `};
 
   ${media.desktop`
-    padding: 0 ${padding(breakpoints.desktop)}px 0 ${padding(breakpoints.desktop)}px;
+    padding: 0 ${padding(breakpoints.desktop)}px 0 ${padding(
+    breakpoints.desktop,
+  )}px;
   `};
 `;
 

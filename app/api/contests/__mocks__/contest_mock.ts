@@ -40,7 +40,8 @@ const resultsDefaultGenerator = (): APIGetContestResponse => {
         points: '230',
         overallRank: 2,
         topDisciplines: ['Waterline', 'Speedline'],
-        profileUrl: 'http://www.slackattack.ch/wp-content/uploads/2015/11/Vorstand_Tom.jpg',
+        profileUrl:
+          'http://www.slackattack.ch/wp-content/uploads/2015/11/Vorstand_Tom.jpg',
       },
       {
         id: 'snould-veryLongSurname',
@@ -52,7 +53,8 @@ const resultsDefaultGenerator = (): APIGetContestResponse => {
         points: '220',
         overallRank: 3,
         topDisciplines: ['Highline'],
-        profileUrl: 'http://www.slackattack.ch/wp-content/uploads/2015/11/Vorstand_Tom.jpg',
+        profileUrl:
+          'http://www.slackattack.ch/wp-content/uploads/2015/11/Vorstand_Tom.jpg',
       },
       {
         id: 'marc-thompson',
@@ -64,7 +66,8 @@ const resultsDefaultGenerator = (): APIGetContestResponse => {
         points: '200',
         overallRank: 4,
         topDisciplines: ['Speedline'],
-        profileUrl: 'http://www.slackattack.ch/wp-content/uploads/2015/11/Vorstand_Tom.jpg',
+        profileUrl:
+          'http://www.slackattack.ch/wp-content/uploads/2015/11/Vorstand_Tom.jpg',
       },
       {
         id: 'lukas-irmler',
@@ -76,7 +79,8 @@ const resultsDefaultGenerator = (): APIGetContestResponse => {
         points: '190',
         overallRank: 5,
         topDisciplines: ['Freestyle', 'Endurance'],
-        profileUrl: 'http://www.slackattack.ch/wp-content/uploads/2015/11/Vorstand_Tom.jpg',
+        profileUrl:
+          'http://www.slackattack.ch/wp-content/uploads/2015/11/Vorstand_Tom.jpg',
       },
       {
         id: 'samuel-volery',
@@ -88,7 +92,8 @@ const resultsDefaultGenerator = (): APIGetContestResponse => {
         points: '180',
         overallRank: 6,
         topDisciplines: ['Freestyle'],
-        profileUrl: 'http://www.slackattack.ch/wp-content/uploads/2015/11/Vorstand_Tom.jpg',
+        profileUrl:
+          'http://www.slackattack.ch/wp-content/uploads/2015/11/Vorstand_Tom.jpg',
       },
     ],
     isNextPageAvailable: false,

@@ -28,7 +28,6 @@ export const initialState: ContainerState = {
   dropdownFilters: filters,
 };
 
-
 export default combineReducers<ContainerState, ContainerActions>({
   selectedFilters: (state = initialState.selectedFilters, action) => {
     switch (action.type) {

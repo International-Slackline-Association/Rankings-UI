@@ -10,7 +10,8 @@ const resultsDefaultGenerator = (): APIGetAthleteResponse => {
       country: 'CH',
       overallRank: 2,
       topDisciplines: ['Waterline', 'Speedline'],
-      profileUrl: 'http://www.slackattack.ch/wp-content/uploads/2015/11/Vorstand_Tom.jpg',
+      profileUrl:
+        'http://www.slackattack.ch/wp-content/uploads/2015/11/Vorstand_Tom.jpg',
     },
     items: [
       {
