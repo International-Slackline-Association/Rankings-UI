@@ -1,9 +1,10 @@
 import * as React from 'react';
-import styled, { colors } from 'styles/styled-components';
 import { TopBarTabType, TopBarTabContentType } from 'types/enums';
 
 import media from 'styles/media';
 import { rgba } from 'polished';
+import { Tab } from '@material-ui/core';
+import styled, { colors } from 'styles/styled-components';
 
 interface OwnProps {
   id: string;
@@ -19,6 +20,7 @@ interface ButtonProps {
   isSelected: boolean;
   isDynamicType: boolean;
   onClick: () => void;
+  label: string;
 }
 
 interface BorderProps {
@@ -32,19 +34,12 @@ class TopBarButton extends React.PureComponent<OwnProps> {
   };
   public render() {
     return (
-      <React.Fragment>
-        <VerticalBorder
-          isLarge={this.props.isFirstDynamicTab}
-          shouldExists={this.props.type === TopBarTabType.Dynamic}
-        />
-        <Button
-          isDynamicType={this.props.type === TopBarTabType.Dynamic}
-          isSelected={this.props.isSelected}
-          onClick={this.handleSelect}
-        >
-          {this.props.name}
-        </Button>
-      </React.Fragment>
+      <Button
+        isDynamicType={this.props.type === TopBarTabType.Dynamic}
+        isSelected={this.props.isSelected}
+        onClick={this.handleSelect}
+        label={this.props.name}
+      />
     );
   }
 }
@@ -58,41 +53,56 @@ const VerticalBorder = styled<BorderProps, 'div'>('div')`
   border-radius: 1px;
 `;
 
-const Button = styled<ButtonProps, 'button'>('button')`
-  background-color: transparent;
-  display: flex;
-  height: 100%;
-  /* min-width: 10em; */
-  padding: 0 16px 0 16px;
-  margin: 2px 0px 2px 0px;
-  outline: none;
-  align-items: center;
-  justify-content: center;
-  font-weight: ${props => (props.isDynamicType ? 'normal' : 'bold')};
-  font-style: ${props => (props.isDynamicType ? 'italic' : 'inherit')};
-  text-transform: ${props => (props.isDynamicType ? 'none' : 'uppercase')};
-  cursor: pointer;
-  font-size: ${props => (props.isDynamicType ? '0.8em' : '1em')};
-  border: none;
-  transition: border 0.2s;
-  color: ${props => (props.isSelected ? props.theme.textPrimary : props.theme.textSecondary)};
-  border-bottom: ${props => (props.isSelected ? `2px solid ${colors.isaRed}` : 'none')};
+const tab = (props: ButtonProps) => {
+  const { isSelected, isDynamicType, ...rest } = props;
+  return (
+    <Tab
+      {...rest}
+      classes={{
+        label: 'label',
+        wrapper: 'wrapper',
+        labelContainer: 'labelContainer',
+      }}
+    />
+  );
+};
 
-  white-space: nowrap;
-  text-align: center;
+const Button = styled<ButtonProps>(tab)`
+  && {
+    min-width: 0px;
+    min-height: 0px;
+    /* padding: 0 16px 0 16px; */
+    font-style: ${props => (props.isDynamicType ? 'italic' : 'inherit')};
+    text-transform: ${props => (props.isDynamicType ? 'none' : 'uppercase')};
+    color: ${props =>
+      props.isSelected ? props.theme.textPrimary : props.theme.textSecondary};
 
-  ${media.tablet`
-      font-size: ${props => (props.isDynamicType ? '1.25em' : '1.33em')};
+    white-space: nowrap;
+    text-align: center;
+
+    &:hover {
+      color: ${props => props.theme.textPrimary};
+    }
+    &:active {
+      outline: none;
+    }
+    &:focus {
+      outline: none;
+    }
+    & .labelContainer {
+      padding: 0 16px 0 16px;
+    }
+
+    & .label {
+      font-size: ${props => (props.isDynamicType ? '0.8em' : '1em')};
+
+      ${media.tablet`
+      font-size: ${props => (props.isDynamicType ? '1.25em' : '1.5em')};
   `};
-
-  &:hover {
-    color: ${props => props.theme.textPrimary};
-  }
-  &:active {
-    outline: none;
-  }
-  &:focus {
-    outline: none;
+    }
+    & .wrapper {
+      /* border-right: 1px solid ${rgba(colors.grayLight, 0.4)}; */
+    }
   }
 `;
 

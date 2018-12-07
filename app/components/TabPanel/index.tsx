@@ -16,7 +16,8 @@ const Wrapper = styled.div`
   width: 100%;
   height: 100%;
   display: flex;
-  justify-content: space-between;
+  /* justify-content: stretch; */
+  flex-direction: column;
   /* align-items: flex-start; */
   /* max-width: 100%;
   max-height: 100%; */
@@ -27,12 +28,16 @@ const Wrapper = styled.div`
 
   ${media.tablet`
     min-height: calc(100vh - 36px - 36px - 36px);
-    padding: 24px ${padding(breakpoints.tablet)}px 8px ${padding(breakpoints.tablet)}px;
+    padding: 24px ${padding(breakpoints.tablet)}px 8px ${padding(
+    breakpoints.tablet,
+  )}px;
   `};
 
   ${media.desktop`
     min-height: calc(100vh - 36px - 36px - 36px);
-    padding: 24px ${padding(breakpoints.desktop)}px 8px ${padding(breakpoints.desktop)}px;
+    padding: 24px ${padding(breakpoints.desktop)}px 8px ${padding(
+    breakpoints.desktop,
+  )}px;
 
   `};
 `;

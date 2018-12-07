@@ -1,0 +1,37 @@
+import * as React from 'react';
+import zIndex from 'styles/zIndex';
+import { Tabs } from '@material-ui/core';
+import styled from 'styles/styled-components';
+import AppConstants from 'styles/AppConstants';
+import breakpoints from 'styles/breakpoints';
+import media from 'styles/media';
+
+const tabs = props => (
+  <Tabs classes={{ flexContainer: 'flexContainer' }} {...props} />
+);
+
+const StyledTabs = styled(tabs)`
+  && {
+    display: flex;
+    align-items: center;
+
+    z-index: ${zIndex('TopBarTabs')};
+    justify-content: flex-start;
+    overflow-y: scroll;
+
+    & .flexContainer {
+      height: ${AppConstants.TopBarHeight(breakpoints.mobile)}px;
+
+      ${media.tablet`
+        height: ${AppConstants.TopBarHeight(breakpoints.tablet)}px;
+
+      `};
+
+      ${media.desktop`
+
+      `};
+    }
+  }
+`;
+
+export default StyledTabs;

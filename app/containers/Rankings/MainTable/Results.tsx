@@ -27,12 +27,12 @@ const Wrapper = styled.div`
     /* border-bottom: 1px solid ${props => props.theme.border}; */
     thead {
       text-transform: uppercase;
-      /* border-bottom: 2px solid ${props => props.theme.border}; */
-      font-size: 1.2em;
-      font-weight: bold;
-      background-color: ${props => rgba(props.theme.appBackground, 0.6)};
-      /* opacity: 0.6; */
-      color: ${props => props.theme.textPrimary};
+      border-bottom: 1px solid ${props => props.theme.divider};
+      font-size: 1em;
+      /* font-weight: bold; */
+      /* background-color: ${props =>
+        props.theme.componentBackgroundSecondary}; */
+      color: ${props => props.theme.textSecondary};
       display: none;
 
       ${media.desktop`
@@ -40,7 +40,8 @@ const Wrapper = styled.div`
       `};
 
       td {
-        padding: 8px 0;
+        /* margin-bottom: 8px; */
+        padding: 16px 0;
         &:nth-child(1) { width: 15%; }
         &:nth-child(2) { width: 17%; }
         &:nth-child(3) { width: 17%; }
@@ -57,36 +58,27 @@ const Wrapper = styled.div`
         display: flex;
         flex-wrap: wrap;
         padding-top: 12px;
-        border-bottom: 2px solid ${props => props.theme.border};
-        cursor: pointer;
-        &.selected {
-          font-weight: bold;
-          color: ${darken(0.11, colors.isaRed)};
+        border-bottom: 1px solid ${props => props.theme.divider};
+        /* cursor: pointer; */
+        &:nth-child(even) {
+          background-color: ${props => rgba(props.theme.appBackground, 1)};
         }
-        ${media.tablet`
-          transition:0.25s;
-          &:hover {
-            transform:scale(1.01,1.01);
-            transform-origin:center;
-            /* font-weight: bold; */
-            background-color: ${props => lighten(0.5, props.theme.componentBackgroundSecondary)};
-          }
 
+        ${media.tablet`
           &:active {
             color: ${props => lighten(0.11, props.theme.textPrimary)};
           }
           &:focus {
             color: ${props => lighten(0.11, props.theme.textPrimary)};
           }
-          &:nth-child(even) {
-            background-color: ${props => rgba(props.theme.appBackground, 0.6)};
-          }
+
         `};
 
         ${media.desktop`
           display: table-row;
           padding-top: 0;
-          border-bottom: none;
+          /* border-bottom: none; */
+
           &:nth-child(even) {
             background-color: transparent;
           }
@@ -99,18 +91,35 @@ const Wrapper = styled.div`
           display: flex;
           align-items: center;
           margin-bottom: 12px;
-          font-size: 1.25rem;
+          font-size: 1em;
           &:nth-child(1) {
-            &::before { content: "${(props: IResultsWrapperProps) => props.rankMsg} :";
+            &::before {
+              content: "${(props: IResultsWrapperProps) => props.rankMsg} :";
             };
-            /* font-weight: bolder; */
-            /* font-size: 1.25em */
-            /* color: ${colors.isaRed}; */
-            }
-          &:nth-child(2) { &::before { content: "${props => props.nameMsg} : "; }}
-          &:nth-child(3) { &::before { content: "${props => props.ageMsg} : "; }}
-          &:nth-child(4) { &::before { content: "${props => props.countryMsg} : "; }}
-          &:nth-child(5) { &::before { content: "${props => props.pointsMsg} : "; }}
+          }
+          &:nth-child(2) {
+            &::before {
+              content: "${props => props.nameMsg} : ";
+            };
+          }
+
+          &:nth-child(3) {
+            &::before {
+              content: "${props => props.ageMsg} : ";
+            };
+          }
+
+          &:nth-child(4) {
+            &::before {
+              content: "${props => props.countryMsg} : ";
+            };
+          }
+
+          &:nth-child(5) {
+            &::before {
+              content: "${props => props.pointsMsg} : ";
+            };
+          }
           &::before {
             display: block;
             text-transform: uppercase;
@@ -133,7 +142,9 @@ const Wrapper = styled.div`
             width: auto;
             text-align: center;
             display: table-cell;
-
+            a {
+              color: inherit
+            }
             &::before {
               display: none;
             }
@@ -143,7 +154,6 @@ const Wrapper = styled.div`
     }
   }
 `;
-
 function Results(props) {
   return (
     <Wrapper

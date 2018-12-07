@@ -1,6 +1,7 @@
 import * as React from 'react';
 import styled from 'styles/styled-components';
 import media from 'styles/media';
+import Paper from '@material-ui/core/Paper';
 
 const MainTableSection: React.SFC<{}> = props => {
   return <Wrapper>{props.children}</Wrapper>;
@@ -29,24 +30,29 @@ const SelectedFiltersArea = styled.div`
   margin-top: 1em;
 `;
 
-const Wrapper = styled.div`
-  background-color: ${props => props.theme.componentBackground};
-  border: 1px solid ${props => props.theme.border};
-  display: flex;
-  flex-wrap: wrap;
-  border-radius: 0.5em;
-  box-shadow: 0px 0px 8px 1px ${props => props.theme.border};
-  overflow: hidden;
-  width: 100%;
-  min-height: 100%;
+const paper = props => <Paper component="div" elevation={3} {...props} />;
 
-  ${media.tablet`
+const Wrapper = styled(paper)`
+  && {
+    /* background-color: ${props => props.theme.componentBackground}; */
+    /* border: 1px solid ${props => props.theme.border}; */
+    display: flex;
+    /* align-items: stretch; */
+    /* border-radius: 0.5em; */
+    /* box-shadow: 0px 0px 8px 1px ${props => props.theme.border}; */
+    /* overflow: hidden; */
+    width: 100%;
+    /* min-height: 1024px; */
+    min-height: calc(100vh - 200px);
+
+    ${media.tablet`
 
   `};
 
-  ${media.desktop`
+    ${media.desktop`
 
   `};
+  }
 `;
 
 const FiltersWrapper = styled.div`

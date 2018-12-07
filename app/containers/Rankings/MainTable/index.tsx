@@ -7,6 +7,9 @@ import media from 'styles/media';
 import Results from './Results';
 import Empty from './Empty';
 import { SmallLoading } from 'components/Loading';
+import ProfileAvatar from 'components/Icons/ProfileAvatar';
+import Group from './Group';
+import CountryAvatar from 'components/Icons/CountryAvatar';
 
 interface Props {
   items: TableItem[] | null;
@@ -75,13 +78,25 @@ class MainTable extends React.PureComponent<Props, State> {
                     <tr
                       onClick={this.onTableRowClick(item)}
                       key={item.id}
-                      className={item === this.state.selectedItem ? 'selected' : ''}
+                      className={
+                        item === this.state.selectedItem ? 'selected' : ''
+                      }
                     >
                       <td>{item.rank}</td>
-                      <td>{item.name + ' ' + item.surname}</td>
+                      <td>
+                        <Group alignLeft={true}>
+                          <ProfileAvatar imageUrl={''} />
+                          <a href="#">{item.name + ' ' + item.surname}</a>
+                        </Group>
+                      </td>
                       <td>{item.age}</td>
-                      <td>{item.country}</td>
-                      <td>{item.points}</td>
+                      <td>
+                        <Group>
+                          <CountryAvatar code={item.country} />
+                          {item.country}
+                        </Group>
+                      </td>
+                      <td>{item.points} points</td>
                     </tr>
                   );
                 })}
@@ -104,18 +119,16 @@ class MainTable extends React.PureComponent<Props, State> {
 }
 
 const Wrapper = styled.div`
-  /* background-color: ${colors.green}; */
+  /* display: flex; */
   width: 100%;
   height: 100%;
-  margin-top: 24px;
+  /* margin-top: 12px; */
 
-  ${media.tablet`
-
+  /* ${media.tablet`
   `};
 
   ${media.desktop`
-
-  `};
+  `}; */
 `;
 
 export default MainTable;

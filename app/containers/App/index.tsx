@@ -11,7 +11,7 @@ import Helmet from 'react-helmet';
 
 // Import the CSS reset, which HtmlWebpackPlugin transfers to the build folder
 // import styled, { ThemeProvider } from 'styled-components';
-import styled, { theme, ThemeProvider } from 'styles/styled-components';
+import styled, { theme, ThemeProvider, muiTheme } from 'styles/styled-components';
 import { Switch, Route, Redirect } from 'react-router';
 import NotFoundPage from 'containers/NotFoundPage';
 import { hot } from 'react-hot-loader';
@@ -25,6 +25,7 @@ import GlobalStyle from './GlobalStyle';
 import Contests from 'containers/Contests';
 import Contest from 'containers/Contest';
 import Athlete from 'containers/Athlete';
+import { MuiThemeProvider } from '@material-ui/core';
 
 const AppWrapper = styled.div`
   width: 100%;
@@ -46,22 +47,27 @@ class App extends React.Component<{}, {}> {
   public render() {
     return (
       <ThemeProvider theme={theme.default}>
-        <AppWrapper>
-          <Helmet titleTemplate="%s - ISA Rankings" defaultTitle="ISA Rankings">
-            <meta name="description" content="ISA Rankings" />
-          </Helmet>
-          <HeaderBar />
-          <TopBarTabs />
-          <Switch>
-            <Route exact path="/" component={Rankings} />
-            <Route exact path="/contests" component={Contests} />
-            <Route exact path="/contest/:id" component={Contest} />
-            <Route exact path="/athlete/:id" component={Athlete} />
-            <Redirect from="/rankings" to="/" />
-            <Route component={NotFoundPage} />
-          </Switch>
-          <GlobalStyle />
-        </AppWrapper>
+        <MuiThemeProvider theme={muiTheme}>
+          <AppWrapper>
+            <Helmet
+              titleTemplate="%s - ISA Rankings"
+              defaultTitle="ISA Rankings"
+            >
+              <meta name="description" content="ISA Rankings" />
+            </Helmet>
+            <HeaderBar />
+            <TopBarTabs />
+            <Switch>
+              <Route exact path="/" component={Rankings} />
+              <Route exact path="/contests" component={Contests} />
+              <Route exact path="/contest/:id" component={Contest} />
+              <Route exact path="/athlete/:id" component={Athlete} />
+              <Redirect from="/rankings" to="/" />
+              <Route component={NotFoundPage} />
+            </Switch>
+            <GlobalStyle />
+          </AppWrapper>
+        </MuiThemeProvider>
       </ThemeProvider>
     );
   }

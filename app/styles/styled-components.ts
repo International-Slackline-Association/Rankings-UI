@@ -8,6 +8,7 @@ export interface IThemeInterface {
   componentBackgroundInverted: string;
   appBackground: string;
   border: string;
+  divider: string;
   textPrimary: string;
   textSecondary: string;
   textInverted: string;
@@ -21,6 +22,9 @@ export interface IThemeInterface {
 }
 
 import * as styledComponents from 'styled-components';
+import createMuiTheme, {
+  ThemeOptions,
+} from '@material-ui/core/styles/createMuiTheme';
 
 export const colors = {
   green: '#21D38E',
@@ -36,6 +40,11 @@ export const colors = {
   paleWhite: '#F0F0F0',
   lightBorder: '#DCDADA',
   overlayBackground: 'rgba(22, 18, 32, 0.85)',
+
+  textPrimary: 'rgba(0, 0, 0, 0.87)',
+  textSecondary: 'rgba(0, 0, 0, 0.54)',
+  divider: 'rgba(0, 0, 0, 0.12)',
+  appBackground: '#F0F0F0',
 };
 
 export const theme = {
@@ -44,10 +53,11 @@ export const theme = {
     componentBackground: colors.white,
     componentBackgroundSecondary: colors.isaBlue,
     componentBackgroundInverted: colors.grayDark,
-    appBackground: colors.paleWhite,
+    appBackground: colors.appBackground,
     border: colors.lightBorder,
-    textPrimary: colors.grayDark,
-    textSecondary: colors.grayLight,
+    divider: colors.divider,
+    textPrimary: colors.textPrimary,
+    textSecondary: colors.textSecondary,
     textInverted: colors.white,
     textInvertedSecondary: colors.isaBlue,
     error: colors.red,
@@ -58,6 +68,23 @@ export const theme = {
     breakpoints: breakpoints,
   },
 };
+
+const muiTheme = createMuiTheme({
+  palette: {
+    primary: {
+      dark: colors.isaBlue,
+      light: colors.isaBlue,
+      contrastText: colors.isaBlue,
+      main: colors.isaBlue,
+    },
+    secondary: {
+      dark: colors.isaRed,
+      light: colors.isaRed,
+      contrastText: colors.isaRed,
+      main: colors.isaRed,
+    },
+  },
+});
 
 const {
   default: styled,
@@ -70,5 +97,12 @@ const {
   IThemeInterface
 >;
 
-export { css, createGlobalStyle, keyframes, ThemeProvider, withTheme };
+export {
+  css,
+  createGlobalStyle,
+  keyframes,
+  ThemeProvider,
+  withTheme,
+  muiTheme,
+};
 export default styled;

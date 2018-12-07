@@ -31,11 +31,19 @@ import TableFilters from 'components/TableFilters';
 import TableDropdownFilter from 'components/TableDropdownFilter';
 import TableSearchInput from 'components/TableSearchInput';
 import * as actions from './actions';
-import { SideInfoBoxAthlete, ModalInfoBoxAthlete, SideInfoBoxRankings } from 'components/InfoBox';
+import {
+  SideInfoBoxAthlete,
+  ModalInfoBoxAthlete,
+  SideInfoBoxRankings,
+} from 'components/InfoBox';
 import Modal, { MobileOnlyModal } from 'components/Modal';
-import { SelectedFilter, SearchSuggestion } from 'containers/GenericTabContent/types';
+import {
+  SelectedFilter,
+  SearchSuggestion,
+} from 'containers/GenericTabContent/types';
 import { TopBarTabContentType } from 'types/enums';
 import { replace } from 'connected-react-router';
+import CategoryFilterButton from 'components/CategoryFilterButton';
 
 // tslint:disable-next-line:no-empty-interface
 interface OwnProps {}
@@ -170,7 +178,8 @@ class Rankings extends React.PureComponent<Props, State> {
 
   private onInfoBoxButtonClick = () => {
     const path = TopBarTabContentType.athlete;
-    const idParam = this.state.selectedTableItem && this.state.selectedTableItem.id;
+    const idParam =
+      this.state.selectedTableItem && this.state.selectedTableItem.id;
     if (idParam) {
       this.props.updateLocation(path, idParam);
     }
@@ -181,56 +190,14 @@ class Rankings extends React.PureComponent<Props, State> {
     const selectedTableItem = this.state && this.state.selectedTableItem;
     return (
       <TabPanel>
+        <CategoryFilterButton />
         <MainTableSection>
-          <TableSearchInput
-            placeholder={'Search Athlete'}
-            loadSuggestions={this.onLoadSearchSuggestions}
-            clearSuggestions={this.onClearSearchSuggestions}
-            suggestionSelected={this.onSearchSuggestionSelected}
-            suggestions={this.props.suggestions}
-          />
-          <TableFilters>
-            {this.props.dropdownFilters.map(filter => {
-              return (
-                <TableDropdownFilter
-                  key={filter.category}
-                  name={filter.category}
-                  items={filter.items}
-                  onItemSelected={this.onFilterItemSelected}
-                />
-              );
-            })}
-          </TableFilters>
-          <SelectedFilters>
-            {selectedFilters &&
-              selectedFilters.map(selectedFilter => {
-                return (
-                  <SelectedFilterButton
-                    key={selectedFilter.id}
-                    id={selectedFilter.id}
-                    name={selectedFilter.name}
-                    isDisabled={selectedFilter.isSticky}
-                    onCancel={this.onSelectedFilterCancelled}
-                  />
-                );
-              })}
-          </SelectedFilters>
           <MainTable
             items={this.props.tableItems}
             onRowSelected={this.onTableRowSelected}
             isItemsLoading={this.props.isTableItemsLoading}
           />
         </MainTableSection>
-        {selectedTableItem ? (
-          <SideInfoBoxAthlete onButtonClick={this.onInfoBoxButtonClick} item={selectedTableItem} />
-        ) : (
-          <SideInfoBoxRankings />
-        )}
-        {selectedTableItem && (
-          <MobileOnlyModal isOpen={this.state.isModalOpen} onRequestClose={this.closeModal}>
-            <ModalInfoBoxAthlete onButtonClick={this.onInfoBoxButtonClick} item={selectedTableItem} />
-          </MobileOnlyModal>
-        )}
       </TabPanel>
     );
   }
@@ -245,7 +212,10 @@ const mapStateToProps = createStructuredSelector<RootState, StateProps>({
   dropdownFilters: selectDropdownFilters(),
 });
 
-function mapDispatchToProps(dispatch: Dispatch, ownProps: OwnProps): DispatchProps {
+function mapDispatchToProps(
+  dispatch: Dispatch,
+  ownProps: OwnProps,
+): DispatchProps {
   return {
     dispatch: dispatch,
     updateLocation: (path: string, id: string) => {
@@ -261,7 +231,10 @@ const withConnect = connect(
   mapDispatchToProps,
 );
 
-const withReducer = injectReducer<OwnProps>({ key: 'rankings', reducer: reducer });
+const withReducer = injectReducer<OwnProps>({
+  key: 'rankings',
+  reducer: reducer,
+});
 const withSaga = injectSaga<OwnProps>({ key: 'rankings', saga: saga });
 
 export default compose(
