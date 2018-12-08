@@ -43,7 +43,7 @@ import {
 } from 'containers/GenericTabContent/types';
 import { TopBarTabContentType } from 'types/enums';
 import { replace } from 'connected-react-router';
-import CategoryFilterButton from 'components/CategoryFilterButton';
+import CategoriesFilters from 'components/CategoriesFilters';
 
 // tslint:disable-next-line:no-empty-interface
 interface OwnProps {}
@@ -190,7 +190,7 @@ class Rankings extends React.PureComponent<Props, State> {
     const selectedTableItem = this.state && this.state.selectedTableItem;
     return (
       <TabPanel>
-        <CategoryFilterButton />
+        <CategoriesFilters />
         <MainTableSection>
           <MainTable
             items={this.props.tableItems}

@@ -56,68 +56,9 @@ const Empty = styled.div`
   text-align: center;
 `;
 
-const AutosuggestWrapperDiv = styled.div.attrs(classNames)`
+export const AutosuggestWrapperDiv = styled.div.attrs(classNames)`
   display: flex;
   align-items: center;
-    .${classNames.container} {
-      position: relative;
-      /* background-color: ${colors.green}; */
-
-      align-self: center;
-    }
-    .${classNames.input} {
-      width: 100%;
-      height: 24px;
-      padding: 10px 10px;
-      /* font-family: Helvetica, sans-serif; */
-      /* font-weight: 300; */
-      font-size: 1em;
-      border: 1px solid ${props => props.theme.border};
-      box-shadow: 0px 2px 8px 0.5px ${props => props.theme.border};
-      border-radius: 2px;
-      background-image: url(${searchIconSvg});
-      background-repeat: no-repeat;
-      background-position: center right 10px;
-      background-size: 1em;
-
-      ${media.desktop`
-        /* width: 140px; */
-      `};
-      ${media.desktopLarge`
-        width: 171px;
-      `};
-    }
-    .${classNames.input_focused} {
-      outline: none;
-      background-image: none;
-    }
-
-    .${classNames.input_open} {
-      border-bottom-left-radius: 0;
-      border-bottom-right-radius: 0;
-    }
-
-    .${classNames.container_open} {
-      display: block;
-      position: absolute;
-      /* top: 51px; */
-      width: 100%;
-      max-height: 200px;
-      overflow-y: auto;
-      border: 1px solid ${props => props.theme.border};
-      border-top: 0;
-      /* border-radius: 1em; */
-      background-color: ${props => props.theme.componentBackground};
-      font-family: Helvetica, sans-serif;
-      font-weight: 300;
-      font-size: 1em;
-      border-bottom-left-radius: 2px;
-      border-bottom-right-radius: 2px;
-      z-index: 2;
-      ${media.desktopLarge`
-        width: 171px;
-      `};
-    }
     .${classNames.suggestion_list} {
       margin: 0;
       padding: 0;
@@ -126,20 +67,9 @@ const AutosuggestWrapperDiv = styled.div.attrs(classNames)`
     .${classNames.suggestion} {
       cursor: pointer;
       padding: 10px 20px;
-      &:hover {
-        background-color: ${props => lighten(0.6, props.theme.textPrimary)};
-      }
-      span {
-        b {
-          font-weight:bold;
-        }
-      }
+      color: ${props => props.theme.textPrimary}
     }
     .${classNames.suggestion_highlighted} {
-      background-color: ${props => props.theme.border};
+      background-color: ${props => props.theme.divider};
     }
-    .${classNames.section_container_first}{
-      border-top: 0;
-    }
-  }
   `;

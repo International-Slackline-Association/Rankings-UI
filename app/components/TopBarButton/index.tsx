@@ -97,8 +97,8 @@ const Button = styled<ButtonProps>(tab)`
       font-size: ${props => (props.isDynamicType ? '0.8em' : '1em')};
 
       ${media.tablet`
-      font-size: ${props => (props.isDynamicType ? '1.25em' : '1.5em')};
-  `};
+        font-size: ${props => (props.isDynamicType ? '1.25em' : '1.5em')};
+      `};
     }
     & .wrapper {
       /* border-right: 1px solid ${rgba(colors.grayLight, 0.4)}; */
