@@ -2,14 +2,15 @@ import * as React from 'react';
 
 import { FormattedMessage } from 'react-intl';
 import messages from './messages';
-import styled, { colors } from 'styles/styled-components';
+import styled, { colors, css } from 'styles/styled-components';
 import media from 'styles/media';
 import Results from './Results';
 import Empty from './Empty';
 import { SmallLoading } from 'components/Loading';
 import ProfileAvatar from 'components/Icons/ProfileAvatar';
-import Group from './Group';
 import CountryAvatar from 'components/Icons/CountryAvatar';
+import TableWrapper from 'components/TableWrapper';
+import Group from 'components/TableWrapper/Group';
 
 interface Props {
   items: TableItem[] | null;
@@ -50,7 +51,7 @@ class MainTable extends React.PureComponent<Props, State> {
     const { isItemsLoading, items } = this.props;
     return (
       <Wrapper>
-        <Results selected>
+        <TableWrapper tdCSS={tableItemsPrefixCSS}>
           <table>
             <thead>
               <tr>
@@ -112,23 +113,32 @@ class MainTable extends React.PureComponent<Props, State> {
               {/* <FormattedMessage {...messages.} /> */}
             </Empty>
           ) : null}
-        </Results>
+        </TableWrapper>
       </Wrapper>
     );
   }
 }
 
+const tableItemsPrefixCSS = css`
+  &:nth-child(1) { &::before { content: "Rank :"; }}
+  &:nth-child(2) { &::before { content: "Name : "; }}
+  &:nth-child(3) { &::before { content: "Age : "; }}
+  &:nth-child(4) { &::before { content: "Country : "; }}
+  &:nth-child(5) { &::before { content: "Points : "; }}
+`;
+
 const Wrapper = styled.div`
-  /* display: flex; */
+  /* background-color: ${colors.green}; */
   width: 100%;
   height: 100%;
-  /* margin-top: 12px; */
 
-  /* ${media.tablet`
+  ${media.tablet`
+
   `};
 
   ${media.desktop`
-  `}; */
+
+  `};
 `;
 
 export default MainTable;

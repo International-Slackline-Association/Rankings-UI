@@ -1,19 +1,13 @@
-import * as React from 'react';
-// import PropTypes from 'prop-types';
-import { rgba, lighten, darken, opacify } from 'polished';
+import { rgba } from 'polished';
 import media from 'styles/media';
-import { injectIntl } from 'react-intl';
-import messages from './messages';
 import styled, { colors } from 'styles/styled-components';
 
-interface IResultsWrapperProps {
-  rankMsg: string;
-  ageMsg: string;
-  nameMsg: string;
-  countryMsg: string;
-  pointsMsg: string;
+interface Props {
+  tdCSS?: any;
+  trCSS?: any;
 }
-const Wrapper = styled.div`
+
+const TableWrapper = styled<Props, 'div'>('div')`
   /* border: 1px solid ${props => props.theme.border}; */
   /* background-color: ${colors.orange}; */
   /* border-radius: 3px; */
@@ -40,7 +34,6 @@ const Wrapper = styled.div`
       `};
 
       td {
-        /* margin-bottom: 8px; */
         padding: 16px 0;
         &:nth-child(1) { width: 15%; }
         &:nth-child(2) { width: 17%; }
@@ -48,6 +41,7 @@ const Wrapper = styled.div`
         &:nth-child(4) { width: 17%; }
         &:nth-child(5) { width: 17%; }
         &:nth-child(6) { width: 17%; }
+        ${props => props.trCSS}
       }
     }
 
@@ -82,34 +76,6 @@ const Wrapper = styled.div`
           align-items: center;
           margin-bottom: 12px;
           font-size: 1em;
-          &:nth-child(1) {
-            &::before {
-              content: "${(props: IResultsWrapperProps) => props.rankMsg} :";
-            };
-          }
-          &:nth-child(2) {
-            &::before {
-              content: "${props => props.nameMsg} : ";
-            };
-          }
-
-          &:nth-child(3) {
-            &::before {
-              content: "${props => props.ageMsg} : ";
-            };
-          }
-
-          &:nth-child(4) {
-            &::before {
-              content: "${props => props.countryMsg} : ";
-            };
-          }
-
-          &:nth-child(5) {
-            &::before {
-              content: "${props => props.pointsMsg} : ";
-            };
-          }
           &::before {
             display: block;
             text-transform: uppercase;
@@ -122,6 +88,8 @@ const Wrapper = styled.div`
             text-overflow: ellipsis;
             text-align: right
           }
+          ${props => props.tdCSS}
+
 
           ${media.tablet`
             width: 50%;
@@ -144,18 +112,5 @@ const Wrapper = styled.div`
     }
   }
 `;
-function Results(props) {
-  return (
-    <Wrapper
-      rankMsg={props.intl.formatMessage(messages.theadRank)}
-      nameMsg={props.intl.formatMessage(messages.theadName)}
-      ageMsg={props.intl.formatMessage(messages.theadAge)}
-      countryMsg={props.intl.formatMessage(messages.theadCountry)}
-      pointsMsg={props.intl.formatMessage(messages.theadPoints)}
-    >
-      {props.children}
-    </Wrapper>
-  );
-}
 
-export default injectIntl(Results);
+export default TableWrapper;

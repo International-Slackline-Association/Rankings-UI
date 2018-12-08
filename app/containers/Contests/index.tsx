@@ -40,9 +40,13 @@ import {
   ModalInfoBoxContest,
 } from 'components/InfoBox';
 import Modal, { MobileOnlyModal } from 'components/Modal';
-import { SelectedFilter, SearchSuggestion } from 'containers/GenericTabContent/types';
+import {
+  SelectedFilter,
+  SearchSuggestion,
+} from 'containers/GenericTabContent/types';
 import { TopBarTabContentType } from 'types/enums';
 import { replace } from 'connected-react-router';
+import CategoriesFilters from 'components/CategoriesFilters';
 
 // tslint:disable-next-line:no-empty-interface
 interface OwnProps {}
@@ -177,7 +181,8 @@ class Contests extends React.PureComponent<Props, State> {
 
   private onInfoBoxButtonClick = () => {
     const path = TopBarTabContentType.contest;
-    const idParam = this.state.selectedTableItem && this.state.selectedTableItem.id;
+    const idParam =
+      this.state.selectedTableItem && this.state.selectedTableItem.id;
     if (idParam) {
       this.props.updateLocation(path, idParam);
     }
@@ -188,56 +193,14 @@ class Contests extends React.PureComponent<Props, State> {
     const selectedTableItem = this.state && this.state.selectedTableItem;
     return (
       <TabPanel>
+        <CategoriesFilters />
         <MainTableSection>
-          <TableSearchInput
-            placeholder={'Search Contest'}
-            loadSuggestions={this.onLoadSearchSuggestions}
-            clearSuggestions={this.onClearSearchSuggestions}
-            suggestionSelected={this.onSearchSuggestionSelected}
-            suggestions={this.props.suggestions}
-          />
-          <TableFilters>
-            {this.props.dropdownFilters.map(filter => {
-              return (
-                <TableDropdownFilter
-                  key={filter.category}
-                  name={filter.category}
-                  items={filter.items}
-                  onItemSelected={this.onFilterItemSelected}
-                />
-              );
-            })}
-          </TableFilters>
-          <SelectedFilters>
-            {selectedFilters &&
-              selectedFilters.map(selectedFilter => {
-                return (
-                  <SelectedFilterButton
-                    key={selectedFilter.id}
-                    id={selectedFilter.id}
-                    name={selectedFilter.name}
-                    isDisabled={selectedFilter.isSticky}
-                    onCancel={this.onSelectedFilterCancelled}
-                  />
-                );
-              })}
-          </SelectedFilters>
           <MainTable
             items={this.props.tableItems}
             onRowSelected={this.onTableRowSelected}
             isItemsLoading={this.props.isTableItemsLoading}
           />
         </MainTableSection>
-        {selectedTableItem ? (
-          <SideInfoBoxContest onButtonClick={this.onInfoBoxButtonClick} item={selectedTableItem} />
-        ) : (
-          <SideInfoBoxContests />
-        )}
-        {selectedTableItem && (
-          <MobileOnlyModal isOpen={this.state.isModalOpen} onRequestClose={this.closeModal}>
-            <ModalInfoBoxContest large onButtonClick={this.onInfoBoxButtonClick} item={selectedTableItem} />
-          </MobileOnlyModal>
-        )}
       </TabPanel>
     );
   }
@@ -252,7 +215,10 @@ const mapStateToProps = createStructuredSelector<RootState, StateProps>({
   dropdownFilters: selectDropdownFilters(),
 });
 
-function mapDispatchToProps(dispatch: Dispatch, ownProps: OwnProps): DispatchProps {
+function mapDispatchToProps(
+  dispatch: Dispatch,
+  ownProps: OwnProps,
+): DispatchProps {
   return {
     dispatch: dispatch,
     updateLocation: (path: string, id: string) => {
@@ -268,7 +234,10 @@ const withConnect = connect(
   mapDispatchToProps,
 );
 
-const withReducer = injectReducer<OwnProps>({ key: 'contests', reducer: reducer });
+const withReducer = injectReducer<OwnProps>({
+  key: 'contests',
+  reducer: reducer,
+});
 const withSaga = injectSaga<OwnProps>({ key: 'contests', saga: saga });
 
 export default compose(

@@ -65,37 +65,6 @@ const suggestions = [
   { label: 'Brunei Darussalam' },
 ];
 
-const renderInputComponent = (isLoading?: boolean) => inputProps => {
-  // tslint:disable-next-line:no-empty
-  const { classes, inputRef = () => {}, ref, ...other } = inputProps;
-  return (
-    <TextField
-      // fullWidth
-      InputProps={{
-        inputRef: node => {
-          ref(node);
-          inputRef(node);
-        },
-        endAdornment: (
-          // tslint:disable-next-line:jsx-wrap-multiline
-          <InputAdornment position="end">
-            {isLoading ? (
-              <Empty>
-                <TinyLoading />
-              </Empty>
-            ) : (
-              <Button onClick={undefined}>
-                <IconClose />
-              </Button>
-            )}
-          </InputAdornment>
-        ),
-      }}
-      {...other}
-    />
-  );
-};
-
 const renderSuggestionsContainer = popperNode => options => {
   return (
     <Popper anchorEl={popperNode} open={Boolean(options.children)}>
@@ -166,6 +135,39 @@ class AutoCompleteFilter extends React.PureComponent<Props, State> {
     };
   }
 
+  private renderInputComponent = inputProps => {
+    // tslint:disable-next-line:no-empty
+    const { classes, inputRef = () => {}, ref, ...other } = inputProps;
+    return (
+      <TextField
+        // fullWidth
+        InputProps={{
+          inputRef: node => {
+            ref(node);
+            inputRef(node);
+          },
+          endAdornment: (
+            // tslint:disable-next-line:jsx-wrap-multiline
+            <InputAdornment position="end">
+              {this.props.isLoading ? (
+                <Empty>
+                  <TinyLoading />
+                </Empty>
+              ) : (
+                this.state.value && (
+                  <Button onClick={undefined}>
+                    <IconClose />
+                  </Button>
+                )
+              )}
+            </InputAdornment>
+          ),
+        }}
+        {...other}
+      />
+    );
+  };
+
   private handleSuggestionsFetchRequested = ({ value }) => {
     this.setState({
       suggestions: getSuggestions(value),
@@ -185,7 +187,7 @@ class AutoCompleteFilter extends React.PureComponent<Props, State> {
 
   public render() {
     const autosuggestProps = {
-      renderInputComponent: renderInputComponent(this.props.isLoading),
+      renderInputComponent: this.renderInputComponent,
       suggestions: this.state.suggestions,
       onSuggestionsFetchRequested: this.handleSuggestionsFetchRequested,
       onSuggestionsClearRequested: this.handleSuggestionsClearRequested,

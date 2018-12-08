@@ -2,11 +2,14 @@ import * as React from 'react';
 
 import { FormattedMessage } from 'react-intl';
 import messages from './messages';
-import styled, { colors } from 'styles/styled-components';
+import styled, { colors, css } from 'styles/styled-components';
 import media from 'styles/media';
 import Results from './Results';
 import Empty from './Empty';
 import { SmallLoading } from 'components/Loading';
+import TableWrapper from 'components/TableWrapper';
+import Group from 'components/TableWrapper/Group';
+import ContestAvatar from 'components/Icons/ContestAvatar';
 
 interface Props {
   items: TableItem[] | null;
@@ -46,7 +49,7 @@ class MainTable extends React.PureComponent<Props, State> {
     const { isItemsLoading, items } = this.props;
     return (
       <Wrapper>
-        <Results selected>
+        <TableWrapper tdCSS={tableItemsPrefixCSS} trCSS={tableItemsRatioCSS}>
           <table>
             <thead>
               <tr>
@@ -74,9 +77,16 @@ class MainTable extends React.PureComponent<Props, State> {
                     <tr
                       onClick={this.onTableRowClick(item)}
                       key={item.id}
-                      className={item === this.state.selectedItem ? 'selected' : ''}
+                      className={
+                        item === this.state.selectedItem ? 'selected' : ''
+                      }
                     >
-                      <td>{item.name}</td>
+                      <td>
+                        <Group alignLeft={true}>
+                          <ContestAvatar imageUrl={''} />
+                          <a href="#">{item.name}</a>
+                        </Group>
+                      </td>
                       <td>{item.discipline}</td>
                       <td>{item.prize}</td>
                       <td>{item.size}</td>
@@ -96,17 +106,68 @@ class MainTable extends React.PureComponent<Props, State> {
               {/* <FormattedMessage {...messages.} /> */}
             </Empty>
           ) : null}
-        </Results>
+        </TableWrapper>
       </Wrapper>
     );
   }
 }
 
+const tableItemsRatioCSS = css`
+  &:nth-child(1) {
+    width: 25%;
+  }
+  &:nth-child(2) {
+    width: 15%;
+  }
+  &:nth-child(3) {
+    width: 15%;
+  }
+  &:nth-child(4) {
+    width: 15%;
+  }
+  &:nth-child(5) {
+    width: 15%;
+  }
+  &:nth-child(6) {
+    width: 15%;
+  }
+`;
+
+const tableItemsPrefixCSS = css`
+  &:nth-child(1) {
+    padding-left: 0px;
+    ${media.tablet`
+      padding-left: 48px;
+    `} &::before {
+      content: 'Name :';
+    }
+  }
+  &:nth-child(2) {
+    &::before {
+      content: 'Discipline : ';
+    }
+  }
+  &:nth-child(3) {
+    &::before {
+      content: 'Prize : ';
+    }
+  }
+  &:nth-child(4) {
+    &::before {
+      content: 'Size : ';
+    }
+  }
+  &:nth-child(5) {
+    &::before {
+      content: 'Date : ';
+    }
+  }
+`;
+
 const Wrapper = styled.div`
   /* background-color: ${colors.green}; */
   width: 100%;
   height: 100%;
-  margin-top: 24px;
 
   ${media.tablet`
 
