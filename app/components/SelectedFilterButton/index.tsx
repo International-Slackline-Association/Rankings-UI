@@ -1,7 +1,7 @@
 import * as React from 'react';
 
 import styled from 'styles/styled-components';
-import clearIconSvg = require('./clear.svg');
+import clearIconSvg from './clear.svg';
 
 interface Props {
   id;

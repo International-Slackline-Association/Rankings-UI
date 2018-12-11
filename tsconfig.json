@@ -2,7 +2,7 @@
   "compilerOptions": {
     "noEmit": true,
     "target": "es6",
-    "module": "commonjs",
+    "module": "esnext",
     "noImplicitAny": false,
     "preserveConstEnums": true,
     "typeRoots": ["node_modules/@types"],

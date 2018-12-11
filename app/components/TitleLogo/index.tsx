@@ -9,7 +9,7 @@ import * as React from 'react';
 // import styled from 'styled-components';
 
 import { FormattedMessage } from 'react-intl';
-import isaLogo = require('./isaLogo.svg');
+import isaLogo from './isaLogo.svg?file';
 import messages from './messages';
 import styled from 'styles/styled-components';
 

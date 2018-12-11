@@ -20,9 +20,9 @@ import media from 'styles/media';
 
 import 'bootstrap/dist/css/bootstrap.min.css';
 import TopBarTabs from 'containers/TopBarTabs';
-import Rankings from '../Rankings';
+import Rankings from 'containers/Rankings/Loadable';
 import GlobalStyle from './GlobalStyle';
-import Contests from 'containers/Contests';
+import Contests from 'containers/Contests/Loadable';
 import Contest from 'containers/Contest';
 import Athlete from 'containers/Athlete';
 import { MuiThemeProvider } from '@material-ui/core';

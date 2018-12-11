@@ -3,7 +3,7 @@ import { Img, HalfDiv, FullDiv, PhotoSection, IsaBackground } from '../common';
 import TitledField from '../TitledField';
 import SideBoxButton from 'components/SideBoxButton';
 import styled from 'styles/styled-components';
-import isaLogo = require('../isaLogo.svg');
+import isaLogo from '../isaLogo.svg';
 
 export interface ContestProps {
   item: {

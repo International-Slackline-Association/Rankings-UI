@@ -1,5 +1,4 @@
 import styled, { colors } from 'styles/styled-components';
-import searchIconSvg = require('./search.svg?file');
 
 import * as React from 'react';
 import media from 'styles/media';

@@ -1,5 +1,5 @@
 import * as React from 'react';
-import Autosuggest = require('react-autosuggest');
+import Autosuggest from 'react-autosuggest';
 import { AutosuggestWrapper } from 'components/AutosuggestWrapper';
 
 import styled, { colors } from 'styles/styled-components';
