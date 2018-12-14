@@ -59,6 +59,7 @@ export const AutosuggestWrapperDiv = styled.div.attrs(classNames)`
   display: flex;
   align-items: center;
     .${classNames.suggestion_list} {
+      width: 100%;
       margin: 0;
       padding: 0;
       list-style-type: none;

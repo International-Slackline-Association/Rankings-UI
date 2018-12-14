@@ -1,24 +1,21 @@
 import * as React from 'react';
 import styled from 'styles/styled-components';
-import ComponentBackground from 'components/ComponentBackground';
-import Divider from 'components/Divider';
-import Categories from './Categories';
-import media from 'styles/media';
-import Filters from './Filters';
 import CategoryFilterButton from './CategoryFilterButton';
-import { Collapse } from '@material-ui/core';
-import CategoryFilterSection from './CategoryFilterSection';
+import CategoryFilterSection, { CategoryFilterProps } from './CategoryFilterSection';
 import InfoPopover from './InfoPopover';
-interface Props {}
+
+interface Props extends CategoryFilterProps {
+  isOpen?: boolean;
+}
 
 interface State {
   isOpen: boolean;
 }
 class CategoriesFilters extends React.PureComponent<Props, State> {
-  constructor(props) {
+  constructor(props: Props) {
     super(props);
     this.state = {
-      isOpen: true,
+      isOpen: props.isOpen || false,
     };
   }
 
@@ -31,10 +28,13 @@ class CategoriesFilters extends React.PureComponent<Props, State> {
     return (
       <React.Fragment>
         <ButtonSectionWrapper>
-          <CategoryFilterButton isOpen={this.state.isOpen} onClick={this.handleClick} />
-          <InfoPopover/>
+          <CategoryFilterButton
+            isOpen={this.state.isOpen}
+            onClick={this.handleClick}
+          />
+          <InfoPopover />
         </ButtonSectionWrapper>
-        <CategoryFilterSection isOpen={this.state.isOpen} />
+        <CategoryFilterSection isOpen={this.state.isOpen} {...this.props} />
       </React.Fragment>
     );
   }

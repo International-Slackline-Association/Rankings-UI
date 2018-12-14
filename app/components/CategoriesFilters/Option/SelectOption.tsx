@@ -2,13 +2,10 @@ import * as React from 'react';
 import styled from 'styles/styled-components';
 import { clickEffect } from 'styles/mixins';
 import Divider from 'components/Divider';
+import { ISelectOption } from '../types';
 
-interface Props {
-  inlineLevel: number;
-  value: string;
-  label: string;
-  isContainerStyle?: boolean;
-  showDivider?: boolean;
+interface Props extends ISelectOption {
+  hideDivider?: boolean;
   onSelect(value: string);
 }
 
@@ -18,10 +15,10 @@ class SelectOption extends React.PureComponent<Props> {
   };
 
   public render() {
-    const { label, inlineLevel, isContainerStyle, showDivider } = this.props;
-    const wrapperMarginLeft = 16 * (1 + inlineLevel);
+    const { label, inlineLevel, isContainerStyle, hideDivider } = this.props;
+    const wrapperMarginLeft = 16 * (1 + (inlineLevel || 0));
     const hasDivider =
-      !isContainerStyle && showDivider === undefined ? true : showDivider;
+      !isContainerStyle && !hideDivider;
     return (
       <Wrapper style={{ marginLeft: wrapperMarginLeft }}>
         <Button
@@ -48,7 +45,7 @@ interface ButtonProps {
 const Button = styled<ButtonProps, 'button'>('button')`
   ${props => (props.isContainerStyle ? '' : clickEffect)};
   padding: 0px;
-  margin-bottom: 8px;
+  margin: 8px 0px;
   display: flex;
   border: none;
   cursor: ${props => (props.isContainerStyle ? '' : 'pointer')};

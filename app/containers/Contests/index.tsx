@@ -193,7 +193,7 @@ class Contests extends React.PureComponent<Props, State> {
     const selectedTableItem = this.state && this.state.selectedTableItem;
     return (
       <TabPanel>
-        <CategoriesFilters />
+        {/* <CategoriesFilters /> */}
         <MainTableSection>
           <MainTable
             items={this.props.tableItems}

@@ -1,4 +1,4 @@
-import { APIRankingsResponse } from '../types';
+import { APIRankingsResponse } from '../results';
 
 const resultsDefaultGenerator = (): APIRankingsResponse => {
   return {

@@ -6,11 +6,15 @@ import {
   OutlinedInput,
 } from '@material-ui/core';
 import ReactDOM from 'react-dom';
-import SelectOptionContainer from './Option/SelectOptionContainer';
+import SelectOptionContainer, {
+  CategorySelectProps,
+} from './Option/SelectOptionContainer';
 import styled from 'styles/styled-components';
+import { ICategory, ISelectOption } from './types';
+import { SelectProps } from '@material-ui/core/Select/Select';
 
 interface Props {
-  title: string;
+  category: ICategory;
 }
 
 interface State {
@@ -24,8 +28,15 @@ class CategorySelect extends React.PureComponent<Props, State> {
 
   constructor(props) {
     super(props);
+    let title = '';
+    const option = this.props.category.options.find(
+      x => x.value === this.props.category.selectedValue,
+    );
+    if (option) {
+      title = option.label;
+    }
     this.state = {
-      title: '',
+      title: title,
       labelWidth: 0,
       open: false,
     };
@@ -45,10 +56,17 @@ class CategorySelect extends React.PureComponent<Props, State> {
   };
 
   private handleSelect = (value: string) => {
-    this.setState({ title: value });
+    this.setSelected(value);
+    this.props.category.categorySelected(value);
     this.changeSelectMenuStatus(false)(undefined);
   };
 
+  private setSelected(value: string) {
+    const option = this.props.category.options.find(x => x.value === value);
+    if (option) {
+      this.setState({ title: option.label });
+    }
+  }
   private renderValue = (value: string) => {
     return value;
   };
@@ -61,7 +79,7 @@ class CategorySelect extends React.PureComponent<Props, State> {
             innerRef={this.InputLabelRef}
             htmlFor="outlined-age-native-simple"
           >
-            {this.props.title}
+            {this.props.category.title}
           </InputLabel>
           <StyledSelect
             open={this.state.open}
@@ -71,14 +89,17 @@ class CategorySelect extends React.PureComponent<Props, State> {
             input={
               // tslint:disable-next-line:jsx-wrap-multiline
               <OutlinedInput
-                name={this.props.title}
+                name={this.props.category.title}
                 labelWidth={this.state.labelWidth!}
                 id="outlined-age-native-simple"
               />
             }
             renderValue={this.renderValue}
           >
-            <SelectOptionContainer onSelect={this.handleSelect} />
+            <SelectOptionContainer
+              categorySelected={this.handleSelect}
+              options={this.props.category.options}
+            />
           </StyledSelect>
         </FormControl>
       </Wrapper>
@@ -90,9 +111,14 @@ const Wrapper = styled.div`
   margin: 0px 16px;
 `;
 
-const StyledSelect = styled(Select)`
+interface StyledSelectProps {
+  width: number;
+}
+const CustomSelect = props => <Select {...props} />;
+
+const StyledSelect = styled(CustomSelect)`
   && {
-    width: 96px;
+    min-width: 96px;
   }
 `;
 

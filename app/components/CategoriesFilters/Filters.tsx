@@ -1,19 +1,33 @@
 import * as React from 'react';
 import Section from './CategoryFilterButton/Section';
 import styled from 'styles/styled-components';
-import Divider, { VerticalDivider } from 'components/Divider';
-import CategorySelect from './CategorySelect';
+import { VerticalDivider } from 'components/Divider';
 import AutoCompleteFilter from './AutoCompleteFilter';
-interface Props {}
+import { IFilter } from './types';
+
+export interface FilterProps {
+  filters: IFilter[];
+}
+
+interface Props extends FilterProps {}
 
 class Filters extends React.PureComponent<Props> {
   public render() {
+    const filters = this.props.filters;
     return (
       <Wrapper>
         <Section type="filter" width="87.44px" />
         <VerticalDivider />
-        <AutoCompleteFilter title={'Athlete'} placeholder={'Name of the Athlete'} />
-        <AutoCompleteFilter title={'Country'} placeholder={'Country'} />
+        {filters.map(filter => (
+          <AutoCompleteFilter
+            key={filter.title}
+            title={filter.title}
+            placeholder={filter.placeholder}
+            loadSuggestions={filter.loadSuggestions}
+            suggestionSelected={filter.suggestionSelected}
+            suggestions={filter.suggestions}
+          />
+        ))}
       </Wrapper>
     );
   }

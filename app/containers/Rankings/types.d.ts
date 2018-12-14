@@ -2,6 +2,11 @@ import { ActionType } from 'typesafe-actions';
 import * as actions from './actions';
 import { ApplicationRootState } from 'types';
 import { TabContentState } from 'containers/GenericTabContent/types';
+import {
+  ISelectOption,
+  ICategoryEntity,
+  IFilterEntity,
+} from 'components/CategoriesFilters/types';
 
 /* --- EXPORTS --- */
 
@@ -12,19 +17,27 @@ type ContainerActions = RankingsActions;
 export { RootState, ContainerState, ContainerActions, TableItem };
 
 /* --- STATE --- */
-interface RankingsState extends TabContentState<TableItem> {}
+interface RankingsState {
+  readonly categories: ICategory[] | null;
+  readonly filters: IFilter[] | null;
+  readonly tableItems: TableItem[] | null;
+  readonly isTableItemsLoading: boolean | null;
+}
+
+export interface ICategory extends ICategoryEntity {}
+export interface IFilter extends IFilterEntity {}
 
 interface TableItem {
-  id: string;
-  rank: number;
-  name: string;
-  surname: string;
-  age: number;
-  country: string;
-  points: string;
-  profileUrl: string;
-  overallRank: number;
-  topDisciplines: string[];
+  readonly id: string;
+  readonly rank: number;
+  readonly name: string;
+  readonly surname: string;
+  readonly age: number;
+  readonly country: string;
+  readonly points: string;
+  readonly profileUrl: string;
+  readonly overallRank: number;
+  readonly topDisciplines: string[];
 }
 
 /* --- ACTIONS --- */

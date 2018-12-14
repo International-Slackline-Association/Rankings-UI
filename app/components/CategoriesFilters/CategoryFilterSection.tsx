@@ -2,12 +2,14 @@ import * as React from 'react';
 import styled from 'styles/styled-components';
 import ComponentBackground from 'components/ComponentBackground';
 import Divider from 'components/Divider';
-import Categories from './Categories';
+import Categories, { CategoryProps } from './Categories';
 import media from 'styles/media';
-import Filters from './Filters';
+import Filters, { FilterProps } from './Filters';
 import { Collapse } from '@material-ui/core';
-import zIndex from 'styles/zIndex';
-interface Props {
+
+export type CategoryFilterProps = FilterProps & CategoryProps;
+
+interface Props extends CategoryFilterProps {
   isOpen: boolean;
 }
 
@@ -21,12 +23,16 @@ class CategoryFilterSection extends React.PureComponent<Props> {
       <StyledCollapse in={this.props.isOpen}>
         <Wrapper>
           <Container>
-            <Categories />
+            <Categories categories={this.props.categories} />
           </Container>
-          <Divider margin={16} />
-          <Container>
-            <Filters />
-          </Container>
+          {this.props.filters.length > 0 && (
+            <React.Fragment>
+              <Divider margin={16} />
+              <Container>
+                <Filters filters={this.props.filters} />
+              </Container>
+            </React.Fragment>
+          )}
         </Wrapper>
       </StyledCollapse>
     );

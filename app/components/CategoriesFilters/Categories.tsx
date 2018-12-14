@@ -1,20 +1,32 @@
 import * as React from 'react';
 import Section from './CategoryFilterButton/Section';
 import styled from 'styles/styled-components';
-import Divider, { VerticalDivider } from 'components/Divider';
+import { VerticalDivider } from 'components/Divider';
 import CategorySelect from './CategorySelect';
-interface Props {}
+import { ICategory } from './types';
+import { SmallLoading } from 'components/Loading';
+
+export interface CategoryProps {
+  categories: ICategory[];
+}
+
+interface Props extends CategoryProps {}
 
 class Categories extends React.PureComponent<Props> {
   public render() {
+    const categories = this.props.categories;
+
     return (
       <Wrapper>
-        <Section type="category"/>
+        <Section type="category" />
         <VerticalDivider />
-        <CategorySelect title="Discipline" />
-        <CategorySelect title="Year" />
-        <CategorySelect title="Gender" />
-        <CategorySelect title="Age" />
+        {categories.length > 0 ? (
+          categories.map(category => (
+            <CategorySelect key={category.title} category={category} />
+          ))
+        ) : (
+          <SmallLoading />
+        )}
       </Wrapper>
     );
   }

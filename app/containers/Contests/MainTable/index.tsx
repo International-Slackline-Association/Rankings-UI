@@ -114,7 +114,9 @@ class MainTable extends React.PureComponent<Props, State> {
 
 const tableItemsRatioCSS = css`
   &:nth-child(1) {
-    width: 25%;
+    width: 20%;
+    text-align: left;
+    padding-left: 48px;
   }
   &:nth-child(2) {
     width: 15%;
@@ -136,7 +138,7 @@ const tableItemsRatioCSS = css`
 const tableItemsPrefixCSS = css`
   &:nth-child(1) {
     padding-left: 0px;
-    ${media.tablet`
+    ${media.desktop`
       padding-left: 48px;
     `} &::before {
       content: 'Name :';

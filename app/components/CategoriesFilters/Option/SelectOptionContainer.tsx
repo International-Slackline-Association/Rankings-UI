@@ -1,54 +1,39 @@
 import * as React from 'react';
 import SelectOption from './SelectOption';
-import { MenuItem } from '@material-ui/core';
-interface Props {}
+import { ISelectOption } from '../types';
 
-interface Props {
-  onSelect(value: string);
+export interface CategorySelectProps {
+  options: ISelectOption[];
+  categorySelected(value: string);
 }
+
+interface Props extends CategorySelectProps {}
 
 class SelectOptionContainer extends React.PureComponent<Props> {
   private onSelect = (value: string) => () => {
-    this.props.onSelect(value);
+    this.props.categorySelected(value);
   };
 
   public render() {
+    const options = this.props.options;
     return (
       <React.Fragment>
-        <SelectOption
-          value={'1'}
-          inlineLevel={0}
-          label={'Overall'}
-          onSelect={this.onSelect('1')}
-        />
+        {options.map((option, i) => {
+          // const inlineLevel = option.inlineLevel || 0;
+          // const hideDivider = inlineLevel > 2;
 
-        <SelectOption
-          value={'2'}
-          inlineLevel={1}
-          label={'Freestyle'}
-          isContainerStyle={true}
-          onSelect={this.onSelect('2')}
-        />
-        <SelectOption
-          value={'3'}
-          inlineLevel={2}
-          label={'Trickline'}
-          onSelect={this.onSelect('3')}
-        />
-        <SelectOption
-          value={'4'}
-          inlineLevel={3}
-          label={'Aerial'}
-          showDivider={false}
-          onSelect={this.onSelect('4')}
-        />
-        <SelectOption
-          value={'5'}
-          inlineLevel={1}
-          label={'Walking'}
-          isContainerStyle={true}
-          onSelect={this.onSelect('5')}
-        />
+          return (
+            <SelectOption
+              key={i}
+              value={option.value}
+              inlineLevel={option.inlineLevel}
+              label={option.label}
+              isContainerStyle={option.isContainerStyle}
+              hideDivider={false}
+              onSelect={this.onSelect(option.value)}
+            />
+          );
+        })}
       </React.Fragment>
     );
   }

@@ -10,7 +10,7 @@ const Group = styled<Props, 'span'>('span')`
   align-items: center;
   text-align: left;
   ${media.desktop`
-    padding-left: 1em;
+    /* padding-left: 1em; */
   `};
   div {
     margin-right: 8px;

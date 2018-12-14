@@ -6,21 +6,15 @@ const selectDomain = (state: ApplicationRootState) => {
   return state.rankings ? state.rankings : initialState;
 };
 
-const selectSelectedFilters = () =>
+const selectCategories = () =>
   createSelector(selectDomain, substate => {
-    return substate.selectedFilters;
+    return substate.categories;
   });
 
-const selectSelectedSearchInput = () =>
+const selectFilters = () =>
   createSelector(selectDomain, substate => {
-    return substate.selectedSearchInput;
+    return substate.filters;
   });
-
-const selectSuggestions = () =>
-  createSelector(selectDomain, substate => {
-    return substate.suggestions;
-  });
-
 const selectTableItems = () =>
   createSelector(selectDomain, substate => {
     return substate.tableItems;
@@ -30,17 +24,11 @@ const selectIsTableItemsLoading = () =>
   createSelector(selectDomain, substate => {
     return substate.isTableItemsLoading;
   });
-const selectDropdownFilters = () =>
-  createSelector(selectDomain, substate => {
-    return substate.dropdownFilters;
-  });
 
 export {
   selectDomain,
-  selectSelectedFilters,
-  selectSelectedSearchInput,
-  selectSuggestions,
+  selectCategories,
+  selectFilters,
   selectTableItems,
   selectIsTableItemsLoading,
-  selectDropdownFilters,
 };

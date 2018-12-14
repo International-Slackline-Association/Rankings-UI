@@ -14,7 +14,7 @@ import Group from 'components/TableWrapper/Group';
 
 interface Props {
   items: TableItem[] | null;
-  onRowSelected(id: string): void;
+  onRowSelected?(id: string): void;
   isItemsLoading: boolean | null;
 }
 
@@ -44,7 +44,7 @@ class MainTable extends React.PureComponent<Props, State> {
       this.setState({
         selectedItem: item,
       });
-      this.props.onRowSelected(item.id);
+      // this.props.onRowSelected(item.id);
     };
   };
   public render() {
@@ -77,7 +77,7 @@ class MainTable extends React.PureComponent<Props, State> {
                 items.map(item => {
                   return (
                     <tr
-                      onClick={this.onTableRowClick(item)}
+                      // onClick={this.onTableRowClick(item)}
                       key={item.id}
                       className={
                         item === this.state.selectedItem ? 'selected' : ''

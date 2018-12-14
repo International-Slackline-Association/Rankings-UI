@@ -2,7 +2,33 @@ import axios, { dummyResponseConfig } from 'api/axios';
 import { AxiosResponse } from 'axios';
 
 import mockResponse from './__mocks__/rankings_mock';
-import { APIGetRankingsRequest, APIRankingsResponse } from './types';
+
+export interface APIGetRankingsRequest {
+  filters: SelectedFilter[];
+  searchInput: string;
+}
+interface SelectedFilter {
+  id: string;
+  name: string;
+}
+
+export interface APIRankingsResponse {
+  items: RankingsItem[];
+  isNextPageAvailable: boolean;
+}
+
+interface RankingsItem {
+  id: string;
+  rank: number;
+  name: string;
+  surname: string;
+  age: number;
+  country: string;
+  points: string;
+  profileUrl: string;
+  overallRank: number;
+  topDisciplines: string[];
+}
 
 const requestURL = '';
 const getRankingResults = (
@@ -27,5 +53,4 @@ const dummyResponse = (): AxiosResponse<APIRankingsResponse> => {
   };
 };
 
-export { APIGetRankingsRequest, APIRankingsResponse };
 export default getRankingResults;

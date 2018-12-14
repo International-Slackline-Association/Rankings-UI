@@ -1,5 +1,7 @@
 import styled, { keyframes } from 'styles/styled-components';
 import { rgba } from 'polished';
+import * as React from 'react';
+import { Collapse } from '@material-ui/core';
 
 const loadingAnimationSpin = keyframes`
   100% {
@@ -38,14 +40,30 @@ export const TinyLoading = styled(Loading)`
   }
 `;
 
-export const SmallLoading = styled(Loading)`
+const SmallLoadingContainer = styled.div`
+  position: relative;
+  /* min-height: 100px; */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: normal;
+  color: ${props => props.theme.textSecondary};
+  padding: 0 24px;
+  text-align: center;
+`;
+
+export const SmallLoading = props => (
+  <SmallLoadingContainer>
+    <SmallLoadingItem />
+  </SmallLoadingContainer>
+);
+export const SmallLoadingItem = styled(Loading)`
   &::after {
     width: 1.5em;
     height: 1.5em;
     border-width: 2px;
   }
 `;
-
 export const InlineLoading = styled(Loading)`
   width: auto;
   height: auto;

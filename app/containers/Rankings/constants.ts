@@ -7,6 +7,10 @@ enum ActionTypes {
   SELECT_TABLE_ROW = 'app/Rankings/SELECT_TABLE_ROW',
   LOAD_TABLE_ITEMS = 'app/Rankings/LOAD_TABLE_ITEMS',
   SET_TABLE_ITEMS = 'app/Rankings/SET_TABLE_ITEMS',
+
+  LOAD_CATEGORIES = 'app/Rankings/LOAD_CATEGORIES',
+  SET_CATEGORIES = 'app/Rankings/SET_CATEGORIES',
+  SET_CATEGORY_SELECTED_VALUE = 'app/Rankings/SET_CATEGORY_SELECTED_VALUE',
 }
 
 export default ActionTypes;
