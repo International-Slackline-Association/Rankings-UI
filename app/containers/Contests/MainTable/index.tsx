@@ -1,20 +1,20 @@
 import * as React from 'react';
-
-import { FormattedMessage } from 'react-intl';
-import messages from './messages';
 import styled, { colors, css } from 'styles/styled-components';
 import media from 'styles/media';
-import Results from './Results';
-import Empty from './Empty';
 import { SmallLoading } from 'components/Loading';
 import TableWrapper from 'components/TableWrapper';
 import Group from 'components/TableWrapper/Group';
 import ContestAvatar from 'components/Icons/ContestAvatar';
+import { EmptyContainer } from 'components/Containers';
+import { TableItemsResult } from '../types';
+import ShowMoreButton from './ShowMoreButton';
 
 interface Props {
-  items: TableItem[] | null;
-  onRowSelected(id: string): void;
+  tableItems: TableItemsResult;
+  onRowSelected?(id: string): void;
   isItemsLoading: boolean | null;
+  isNextItemsLoading: boolean | null;
+  showMoreClicked(): void;
 }
 
 interface TableItem {
@@ -42,32 +42,23 @@ class MainTable extends React.PureComponent<Props, State> {
       this.setState({
         selectedItem: item,
       });
-      this.props.onRowSelected(item.id);
+      // this.props.onRowSelected(item.id);
     };
   };
   public render() {
-    const { isItemsLoading, items } = this.props;
+    const { isItemsLoading, tableItems } = this.props;
+    const { items, next } = tableItems;
     return (
       <Wrapper>
         <TableWrapper tdCSS={tableItemsPrefixCSS} trCSS={tableItemsRatioCSS}>
           <table>
             <thead>
               <tr>
-                <td>
-                  <FormattedMessage {...messages.theadName} />
-                </td>
-                <td>
-                  <FormattedMessage {...messages.theadDiscipline} />
-                </td>
-                <td>
-                  <FormattedMessage {...messages.theadPrize} />
-                </td>
-                <td>
-                  <FormattedMessage {...messages.theadSize} />
-                </td>
-                <td>
-                  <FormattedMessage {...messages.theadDate} />
-                </td>
+                <td title="Name">Name</td>
+                <td title="Discipline">Discipline</td>
+                <td title="Prize">Prize</td>
+                <td title="Size">Size</td>
+                <td title="Date">Date</td>
               </tr>
             </thead>
             <tbody>
@@ -75,7 +66,7 @@ class MainTable extends React.PureComponent<Props, State> {
                 items.map(item => {
                   return (
                     <tr
-                      onClick={this.onTableRowClick(item)}
+                      // onClick={this.onTableRowClick(item)}
                       key={item.id}
                       className={
                         item === this.state.selectedItem ? 'selected' : ''
@@ -97,16 +88,21 @@ class MainTable extends React.PureComponent<Props, State> {
             </tbody>
           </table>
           {isItemsLoading ? (
-            <Empty>
-              <SmallLoading />
-            </Empty>
+            <SmallLoading minHeight={'100px'} />
           ) : !items || !items.length ? (
-            <Empty>
+            <EmptyContainer minHeight={'100px'}>
               There is no data to display
-              {/* <FormattedMessage {...messages.} /> */}
-            </Empty>
+            </EmptyContainer>
           ) : null}
         </TableWrapper>
+        {next && (
+          <ShowMoreButton
+            onClick={this.props.showMoreClicked}
+            loading={this.props.isNextItemsLoading || false}
+          >
+            Show More
+          </ShowMoreButton>
+        )}
       </Wrapper>
     );
   }

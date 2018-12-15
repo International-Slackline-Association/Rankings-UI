@@ -1,7 +1,9 @@
 import * as React from 'react';
 import styled from 'styles/styled-components';
 import CategoryFilterButton from './CategoryFilterButton';
-import CategoryFilterSection, { CategoryFilterProps } from './CategoryFilterSection';
+import CategoryFilterSection, {
+  CategoryFilterProps,
+} from './CategoryFilterSection';
 import InfoPopover from './InfoPopover';
 
 interface Props extends CategoryFilterProps {
@@ -19,11 +21,18 @@ class CategoriesFilters extends React.PureComponent<Props, State> {
     };
   }
 
+  public componentDidUpdate(prevPros: Props) {
+    if (prevPros.isOpen !== this.props.isOpen) {
+      this.setState({ isOpen: this.props.isOpen || this.state.isOpen });
+    }
+  }
+
   private handleClick = () => {
     this.setState({
       isOpen: !this.state.isOpen,
     });
   };
+
   public render() {
     return (
       <React.Fragment>
@@ -34,7 +43,7 @@ class CategoriesFilters extends React.PureComponent<Props, State> {
           />
           <InfoPopover />
         </ButtonSectionWrapper>
-        <CategoryFilterSection isOpen={this.state.isOpen} {...this.props} />
+        <CategoryFilterSection {...this.props} isOpen={this.state.isOpen} />
       </React.Fragment>
     );
   }

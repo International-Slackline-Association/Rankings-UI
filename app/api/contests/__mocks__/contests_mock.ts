@@ -1,4 +1,4 @@
-import { APIGetContestsResponse } from '../types';
+import { APIGetContestsResponse } from '../contests';
 
 const resultsDefaultGenerator = (): APIGetContestsResponse => {
   return {
@@ -11,7 +11,7 @@ const resultsDefaultGenerator = (): APIGetContestsResponse => {
         country: 'Switzerland',
         prize: '400€',
         size: '40',
-        disciplines: ['Freestyle', 'Highline'],
+        discipline: 'Aerial',
         profileUrl:
           // tslint:disable-next-line:max-line-length
           'https://scontent-mxp1-1.xx.fbcdn.net/v/t1.0-9/18922028_1381229651962030_8607224956463366700_n.jpg?_nc_cat=107&oh=94312c53ae0b5745939e6e91ecbc1856&oe=5C4A3E47',
@@ -24,7 +24,7 @@ const resultsDefaultGenerator = (): APIGetContestsResponse => {
         country: 'China',
         prize: '300€',
         size: '30',
-        disciplines: ['Freestyle', 'Highline', 'Waterline', 'Trickline'],
+        discipline: 'Sprint',
         profileUrl:
           // tslint:disable-next-line:max-line-length
           'https://scontent-mxp1-1.xx.fbcdn.net/v/t1.0-9/18922028_1381229651962030_8607224956463366700_n.jpg?_nc_cat=107&oh=94312c53ae0b5745939e6e91ecbc1856&oe=5C4A3E47',
@@ -37,13 +37,13 @@ const resultsDefaultGenerator = (): APIGetContestsResponse => {
         country: 'Poland',
         prize: '300€',
         size: '30',
-        disciplines: ['Trickline'],
+        discipline: 'Jib-Static',
         profileUrl:
           // tslint:disable-next-line:max-line-length
           'https://scontent-mxp1-1.xx.fbcdn.net/v/t1.0-9/18922028_1381229651962030_8607224956463366700_n.jpg?_nc_cat=107&oh=94312c53ae0b5745939e6e91ecbc1856&oe=5C4A3E47',
       },
     ],
-    isNextPageAvailable: false,
+    next: {a: true},
   };
 };
 

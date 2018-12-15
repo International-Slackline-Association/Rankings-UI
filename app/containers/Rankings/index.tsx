@@ -8,57 +8,38 @@ import * as React from 'react';
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
 import { compose, Dispatch } from 'redux';
-
 import injectSaga from 'utils/injectSaga';
 import injectReducer from 'utils/injectReducer';
-import {
-  selectTableItems,
-  selectIsTableItemsLoading,
-  selectCategories,
-  selectFilters,
-} from './selectors';
+import * as selectors from './selectors';
 import reducer from './reducer';
 import saga from './saga';
-
-import { RootState, ContainerState, TableItem } from './types';
+import { RootState, ContainerState } from './types';
 import TabPanel from 'components/TabPanel';
 import MainTableSection, { SelectedFilters } from 'components/MainTableSection';
-import SelectedFilterButton from 'components/SelectedFilterButton';
 import MainTable from './MainTable';
-import TableFilters from 'components/TableFilters';
-import TableDropdownFilter from 'components/TableDropdownFilter';
-import TableSearchInput from 'components/TableSearchInput';
 import * as actions from './actions';
-import {
-  SideInfoBoxAthlete,
-  ModalInfoBoxAthlete,
-  SideInfoBoxRankings,
-} from 'components/InfoBox';
-import Modal, { MobileOnlyModal } from 'components/Modal';
-import {
-  SelectedFilter,
-  SearchSuggestion,
-} from 'containers/GenericTabContent/types';
-import { TopBarTabContentType } from 'types/enums';
 import { replace } from 'connected-react-router';
 import CategoriesFilters from 'components/CategoriesFilters';
-import { ICategory, IFilter } from 'components/CategoriesFilters/types';
+import {
+  ICategory,
+  IFilter,
+  ISelectOption,
+} from 'components/CategoriesFilters/types';
 
-// tslint:disable-next-line:no-empty-interface
 interface OwnProps {}
 
-// tslint:disable-next-line:no-empty-interface
 interface StateProps {
   categories: ContainerState['categories'];
-  filters: ContainerState['filters'];
-  tableItems: ContainerState['tableItems'];
+  athleteFilter: ContainerState['athleteFilter'];
+  countryFilter: ContainerState['countryFilter'];
+  tableResult: ContainerState['tableResult'];
   isTableItemsLoading: ContainerState['isTableItemsLoading'];
+  isNextTableItemsLoading: ContainerState['isNextTableItemsLoading'];
 }
 
-// tslint:disable-next-line:no-empty-interface
 interface DispatchProps {
   dispatch: Dispatch;
-  updateLocation(path: string, id: string);
+  updateLocation(path: string, id: string): void;
 }
 
 type Props = StateProps & DispatchProps & OwnProps;
@@ -68,57 +49,13 @@ interface State {}
 class Rankings extends React.PureComponent<Props, State> {
   constructor(props) {
     super(props);
-    if (!this.props.tableItems || this.props.tableItems.length === 0) {
+    if (!this.props.tableResult || this.props.tableResult.items.length === 0) {
       this.props.dispatch(actions.loadTableItems());
       this.props.dispatch(actions.loadCategories());
     }
   }
 
-  // private onLoadSearchSuggestions = (searchValue: string) => {
-  //   this.props.dispatch(actions.loadSuggestions(searchValue));
-  // };
-
-  // private onClearSearchSuggestions = (value: string) => {
-  //   if ((!value || value.length === 0) && this.props.selectedSearchInput) {
-  //     this.props.dispatch(actions.clearSuggestions(true));
-  //     this.props.dispatch(actions.loadTableItems());
-  //   } else {
-  //     this.props.dispatch(actions.clearSuggestions(false));
-  //   }
-  // };
-
-  // private onSearchSuggestionSelected = (suggestion: SearchSuggestion) => {
-  //   this.props.dispatch(actions.selectSuggestion(suggestion));
-  //   this.props.dispatch(actions.loadTableItems());
-  // };
-
-  // private onFilterItemSelected = (id: string) => {
-  //   const selectedFilter = this.findFilterById(id);
-  //   if (selectedFilter) {
-  //     selectedFilter.isSelected = true;
-  //     const newFilters: SelectedFilter[] = [];
-  //     for (const currentFilter of this.props.selectedFilters) {
-  //       if (currentFilter.category !== selectedFilter.category) {
-  //         newFilters.push(currentFilter);
-  //       }
-  //     }
-  //     newFilters.push(selectedFilter);
-  //     this.props.dispatch(actions.setSelectFilters(newFilters));
-  //     this.props.dispatch(actions.loadTableItems());
-  //   }
-  // };
-
-  // private onInfoBoxButtonClick = () => {
-  //   const path = TopBarTabContentType.athlete;
-  //   const idParam =
-  //     this.state.selectedTableItem && this.state.selectedTableItem.id;
-  //   if (idParam) {
-  //     this.props.updateLocation(path, idParam);
-  //   }
-  // };
-
   private onCategorySelected = (index: number) => (value: string) => {
-    console.log('Category: ', value, index);
     this.props.dispatch(actions.setCategorySelectedValue(index, value));
     this.props.dispatch(actions.loadTableItems());
   };
@@ -138,35 +75,55 @@ class Rankings extends React.PureComponent<Props, State> {
     return [];
   }
 
-  private loadFilterSuggestions = (index: number) => (value: string) => {
-    console.log('Filter Load: ', value, index);
+  private loadAthleteSuggestions = (value: string) => {
+    this.props.dispatch(actions.loadAthleteSuggestions(value));
   };
 
-  private selectFilterSuggestion = (index: number) => (value: string) => {
-    console.log('Filter Select: ', value, index);
+  private selectAthleteSuggestion = (suggestion: ISelectOption) => {
+    this.props.dispatch(actions.setAthleteFilterSelectedValue(suggestion.value));
+    this.props.dispatch(actions.loadTableItems());
+  };
+
+  private loadCountrySuggestions = (value: string) => {
+    this.props.dispatch(actions.loadCountrySuggestions(value));
+  };
+
+  private selectCountrySuggestion = (suggestion: ISelectOption) => {
+    this.props.dispatch(actions.setCountryFilterSelectedValue(suggestion.value));
+    this.props.dispatch(actions.loadTableItems());
   };
 
   private filters(): IFilter[] {
-    const filters = this.props.filters;
-    if (filters) {
-      return filters.map((filter, i) => {
-        const f: IFilter = {
-          title: filter.title,
-          placeholder: filter.placeholder,
-          suggestions: filter.suggestions,
-          loadSuggestions: this.loadFilterSuggestions(i),
-          suggestionSelected: this.selectFilterSuggestion(i),
-        };
-        return f;
-      });
-    }
-    return [];
+    const athleteFilter: IFilter = {
+      title: 'Athlete',
+      placeholder: 'Name of the athlete',
+      loadSuggestions: this.loadAthleteSuggestions,
+      suggestionSelected: this.selectAthleteSuggestion,
+      suggestions: this.props.athleteFilter.suggestions,
+      selectedValue: this.props.athleteFilter.selectedValue,
+    };
+
+    const countryFilter: IFilter = {
+      title: 'Country',
+      placeholder: 'Country Code',
+      loadSuggestions: this.loadCountrySuggestions,
+      suggestionSelected: this.selectCountrySuggestion,
+      suggestions: this.props.countryFilter.suggestions,
+      selectedValue: this.props.countryFilter.selectedValue,
+    };
+
+    return [athleteFilter, countryFilter];
   }
+
+  private loadMoreItems = () => {
+    this.props.dispatch(actions.loadNextItems());
+  };
 
   public render() {
     const categories = this.categories();
     const filters = this.filters();
-    const openCategories = (this.props.tableItems || []).length > 0 || categories.length > 0;
+    const openCategories =
+      (this.props.tableResult.items || []).length > 0 || categories.length > 0;
     return (
       <TabPanel>
         <CategoriesFilters
@@ -176,9 +133,11 @@ class Rankings extends React.PureComponent<Props, State> {
         />
         <MainTableSection>
           <MainTable
-            items={this.props.tableItems}
+            tableItems={this.props.tableResult}
             // onRowSelected={this.onTableRowSelected}
             isItemsLoading={this.props.isTableItemsLoading}
+            showMoreClicked={this.loadMoreItems}
+            isNextItemsLoading={this.props.isNextTableItemsLoading}
           />
         </MainTableSection>
       </TabPanel>
@@ -187,10 +146,12 @@ class Rankings extends React.PureComponent<Props, State> {
 }
 
 const mapStateToProps = createStructuredSelector<RootState, StateProps>({
-  categories: selectCategories(),
-  filters: selectFilters(),
-  tableItems: selectTableItems(),
-  isTableItemsLoading: selectIsTableItemsLoading(),
+  categories: selectors.selectCategories(),
+  athleteFilter: selectors.selectAthleteFilter(),
+  countryFilter: selectors.selectCountryFilter(),
+  tableResult: selectors.selectTableResult(),
+  isTableItemsLoading: selectors.selectIsTableItemsLoading(),
+  isNextTableItemsLoading: selectors.selectIsNextTableItemsLoading(),
 });
 
 function mapDispatchToProps(

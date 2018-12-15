@@ -14,18 +14,30 @@ type RootState = ApplicationRootState;
 type ContainerState = RankingsState;
 type ContainerActions = RankingsActions;
 
-export { RootState, ContainerState, ContainerActions, TableItem };
+export { RootState, ContainerState, ContainerActions };
 
 /* --- STATE --- */
 interface RankingsState {
   readonly categories: ICategory[] | null;
-  readonly filters: IFilter[] | null;
-  readonly tableItems: TableItem[] | null;
+  readonly athleteFilter: IFilter ;
+  readonly countryFilter: IFilter ;
+  readonly tableResult: TableItemsResult;
   readonly isTableItemsLoading: boolean | null;
+  readonly nextTableItemsCursor: any;
+  readonly isNextTableItemsLoading: boolean;
+
 }
 
 export interface ICategory extends ICategoryEntity {}
-export interface IFilter extends IFilterEntity {}
+export interface IFilter {
+  selectedValue?: string;
+  suggestions: ISelectOption[];
+}
+
+export interface TableItemsResult {
+  items: TableItem[];
+  next: any;
+}
 
 interface TableItem {
   readonly id: string;

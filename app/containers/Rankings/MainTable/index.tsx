@@ -1,21 +1,21 @@
 import * as React from 'react';
-
-import { FormattedMessage } from 'react-intl';
-import messages from './messages';
 import styled, { colors, css } from 'styles/styled-components';
 import media from 'styles/media';
-import Results from './Results';
-import Empty from './Empty';
 import { SmallLoading } from 'components/Loading';
 import ProfileAvatar from 'components/Icons/ProfileAvatar';
 import CountryAvatar from 'components/Icons/CountryAvatar';
 import TableWrapper from 'components/TableWrapper';
 import Group from 'components/TableWrapper/Group';
+import ShowMoreButton from './ShowMoreButton';
+import { TableItemsResult } from '../types';
+import { EmptyContainer } from 'components/Containers';
 
 interface Props {
-  items: TableItem[] | null;
+  tableItems: TableItemsResult;
   onRowSelected?(id: string): void;
   isItemsLoading: boolean | null;
+  isNextItemsLoading: boolean | null;
+  showMoreClicked(): void;
 }
 
 interface TableItem {
@@ -48,28 +48,19 @@ class MainTable extends React.PureComponent<Props, State> {
     };
   };
   public render() {
-    const { isItemsLoading, items } = this.props;
+    const { isItemsLoading, tableItems } = this.props;
+    const { items, next } = tableItems;
     return (
       <Wrapper>
         <TableWrapper tdCSS={tableItemsPrefixCSS}>
           <table>
             <thead>
               <tr>
-                <td title="Rank">
-                  <FormattedMessage {...messages.theadRank} />
-                </td>
-                <td title="Name">
-                  <FormattedMessage {...messages.theadName} />
-                </td>
-                <td title="Age">
-                  <FormattedMessage {...messages.theadAge} />
-                </td>
-                <td title="Country">
-                  <FormattedMessage {...messages.theadCountry} />
-                </td>
-                <td title="Points">
-                  <FormattedMessage {...messages.theadPoints} />
-                </td>
+                <td title="Rank">Rank</td>
+                <td title="Name">Name</td>
+                <td title="Age">Age</td>
+                <td title="Country">Country</td>
+                <td title="Points">Points</td>
               </tr>
             </thead>
             <tbody>
@@ -104,27 +95,53 @@ class MainTable extends React.PureComponent<Props, State> {
             </tbody>
           </table>
           {isItemsLoading ? (
-            <Empty>
-              <SmallLoading />
-            </Empty>
+            <SmallLoading minHeight={'100px'} />
           ) : !items || !items.length ? (
-            <Empty>
+            <EmptyContainer minHeight={'100px'} >
               There is no data to display
               {/* <FormattedMessage {...messages.} /> */}
-            </Empty>
+            </EmptyContainer>
           ) : null}
         </TableWrapper>
+        {next && (
+          <ShowMoreButton
+            onClick={this.props.showMoreClicked}
+            loading={this.props.isNextItemsLoading || false}
+          >
+            Show More
+          </ShowMoreButton>
+        )}
       </Wrapper>
     );
   }
 }
 
 const tableItemsPrefixCSS = css`
-  &:nth-child(1) { &::before { content: "Rank :"; }}
-  &:nth-child(2) { &::before { content: "Name : "; }}
-  &:nth-child(3) { &::before { content: "Age : "; }}
-  &:nth-child(4) { &::before { content: "Country : "; }}
-  &:nth-child(5) { &::before { content: "Points : "; }}
+  &:nth-child(1) {
+    &::before {
+      content: 'Rank :';
+    }
+  }
+  &:nth-child(2) {
+    &::before {
+      content: 'Name : ';
+    }
+  }
+  &:nth-child(3) {
+    &::before {
+      content: 'Age : ';
+    }
+  }
+  &:nth-child(4) {
+    &::before {
+      content: 'Country : ';
+    }
+  }
+  &:nth-child(5) {
+    &::before {
+      content: 'Points : ';
+    }
+  }
 `;
 
 const Wrapper = styled.div`

@@ -14,7 +14,7 @@ interface SelectedFilter {
 
 export interface APIRankingsResponse {
   items: RankingsItem[];
-  isNextPageAvailable: boolean;
+  next: any;
 }
 
 interface RankingsItem {

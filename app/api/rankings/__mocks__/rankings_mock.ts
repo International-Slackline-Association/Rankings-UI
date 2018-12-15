@@ -83,7 +83,7 @@ const resultsDefaultGenerator = (): APIRankingsResponse => {
           'http://www.slackattack.ch/wp-content/uploads/2015/11/Vorstand_Tom.jpg',
       },
     ],
-    isNextPageAvailable: false,
+    next: { a: true },
   };
 };
 

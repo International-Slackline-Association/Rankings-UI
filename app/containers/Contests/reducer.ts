@@ -1,102 +1,102 @@
 import { combineReducers } from 'redux';
 
 import { ContainerState, ContainerActions } from './types';
-import { defaultFilters } from './filters';
 import ActionTypes from './constants';
 
-const filters = defaultFilters();
 export const initialState: ContainerState = {
-  selectedFilters: [
-    {
-      id: filters[0].items[0].id,
-      category: filters[0].items[0].category,
-      name: filters[0].items[0].name,
-      isSticky: filters[0].items[0].isSticky,
-    },
-    {
-      id: filters[1].items[1].id,
-      category: filters[1].items[1].category,
-      name: filters[1].items[1].name,
-      isSticky: filters[1].items[1].isSticky,
-    },
-  ],
-  isSuggestionsLoading: false,
-  tableItems: null,
-  selectedSearchInput: null,
-  suggestions: [],
+  tableResult: { items: [], next: null },
   isTableItemsLoading: false,
-  dropdownFilters: filters,
+  nextTableItemsCursor: null,
+  isNextTableItemsLoading: false,
+  categories: null,
+  contestFilter: { suggestions: [] },
+  // isCategoriesOpen: false,
+  // isCategoriesOpenOnce: false,
 };
 
 export default combineReducers<ContainerState, ContainerActions>({
-  selectedFilters: (state = initialState.selectedFilters, action) => {
+  tableResult: (state = initialState.tableResult, action) => {
     switch (action.type) {
-      case ActionTypes.CHANGE_SELECTED_FILTERS:
-        return action.payload;
+      case ActionTypes.LOAD_TABLE_ITEMS:
+        return initialState.tableResult;
+      case ActionTypes.ADD_TABLE_ITEMS:
+        return {
+          items: [...state.items, ...action.payload.items],
+          next: action.payload.next,
+        };
     }
     return state;
   },
-  isSuggestionsLoading: (state = false, action) => {
+  isTableItemsLoading: (state = initialState.isTableItemsLoading, action) => {
     switch (action.type) {
-      case ActionTypes.LOAD_SUGGESTIONS:
+      case ActionTypes.LOAD_TABLE_ITEMS:
         return true;
-      case ActionTypes.SUGGESTIONS_LOADED:
+      case ActionTypes.ADD_TABLE_ITEMS:
         return false;
     }
     return state;
   },
-  selectedSearchInput: (state = null, action) => {
+  categories: (state = initialState.categories, action) => {
     switch (action.type) {
-      case ActionTypes.SELECT_SUGGESTION:
+      case ActionTypes.SET_CATEGORIES:
         return action.payload;
-      case ActionTypes.CLEAR_SUGGESTIONS:
-        return action.payload ? null : state;
-    }
-    return state;
-  },
-  suggestions: (state = null, action) => {
-    switch (action.type) {
-      case ActionTypes.SUGGESTIONS_LOADED:
-        return action.payload;
-      case ActionTypes.CLEAR_SUGGESTIONS:
-        return null;
-    }
-    return state;
-  },
-  tableItems: (state = null, action) => {
-    switch (action.type) {
-      case ActionTypes.LOAD_TABLE_ITEMS:
-        return null;
-      case ActionTypes.SET_TABLE_ITEMS:
-        return action.payload;
-    }
-    return state;
-  },
-  isTableItemsLoading: (state = false, action) => {
-    switch (action.type) {
-      case ActionTypes.LOAD_TABLE_ITEMS:
-        return true;
-      case ActionTypes.SET_TABLE_ITEMS:
-        return false;
-    }
-    return state;
-  },
-  dropdownFilters: (state = initialState.dropdownFilters, action) => {
-    switch (action.type) {
-      case ActionTypes.CHANGE_SELECTED_FILTERS:
-        const selectedFilters = action.payload;
-        const initialFilters = defaultFilters(false);
-        for (const selectedFilter of selectedFilters) {
-          for (const filterCategory of initialFilters) {
-            for (const filter of filterCategory.items) {
-              if (filter.id === selectedFilter.id) {
-                filter.isSelected = true;
-              }
+      case ActionTypes.SET_CATEGORY_SELECTED_VALUE:
+        const payload = action.payload;
+        if (state) {
+          return state.map((category, i) => {
+            if (i === payload.index) {
+              return { ...category, selectedValue: payload.value };
             }
-          }
+            return { ...category };
+          });
         }
-        return initialFilters;
     }
     return state;
   },
+  contestFilter: (state = initialState.contestFilter, action) => {
+    switch (action.type) {
+      case ActionTypes.SET_CONTEST_FILTER_SELECTED_VALUE:
+        return { ...state, selectedValue: action.payload };
+      case ActionTypes.SET_CONTEST_SUGGESTIONS:
+        return { ...state, suggestions: action.payload };
+      case ActionTypes.LOAD_CONTEST_SUGGESTIONS:
+        return { ...state, suggestions: [] };
+    }
+    return state;
+  },
+  nextTableItemsCursor: (state = initialState.nextTableItemsCursor, action) => {
+    switch (action.type) {
+      case ActionTypes.LOAD_TABLE_ITEMS:
+        return {};
+      case ActionTypes.ADD_TABLE_ITEMS:
+        return action.payload.next;
+    }
+    return state;
+  },
+  isNextTableItemsLoading: (
+    state = initialState.isNextTableItemsLoading,
+    action,
+  ) => {
+    switch (action.type) {
+      case ActionTypes.LOAD_NEXT_TABLE_ITEMS:
+        return true;
+      case ActionTypes.ADD_TABLE_ITEMS:
+        return false;
+    }
+    return state;
+  },
+  // isCategoriesOpen: (state = initialState.isCategoriesOpen, action) => {
+  //   switch (action.type) {
+  //     case ActionTypes.SET_CATEGORIES_STATUS:
+  //       return action.payload;
+  //   }
+  //   return state;
+  // },
+  // isCategoriesOpenOnce: (state = initialState.isCategoriesOpenOnce, action) => {
+  //   switch (action.type) {
+  //     case ActionTypes.SET_CATEGORIES_STATUS:
+  //       return true;
+  //   }
+  //   return state;
+  // },
 });

@@ -6,29 +6,30 @@ const selectDomain = (state: ApplicationRootState) => {
   return state.rankings ? state.rankings : initialState;
 };
 
-const selectCategories = () =>
+export const selectCategories = () =>
   createSelector(selectDomain, substate => {
     return substate.categories;
   });
 
-const selectFilters = () =>
+export const selectAthleteFilter = () =>
   createSelector(selectDomain, substate => {
-    return substate.filters;
+    return substate.athleteFilter;
   });
-const selectTableItems = () =>
+export const selectCountryFilter = () =>
   createSelector(selectDomain, substate => {
-    return substate.tableItems;
+    return substate.countryFilter;
+  });
+export const selectTableResult = () =>
+  createSelector(selectDomain, substate => {
+    return substate.tableResult;
   });
 
-const selectIsTableItemsLoading = () =>
+export const selectIsTableItemsLoading = () =>
   createSelector(selectDomain, substate => {
     return substate.isTableItemsLoading;
   });
 
-export {
-  selectDomain,
-  selectCategories,
-  selectFilters,
-  selectTableItems,
-  selectIsTableItemsLoading,
-};
+export const selectIsNextTableItemsLoading = () =>
+  createSelector(selectDomain, substate => {
+    return substate.isNextTableItemsLoading;
+  });

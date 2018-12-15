@@ -44,7 +44,7 @@ const Wrapper = styled(paper)`
     width: 100%;
     /* min-height: 1024px; */
     min-height: calc(100vh - 200px);
-
+    padding-bottom: 32px;
     ${media.tablet`
 
   `};

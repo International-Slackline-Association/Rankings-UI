@@ -1,4 +1,4 @@
-import { APIGetContestResponse } from '../types';
+import { APIGetContestResponse } from '../contest';
 
 const resultsDefaultGenerator = (): APIGetContestResponse => {
   return {

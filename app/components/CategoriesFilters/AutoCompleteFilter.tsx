@@ -6,7 +6,10 @@ import parse from 'autosuggest-highlight/parse';
 import TextField from '@material-ui/core/TextField';
 import ComponentBackground from 'components/ComponentBackground';
 import Popper from '@material-ui/core/Popper';
-import { AutosuggestWrapperDiv } from 'components/AutosuggestWrapper';
+import {
+  AutosuggestChildWrapperDiv,
+  AutosuggestsWrapperDiv,
+} from 'components/AutosuggestWrapper';
 import styled from 'styles/styled-components';
 import InputAdornment from '@material-ui/core/InputAdornment';
 import IconClose from 'components/Icons/IconClose';
@@ -14,12 +17,11 @@ import { DefaultButton } from 'styles/mixins';
 import { TinyLoading } from 'components/Loading';
 import { ISelectOption, IFilter } from './types';
 
-interface Props extends IFilter {
-  isLoading?: boolean;
-}
+interface Props extends IFilter {}
 
 interface State {
   value: string;
+  isLoading?: boolean;
   suggestions: ISelectOption[];
 }
 
@@ -49,16 +51,18 @@ class AutoCompleteFilter extends React.PureComponent<Props, State> {
   constructor(props) {
     super(props);
     this.state = {
-      value: '',
+      value: this.props.selectedValue || '',
       suggestions: this.props.suggestions || [],
     };
   }
 
   public componentDidUpdate(prevProps: Props) {
     if (prevProps.suggestions) {
-      if (
-        prevProps.suggestions.length !== (this.props.suggestions || []).length
-      ) {
+      const suggestions = this.props.suggestions || [];
+      if (prevProps.suggestions.length !== suggestions.length) {
+        if (prevProps.suggestions.length === 0 && suggestions.length > 0) {
+          this.setLoading(false);
+        }
         this.setSuggestions(this.props.suggestions);
       }
     }
@@ -78,10 +82,8 @@ class AutoCompleteFilter extends React.PureComponent<Props, State> {
           endAdornment: (
             // tslint:disable-next-line:jsx-wrap-multiline
             <InputAdornment position="end">
-              {this.props.isLoading ? (
-                <Empty>
-                  <TinyLoading />
-                </Empty>
+              {this.state.isLoading ? (
+                <TinyLoading />
               ) : (
                 this.state.value && (
                   <Button onClick={this.clearFilter}>
@@ -105,7 +107,10 @@ class AutoCompleteFilter extends React.PureComponent<Props, State> {
             width: this.popperNode ? this.popperNode.clientWidth : null,
           }}
         >
-          <AutosuggestWrapperDiv> {options.children}</AutosuggestWrapperDiv>
+          <AutosuggestChildWrapperDiv>
+            {' '}
+            {options.children}
+          </AutosuggestChildWrapperDiv>
         </ComponentBackground>
       </Popper>
     );
@@ -113,9 +118,13 @@ class AutoCompleteFilter extends React.PureComponent<Props, State> {
   private clearFilter = () => {
     this.setSuggestions([]);
     this.setValue('');
-  }
+    if (this.props.selectedValue) {
+      this.props.suggestionSelected({ label: '', value: '' });
+    }
+  };
+
   private getSuggestionValue = (suggestion: ISelectOption) => {
-    this.props.suggestionSelected(suggestion.value);
+    this.props.suggestionSelected(suggestion);
     return suggestion.label;
   };
 
@@ -126,10 +135,15 @@ class AutoCompleteFilter extends React.PureComponent<Props, State> {
     if (inputLength === 0) {
       this.setSuggestions([]);
     }
-
+    this.setLoading(true);
     this.props.loadSuggestions(value);
   }
 
+  private setLoading(loading: boolean) {
+    this.setState({
+      isLoading: loading,
+    });
+  }
   private setSuggestions(suggestions?: ISelectOption[]) {
     this.setState({
       suggestions: suggestions || [],
@@ -187,19 +201,6 @@ class AutoCompleteFilter extends React.PureComponent<Props, State> {
   }
 }
 
-const Empty = styled.div`
-  position: absolute;
-  display: flex;
-  justify-content: center;
-  right: 4px;
-  align-items: center;
-  align-self: center;
-  font-weight: normal;
-  /* color: ${props => props.theme.textSecondary}; */
-  padding: 0 8px;
-  text-align: center;
-`;
-
 const Button = styled(DefaultButton)`
   width: 12px;
   height: 12px;
@@ -208,7 +209,11 @@ const Button = styled(DefaultButton)`
 
 const Wrapper = styled.div`
   margin: 0px 16px;
-  width: 128px;
+  width: 156px;
+
+  .react-autosuggest__input {
+    width: 100%;
+  }
 `;
 
 export default AutoCompleteFilter;

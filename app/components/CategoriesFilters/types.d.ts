@@ -4,23 +4,24 @@ export interface ICategoryEntity {
   selectedValue: string;
 }
 
-interface ICategory extends ICategoryEntity {
+export interface ICategory extends ICategoryEntity {
   categorySelected(value: string): void;
 }
 
-interface IFilterEntity {
+export interface IFilterEntity {
   title: string;
   placeholder: string;
   suggestions?: ISelectOption[];
+  selectedValue?: string;
 }
 
-interface IFilter extends IFilterEntity {
+export interface IFilter extends IFilterEntity {
   loadSuggestions(searchValue: string): void;
-  suggestionSelected(value: string): void;
+  suggestionSelected(suggestion: ISelectOption): void;
   // clearSuggestions(value: string);
 }
 
-interface ISelectOption {
+export interface ISelectOption {
   value: string;
   label: string;
   isContainerStyle?: boolean;

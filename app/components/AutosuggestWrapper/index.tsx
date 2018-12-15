@@ -24,7 +24,7 @@ interface Props {
 export const AutosuggestWrapper: React.SFC<Props> = props => {
   return (
     <Wrapper>
-      <AutosuggestWrapperDiv>{props.children}</AutosuggestWrapperDiv>
+      <AutosuggestChildWrapperDiv>{props.children}</AutosuggestChildWrapperDiv>
       {props.isLoading && (
         <Empty>
           <TinyLoading />
@@ -55,21 +55,34 @@ const Empty = styled.div`
   text-align: center;
 `;
 
-export const AutosuggestWrapperDiv = styled.div.attrs(classNames)`
+export const AutosuggestChildWrapperDiv = styled.div.attrs(classNames)`
   display: flex;
   align-items: center;
-    .${classNames.suggestion_list} {
-      width: 100%;
-      margin: 0;
-      padding: 0;
-      list-style-type: none;
-    }
-    .${classNames.suggestion} {
-      cursor: pointer;
-      padding: 10px 20px;
-      color: ${props => props.theme.textPrimary}
-    }
-    .${classNames.suggestion_highlighted} {
-      background-color: ${props => props.theme.divider};
-    }
-  `;
+
+  .${classNames.suggestion_list} {
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+  }
+  .${classNames.suggestion} {
+    cursor: pointer;
+    padding: 10px 20px;
+    color: ${props => props.theme.textPrimary};
+  }
+  .${classNames.suggestion_highlighted} {
+    background-color: ${props => props.theme.divider};
+  }
+`;
+
+export const AutosuggestsWrapperDiv = styled.div.attrs(classNames)`
+  /* display: flex; */
+  /* align-items: center; */
+
+  .${classNames.suggestion_list} {
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+  }
+`;

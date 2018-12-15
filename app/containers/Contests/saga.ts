@@ -1,18 +1,57 @@
 import ActionTypes from './constants';
-import { selectSelectedSearchInput } from './selectors';
-import { setSuggestions, setTableItems } from './actions';
+import {} from './selectors';
+import {
+  addTableItems,
+  setCategories,
+  loadContestSuggestions,
+  setContestSuggestions,
+} from './actions';
 
 import { takeLatest, call, put, select } from 'redux-saga/effects';
 import { delay } from 'redux-saga';
 
 import {
-  apiGetContests,
+  apiGetContestSuggestions,
+  apiGetCategories,
   APIGetContestsRequest,
+  apiGetContests,
   GetContestsResponse,
 } from './api';
-import { SearchSuggestion } from 'containers/GenericTabContent/types';
+import { ISelectOption } from 'components/CategoriesFilters/types';
+import { APIGetContestSuggestionsResponse } from 'api/contests/suggestions';
+import { APIContestsCategoriesResponse } from 'api/contests/categories';
 
-// import getRankingResults from 'api/rankings/results';
+export function* getCategories() {
+  try {
+    const results: APIContestsCategoriesResponse = yield call(apiGetCategories);
+    yield put(setCategories(results.items));
+  } catch (err) {
+    console.log('err: ', err);
+  }
+}
+
+export function* getContestSuggestions(
+  action: ReturnType<typeof loadContestSuggestions>,
+) {
+  yield call(delay, 500);
+  const value = action.payload;
+  try {
+    const results: APIGetContestSuggestionsResponse = yield call(
+      apiGetContestSuggestions,
+      value,
+    );
+    const options = results.items.map(item => {
+      const option: ISelectOption = {
+        value: item.name,
+        label: item.name,
+      };
+      return option;
+    });
+    yield put(setContestSuggestions(options));
+  } catch (err) {
+    console.log('err: ', err);
+  }
+}
 
 export function* getContests() {
   // const username = yield select(selectSelectedSearchInput());
@@ -28,34 +67,15 @@ export function* getContests() {
   };
   try {
     const results: GetContestsResponse = yield call(apiGetContests, request);
-    yield put(setTableItems(results.items));
+    yield put(addTableItems(results));
   } catch (err) {
     console.log('err: ', err);
-    // yield put(repoLoadingError(err));
-  }
-}
-export function* getSuggestions() {
-  const username = yield select(selectSelectedSearchInput());
-  yield delay(1000);
-  try {
-    // const repos = yield call(request, requestURL);
-    const suggestions: SearchSuggestion[] = [
-      { name: 'Temp 123' },
-      { name: 'Temp2' },
-      { name: 'Temp3' },
-      { name: 'Temp4' },
-      { name: 'Temp5' },
-      { name: 'Temp5' },
-      { name: 'Temp5' },
-      { name: 'Temp5' },
-    ];
-    yield put(setSuggestions(suggestions));
-  } catch (err) {
-    // yield put(repoLoadingError(err));
   }
 }
 
 export default function* rankingsSaga() {
-  yield takeLatest(ActionTypes.LOAD_SUGGESTIONS, getSuggestions);
+  yield takeLatest(ActionTypes.LOAD_CATEGORIES, getCategories);
+  yield takeLatest(ActionTypes.LOAD_CONTEST_SUGGESTIONS, getContestSuggestions);
   yield takeLatest(ActionTypes.LOAD_TABLE_ITEMS, getContests);
+  yield takeLatest(ActionTypes.LOAD_NEXT_TABLE_ITEMS, getContests);
 }

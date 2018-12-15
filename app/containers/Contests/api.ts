@@ -3,26 +3,25 @@ import getContests, {
   APIGetContestsRequest,
   APIGetContestsResponse,
 } from 'api/contests/contests';
-import { takeLatest, call, put, select } from 'redux-saga/effects';
 import { TableItem } from './types';
+import getContestSuggestions from 'api/contests/suggestions';
+import getContestsCategories from 'api/contests/categories';
 
 interface GetContestsResponse {
   items: TableItem[];
-  isNextPageAvailable: boolean;
+  next: any;
 }
 
 export async function apiGetContests(request: APIGetContestsRequest) {
   const result: APIGetContestsResponse = await getContests(request);
   const resp: GetContestsResponse = {
     items: [],
-    isNextPageAvailable: result.isNextPageAvailable,
+    next: result.next,
   };
   for (const item of result.items) {
     resp.items.push({
       date: moment.unix(item.date).format('DD/MM/YYYY'),
-      discipline:
-        item.disciplines.length > 1 ? 'Multi-Discipline' : item.disciplines[0],
-      disciplines: item.disciplines,
+      discipline: item.discipline,
       id: item.id,
       location: `${item.city}, ${item.country}`,
       name: item.name,
@@ -32,6 +31,16 @@ export async function apiGetContests(request: APIGetContestsRequest) {
     });
   }
   return resp;
+}
+
+export async function apiGetCategories() {
+  const results = await getContestsCategories();
+  return results;
+}
+
+export async function apiGetContestSuggestions(value: string) {
+  const results = await getContestSuggestions(value);
+  return results;
 }
 
 export { GetContestsResponse, APIGetContestsRequest };

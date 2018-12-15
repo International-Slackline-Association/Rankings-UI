@@ -6,41 +6,37 @@ const selectDomain = (state: ApplicationRootState) => {
   return state.contests ? state.contests : initialState;
 };
 
-const selectSelectedFilters = () =>
+export const selectCategories = () =>
   createSelector(selectDomain, substate => {
-    return substate.selectedFilters;
+    return substate.categories;
   });
 
-const selectSelectedSearchInput = () =>
+export const selectContestFilter = () =>
   createSelector(selectDomain, substate => {
-    return substate.selectedSearchInput;
+    return substate.contestFilter;
   });
 
-const selectSuggestions = () =>
+export const selectTableResult = () =>
   createSelector(selectDomain, substate => {
-    return substate.suggestions;
+    return substate.tableResult;
   });
 
-const selectTableItems = () =>
-  createSelector(selectDomain, substate => {
-    return substate.tableItems;
-  });
-
-const selectIsTableItemsLoading = () =>
+export const selectIsTableItemsLoading = () =>
   createSelector(selectDomain, substate => {
     return substate.isTableItemsLoading;
   });
-const selectDropdownFilters = () =>
+
+export const selectIsNextTableItemsLoading = () =>
   createSelector(selectDomain, substate => {
-    return substate.dropdownFilters;
+    return substate.isNextTableItemsLoading;
   });
 
-export {
-  selectDomain,
-  selectSelectedFilters,
-  selectSelectedSearchInput,
-  selectSuggestions,
-  selectTableItems,
-  selectIsTableItemsLoading,
-  selectDropdownFilters,
-};
+// export const selectIsCategoriesOpen = () =>
+//   createSelector(selectDomain, substate => {
+//     return substate.isCategoriesOpen;
+//   });
+
+// export const selectIsCategoriesOpenOnce = () =>
+//   createSelector(selectDomain, substate => {
+//     return substate.isCategoriesOpenOnce;
+//   });

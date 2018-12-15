@@ -2,6 +2,7 @@ import { ActionType } from 'typesafe-actions';
 import * as actions from './actions';
 import { ApplicationRootState } from 'types';
 import { TabContentState } from 'containers/GenericTabContent/types';
+import { ICategoryEntity, ISelectOption } from 'components/CategoriesFilters/types';
 
 /* --- EXPORTS --- */
 
@@ -13,7 +14,27 @@ export { RootState, ContainerState, ContainerActions, TableItem };
 
 /* --- STATE --- */
 
-interface ContestsState extends TabContentState<TableItem> {}
+export interface TableItemsResult {
+  items: TableItem[];
+  next: any;
+}
+
+interface ContestsState {
+  readonly categories: ICategory[] | null;
+  readonly contestFilter: IFilter;
+  readonly tableResult: TableItemsResult;
+  readonly isTableItemsLoading: boolean | null;
+  readonly nextTableItemsCursor: any;
+  readonly isNextTableItemsLoading: boolean;
+  // readonly isCategoriesOpen: boolean;
+  // readonly isCategoriesOpenOnce: boolean;
+}
+
+export interface ICategory extends ICategoryEntity {}
+export interface IFilter {
+  selectedValue?: string;
+  suggestions: ISelectOption[];
+}
 
 interface TableItem {
   id: string;
@@ -23,7 +44,6 @@ interface TableItem {
   size: string;
   date: string;
   location: string;
-  disciplines: string[];
   profileUrl: string;
 }
 

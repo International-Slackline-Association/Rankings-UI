@@ -1,4 +1,4 @@
-import { APIGetAthleteResponse } from '../types';
+import { APIGetAthleteResponse } from '..';
 
 const resultsDefaultGenerator = (): APIGetAthleteResponse => {
   return {
