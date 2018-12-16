@@ -1,11 +1,12 @@
 import moment from 'moment';
-import getContests, {
+import {
+  getContests,
   APIGetContestsRequest,
   APIGetContestsResponse,
 } from 'api/contests/contests';
 import { TableItem } from './types';
-import getContestSuggestions from 'api/contests/suggestions';
-import getContestsCategories from 'api/contests/categories';
+import { getContestSuggestions } from 'api/contests/suggestions';
+import { getContestsCategories } from 'api/contests/categories';
 
 interface GetContestsResponse {
   items: TableItem[];
@@ -23,10 +24,9 @@ export async function apiGetContests(request: APIGetContestsRequest) {
       date: moment.unix(item.date).format('DD/MM/YYYY'),
       discipline: item.discipline,
       id: item.id,
-      location: `${item.city}, ${item.country}`,
       name: item.name,
       prize: item.prize,
-      profileUrl: item.profileUrl,
+      smallProfileUrl: item.smallProfileUrl,
       size: item.size,
     });
   }

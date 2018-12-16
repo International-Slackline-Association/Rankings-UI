@@ -1,7 +1,7 @@
 export interface ICategoryEntity {
-  title: string;
-  options: ISelectOption[];
-  selectedValue: string;
+  readonly title: string;
+  readonly options: ISelectOption[];
+  readonly selectedValue: string;
 }
 
 export interface ICategory extends ICategoryEntity {
@@ -9,10 +9,10 @@ export interface ICategory extends ICategoryEntity {
 }
 
 export interface IFilterEntity {
-  title: string;
-  placeholder: string;
-  suggestions?: ISelectOption[];
-  selectedValue?: string;
+  readonly  title: string;
+  readonly placeholder: string;
+  readonly suggestions?: ISelectOption[];
+  readonly selectedValue?: string;
 }
 
 export interface IFilter extends IFilterEntity {
@@ -22,8 +22,8 @@ export interface IFilter extends IFilterEntity {
 }
 
 export interface ISelectOption {
-  value: string;
-  label: string;
-  isContainerStyle?: boolean;
-  inlineLevel?: number;
+  readonly  value: string;
+  readonly label: string;
+  readonly isContainerStyle?: boolean;
+  readonly inlineLevel?: number;
 }

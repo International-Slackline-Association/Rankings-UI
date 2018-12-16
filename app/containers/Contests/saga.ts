@@ -1,11 +1,6 @@
 import ActionTypes from './constants';
 import {} from './selectors';
-import {
-  addTableItems,
-  setCategories,
-  loadContestSuggestions,
-  setContestSuggestions,
-} from './actions';
+import * as actions from './actions';
 
 import { takeLatest, call, put, select } from 'redux-saga/effects';
 import { delay } from 'redux-saga';
@@ -24,14 +19,14 @@ import { APIContestsCategoriesResponse } from 'api/contests/categories';
 export function* getCategories() {
   try {
     const results: APIContestsCategoriesResponse = yield call(apiGetCategories);
-    yield put(setCategories(results.items));
+    yield put(actions.setCategories(results.items));
   } catch (err) {
     console.log('err: ', err);
   }
 }
 
 export function* getContestSuggestions(
-  action: ReturnType<typeof loadContestSuggestions>,
+  action: ReturnType<typeof actions.loadContestSuggestions>,
 ) {
   yield call(delay, 500);
   const value = action.payload;
@@ -47,7 +42,7 @@ export function* getContestSuggestions(
       };
       return option;
     });
-    yield put(setContestSuggestions(options));
+    yield put(actions.setContestSuggestions(options));
   } catch (err) {
     console.log('err: ', err);
   }
@@ -67,7 +62,7 @@ export function* getContests() {
   };
   try {
     const results: GetContestsResponse = yield call(apiGetContests, request);
-    yield put(addTableItems(results));
+    yield put(actions.addTableItems(results));
   } catch (err) {
     console.log('err: ', err);
   }

@@ -6,7 +6,7 @@ import ProfileAvatar from 'components/Icons/ProfileAvatar';
 import CountryAvatar from 'components/Icons/CountryAvatar';
 import TableWrapper from 'components/TableWrapper';
 import Group from 'components/TableWrapper/Group';
-import ShowMoreButton from './ShowMoreButton';
+import ShowMoreButton from 'components/Button/ShowMoreButton';
 import { TableItemsResult } from '../types';
 import { EmptyContainer } from 'components/Containers';
 
@@ -28,22 +28,14 @@ interface TableItem {
   points: string;
 }
 
-interface State {
-  selectedItem: TableItem | null;
-}
+interface State {}
 
 class MainTable extends React.PureComponent<Props, State> {
   public constructor(props) {
     super(props);
-    this.state = {
-      selectedItem: null,
-    };
   }
   private onTableRowClick = (item: TableItem) => {
     return () => {
-      this.setState({
-        selectedItem: item,
-      });
       // this.props.onRowSelected(item.id);
     };
   };
@@ -70,14 +62,11 @@ class MainTable extends React.PureComponent<Props, State> {
                     <tr
                       // onClick={this.onTableRowClick(item)}
                       key={item.id}
-                      className={
-                        item === this.state.selectedItem ? 'selected' : ''
-                      }
                     >
                       <td>{item.rank}</td>
                       <td>
                         <Group alignLeft={true}>
-                          <ProfileAvatar imageUrl={''} />
+                          <ProfileAvatar imageUrl={item.smallProfileUrl} />
                           <a href="#">{item.name + ' ' + item.surname}</a>
                         </Group>
                       </td>
@@ -97,7 +86,7 @@ class MainTable extends React.PureComponent<Props, State> {
           {isItemsLoading ? (
             <SmallLoading minHeight={'100px'} />
           ) : !items || !items.length ? (
-            <EmptyContainer minHeight={'100px'} >
+            <EmptyContainer minHeight={'100px'}>
               There is no data to display
               {/* <FormattedMessage {...messages.} /> */}
             </EmptyContainer>

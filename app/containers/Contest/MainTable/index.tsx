@@ -1,17 +1,21 @@
 import * as React from 'react';
-
-import { FormattedMessage } from 'react-intl';
-import messages from './messages';
-import styled, { colors } from 'styles/styled-components';
+import styled, { colors, css } from 'styles/styled-components';
 import media from 'styles/media';
-import Results from './Results';
-import Empty from './Empty';
 import { SmallLoading } from 'components/Loading';
+import ProfileAvatar from 'components/Icons/ProfileAvatar';
+import CountryAvatar from 'components/Icons/CountryAvatar';
+import TableWrapper from 'components/TableWrapper';
+import Group from 'components/TableWrapper/Group';
+import ShowMoreButton from 'components/Button/ShowMoreButton';
+import { TableItemsResult } from '../types';
+import { EmptyContainer } from 'components/Containers';
 
 interface Props {
-  items: TableItem[] | null;
-  onRowSelected(id: string): void;
+  tableItems: TableItemsResult;
+  onRowSelected?(id: string): void;
   isItemsLoading: boolean | null;
+  isNextItemsLoading: boolean | null;
+  showMoreClicked(): void;
 }
 
 interface TableItem {
@@ -24,9 +28,7 @@ interface TableItem {
   points: string;
 }
 
-interface State {
-  selectedItem: TableItem | null;
-}
+interface State {}
 
 class MainTable extends React.PureComponent<Props, State> {
   public constructor(props) {
@@ -37,35 +39,23 @@ class MainTable extends React.PureComponent<Props, State> {
   }
   private onTableRowClick = (item: TableItem) => {
     return () => {
-      this.setState({
-        selectedItem: item,
-      });
-      this.props.onRowSelected(item.id);
+      // this.props.onRowSelected(item.id);
     };
   };
   public render() {
-    const { isItemsLoading, items } = this.props;
+    const { isItemsLoading, tableItems } = this.props;
+    const { items, next } = tableItems;
     return (
       <Wrapper>
-        <Results selected>
+        <TableWrapper tdCSS={tableItemsPrefixCSS}>
           <table>
             <thead>
               <tr>
-                <td>
-                  <FormattedMessage {...messages.theadRank} />
-                </td>
-                <td>
-                  <FormattedMessage {...messages.theadName} />
-                </td>
-                <td>
-                  <FormattedMessage {...messages.theadAge} />
-                </td>
-                <td>
-                  <FormattedMessage {...messages.theadCountry} />
-                </td>
-                <td>
-                  <FormattedMessage {...messages.theadPoints} />
-                </td>
+                <td title="Rank">Rank</td>
+                <td title="Name">Name</td>
+                <td title="Age">Age</td>
+                <td title="Country">Country</td>
+                <td title="Points">Points</td>
               </tr>
             </thead>
             <tbody>
@@ -73,41 +63,83 @@ class MainTable extends React.PureComponent<Props, State> {
                 items.map(item => {
                   return (
                     <tr
-                      onClick={this.onTableRowClick(item)}
+                      // onClick={this.onTableRowClick(item)}
                       key={item.id}
-                      className={item === this.state.selectedItem ? 'selected' : ''}
                     >
                       <td>{item.rank}</td>
-                      <td>{item.name + ' ' + item.surname}</td>
+                      <td>
+                        <Group alignLeft={true}>
+                          <ProfileAvatar imageUrl={item.smallProfileUrl} />
+                          <a href="#">{item.name + ' ' + item.surname}</a>
+                        </Group>
+                      </td>
                       <td>{item.age}</td>
-                      <td>{item.country}</td>
-                      <td>{item.points}</td>
+                      <td>
+                        <Group>
+                          <CountryAvatar code={item.country} />
+                          {item.country}
+                        </Group>
+                      </td>
+                      <td>{item.points} points</td>
                     </tr>
                   );
                 })}
             </tbody>
           </table>
           {isItemsLoading ? (
-            <Empty>
-              <SmallLoading />
-            </Empty>
+            <SmallLoading minHeight={'100px'} />
           ) : !items || !items.length ? (
-            <Empty>
+            <EmptyContainer minHeight={'100px'}>
               There is no data to display
               {/* <FormattedMessage {...messages.} /> */}
-            </Empty>
+            </EmptyContainer>
           ) : null}
-        </Results>
+        </TableWrapper>
+        {next && (
+          <ShowMoreButton
+            onClick={this.props.showMoreClicked}
+            loading={this.props.isNextItemsLoading || false}
+          >
+            Show More
+          </ShowMoreButton>
+        )}
       </Wrapper>
     );
   }
 }
 
+const tableItemsPrefixCSS = css`
+  &:nth-child(1) {
+    &::before {
+      content: 'Rank :';
+    }
+  }
+  &:nth-child(2) {
+    &::before {
+      content: 'Name : ';
+    }
+  }
+  &:nth-child(3) {
+    &::before {
+      content: 'Age : ';
+    }
+  }
+  &:nth-child(4) {
+    &::before {
+      content: 'Country : ';
+    }
+  }
+  &:nth-child(5) {
+    &::before {
+      content: 'Points : ';
+    }
+  }
+`;
+
 const Wrapper = styled.div`
   /* background-color: ${colors.green}; */
   width: 100%;
   height: 100%;
-  margin-top: 24px;
 
   ${media.tablet`
 

@@ -30,13 +30,13 @@ interface RankingsState {
 
 export interface ICategory extends ICategoryEntity {}
 export interface IFilter {
-  selectedValue?: string;
-  suggestions: ISelectOption[];
+  readonly selectedValue?: string;
+  readonly suggestions: ISelectOption[];
 }
 
 export interface TableItemsResult {
-  items: TableItem[];
-  next: any;
+  readonly items: TableItem[];
+  readonly next: any;
 }
 
 interface TableItem {
@@ -47,9 +47,7 @@ interface TableItem {
   readonly age: number;
   readonly country: string;
   readonly points: string;
-  readonly profileUrl: string;
-  readonly overallRank: number;
-  readonly topDisciplines: string[];
+  readonly smallProfileUrl: string;
 }
 
 /* --- ACTIONS --- */

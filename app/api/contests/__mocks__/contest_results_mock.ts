@@ -1,6 +1,6 @@
-import { APIRankingsResponse } from '../results';
+import { APIContestResultsResponse } from '../contest-results';
 
-const resultsDefaultGenerator = (): APIRankingsResponse => {
+const generator = (): APIContestResultsResponse => {
   return {
     items: [
       {
@@ -45,8 +45,7 @@ const resultsDefaultGenerator = (): APIRankingsResponse => {
         age: 25,
         country: 'CH',
         points: '200',
-        smallProfileUrl:
-          '',
+        smallProfileUrl: '',
       },
       {
         id: 'lukas-irmler',
@@ -67,12 +66,11 @@ const resultsDefaultGenerator = (): APIRankingsResponse => {
         age: 33,
         country: 'CH',
         points: '180',
-        smallProfileUrl:
-          '',
+        smallProfileUrl: '',
       },
     ],
     next: { a: true },
   };
 };
 
-export default resultsDefaultGenerator;
+export default generator;

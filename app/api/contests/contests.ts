@@ -8,10 +8,6 @@ export interface APIGetContestsRequest {
   searchInput: string;
 }
 
-export interface APIGetContestRequest {
-  id: string;
-}
-
 interface SelectedFilter {
   id: string;
   name: string;
@@ -28,23 +24,21 @@ interface ContestsItem {
   prize: string;
   size: string;
   date: number;
-  city: string;
-  country: string;
   discipline: string;
-  profileUrl: string;
+  smallProfileUrl: string;
 }
 
 const requestURL = '';
-const getContests = (
+export async function getContests(
   request: APIGetContestsRequest,
-): Promise<APIGetContestsResponse> => {
+): Promise<APIGetContestsResponse> {
   return axios
     .post(requestURL, request, dummyResponseConfig(dummyResponse, 1000))
     .then(resp => {
       const result = resp.data as APIGetContestsResponse;
       return result;
     });
-};
+}
 
 const dummyResponse = (): AxiosResponse<APIGetContestsResponse> => {
   return {
@@ -56,5 +50,3 @@ const dummyResponse = (): AxiosResponse<APIGetContestsResponse> => {
     request: undefined,
   };
 };
-
-export default getContests;

@@ -10,36 +10,44 @@ type RootState = ApplicationRootState;
 type ContainerState = ContestState;
 type ContainerActions = ContestsActions;
 
-export { RootState, ContainerState, ContainerActions, TableItem, ContestItem };
+export { RootState, ContainerState, ContainerActions };
 
 /* --- STATE --- */
 
-interface ContestState extends TabContentState<TableItem> {
-  contest: ContestItem | null;
+interface ContestState {
+  readonly id: string;
+  readonly contest: ContestItem | null;
+  readonly tableResult: TableItemsResult;
+  readonly isTableItemsLoading: boolean | null;
+  readonly nextTableItemsCursor: any;
+  readonly isNextTableItemsLoading: boolean;
 }
 
-interface ContestItem {
-  id: string;
-  name: string;
-  prize: string;
-  size: string;
-  date: string;
-  location: string;
-  disciplines: string[];
-  profileUrl: string;
+export interface ContestItem {
+  readonly id: string;
+  readonly name: string;
+  readonly prize: string;
+  readonly size: string;
+  readonly date: string;
+  readonly location: string;
+  readonly discipline: string;
+  readonly profileUrl: string;
+}
+
+export interface TableItemsResult {
+  readonly items: TableItem[];
+  readonly next: any;
 }
 
 interface TableItem {
-  id: string;
-  rank: number;
-  name: string;
-  surname: string;
-  age: number;
-  country: string;
-  points: string;
-  profileUrl: string;
-  overallRank: number;
-  topDisciplines: string[];
+  readonly id: string;
+  readonly rank: number;
+  readonly name: string;
+  readonly surname: string;
+  readonly age: number;
+  readonly country: string;
+  readonly points: string;
+  readonly smallProfileUrl: string;
 }
 
 /* --- ACTIONS --- */

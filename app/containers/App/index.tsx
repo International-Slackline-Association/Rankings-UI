@@ -60,7 +60,7 @@ class App extends React.Component<{}, {}> {
             <Switch>
               <Route exact path="/" component={Rankings} />
               <Route exact path="/contests" component={Contests} />
-              <Route exact path="/contest/:id" component={Contest} />
+              <Route exact path="/contest/:id/:discipline" component={Contest} />
               <Route exact path="/athlete/:id" component={Athlete} />
               <Redirect from="/rankings" to="/" />
               <Route component={NotFoundPage} />

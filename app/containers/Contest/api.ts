@@ -1,14 +1,18 @@
 import moment from 'moment';
-import getContest, {
+import {
+  getContest,
   APIGetContestRequest,
   APIGetContestResponse,
 } from 'api/contests/contest';
-import { TableItem, ContestItem } from './types';
+import { ContestItem } from './types';
+import {
+  APIGetContestResultsRequest,
+  getContestResults,
+  APIContestResultsResponse,
+} from 'api/contests/contest-results';
 
 interface GetContestResponse {
-  items: TableItem[];
   contest: ContestItem;
-  isNextPageAvailable: boolean;
 }
 
 export async function apiGetContest(request: APIGetContestRequest) {
@@ -16,7 +20,7 @@ export async function apiGetContest(request: APIGetContestRequest) {
   const resp: GetContestResponse = {
     contest: {
       date: moment.unix(result.contest.date).format('DD/MM/YYYY'),
-      disciplines: result.contest.disciplines,
+      discipline: result.contest.discipline,
       id: result.contest.id,
       location: `${result.contest.city}, ${result.contest.country}`,
       name: result.contest.name,
@@ -24,10 +28,14 @@ export async function apiGetContest(request: APIGetContestRequest) {
       profileUrl: result.contest.profileUrl,
       size: result.contest.size,
     },
-    items: result.items,
-    isNextPageAvailable: result.isNextPageAvailable,
   };
   return resp;
 }
 
-export { GetContestResponse, APIGetContestRequest };
+export async function apiGetContestResults(
+  request: APIGetContestResultsRequest,
+) {
+  const results = await getContestResults(request);
+  return results;
+}
+export { GetContestResponse, APIGetContestRequest, APIContestResultsResponse };

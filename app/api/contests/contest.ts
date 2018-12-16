@@ -1,51 +1,42 @@
 import axios, { dummyResponseConfig } from 'api/axios';
-import { AxiosRequestConfig, AxiosResponse } from 'axios';
+import { AxiosResponse } from 'axios';
 
 import mockResponse from './__mocks__/contest_mock';
-import { APIGetContestRequest } from './contests';
+
+export interface APIGetContestRequest {
+  id: string;
+  discipline: string;
+}
 
 export interface APIGetContestResponse {
-  items: ContestTableItem[];
-  contest: ContestItem;
-  isNextPageAvailable: boolean;
+  readonly contest: ContestItem;
 }
 
 interface ContestItem {
-  id: string;
-  name: string;
-  prize: string;
-  size: string;
-  date: number;
-  city: string;
-  country: string;
-  disciplines: string[];
-  profileUrl: string;
-}
-
-interface ContestTableItem {
-  id: string;
-  rank: number;
-  name: string;
-  surname: string;
-  age: number;
-  country: string;
-  points: string;
-  profileUrl: string;
-  overallRank: number;
-  topDisciplines: string[];
+  readonly id: string;
+  readonly name: string;
+  readonly prize: string;
+  readonly size: string;
+  readonly date: number;
+  readonly city: string;
+  readonly country: string;
+  readonly discipline: string;
+  readonly profileUrl: string;
 }
 
 const requestURL = '';
-const getContest = (
+export async function getContest(
   request: APIGetContestRequest,
-): Promise<APIGetContestResponse> => {
+): Promise<APIGetContestResponse> {
+  const url = `${requestURL}/${request.id}/${request.discipline}`;
   return axios
-    .post(requestURL, request, dummyResponseConfig(dummyResponse, 1000))
+    .get(url, dummyResponseConfig(dummyResponse, 1000))
     .then(resp => {
       const result = resp.data as APIGetContestResponse;
       return result;
     });
-};
+}
+
 
 const dummyResponse = (): AxiosResponse<APIGetContestResponse> => {
   return {
@@ -58,5 +49,3 @@ const dummyResponse = (): AxiosResponse<APIGetContestResponse> => {
   };
 };
 
-export { APIGetContestRequest };
-export default getContest;

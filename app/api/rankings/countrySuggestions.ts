@@ -13,21 +13,17 @@ interface CountrySuggestionItem {
 }
 
 const requestURL = '';
-const getCountrySuggestions = (
+export async function getCountrySuggestions(
   value: string,
-): Promise<APIGetCountrySuggestionsResponse> => {
+): Promise<APIGetCountrySuggestionsResponse> {
   const url = requestURL + '/' + value;
-  return axios
-    .get(url, dummyResponseConfig(dummyResponse, 1000))
-    .then(resp => {
-      const result = resp.data as APIGetCountrySuggestionsResponse;
-      return result;
-    });
-};
+  return axios.get(url, dummyResponseConfig(dummyResponse, 1000)).then(resp => {
+    const result = resp.data as APIGetCountrySuggestionsResponse;
+    return result;
+  });
+}
 
-const dummyResponse = (): AxiosResponse<
-  APIGetCountrySuggestionsResponse
-> => {
+const dummyResponse = (): AxiosResponse<APIGetCountrySuggestionsResponse> => {
   return {
     data: mockResponse(),
     status: 200,
@@ -37,5 +33,3 @@ const dummyResponse = (): AxiosResponse<
     request: undefined,
   };
 };
-
-export default getCountrySuggestions;

@@ -25,22 +25,20 @@ interface RankingsItem {
   age: number;
   country: string;
   points: string;
-  profileUrl: string;
-  overallRank: number;
-  topDisciplines: string[];
+  smallProfileUrl: string;
 }
 
 const requestURL = '';
-const getRankingResults = (
+export async function getRankingResults(
   request: APIGetRankingsRequest,
-): Promise<APIRankingsResponse> => {
+): Promise<APIRankingsResponse> {
   return axios
     .post(requestURL, request, dummyResponseConfig(dummyResponse, 1000))
     .then(resp => {
       const result = resp.data as APIRankingsResponse;
       return result;
     });
-};
+}
 
 const dummyResponse = (): AxiosResponse<APIRankingsResponse> => {
   return {
@@ -52,5 +50,3 @@ const dummyResponse = (): AxiosResponse<APIRankingsResponse> => {
     request: undefined,
   };
 };
-
-export default getRankingResults;

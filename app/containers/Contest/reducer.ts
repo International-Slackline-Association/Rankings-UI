@@ -1,30 +1,21 @@
 import { combineReducers } from 'redux';
 
 import { ContainerState, ContainerActions } from './types';
-import { defaultFilters } from './filters';
 import ActionTypes from './constants';
-import { LOCATION_CHANGE } from 'connected-react-router';
 
-const filters = defaultFilters();
 export const initialState: ContainerState = {
-  selectedFilters: [
-    {
-      id: filters[0].items[0].id,
-      category: filters[0].items[0].category,
-      name: filters[0].items[0].name,
-      isSticky: filters[0].items[0].isSticky,
-    },
-  ],
-  isSuggestionsLoading: false,
-  tableItems: null,
-  selectedSearchInput: null,
-  suggestions: [],
-  isTableItemsLoading: false,
-  dropdownFilters: filters,
+  id: '',
   contest: null,
+  tableResult: { items: [], next: null },
+  isTableItemsLoading: false,
+  nextTableItemsCursor: null,
+  isNextTableItemsLoading: false,
 };
 
 export default combineReducers<ContainerState, ContainerActions>({
+  id: (state = initialState.id, action) => {
+    return state;
+  },
   contest: (state = initialState.contest, action) => {
     switch (action.type) {
       case ActionTypes.SET_CONTEST:
@@ -32,74 +23,45 @@ export default combineReducers<ContainerState, ContainerActions>({
     }
     return state;
   },
-
-  selectedFilters: (state = initialState.selectedFilters, action) => {
+  tableResult: (state = initialState.tableResult, action) => {
     switch (action.type) {
-      case ActionTypes.CHANGE_SELECTED_FILTERS:
-        return action.payload;
+      case ActionTypes.LOAD_TABLE_ITEMS:
+        return initialState.tableResult;
+      case ActionTypes.ADD_TABLE_ITEMS:
+        return {
+          items: [...state.items, ...action.payload.items],
+          next: action.payload.next,
+        };
     }
     return state;
   },
-  isSuggestionsLoading: (state = false, action) => {
+  isTableItemsLoading: (state = initialState.isTableItemsLoading, action) => {
     switch (action.type) {
-      case ActionTypes.LOAD_SUGGESTIONS:
+      case ActionTypes.LOAD_TABLE_ITEMS:
         return true;
-      case ActionTypes.SUGGESTIONS_LOADED:
+      case ActionTypes.ADD_TABLE_ITEMS:
         return false;
     }
     return state;
   },
-  selectedSearchInput: (state = null, action) => {
-    switch (action.type) {
-      case ActionTypes.SELECT_SUGGESTION:
-        return action.payload;
-      case ActionTypes.CLEAR_SUGGESTIONS:
-        return action.payload ? null : state;
-    }
-    return state;
-  },
-  suggestions: (state = null, action) => {
-    switch (action.type) {
-      case ActionTypes.SUGGESTIONS_LOADED:
-        return action.payload;
-      case ActionTypes.CLEAR_SUGGESTIONS:
-        return null;
-    }
-    return state;
-  },
-  tableItems: (state = null, action) => {
+  nextTableItemsCursor: (state = initialState.nextTableItemsCursor, action) => {
     switch (action.type) {
       case ActionTypes.LOAD_TABLE_ITEMS:
-        return null;
-      case ActionTypes.SET_TABLE_ITEMS:
-        return action.payload;
+        return {};
+      case ActionTypes.ADD_TABLE_ITEMS:
+        return action.payload.next;
     }
     return state;
   },
-  isTableItemsLoading: (state = false, action) => {
+  isNextTableItemsLoading: (
+    state = initialState.isNextTableItemsLoading,
+    action,
+  ) => {
     switch (action.type) {
-      case ActionTypes.LOAD_TABLE_ITEMS:
+      case ActionTypes.LOAD_NEXT_TABLE_ITEMS:
         return true;
-      case ActionTypes.SET_TABLE_ITEMS:
+      case ActionTypes.ADD_TABLE_ITEMS:
         return false;
-    }
-    return state;
-  },
-  dropdownFilters: (state = initialState.dropdownFilters, action) => {
-    switch (action.type) {
-      case ActionTypes.CHANGE_SELECTED_FILTERS:
-        const selectedFilters = action.payload;
-        const initialFilters = defaultFilters(false);
-        for (const selectedFilter of selectedFilters) {
-          for (const filterCategory of initialFilters) {
-            for (const filter of filterCategory.items) {
-              if (filter.id === selectedFilter.id) {
-                filter.isSelected = true;
-              }
-            }
-          }
-        }
-        return initialFilters;
     }
     return state;
   },

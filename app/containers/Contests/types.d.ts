@@ -15,8 +15,8 @@ export { RootState, ContainerState, ContainerActions, TableItem };
 /* --- STATE --- */
 
 export interface TableItemsResult {
-  items: TableItem[];
-  next: any;
+  readonly items: TableItem[];
+  readonly next: any;
 }
 
 interface ContestsState {
@@ -32,19 +32,18 @@ interface ContestsState {
 
 export interface ICategory extends ICategoryEntity {}
 export interface IFilter {
-  selectedValue?: string;
-  suggestions: ISelectOption[];
+  readonly selectedValue?: string;
+  readonly suggestions: ISelectOption[];
 }
 
 interface TableItem {
-  id: string;
-  name: string;
-  discipline: string;
-  prize: string;
-  size: string;
-  date: string;
-  location: string;
-  profileUrl: string;
+  readonly id: string;
+  readonly name: string;
+  readonly discipline: string;
+  readonly prize: string;
+  readonly size: string;
+  readonly date: string;
+  readonly smallProfileUrl: string;
 }
 
 /* --- ACTIONS --- */

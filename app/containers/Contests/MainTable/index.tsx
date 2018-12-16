@@ -7,7 +7,7 @@ import Group from 'components/TableWrapper/Group';
 import ContestAvatar from 'components/Icons/ContestAvatar';
 import { EmptyContainer } from 'components/Containers';
 import { TableItemsResult } from '../types';
-import ShowMoreButton from './ShowMoreButton';
+import ShowMoreButton from 'components/Button/ShowMoreButton';
 
 interface Props {
   tableItems: TableItemsResult;
@@ -26,22 +26,14 @@ interface TableItem {
   date: string;
 }
 
-interface State {
-  selectedItem: TableItem | null;
-}
+interface State {}
 
 class MainTable extends React.PureComponent<Props, State> {
   public constructor(props) {
     super(props);
-    this.state = {
-      selectedItem: null,
-    };
   }
   private onTableRowClick = (item: TableItem) => {
     return () => {
-      this.setState({
-        selectedItem: item,
-      });
       // this.props.onRowSelected(item.id);
     };
   };
@@ -68,13 +60,10 @@ class MainTable extends React.PureComponent<Props, State> {
                     <tr
                       // onClick={this.onTableRowClick(item)}
                       key={item.id}
-                      className={
-                        item === this.state.selectedItem ? 'selected' : ''
-                      }
                     >
                       <td>
                         <Group alignLeft={true}>
-                          <ContestAvatar imageUrl={''} />
+                          <ContestAvatar imageUrl={item.smallProfileUrl} />
                           <a href="#">{item.name}</a>
                         </Group>
                       </td>

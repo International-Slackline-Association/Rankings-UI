@@ -1,4 +1,4 @@
-import Button from 'components/Button';
+import Button from '../Button';
 import styled from 'styles/styled-components';
 
 const ShowMoreButton = styled(Button)`

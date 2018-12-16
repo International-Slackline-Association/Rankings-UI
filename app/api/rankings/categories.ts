@@ -21,14 +21,14 @@ interface ISelectOption {
 }
 
 const requestURL = '';
-const getRankingCategories = (): Promise<APIRankingCategoriesResponse> => {
+export async function getRankingCategories(): Promise<APIRankingCategoriesResponse> {
   return axios
     .get(requestURL, dummyResponseConfig(dummyResponse, 1000))
     .then(resp => {
       const result = resp.data as APIRankingCategoriesResponse;
       return result;
     });
-};
+}
 
 const dummyResponse = (): AxiosResponse<APIRankingCategoriesResponse> => {
   return {
@@ -40,5 +40,3 @@ const dummyResponse = (): AxiosResponse<APIRankingCategoriesResponse> => {
     request: undefined,
   };
 };
-
-export default getRankingCategories;

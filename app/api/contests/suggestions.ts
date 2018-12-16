@@ -13,9 +13,9 @@ interface ContestSuggestionItem {
 }
 
 const requestURL = '';
-const getContestSuggestions = (
+export async function getContestSuggestions(
   value: string,
-): Promise<APIGetContestSuggestionsResponse> => {
+): Promise<APIGetContestSuggestionsResponse> {
   const url = requestURL + '/' + value;
   return axios
     .get(url, dummyResponseConfig(dummyContestsResponse, 1000))
@@ -23,7 +23,7 @@ const getContestSuggestions = (
       const result = resp.data as APIGetContestSuggestionsResponse;
       return result;
     });
-};
+}
 
 const dummyContestsResponse = (): AxiosResponse<
   APIGetContestSuggestionsResponse
@@ -37,5 +37,3 @@ const dummyContestsResponse = (): AxiosResponse<
     request: undefined,
   };
 };
-
-export default getContestSuggestions;

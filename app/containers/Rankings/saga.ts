@@ -1,13 +1,6 @@
 import ActionTypes from './constants';
 import {} from './selectors';
-import {
-  addTableItems,
-  setCategories,
-  loadAthleteSuggestions,
-  loadCountrySuggestions,
-  setAthleteSuggestions,
-  setCountrySuggestions,
-} from './actions';
+import * as actions from './actions';
 
 import { takeLatest, call, put, select } from 'redux-saga/effects';
 import { delay } from 'redux-saga';
@@ -28,14 +21,14 @@ import { ISelectOption } from 'components/CategoriesFilters/types';
 export function* getCategories() {
   try {
     const results: APIRankingCategoriesResponse = yield call(apiGetCategories);
-    yield put(setCategories(results.items));
+    yield put(actions.setCategories(results.items));
   } catch (err) {
     console.log('err: ', err);
   }
 }
 
 export function* getAthleteSuggestions(
-  action: ReturnType<typeof loadAthleteSuggestions>,
+  action: ReturnType<typeof actions.loadAthleteSuggestions>,
 ) {
   yield call(delay, 500);
   const value = action.payload;
@@ -51,14 +44,14 @@ export function* getAthleteSuggestions(
       };
       return option;
     });
-    yield put(setAthleteSuggestions(options));
+    yield put(actions.setAthleteSuggestions(options));
   } catch (err) {
     console.log('err: ', err);
   }
 }
 
 export function* getCountrySuggestions(
-  action: ReturnType<typeof loadCountrySuggestions>,
+  action: ReturnType<typeof actions.loadCountrySuggestions>,
 ) {
   yield call(delay, 500);
   const value = action.payload;
@@ -74,7 +67,7 @@ export function* getCountrySuggestions(
       };
       return option;
     });
-    yield put(setCountrySuggestions(options));
+    yield put(actions.setCountrySuggestions(options));
   } catch (err) {
     console.log('err: ', err);
   }
@@ -94,7 +87,7 @@ export function* getRankings() {
   };
   try {
     const results: APIRankingsResponse = yield call(apiGetRankings, request);
-    yield put(addTableItems(results));
+    yield put(actions.addTableItems(results));
   } catch (err) {
     console.log('err: ', err);
   }

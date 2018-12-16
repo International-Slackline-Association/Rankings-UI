@@ -1,15 +1,18 @@
-import getRankingResults, {
+import {
+  getRankingResults,
   APIGetRankingsRequest,
   APIRankingsResponse,
 } from 'api/rankings/results';
 
-import getRankingCategories, {
+import {
+  getRankingCategories,
   APIRankingCategoriesResponse,
 } from 'api/rankings/categories';
 import getAthleteSuggestions, {
   APIGetAthleteSuggestionsResponse,
 } from 'api/athlete/suggestions';
-import getCountrySuggestions, {
+import {
+  getCountrySuggestions,
   APIGetCountrySuggestionsResponse,
 } from 'api/rankings/countrySuggestions';
 
