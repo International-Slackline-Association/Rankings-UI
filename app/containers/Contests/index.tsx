@@ -44,7 +44,7 @@ interface StateProps {
 
 interface DispatchProps {
   dispatch: Dispatch;
-  updateLocation(path: string, id: string);
+  updateLocation(path: string, id: string, param1: string);
 }
 
 type Props = StateProps & DispatchProps & OwnProps;
@@ -107,6 +107,10 @@ class Contests extends React.PureComponent<Props, State> {
     this.props.dispatch(actions.loadNextItems());
   };
 
+  private onContestClick = (id: string, discipline: string) => {
+    this.props.updateLocation('Contest', id, discipline);
+  };
+
   public render() {
     const categories = this.categories();
     const filters = this.filters();
@@ -121,7 +125,7 @@ class Contests extends React.PureComponent<Props, State> {
         <MainTableSection>
           <MainTable
             tableItems={this.props.tableResult}
-            // onRowSelected={this.onTableRowSelected}
+            onItemClick={this.onContestClick}
             isItemsLoading={this.props.isTableItemsLoading}
             showMoreClicked={this.loadMoreItems}
             isNextItemsLoading={this.props.isNextTableItemsLoading}
@@ -148,9 +152,9 @@ function mapDispatchToProps(
 ): DispatchProps {
   return {
     dispatch: dispatch,
-    updateLocation: (path: string, id: string) => {
+    updateLocation: (path: string, id: string, param1: string) => {
       if (id) {
-        dispatch(replace(`/${path}/${id}`));
+        dispatch(replace(`/${path}/${id}/${param1}`));
       }
     },
   };

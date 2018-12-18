@@ -54,14 +54,17 @@ function parseNameFromId(id: string): string {
 
 export function findPathAndId(pathname: string) {
   if (pathname) {
-    const [{}, path, id] = pathname.split('/');
+    const [{}, path, id, discipline, ...rest] = pathname.split('/');
+    if (rest.length > 0) {
+      return { path: path, id: null };
+    }
     if (!id) {
       const staticId = isPathStaticType(path) ? idOfStaticPath(path) : null;
       if (staticId) {
         return { path: path, id: staticId };
       }
     }
-    return { path: path, id: id };
+    return { path: path, id: id, discipline: discipline };
   }
   return { path: null, id: null };
 }
@@ -70,8 +73,7 @@ export function modifyTabBarItemsByURL(
   items: TopBarTabsItem[],
   pathname: string,
 ) {
-  const { path, id } = findPathAndId(pathname);
-
+  const { path, id, discipline } = findPathAndId(pathname.toLowerCase());
   if (
     (path && path === TopBarTabContentType.contest) ||
     path === TopBarTabContentType.athlete
@@ -85,14 +87,20 @@ export function modifyTabBarItemsByURL(
           const replaceTab = { ...sameTypeTab };
           replaceTab.id = id;
           replaceTab.name = parseNameFromId(id);
+          replaceTab.discipline = startCase(discipline);
           items[index] = replaceTab;
         } else {
-          items.push({
-            id: id,
-            contentType: TopBarTabContentType[path],
-            type: TopBarTabType.Dynamic,
-            name: parseNameFromId(id),
-          });
+          if (path === TopBarTabContentType.contest && !discipline) {
+            // there cant be contest without a discipline. Dont add
+          } else {
+            items.push({
+              id: id,
+              contentType: TopBarTabContentType[path],
+              type: TopBarTabType.Dynamic,
+              name: parseNameFromId(id),
+              discipline: startCase(discipline),
+            });
+          }
         }
       }
     }
@@ -123,8 +131,11 @@ export default combineReducers<ContainerState, ContainerActions>({
     switch (action.type) {
       case LOCATION_CHANGE:
         const { path, id } = findPathAndId(action.payload.location.pathname);
+        console.log('selectedId: ', path, id);
         if (id && path != null) {
           return isPathStaticType(path) ? idOfStaticPath(path) : id;
+        } else if (path && !isPathStaticType(path)) {
+          return '';
         }
         return id ? id : state;
       case ActionTypes.CHANGE_TOPBAR_INDEX:

@@ -13,7 +13,7 @@ export const EmptyContainer = styled<CointainerProps, 'div'>('div')`
   color: ${props => props.theme.textSecondary};
   padding: 0 24px;
   text-align: center;
-  min-height: ${props => props.minHeight}
+  min-height: ${props => props.minHeight};
 `;
 
 export const TinyLoadingContainer = styled.div`

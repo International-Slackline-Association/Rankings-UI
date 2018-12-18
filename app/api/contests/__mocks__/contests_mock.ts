@@ -8,7 +8,7 @@ const resultsDefaultGenerator = (): APIGetContestsResponse => {
         name: 'Swiss Open',
         date: 1539383654,
         prize: '400€',
-        size: '40',
+        size: 'Open Challenge',
         discipline: 'Aerial',
         smallProfileUrl:
           // tslint:disable-next-line:max-line-length
@@ -19,7 +19,7 @@ const resultsDefaultGenerator = (): APIGetContestsResponse => {
         name: 'China Master',
         date: 1539383654,
         prize: '300€',
-        size: '30',
+        size: 'Masters',
         discipline: 'Sprint',
         smallProfileUrl:
           // tslint:disable-next-line:max-line-length
@@ -30,7 +30,7 @@ const resultsDefaultGenerator = (): APIGetContestsResponse => {
         name: 'Redbull Slackship',
         date: 1539383654,
         prize: '300€',
-        size: '30',
+        size: 'Masters',
         discipline: 'Jib-Static',
         smallProfileUrl:
           // tslint:disable-next-line:max-line-length

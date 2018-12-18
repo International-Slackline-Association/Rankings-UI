@@ -4,14 +4,14 @@ import media from 'styles/media';
 import { SmallLoading } from 'components/Loading';
 import TableWrapper from 'components/TableWrapper';
 import Group from 'components/TableWrapper/Group';
-import ContestAvatar from 'components/Icons/ContestAvatar';
+import ContestAvatar from 'components/Avatars/ContestAvatar';
 import { EmptyContainer } from 'components/Containers';
 import { TableItemsResult } from '../types';
 import ShowMoreButton from 'components/Button/ShowMoreButton';
 
 interface Props {
   tableItems: TableItemsResult;
-  onRowSelected?(id: string): void;
+  onItemClick(id: string, discipline: string): void;
   isItemsLoading: boolean | null;
   isNextItemsLoading: boolean | null;
   showMoreClicked(): void;
@@ -32,9 +32,10 @@ class MainTable extends React.PureComponent<Props, State> {
   public constructor(props) {
     super(props);
   }
-  private onTableRowClick = (item: TableItem) => {
-    return () => {
-      // this.props.onRowSelected(item.id);
+  private onItemClick = (id: string, discipline: string) => {
+    return (event) => {
+      event.preventDefault();
+      this.props.onItemClick(id, discipline);
     };
   };
   public render() {
@@ -64,7 +65,12 @@ class MainTable extends React.PureComponent<Props, State> {
                       <td>
                         <Group alignLeft={true}>
                           <ContestAvatar imageUrl={item.smallProfileUrl} />
-                          <a href="#">{item.name}</a>
+                          <a
+                            href={`/contest/${item.id}/${item.discipline}`}
+                            onClick={this.onItemClick(item.id, item.discipline)}
+                          >
+                            {item.name}
+                          </a>
                         </Group>
                       </td>
                       <td>{item.discipline}</td>

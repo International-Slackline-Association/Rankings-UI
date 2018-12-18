@@ -10,16 +10,21 @@ interface OwnProps {
   id: string;
   isSelected: boolean;
   name: string;
+  discipline?: string;
   type: TopBarTabType;
   contentType: TopBarTabContentType;
   isFirstDynamicTab: boolean;
-  onSelect(id: string, contentType: TopBarTabContentType);
+  onSelect(
+    id: string,
+    contentType: TopBarTabContentType,
+    discipline?: string,
+  ): void;
 }
 
 interface ButtonProps {
   isSelected: boolean;
   isDynamicType: boolean;
-  onClick: () => void;
+  onClick(): void;
   label: string;
 }
 
@@ -30,15 +35,24 @@ interface BorderProps {
 
 class TopBarButton extends React.PureComponent<OwnProps> {
   private handleSelect = () => {
-    this.props.onSelect(this.props.id, this.props.contentType);
+    this.props.onSelect(
+      this.props.id,
+      this.props.contentType,
+      this.props.discipline,
+    );
   };
   public render() {
+    const { name, discipline, contentType } = this.props;
+    const label =
+      contentType === TopBarTabContentType.contest
+        ? `${name}-${discipline}`
+        : name;
     return (
       <Button
         isDynamicType={this.props.type === TopBarTabType.Dynamic}
         isSelected={this.props.isSelected}
         onClick={this.handleSelect}
-        label={this.props.name}
+        label={label}
       />
     );
   }

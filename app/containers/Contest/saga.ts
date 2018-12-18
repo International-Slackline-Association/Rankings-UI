@@ -1,5 +1,4 @@
 import ActionTypes from './constants';
-import { selectId } from './selectors';
 import * as actions from './actions';
 import { takeLatest, call, put, select } from 'redux-saga/effects';
 
@@ -10,6 +9,7 @@ import {
   apiGetContestResults,
   APIContestResultsResponse,
 } from './api';
+import { selectId } from './selectors';
 
 export function* getContest() {
   const id = yield select(selectId());

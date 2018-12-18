@@ -25,7 +25,7 @@ import saga from './saga';
 
 import { RootState, ContainerState, TableItem } from './types';
 import TabPanel from 'components/TabPanel';
-import MainTableSection, { SelectedFilters } from 'components/MainTableSection';
+import MainTableSection from 'components/MainTableSection';
 import SelectedFilterButton from 'components/SelectedFilterButton';
 import MainTable from './MainTable';
 import TableFilters from 'components/TableFilters';
@@ -40,7 +40,10 @@ import {
   ModalInfoBoxAthlete,
 } from 'components/InfoBox';
 import Modal, { MobileOnlyModal } from 'components/Modal';
-import { SelectedFilter, SearchSuggestion } from 'containers/GenericTabContent/types';
+import {
+  SelectedFilter,
+  SearchSuggestion,
+} from 'containers/GenericTabContent/types';
 import { RouteProps } from 'react-router';
 import { replace } from 'connected-react-router';
 import { TopBarTabContentType } from 'types/enums';
@@ -179,7 +182,8 @@ class Contest extends React.PureComponent<Props, State> {
 
   private onInfoBoxButtonClick = () => {
     const path = TopBarTabContentType.contest;
-    const idParam = this.state.selectedTableItem && this.state.selectedTableItem.id;
+    const idParam =
+      this.state.selectedTableItem && this.state.selectedTableItem.id;
     if (idParam) {
       this.props.updateLocation(path, idParam);
     }
@@ -188,60 +192,7 @@ class Contest extends React.PureComponent<Props, State> {
   public render() {
     const { selectedFilters, athlete } = this.props;
     const { selectedTableItem } = this.state;
-    return (
-      <TabPanel>
-        <MainTableSection>
-          <TableSearchInput
-            placeholder={'Search Contest'}
-            loadSuggestions={this.onLoadSearchSuggestions}
-            clearSuggestions={this.onClearSearchSuggestions}
-            suggestionSelected={this.onSearchSuggestionSelected}
-            suggestions={this.props.suggestions}
-          />
-          <TableFilters>
-            {this.props.dropdownFilters.map(filter => {
-              return (
-                <TableDropdownFilter
-                  key={filter.category}
-                  name={filter.category}
-                  items={filter.items}
-                  onItemSelected={this.onFilterItemSelected}
-                />
-              );
-            })}
-          </TableFilters>
-          <SelectedFilters>
-            {selectedFilters &&
-              selectedFilters.map(selectedFilter => {
-                return (
-                  <SelectedFilterButton
-                    key={selectedFilter.id}
-                    id={selectedFilter.id}
-                    name={selectedFilter.name}
-                    isDisabled={selectedFilter.isSticky}
-                    onCancel={this.onSelectedFilterCancelled}
-                  />
-                );
-              })}
-          </SelectedFilters>
-          <MainTable
-            items={this.props.tableItems}
-            onRowSelected={this.onTableRowSelected}
-            isItemsLoading={this.props.isTableItemsLoading}
-          />
-        </MainTableSection>
-        {selectedTableItem ? (
-          <SideInfoBoxContest onButtonClick={this.onInfoBoxButtonClick} item={selectedTableItem} />
-        ) : (
-          <SideInfoBoxAthlete showButton={false} isLoading={athlete === null} item={athlete!} />
-        )}
-        {selectedTableItem && (
-          <MobileOnlyModal isOpen={this.state.isModalOpen} onRequestClose={this.closeModal}>
-            <ModalInfoBoxContest large onButtonClick={this.onInfoBoxButtonClick} item={selectedTableItem} />
-          </MobileOnlyModal>
-        )}
-      </TabPanel>
-    );
+    return <TabPanel />;
   }
 }
 
@@ -255,7 +206,10 @@ const mapStateToProps = createStructuredSelector<RootState, StateProps>({
   athlete: selectAthlete(),
 });
 
-function mapDispatchToProps(dispatch: Dispatch, ownProps: OwnProps): DispatchProps {
+function mapDispatchToProps(
+  dispatch: Dispatch,
+  ownProps: OwnProps,
+): DispatchProps {
   return {
     dispatch: dispatch,
     updateLocation: (path: string, id: string) => {
@@ -271,7 +225,10 @@ const withConnect = connect(
   mapDispatchToProps,
 );
 
-const withReducer = injectReducer<OwnProps>({ key: 'athlete', reducer: reducer });
+const withReducer = injectReducer<OwnProps>({
+  key: 'athlete',
+  reducer: reducer,
+});
 const withSaga = injectSaga<OwnProps>({ key: 'athlete', saga: saga });
 
 export default compose(

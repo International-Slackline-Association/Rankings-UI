@@ -15,7 +15,7 @@ import reducer from './reducer';
 import saga from './saga';
 import { RootState, ContainerState } from './types';
 import TabPanel from 'components/TabPanel';
-import MainTableSection, { SelectedFilters } from 'components/MainTableSection';
+import MainTableSection from 'components/MainTableSection';
 import MainTable from './MainTable';
 import * as actions from './actions';
 import { replace } from 'connected-react-router';
@@ -80,7 +80,9 @@ class Rankings extends React.PureComponent<Props, State> {
   };
 
   private selectAthleteSuggestion = (suggestion: ISelectOption) => {
-    this.props.dispatch(actions.setAthleteFilterSelectedValue(suggestion.value));
+    this.props.dispatch(
+      actions.setAthleteFilterSelectedValue(suggestion.value),
+    );
     this.props.dispatch(actions.loadTableItems());
   };
 
@@ -89,8 +91,14 @@ class Rankings extends React.PureComponent<Props, State> {
   };
 
   private selectCountrySuggestion = (suggestion: ISelectOption) => {
-    this.props.dispatch(actions.setCountryFilterSelectedValue(suggestion.value));
+    this.props.dispatch(
+      actions.setCountryFilterSelectedValue(suggestion.value),
+    );
     this.props.dispatch(actions.loadTableItems());
+  };
+
+  private onAthleteClick = (id: string) => {
+    this.props.updateLocation('Athlete', id);
   };
 
   private filters(): IFilter[] {
@@ -134,7 +142,7 @@ class Rankings extends React.PureComponent<Props, State> {
         <MainTableSection>
           <MainTable
             tableItems={this.props.tableResult}
-            // onRowSelected={this.onTableRowSelected}
+            onItemClick={this.onAthleteClick}
             isItemsLoading={this.props.isTableItemsLoading}
             showMoreClicked={this.loadMoreItems}
             isNextItemsLoading={this.props.isNextTableItemsLoading}

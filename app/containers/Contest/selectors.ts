@@ -6,19 +6,24 @@ export const selectDomain = (state: ApplicationRootState) => {
   return state.contest ? state.contest : initialState;
 };
 
-export const selectTopBarTabsDomain = (state: ApplicationRootState) => {
-  return state.topBarTabs;
-};
-
 export const selectId = () =>
-  createSelector(selectTopBarTabsDomain, substate => {
-    return substate.selectedId;
+  createSelector(selectDomain, substate => {
+    return substate.id;
   });
 
+export const selectDiscipline = () =>
+  createSelector(selectDomain, substate => {
+    return substate.discipline;
+  });
 
 export const selectContest = () =>
   createSelector(selectDomain, substate => {
     return substate.contest;
+  });
+
+export const isContestLoading = () =>
+  createSelector(selectDomain, substate => {
+    return substate.isContestLoading;
   });
 
 export const selectTableResult = () =>
@@ -35,4 +40,3 @@ export const selectIsNextTableItemsLoading = () =>
   createSelector(selectDomain, substate => {
     return substate.isNextTableItemsLoading;
   });
-

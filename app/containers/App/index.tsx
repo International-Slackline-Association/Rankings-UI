@@ -23,8 +23,8 @@ import TopBarTabs from 'containers/TopBarTabs';
 import Rankings from 'containers/Rankings/Loadable';
 import GlobalStyle from './GlobalStyle';
 import Contests from 'containers/Contests/Loadable';
-import Contest from 'containers/Contest';
-import Athlete from 'containers/Athlete';
+import Contest from 'containers/Contest/Loadable';
+import Athlete from 'containers/Athlete/Loadable';
 import { MuiThemeProvider } from '@material-ui/core';
 
 const AppWrapper = styled.div`
@@ -63,6 +63,7 @@ class App extends React.Component<{}, {}> {
               <Route exact path="/contest/:id/:discipline" component={Contest} />
               <Route exact path="/athlete/:id" component={Athlete} />
               <Redirect from="/rankings" to="/" />
+              <Route exact path="/notfound" component={NotFoundPage} />
               <Route component={NotFoundPage} />
             </Switch>
             <GlobalStyle />

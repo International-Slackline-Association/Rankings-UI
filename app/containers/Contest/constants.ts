@@ -1,4 +1,6 @@
 enum ActionTypes {
+  SET_ID_DISCIPLINE = 'app/Contest/SET_ID_DISCIPLINE',
+
   LOAD_CONTEST = 'app/Contest/LOAD_CONTEST',
   SET_CONTEST = 'app/Contest/SET_CONTEST',
 

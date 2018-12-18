@@ -5,7 +5,9 @@ import ActionTypes from './constants';
 
 export const initialState: ContainerState = {
   id: '',
+  discipline: '',
   contest: null,
+  isContestLoading: false,
   tableResult: { items: [], next: null },
   isTableItemsLoading: false,
   nextTableItemsCursor: null,
@@ -14,12 +16,32 @@ export const initialState: ContainerState = {
 
 export default combineReducers<ContainerState, ContainerActions>({
   id: (state = initialState.id, action) => {
+    switch (action.type) {
+      case ActionTypes.SET_ID_DISCIPLINE:
+        return action.payload.id;
+    }
+    return state;
+  },
+  discipline: (state = initialState.discipline, action) => {
+    switch (action.type) {
+      case ActionTypes.SET_ID_DISCIPLINE:
+        return action.payload.discipline;
+    }
     return state;
   },
   contest: (state = initialState.contest, action) => {
     switch (action.type) {
       case ActionTypes.SET_CONTEST:
         return action.payload;
+    }
+    return state;
+  },
+  isContestLoading: (state = initialState.isContestLoading, action) => {
+    switch (action.type) {
+      case ActionTypes.LOAD_CONTEST:
+        return true;
+      case ActionTypes.SET_CONTEST:
+        return false;
     }
     return state;
   },

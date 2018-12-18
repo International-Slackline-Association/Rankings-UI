@@ -1,5 +1,4 @@
 import * as React from 'react';
-import Wrapper from './Wrapper';
 import { createStructuredSelector } from 'reselect';
 import { connect } from 'react-redux';
 import injectReducer from 'utils/injectReducer';
@@ -18,9 +17,6 @@ import TopBarButton from 'components/TopBarButton';
 import { TopBarTabType, TopBarTabContentType } from 'types/enums';
 import { replace } from 'connected-react-router';
 
-import AppBar from '@material-ui/core/AppBar';
-import Tabs from '@material-ui/core/Tabs';
-import Tab from '@material-ui/core/Tab';
 import Background from './Background';
 import StyledTabs from './Tabs';
 
@@ -36,7 +32,7 @@ interface StateProps {
 interface DispatchProps {
   onSelectedIndexChanged(id: string);
   setTabBarTabs(items: ContainerState['items']);
-  updateLocation(path: string, id: string);
+  updateLocation(path: string, id: string, discipline?: string);
 }
 
 type Props = StateProps & DispatchProps & OwnProps;
@@ -45,7 +41,6 @@ class TopBarTabs extends React.Component<Props> {
   constructor(props: Props) {
     super(props);
     this.modifyItemsByUrl();
-
   }
   private modifyItemsByUrl() {
     if (this.props.locationPath) {
@@ -61,11 +56,15 @@ class TopBarTabs extends React.Component<Props> {
       }
     }
   }
-  private onButtonSelect = (id: string, contentType: TopBarTabContentType) => {
-
+  private onButtonSelect = (
+    id: string,
+    contentType: TopBarTabContentType,
+    discipline: string,
+  ) => {
     const path = contentType;
     const idParam = id === '-2' || id === '-1' ? '' : id;
-    this.props.updateLocation(path, idParam);
+    console.log('Discipline: ', discipline);
+    this.props.updateLocation(path, idParam, discipline);
   };
 
   public render() {
@@ -78,7 +77,6 @@ class TopBarTabs extends React.Component<Props> {
           scrollable={true}
           fullWidth={true}
           value={selectedValue}
-          // onChange={undefined}
         >
           {tabItems.map((item, index) => {
             return (
@@ -86,6 +84,7 @@ class TopBarTabs extends React.Component<Props> {
                 key={item.id}
                 id={item.id}
                 name={item.name}
+                discipline={item.discipline}
                 type={item.type}
                 contentType={item.contentType}
                 onSelect={this.onButtonSelect}
@@ -120,9 +119,13 @@ function mapDispatchToProps(
     setTabBarTabs: items => {
       dispatch(setTopBarTabs(items));
     },
-    updateLocation: (path: string, id?: string) => {
+    updateLocation: (path: string, id?: string, discipline?: string) => {
       if (id) {
-        dispatch(replace(`/${path}/${id}`));
+        if (discipline) {
+          dispatch(replace(`/${path}/${id}/${discipline}`));
+        } else {
+          dispatch(replace(`/${path}/${id}`));
+        }
       } else {
         dispatch(replace(`/${path}`));
       }

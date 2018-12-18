@@ -26,6 +26,7 @@ interface TopBarTabsState {
 
 interface TopBarTabsItem {
   readonly id: string;
+  readonly discipline?: string;
   readonly name: string;
   readonly type: TopBarTabType;
   readonly contentType: TopBarTabContentType;

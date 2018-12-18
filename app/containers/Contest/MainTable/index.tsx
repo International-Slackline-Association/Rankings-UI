@@ -2,8 +2,8 @@ import * as React from 'react';
 import styled, { colors, css } from 'styles/styled-components';
 import media from 'styles/media';
 import { SmallLoading } from 'components/Loading';
-import ProfileAvatar from 'components/Icons/ProfileAvatar';
-import CountryAvatar from 'components/Icons/CountryAvatar';
+import ProfileAvatar from 'components/Avatars/ProfileAvatar';
+import CountryAvatar from 'components/Avatars/CountryAvatar';
 import TableWrapper from 'components/TableWrapper';
 import Group from 'components/TableWrapper/Group';
 import ShowMoreButton from 'components/Button/ShowMoreButton';
@@ -12,20 +12,10 @@ import { EmptyContainer } from 'components/Containers';
 
 interface Props {
   tableItems: TableItemsResult;
-  onRowSelected?(id: string): void;
+  onItemClick(id: string): void;
   isItemsLoading: boolean | null;
   isNextItemsLoading: boolean | null;
   showMoreClicked(): void;
-}
-
-interface TableItem {
-  id: string;
-  rank: number;
-  name: string;
-  surname: string;
-  age: number;
-  country: string;
-  points: string;
 }
 
 interface State {}
@@ -37,9 +27,10 @@ class MainTable extends React.PureComponent<Props, State> {
       selectedItem: null,
     };
   }
-  private onTableRowClick = (item: TableItem) => {
-    return () => {
-      // this.props.onRowSelected(item.id);
+  private onItemClick = (id: string) => {
+    return event => {
+      event.preventDefault();
+      this.props.onItemClick(id);
     };
   };
   public render() {
@@ -62,15 +53,17 @@ class MainTable extends React.PureComponent<Props, State> {
               {items &&
                 items.map(item => {
                   return (
-                    <tr
-                      // onClick={this.onTableRowClick(item)}
-                      key={item.id}
-                    >
+                    <tr key={item.id}>
                       <td>{item.rank}</td>
                       <td>
                         <Group alignLeft={true}>
                           <ProfileAvatar imageUrl={item.smallProfileUrl} />
-                          <a href="#">{item.name + ' ' + item.surname}</a>
+                          <a
+                            href={`/Athlete/${item.id}`}
+                            onClick={this.onItemClick(item.id)}
+                          >
+                            {item.name + ' ' + item.surname}
+                          </a>
                         </Group>
                       </td>
                       <td>{item.age}</td>

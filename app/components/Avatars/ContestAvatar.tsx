@@ -1,29 +1,34 @@
 import * as React from 'react';
-import styled, { colors } from 'styles/styled-components';
+import styled from 'styles/styled-components';
 import isaLogo from './isaLogo.svg?file';
 
-interface Props {
+interface Props extends WrapperProps {
   imageUrl: string;
 }
 
+interface WrapperProps {
+  size?: 'small' | 'big';
+}
+
 function ContestAvatar(props: Props) {
+  const size = props.size || 'small';
   return (
-    <Wrapper>
+    <Wrapper size={size}>
       <img src={props.imageUrl} />
     </Wrapper>
   );
 }
-const Wrapper = styled.div`
+const Wrapper = styled<WrapperProps, 'div'>('div')`
   & img {
     flex: none;
     max-height: 100%;
     max-width: 100%;
   }
   display: flex;
-  width: 30px;
-  height: 30px;
+  width: ${props => (props.size === 'small' ? '30px' : '120px')};
+  height: ${props => (props.size === 'small' ? '30px' : '120px')};
   overflow: hidden;
-  border-radius: 30px;
+  border-radius: 120px;
   background-image: url(${isaLogo});
   background-size: contain;
   background-position: center;

@@ -17,45 +17,31 @@ import saga from './saga';
 
 import { RootState, ContainerState } from './types';
 import TabPanel from 'components/TabPanel';
-import MainTableSection, { SelectedFilters } from 'components/MainTableSection';
-import SelectedFilterButton from 'components/SelectedFilterButton';
+import MainTableSection from 'components/MainTableSection';
 import MainTable from './MainTable';
-import TableFilters from 'components/TableFilters';
-import TableDropdownFilter from 'components/TableDropdownFilter';
-import TableSearchInput from 'components/TableSearchInput';
 import * as actions from './actions';
-import {
-  SideInfoBoxContest,
-  SideInfoBoxContests,
-  ModalInfoBoxContest,
-  SideInfoBoxAthlete,
-  ModalInfoBoxAthlete,
-} from 'components/InfoBox';
-import Modal, { MobileOnlyModal } from 'components/Modal';
-import {
-  SelectedFilter,
-  SearchSuggestion,
-} from 'containers/GenericTabContent/types';
 import { RouteProps } from 'react-router';
 import { replace } from 'connected-react-router';
-import { TopBarTabContentType } from 'types/enums';
+import Header from './Header';
+import ContestInfo from './Info';
 
-// tslint:disable-next-line:no-empty-interface
-interface OwnProps extends RouteProps {}
+interface OwnProps extends RouteProps {
+  readonly id: string;
+  readonly discipline: string;
+}
 
-// tslint:disable-next-line:no-empty-interface
 interface StateProps {
-  id: ContainerState['id'];
-  contest: ContainerState['contest'];
-  tableResult: ContainerState['tableResult'];
-  isTableItemsLoading: ContainerState['isTableItemsLoading'];
-  isNextTableItemsLoading: ContainerState['isNextTableItemsLoading'];
+  readonly contest: ContainerState['contest'];
+  readonly isContestLoading: ContainerState['isContestLoading'];
+  readonly tableResult: ContainerState['tableResult'];
+  readonly isTableItemsLoading: ContainerState['isTableItemsLoading'];
+  readonly isNextTableItemsLoading: ContainerState['isNextTableItemsLoading'];
 }
 
 // tslint:disable-next-line:no-empty-interface
 interface DispatchProps {
-  dispatch: Dispatch;
-  updateLocation(path: string, id: string);
+  readonly dispatch: Dispatch;
+  updateLocation(path: string, id: string): void;
 }
 
 type Props = StateProps & DispatchProps & OwnProps;
@@ -63,8 +49,18 @@ type Props = StateProps & DispatchProps & OwnProps;
 interface State {}
 
 class Contest extends React.PureComponent<Props, State> {
-  constructor(props) {
+  constructor(props: Props) {
     super(props);
+    const { id, discipline } = this.getIdDisciplineFromPath(
+      props.location!.pathname,
+    );
+
+    if (!id || !discipline) {
+      this.props.dispatch(replace('/notfound'));
+    } else {
+      this.props.dispatch(actions.setIdDiscipline(id, discipline));
+    }
+
     if (!this.props.contest) {
       this.props.dispatch(actions.loadContest());
     }
@@ -73,17 +69,30 @@ class Contest extends React.PureComponent<Props, State> {
     }
   }
 
+  private getIdDisciplineFromPath = (path: string) => {
+    const [{}, {}, id, discipline] = path.split('/');
+    return { id: id, discipline: discipline };
+  };
+
   private loadMoreItems = () => {
     this.props.dispatch(actions.loadNextItems());
   };
 
+  private onAthleteClick = (id: string) => {
+    this.props.updateLocation('Athlete', id);
+  };
+
   public render() {
+    const { isContestLoading, contest } = this.props;
     return (
       <TabPanel>
+        <Header>Contest</Header>
+        <ContestInfo isLoading={isContestLoading} item={contest} />
+        <Header>Results</Header>
         <MainTableSection>
           <MainTable
             tableItems={this.props.tableResult}
-            // onRowSelected={this.onTableRowSelected}
+            onItemClick={this.onAthleteClick}
             isItemsLoading={this.props.isTableItemsLoading}
             showMoreClicked={this.loadMoreItems}
             isNextItemsLoading={this.props.isNextTableItemsLoading}
@@ -95,8 +104,8 @@ class Contest extends React.PureComponent<Props, State> {
 }
 
 const mapStateToProps = createStructuredSelector<RootState, StateProps>({
-  id: selectors.selectId(),
   contest: selectors.selectContest(),
+  isContestLoading: selectors.isContestLoading(),
   tableResult: selectors.selectTableResult(),
   isTableItemsLoading: selectors.selectIsTableItemsLoading(),
   isNextTableItemsLoading: selectors.selectIsNextTableItemsLoading(),
