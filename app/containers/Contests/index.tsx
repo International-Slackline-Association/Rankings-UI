@@ -22,7 +22,7 @@ import MainTable from './MainTable';
 
 import * as actions from './actions';
 
-import { replace } from 'connected-react-router';
+import { replace, push } from 'connected-react-router';
 import CategoriesFilters from 'components/CategoriesFilters';
 import {
   ISelectOption,
@@ -44,7 +44,7 @@ interface StateProps {
 
 interface DispatchProps {
   dispatch: Dispatch;
-  updateLocation(path: string, id: string, param1: string);
+  updateLocation(path: string, id: string, param1: string): void;
 }
 
 type Props = StateProps & DispatchProps & OwnProps;
@@ -154,7 +154,7 @@ function mapDispatchToProps(
     dispatch: dispatch,
     updateLocation: (path: string, id: string, param1: string) => {
       if (id) {
-        dispatch(replace(`/${path}/${id}/${param1}`));
+        dispatch(push(`/${path}/${id}/${param1}`));
       }
     },
   };

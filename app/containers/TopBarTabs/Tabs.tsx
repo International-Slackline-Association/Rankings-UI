@@ -17,7 +17,7 @@ const StyledTabs = styled(tabs)`
 
     z-index: ${zIndex('TopBarTabs')};
     justify-content: flex-start;
-    overflow-y: scroll;
+    overflow-x: scroll;
 
     & .flexContainer {
       height: ${AppConstants.TopBarHeight(breakpoints.mobile)}px;

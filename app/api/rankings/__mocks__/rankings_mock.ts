@@ -13,8 +13,7 @@ const resultsDefaultGenerator = (): APIRankingsResponse => {
         points: '240',
         smallProfileUrl:
           // tslint:disable-next-line:max-line-length
-          'https://scontent-ams3-1.cdninstagram.com/vp/401008e3ae8d67f3922cc63d7b863fec/5C18CB5B/t51.2885-15/sh0.08/e35/c180.0.720.720/s640x640/37960412_802453559925345_1127308561626431488_n.jpg',
-      },
+          'https://scontent.fsaw1-9.fna.fbcdn.net/v/t31.0-8/11021292_10153626177784202_311162237992041659_o.jpg?_nc_cat=101&_nc_ht=scontent.fsaw1-9.fna&oh=9015a73d27b2a9e08c09af4b04403897&oe=5CD75C62'      },
       {
         id: 'thomas-buckingham',
         rank: 2,
@@ -27,10 +26,10 @@ const resultsDefaultGenerator = (): APIRankingsResponse => {
           'http://www.slackattack.ch/wp-content/uploads/2015/11/Vorstand_Tom.jpg',
       },
       {
-        id: 'snould-veryLongSurname',
+        id: 'snould-veryveryveryLongSurname',
         rank: 3,
         name: 'Snould',
-        surname: 'VeryLongSurname',
+        surname: 'VeryVeryVeryLongSurname',
         age: 30,
         country: 'AU',
         points: '220',

@@ -1,18 +1,16 @@
 import * as React from 'react';
 import {
   FormControl,
-  InputLabel,
+  InputLabel as IL,
   Select,
   OutlinedInput,
 } from '@material-ui/core';
 import ReactDOM from 'react-dom';
-import SelectOptionContainer, {
-  CategorySelectProps,
-} from './Option/SelectOptionContainer';
+import SelectOptionContainer from './Option/SelectOptionContainer';
+import { ICategory } from './types';
 import styled from 'styles/styled-components';
-import { ICategory, ISelectOption } from './types';
-import { SelectProps } from '@material-ui/core/Select/Select';
 
+const InputLabel = IL as any;
 interface Props {
   category: ICategory;
 }
@@ -26,7 +24,7 @@ interface State {
 class CategorySelect extends React.PureComponent<Props, State> {
   private InputLabelRef: any;
 
-  constructor(props) {
+  constructor(props: Props) {
     super(props);
     let title = '';
     const option = this.props.category.options.find(
@@ -44,6 +42,8 @@ class CategorySelect extends React.PureComponent<Props, State> {
   }
   public componentDidMount() {
     const elem = ReactDOM.findDOMNode(this.InputLabelRef.current) as any;
+    console.log(this.InputLabelRef);
+    console.log(elem);
     if (elem) {
       this.setState({
         labelWidth: elem.offsetWidth,
@@ -72,11 +72,12 @@ class CategorySelect extends React.PureComponent<Props, State> {
   };
 
   public render() {
+    console.log('Render: ', this.InputLabelRef);
     return (
       <Wrapper>
         <FormControl variant="outlined">
           <InputLabel
-            innerRef={this.InputLabelRef}
+            ref={this.InputLabelRef}
             htmlFor="outlined-age-native-simple"
           >
             {this.props.category.title}

@@ -8,7 +8,7 @@ import { LocationChangeAction } from 'connected-react-router';
 
 type RootState = ApplicationRootState;
 type ContainerState = ContestState;
-type ContainerActions = ContestsActions;
+type ContainerActions = ContestActions;
 
 export { RootState, ContainerState, ContainerActions };
 
@@ -53,4 +53,4 @@ interface TableItem {
 }
 
 /* --- ACTIONS --- */
-type ContestsActions = ActionType<typeof actions> | LocationChangeAction;
+type ContestActions = ActionType<typeof actions> | LocationChangeAction;

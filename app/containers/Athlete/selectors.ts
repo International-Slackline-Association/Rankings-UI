@@ -2,61 +2,41 @@ import { createSelector } from 'reselect';
 import { ApplicationRootState } from 'types';
 import { initialState } from './reducer';
 
-const selectDomain = (state: ApplicationRootState) => {
+export const selectDomain = (state: ApplicationRootState) => {
   return state.athlete ? state.athlete : initialState;
 };
 
-const selectTopBarTabsDomain = (state: ApplicationRootState) => {
-  return state.topBarTabs;
-};
-
-const selectSelectedFilters = () =>
+export const selectId = () =>
   createSelector(selectDomain, substate => {
-    return substate.selectedFilters;
+    return substate.id;
   });
 
-const selectSelectedSearchInput = () =>
-  createSelector(selectDomain, substate => {
-    return substate.selectedSearchInput;
-  });
-
-const selectSuggestions = () =>
-  createSelector(selectDomain, substate => {
-    return substate.suggestions;
-  });
-
-const selectTableItems = () =>
-  createSelector(selectDomain, substate => {
-    return substate.tableItems;
-  });
-
-const selectIsTableItemsLoading = () =>
-  createSelector(selectDomain, substate => {
-    return substate.isTableItemsLoading;
-  });
-const selectDropdownFilters = () =>
-  createSelector(selectDomain, substate => {
-    return substate.dropdownFilters;
-  });
-
-const selectAthlete = () =>
+export const selectAthlete = () =>
   createSelector(selectDomain, substate => {
     return substate.athlete;
   });
 
-const selectId = () =>
-  createSelector(selectTopBarTabsDomain, substate => {
-    return substate.selectedId;
+export const isAthleteLoading = () =>
+  createSelector(selectDomain, substate => {
+    return substate.isAthleteLoading;
   });
 
-export {
-  selectDomain,
-  selectSelectedFilters,
-  selectSelectedSearchInput,
-  selectSuggestions,
-  selectTableItems,
-  selectIsTableItemsLoading,
-  selectDropdownFilters,
-  selectAthlete,
-  selectId,
-};
+export const selectCategories = () =>
+  createSelector(selectDomain, substate => {
+    return substate.categories;
+  });
+
+export const selectTableResult = () =>
+  createSelector(selectDomain, substate => {
+    return substate.tableResult;
+  });
+
+export const selectIsTableItemsLoading = () =>
+  createSelector(selectDomain, substate => {
+    return substate.isTableItemsLoading;
+  });
+
+export const selectIsNextTableItemsLoading = () =>
+  createSelector(selectDomain, substate => {
+    return substate.isNextTableItemsLoading;
+  });

@@ -59,7 +59,7 @@ class MainTable extends React.PureComponent<Props, State> {
                         <Group alignLeft={true}>
                           <ProfileAvatar imageUrl={item.smallProfileUrl} />
                           <a
-                            href={`/Athlete/${item.id}`}
+                            href={`/athlete/${item.id}`}
                             onClick={this.onItemClick(item.id)}
                           >
                             {item.name + ' ' + item.surname}

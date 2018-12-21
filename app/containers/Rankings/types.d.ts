@@ -19,13 +19,12 @@ export { RootState, ContainerState, ContainerActions };
 /* --- STATE --- */
 interface RankingsState {
   readonly categories: ICategory[] | null;
-  readonly athleteFilter: IFilter ;
-  readonly countryFilter: IFilter ;
+  readonly athleteFilter: IFilter;
+  readonly countryFilter: IFilter;
   readonly tableResult: TableItemsResult;
   readonly isTableItemsLoading: boolean | null;
   readonly nextTableItemsCursor: any;
   readonly isNextTableItemsLoading: boolean;
-
 }
 
 export interface ICategory extends ICategoryEntity {}

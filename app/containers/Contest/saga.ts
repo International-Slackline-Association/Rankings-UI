@@ -41,7 +41,7 @@ export function* getResults() {
     console.log('err: ', err);
   }
 }
-export default function* rankingsSaga() {
+export default function* contestSaga() {
   yield takeLatest(ActionTypes.LOAD_CONTEST, getContest);
   yield takeLatest(ActionTypes.LOAD_TABLE_ITEMS, getResults);
   yield takeLatest(ActionTypes.LOAD_NEXT_TABLE_ITEMS, getResults);

@@ -131,7 +131,6 @@ export default combineReducers<ContainerState, ContainerActions>({
     switch (action.type) {
       case LOCATION_CHANGE:
         const { path, id } = findPathAndId(action.payload.location.pathname);
-        console.log('selectedId: ', path, id);
         if (id && path != null) {
           return isPathStaticType(path) ? idOfStaticPath(path) : id;
         } else if (path && !isPathStaticType(path)) {

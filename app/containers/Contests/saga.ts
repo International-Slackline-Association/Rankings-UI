@@ -68,7 +68,7 @@ export function* getContests() {
   }
 }
 
-export default function* rankingsSaga() {
+export default function* contestsSaga() {
   yield takeLatest(ActionTypes.LOAD_CATEGORIES, getCategories);
   yield takeLatest(ActionTypes.LOAD_CONTEST_SUGGESTIONS, getContestSuggestions);
   yield takeLatest(ActionTypes.LOAD_TABLE_ITEMS, getContests);

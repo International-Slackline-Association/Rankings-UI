@@ -14,7 +14,7 @@ interface AthleteSuggestionItem {
 }
 
 const requestURL = '';
-const getAthleteSuggestions = (
+const getAthleteSuggestions = async (
   value: string,
 ): Promise<APIGetAthleteSuggestionsResponse> => {
   const url = requestURL + '/' + value;

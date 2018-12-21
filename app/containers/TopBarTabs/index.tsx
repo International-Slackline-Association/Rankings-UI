@@ -15,7 +15,7 @@ import { changeTopBarIndex, setTopBarTabs } from './actions';
 import { ContainerState, RootState } from './types';
 import TopBarButton from 'components/TopBarButton';
 import { TopBarTabType, TopBarTabContentType } from 'types/enums';
-import { replace } from 'connected-react-router';
+import { replace, push } from 'connected-react-router';
 
 import Background from './Background';
 import StyledTabs from './Tabs';
@@ -63,7 +63,6 @@ class TopBarTabs extends React.Component<Props> {
   ) => {
     const path = contentType;
     const idParam = id === '-2' || id === '-1' ? '' : id;
-    console.log('Discipline: ', discipline);
     this.props.updateLocation(path, idParam, discipline);
   };
 
@@ -122,12 +121,12 @@ function mapDispatchToProps(
     updateLocation: (path: string, id?: string, discipline?: string) => {
       if (id) {
         if (discipline) {
-          dispatch(replace(`/${path}/${id}/${discipline}`));
+          dispatch(push(`/${path}/${id}/${discipline}`));
         } else {
-          dispatch(replace(`/${path}/${id}`));
+          dispatch(push(`/${path}/${id}`));
         }
       } else {
-        dispatch(replace(`/${path}`));
+        dispatch(push(`/${path}`));
       }
     },
   };

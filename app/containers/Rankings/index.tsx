@@ -18,7 +18,7 @@ import TabPanel from 'components/TabPanel';
 import MainTableSection from 'components/MainTableSection';
 import MainTable from './MainTable';
 import * as actions from './actions';
-import { replace } from 'connected-react-router';
+import { replace, push } from 'connected-react-router';
 import CategoriesFilters from 'components/CategoriesFilters';
 import {
   ICategory,
@@ -98,7 +98,7 @@ class Rankings extends React.PureComponent<Props, State> {
   };
 
   private onAthleteClick = (id: string) => {
-    this.props.updateLocation('Athlete', id);
+    this.props.updateLocation('athlete', id);
   };
 
   private filters(): IFilter[] {
@@ -170,7 +170,7 @@ function mapDispatchToProps(
     dispatch: dispatch,
     updateLocation: (path: string, id: string) => {
       if (id) {
-        dispatch(replace(`/${path}/${id}`));
+        dispatch(push(`/${path}/${id}`));
       }
     },
   };

@@ -1,9 +1,3 @@
-/**
- *
- * Rankings
- *
- */
-
 import * as React from 'react';
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
@@ -21,7 +15,7 @@ import MainTableSection from 'components/MainTableSection';
 import MainTable from './MainTable';
 import * as actions from './actions';
 import { RouteProps } from 'react-router';
-import { replace } from 'connected-react-router';
+import { replace, push } from 'connected-react-router';
 import Header from './Header';
 import ContestInfo from './Info';
 
@@ -79,7 +73,7 @@ class Contest extends React.PureComponent<Props, State> {
   };
 
   private onAthleteClick = (id: string) => {
-    this.props.updateLocation('Athlete', id);
+    this.props.updateLocation('athlete', id);
   };
 
   public render() {
@@ -119,7 +113,7 @@ function mapDispatchToProps(
     dispatch: dispatch,
     updateLocation: (path: string, id: string) => {
       if (id) {
-        dispatch(replace(`/${path}/${id}`));
+        dispatch(push(`/${path}/${id}`));
       }
     },
   };

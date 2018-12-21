@@ -8,23 +8,24 @@ import InfoField from './InfoField';
 import media from 'styles/media';
 import { SmallLoading } from 'components/Loading';
 import { EmptyContainer } from 'components/Containers';
+import ProfileAvatar from 'components/Avatars/ProfileAvatar';
 
 interface Props {
   isLoading: boolean;
-  item: ContestItem | null;
+  item: AthleteItem | null;
 }
 
-interface ContestItem {
-  profileUrl: string;
+interface AthleteItem {
+  id: string;
   name: string;
-  discipline: string;
-  location: string;
-  date: string;
-  size: string;
-  prize: string;
+  surname: string;
+  country: string;
+  age: number;
+  profileUrl: string;
+  overallRank: number;
 }
 
-class ContestInfo extends React.PureComponent<Props> {
+class AthleteInfo extends React.PureComponent<Props> {
   public render() {
     const { item, isLoading } = this.props;
     return (
@@ -34,20 +35,18 @@ class ContestInfo extends React.PureComponent<Props> {
           {!isLoading && item ? (
             <React.Fragment>
               <LeftSection>
-                <ContestAvatar imageUrl={item.profileUrl} size={'big'} />
-                <Title>{item.name}</Title>
+                <ProfileAvatar imageUrl={item.profileUrl} size={'big'} />
+                <Title>
+                  {item.name} {item.surname}
+                </Title>
               </LeftSection>
               <RightSection>
-                <InfoField keyField={'Location'} valueField={item.location} />
-                <InfoField keyField={'Prize'} valueField={item.prize} />
+                <InfoField keyField={'Age'} valueField={item.age.toString()} />
+                <InfoField keyField={'Country'} valueField={item.country} />
                 <InfoField
-                  keyField={'Discipline'}
-                  valueField={item.discipline}
+                  keyField={'OverallRank'}
+                  valueField={item.overallRank.toString()}
                 />
-              </RightSection>
-              <RightSection style={{ marginTop: 0 }}>
-                <InfoField keyField={'Date'} valueField={item.date} />
-                <InfoField keyField={'Size'} valueField={item.size} />
               </RightSection>
             </React.Fragment>
           ) : isLoading ? (
@@ -113,4 +112,4 @@ const Wrapper = styled(ComponentBackground)`
   `};
 `;
 
-export default ContestInfo;
+export default AthleteInfo;

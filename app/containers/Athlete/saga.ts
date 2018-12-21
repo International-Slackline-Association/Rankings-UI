@@ -1,51 +1,60 @@
 import ActionTypes from './constants';
-import { selectSelectedSearchInput, selectId } from './selectors';
-import { setSuggestions, setTableItems, setAthlete } from './actions';
-
+import * as actions from './actions';
 import { takeLatest, call, put, select } from 'redux-saga/effects';
-import { delay } from 'redux-saga';
 
-import { apiGetAthlete, APIGetAthleteRequest, GetAthleteResponse } from './api';
-import { SearchSuggestion } from 'containers/GenericTabContent/types';
+import {
+  apiGetAthlete,
+  apiGetAthleteContests,
+  APIGetAthleteContestsRequest,
+  APIGetAthleteRequest,
+  APIGetAthleteResponse,
+  apiGetCategories,
+  APIAthleteContestsCategoriesResponse,
+} from './api';
+import { selectId } from './selectors';
+import { TableItemsResult } from './types';
 
-// import getRankingResults from 'api/rankings/results';
-
-export function* getContest() {
+export function* getAthlete() {
   const id = yield select(selectId());
   const request: APIGetAthleteRequest = {
     id: id,
   };
   try {
-    const result: GetAthleteResponse = yield call(apiGetAthlete, request);
-    yield put(setTableItems(result.items));
-    yield put(setAthlete(result.athlete));
+    const result: APIGetAthleteResponse = yield call(apiGetAthlete, request);
+    yield put(actions.setAthlete(result.athlete));
   } catch (err) {
     console.log('err: ', err);
-    // yield put(repoLoadingError(err));
-  }
-}
-export function* getSuggestions() {
-  const username = yield select(selectSelectedSearchInput());
-  yield delay(1000);
-  try {
-    // const repos = yield call(request, requestURL);
-    const suggestions: SearchSuggestion[] = [
-      { name: 'Temp 123' },
-      { name: 'Temp2' },
-      { name: 'Temp3' },
-      { name: 'Temp4' },
-      { name: 'Temp5' },
-      { name: 'Temp5' },
-      { name: 'Temp5' },
-      { name: 'Temp5' },
-    ];
-    yield put(setSuggestions(suggestions));
-  } catch (err) {
-    // yield put(repoLoadingError(err));
   }
 }
 
-export default function* rankingsSaga() {
-  yield takeLatest(ActionTypes.LOAD_SUGGESTIONS, getSuggestions);
-  yield takeLatest(ActionTypes.LOAD_TABLE_ITEMS, getContest);
+export function* getCategories() {
+  try {
+    const results: APIAthleteContestsCategoriesResponse = yield call(apiGetCategories);
+    yield put(actions.setCategories(results.items));
+  } catch (err) {
+    console.log('err: ', err);
+  }
+}
+
+export function* getResults() {
+  const id = yield select(selectId());
+  const request: APIGetAthleteContestsRequest = {
+    id: id,
+    year: '2018',
+  };
+  try {
+    const results: TableItemsResult = yield call(
+      apiGetAthleteContests,
+      request,
+    );
+    yield put(actions.addTableItems(results));
+  } catch (err) {
+    console.log('err: ', err);
+  }
+}
+export default function* athleteSaga() {
+  yield takeLatest(ActionTypes.LOAD_ATHLETE, getAthlete);
+  yield takeLatest(ActionTypes.LOAD_CATEGORIES, getCategories);
+  yield takeLatest(ActionTypes.LOAD_TABLE_ITEMS, getResults);
+  yield takeLatest(ActionTypes.LOAD_NEXT_TABLE_ITEMS, getResults);
 }

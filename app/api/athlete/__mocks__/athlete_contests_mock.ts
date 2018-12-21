@@ -1,13 +1,13 @@
-import { APIGetContestsResponse } from '../contests';
+import { APIAthleteContestsResponse } from '../athlete-contests';
 
-const generator = (): APIGetContestsResponse => {
+const generator = (): APIAthleteContestsResponse => {
   return {
     items: [
       {
         id: 'swiss-open_2018',
         name: 'Swiss Open',
         date: 1539383654,
-        prize: '400€',
+        rank: 1,
         size: 'Open Challenge',
         discipline: 'Aerial',
         smallProfileUrl:
@@ -18,7 +18,7 @@ const generator = (): APIGetContestsResponse => {
         id: 'china-masters_2018',
         name: 'China Master',
         date: 1539383654,
-        prize: '300€',
+        rank: 3,
         size: 'Masters',
         discipline: 'Sprint',
         smallProfileUrl:
@@ -29,7 +29,7 @@ const generator = (): APIGetContestsResponse => {
         id: 'redbull-slackship_2018',
         name: 'Redbull Slackship',
         date: 1539383654,
-        prize: '300€',
+        rank: 12,
         size: 'Masters',
         discipline: 'Jib-Static',
         smallProfileUrl:

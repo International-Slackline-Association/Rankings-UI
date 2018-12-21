@@ -3,44 +3,55 @@ import * as actions from './actions';
 import { ApplicationRootState } from 'types';
 import { TabContentState } from 'containers/GenericTabContent/types';
 import { LocationChangeAction } from 'connected-react-router';
+import { ICategoryEntity } from 'components/CategoriesFilters/types';
 
 /* --- EXPORTS --- */
 
 type RootState = ApplicationRootState;
 type ContainerState = AthleteState;
-type ContainerActions = ContestsActions;
+type ContainerActions = AthleteActions;
 
 export { RootState, ContainerState, ContainerActions, TableItem, AthleteItem };
 
 /* --- STATE --- */
 
-interface AthleteState extends TabContentState<TableItem> {
-  athlete: AthleteItem | null;
+interface AthleteState {
+  readonly id: string;
+  readonly athlete: AthleteItem | null;
+  readonly categories: ICategory[] | null;
+  readonly isAthleteLoading: boolean;
+  readonly tableResult: TableItemsResult;
+  readonly isTableItemsLoading: boolean;
+  readonly nextTableItemsCursor: any;
+  readonly isNextTableItemsLoading: boolean;
 }
 
+export interface TableItemsResult {
+  readonly items: TableItem[];
+  readonly next: any;
+}
+
+export interface ICategory extends ICategoryEntity {}
+
 interface AthleteItem {
-  id: string;
-  name: string;
-  surname: string;
-  age: number;
-  profileUrl: string;
-  overallRank: number;
-  topDisciplines: string[];
+  readonly id: string;
+  readonly name: string;
+  readonly surname: string;
+  readonly country: string;
+  readonly age: number;
+  readonly profileUrl: string;
+  readonly overallRank: number;
 }
 
 interface TableItem {
-  id: string;
-  name: string;
-  prize: string;
-  size: string;
-  date: string;
-  rank: number;
-  country: string;
-  location: string;
-  discipline: string;
-  disciplines: string[];
-  profileUrl: string;
+  readonly id: string;
+  readonly name: string;
+  readonly size: string;
+  readonly date: string;
+  readonly rank: number;
+  readonly discipline: string;
+  readonly smallProfileUrl: string;
 }
 
 /* --- ACTIONS --- */
-type ContestsActions = ActionType<typeof actions> | LocationChangeAction;
+type AthleteActions = ActionType<typeof actions> | LocationChangeAction;

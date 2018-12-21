@@ -1,5 +1,5 @@
 import axios, { dummyResponseConfig } from 'api/axios';
-import { AxiosRequestConfig, AxiosResponse } from 'axios';
+import { AxiosResponse } from 'axios';
 
 import mockResponse from './__mocks__/athlete_mock';
 
@@ -8,9 +8,7 @@ export interface APIGetAthleteRequest {
 }
 
 export interface APIGetAthleteResponse {
-  items: AthleteTableItem[];
   athlete: AthleteItem;
-  isNextPageAvailable: boolean;
 }
 
 interface AthleteItem {
@@ -21,29 +19,15 @@ interface AthleteItem {
   country: string;
   profileUrl: string;
   overallRank: number;
-  topDisciplines: string[];
-}
-
-interface AthleteTableItem {
-  id: string;
-  name: string;
-  prize: string;
-  size: string;
-  date: number;
-  rank: number;
-  city: string;
-  country: string;
-  discipline: string;
-  disciplines: string[];
-  profileUrl: string;
 }
 
 const requestURL = '';
-const getAthlete = (
+export const getAthlete = async (
   request: APIGetAthleteRequest,
 ): Promise<APIGetAthleteResponse> => {
+  const url = `${requestURL}/${request.id}`;
   return axios
-    .post(requestURL, request, dummyResponseConfig(dummyResponse, 1000))
+    .get(url, dummyResponseConfig(dummyResponse, 1000))
     .then(resp => {
       const result = resp.data as APIGetAthleteResponse;
       return result;
@@ -60,5 +44,3 @@ const dummyResponse = (): AxiosResponse<APIGetAthleteResponse> => {
     request: undefined,
   };
 };
-
-export default getAthlete;

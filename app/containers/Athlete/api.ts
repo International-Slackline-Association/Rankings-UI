@@ -1,39 +1,47 @@
 import moment from 'moment';
-import getContest, {
+
+import {
+  getAthlete,
   APIGetAthleteRequest,
   APIGetAthleteResponse,
 } from 'api/athlete';
-import { TableItem, AthleteItem } from './types';
-
-interface GetAthleteResponse {
-  items: TableItem[];
-  athlete: AthleteItem;
-  isNextPageAvailable: boolean;
-}
 
 export async function apiGetAthlete(request: APIGetAthleteRequest) {
-  const result: APIGetAthleteResponse = await getContest(request);
-  const resp: GetAthleteResponse = {
-    athlete: result.athlete,
-    items: result.items.map(item => {
-      const tableItem: TableItem = {
-        date: moment.unix(item.date).format('DD/MM/YYYY'),
-        disciplines: item.disciplines,
-        id: item.id,
-        location: `${item.city}, ${item.country}`,
-        name: item.name,
-        prize: item.prize,
-        profileUrl: item.profileUrl,
-        size: item.size,
-        country: item.country,
-        discipline: item.discipline,
-        rank: item.rank,
-      };
-      return tableItem;
-    }),
-    isNextPageAvailable: result.isNextPageAvailable,
-  };
-  return resp;
+  const result: APIGetAthleteResponse = await getAthlete(request);
+  return result;
 }
 
-export { GetAthleteResponse, APIGetAthleteRequest };
+export { APIGetAthleteRequest, APIGetAthleteResponse };
+
+import {
+  APIGetAthleteContestsRequest,
+  getAthleteContests,
+  APIAthleteContestsResponse,
+} from 'api/athlete/athlete-contests';
+import { TableItemsResult } from './types';
+import { getAthleteContestsCategories, APIAthleteContestsCategoriesResponse } from 'api/athlete/categories';
+
+export async function apiGetAthleteContests(
+  request: APIGetAthleteContestsRequest,
+): Promise<TableItemsResult> {
+  const rsp: APIAthleteContestsResponse = await getAthleteContests(request);
+  const result: TableItemsResult = {
+    items: rsp.items.map(item => {
+      return {
+        ...item,
+        date: moment.unix(item.date).format('DD/MM/YYYY'),
+      };
+    }),
+    next: rsp.next,
+  };
+  return result;
+}
+
+export { APIGetAthleteContestsRequest };
+
+export async function apiGetCategories() {
+  const results = await getAthleteContestsCategories();
+  return results;
+}
+
+export { APIAthleteContestsCategoriesResponse };

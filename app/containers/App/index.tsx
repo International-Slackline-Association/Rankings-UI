@@ -11,7 +11,11 @@ import Helmet from 'react-helmet';
 
 // Import the CSS reset, which HtmlWebpackPlugin transfers to the build folder
 // import styled, { ThemeProvider } from 'styled-components';
-import styled, { theme, ThemeProvider, muiTheme } from 'styles/styled-components';
+import styled, {
+  theme,
+  ThemeProvider,
+  muiTheme,
+} from 'styles/styled-components';
 import { Switch, Route, Redirect } from 'react-router';
 import NotFoundPage from 'containers/NotFoundPage';
 import { hot } from 'react-hot-loader';
@@ -58,11 +62,15 @@ class App extends React.Component<{}, {}> {
             <HeaderBar />
             <TopBarTabs />
             <Switch>
-              <Route exact path="/" component={Rankings} />
+              <Redirect exact from="/" to="/rankings" />
+              <Route exact path="/rankings" component={Rankings} />
               <Route exact path="/contests" component={Contests} />
-              <Route exact path="/contest/:id/:discipline" component={Contest} />
+              <Route
+                exact
+                path="/contest/:id/:discipline"
+                component={Contest}
+              />
               <Route exact path="/athlete/:id" component={Athlete} />
-              <Redirect from="/rankings" to="/" />
               <Route exact path="/notfound" component={NotFoundPage} />
               <Route component={NotFoundPage} />
             </Switch>
