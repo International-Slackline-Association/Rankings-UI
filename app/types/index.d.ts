@@ -7,6 +7,9 @@ import { ContainerState as RankingsState } from 'containers/Rankings/types';
 import { ContainerState as ContestsState } from 'containers/Contests/types';
 import { ContainerState as ContestState } from 'containers/Contest/types';
 import { ContainerState as AthleteState } from 'containers/Athlete/types';
+import { ContainerState as AdminLoginState } from 'containers/AdminLogin/types';
+import { ContainerState as AdminAthleteState } from 'containers/AdminAthlete/types';
+import { ContainerState as AdminTopBarTabs } from 'containers/AdminTopBarTabs/types';
 
 export interface LifeStore extends Store<{}> {
   injectedReducers?: any;
@@ -34,4 +37,7 @@ export interface ApplicationRootState {
   readonly contests: ContestsState;
   readonly contest: ContestState;
   readonly athlete: AthleteState;
+  readonly adminLogin: AdminLoginState;
+  readonly adminAthlete: AdminAthleteState;
+  readonly adminTopBarTabs: AdminTopBarTabs;
 }

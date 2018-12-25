@@ -27,10 +27,12 @@ const requestURL = '';
 export async function getAthleteContests(
   request: APIGetAthleteContestsRequest,
 ): Promise<APIAthleteContestsResponse> {
-  return axios.post(requestURL, request, dummyResponseConfig(dummyResponse, 1000)).then(resp => {
-    const result = resp.data as APIAthleteContestsResponse;
-    return result;
-  });
+  return axios
+    .post(requestURL, request, dummyResponseConfig(dummyResponse, 1000))
+    .then(resp => {
+      const result = resp.data as APIAthleteContestsResponse;
+      return result;
+    });
 }
 
 const dummyResponse = (): AxiosResponse<APIAthleteContestsResponse> => {
@@ -43,4 +45,3 @@ const dummyResponse = (): AxiosResponse<APIAthleteContestsResponse> => {
     request: undefined,
   };
 };
-

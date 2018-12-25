@@ -21,7 +21,9 @@ interface ISelectOption {
 }
 
 const requestURL = '';
-export async function getAthleteContestsCategories(): Promise<APIAthleteContestsCategoriesResponse> {
+export async function getAthleteContestsCategories(): Promise<
+  APIAthleteContestsCategoriesResponse
+> {
   return axios
     .get(requestURL, dummyResponseConfig(dummyResponse, 1000))
     .then(resp => {
@@ -30,7 +32,9 @@ export async function getAthleteContestsCategories(): Promise<APIAthleteContests
     });
 }
 
-const dummyResponse = (): AxiosResponse<APIAthleteContestsCategoriesResponse> => {
+const dummyResponse = (): AxiosResponse<
+  APIAthleteContestsCategoriesResponse
+> => {
   return {
     data: mockResponse(),
     status: 200,

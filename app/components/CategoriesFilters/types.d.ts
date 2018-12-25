@@ -9,7 +9,7 @@ export interface ICategory extends ICategoryEntity {
 }
 
 export interface IFilterEntity {
-  readonly  title: string;
+  readonly title: string;
   readonly placeholder: string;
   readonly suggestions?: ISelectOption[];
   readonly selectedValue?: string;
@@ -22,7 +22,7 @@ export interface IFilter extends IFilterEntity {
 }
 
 export interface ISelectOption {
-  readonly  value: string;
+  readonly value: string;
   readonly label: string;
   readonly isContainerStyle?: boolean;
   readonly inlineLevel?: number;

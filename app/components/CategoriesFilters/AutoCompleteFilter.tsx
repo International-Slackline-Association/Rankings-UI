@@ -108,7 +108,6 @@ class AutoCompleteFilter extends React.PureComponent<Props, State> {
           }}
         >
           <AutosuggestChildWrapperDiv>
-            {' '}
             {options.children}
           </AutosuggestChildWrapperDiv>
         </ComponentBackground>

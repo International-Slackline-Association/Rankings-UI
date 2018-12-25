@@ -6,7 +6,7 @@ import ProfileAvatar from 'components/Avatars/ProfileAvatar';
 import CountryAvatar from 'components/Avatars/CountryAvatar';
 import TableWrapper from 'components/TableWrapper';
 import Group from 'components/TableWrapper/Group';
-import ShowMoreButton from 'components/Button/ShowMoreButton';
+import ShowMoreButton from 'components/LoadableButton/ShowMoreButton';
 import { TableItemsResult } from '../types';
 import { EmptyContainer } from 'components/Containers';
 

@@ -19,7 +19,10 @@ import {
   APIAthleteContestsResponse,
 } from 'api/athlete/athlete-contests';
 import { TableItemsResult } from './types';
-import { getAthleteContestsCategories, APIAthleteContestsCategoriesResponse } from 'api/athlete/categories';
+import {
+  getAthleteContestsCategories,
+  APIAthleteContestsCategoriesResponse,
+} from 'api/athlete/categories';
 
 export async function apiGetAthleteContests(
   request: APIGetAthleteContestsRequest,

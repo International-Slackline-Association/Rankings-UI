@@ -26,16 +26,17 @@ module.exports = options => ({
   module: {
     rules: [
       {
-        test: /\.tsx?$/,
-        use: options.tsLoaders,
-      },
-      {
         test: /\.js$/, // Transform all .js files required somewhere with Babel
         exclude: /node_modules/,
         use: {
           loader: 'babel-loader',
           options: options.babelQuery,
         },
+      },
+      {
+        test: /\.tsx?$/,
+        exclude: /node_modules/,
+        use: options.tsLoaders,
       },
       {
         // Preprocess our own .css files
@@ -132,6 +133,15 @@ module.exports = options => ({
     new webpack.DefinePlugin({
       'process.env': {
         NODE_ENV: JSON.stringify(process.env.NODE_ENV),
+        API_ENV: JSON.stringify(process.env.API_ENV),
+        APP_VERSION: JSON.stringify(require('../../package.json').version), // eslint-disable-line
+        IDENTITY_POOL_ID: JSON.stringify(process.env.IDENTITY_POOL_ID),
+        USER_POOL_ID: JSON.stringify(process.env.USER_POOL_ID),
+        REGION: JSON.stringify(process.env.REGION),
+        USER_POOL_WEB_CLIENT_ID: JSON.stringify(
+          process.env.USER_POOL_WEB_CLIENT_ID,
+        ),
+        API_GATEWAY_ENDPOINT: JSON.stringify(process.env.API_GATEWAY_ENDPOINT),
       },
     }),
   ]),

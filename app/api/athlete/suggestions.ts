@@ -18,17 +18,13 @@ const getAthleteSuggestions = async (
   value: string,
 ): Promise<APIGetAthleteSuggestionsResponse> => {
   const url = requestURL + '/' + value;
-  return axios
-    .get(url, dummyResponseConfig(dummyResponse, 1000))
-    .then(resp => {
-      const result = resp.data as APIGetAthleteSuggestionsResponse;
-      return result;
-    });
+  return axios.get(url, dummyResponseConfig(dummyResponse, 1000)).then(resp => {
+    const result = resp.data as APIGetAthleteSuggestionsResponse;
+    return result;
+  });
 };
 
-const dummyResponse = (): AxiosResponse<
-  APIGetAthleteSuggestionsResponse
-> => {
+const dummyResponse = (): AxiosResponse<APIGetAthleteSuggestionsResponse> => {
   return {
     data: mockResponse(),
     status: 200,

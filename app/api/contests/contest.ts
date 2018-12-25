@@ -29,14 +29,11 @@ export async function getContest(
   request: APIGetContestRequest,
 ): Promise<APIGetContestResponse> {
   const url = `${requestURL}/${request.id}/${request.discipline}`;
-  return axios
-    .get(url, dummyResponseConfig(dummyResponse, 1000))
-    .then(resp => {
-      const result = resp.data as APIGetContestResponse;
-      return result;
-    });
+  return axios.get(url, dummyResponseConfig(dummyResponse, 1000)).then(resp => {
+    const result = resp.data as APIGetContestResponse;
+    return result;
+  });
 }
-
 
 const dummyResponse = (): AxiosResponse<APIGetContestResponse> => {
   return {
@@ -48,4 +45,3 @@ const dummyResponse = (): AxiosResponse<APIGetContestResponse> => {
     request: undefined,
   };
 };
-

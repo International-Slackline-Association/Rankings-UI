@@ -29,7 +29,9 @@ export function* getAthlete() {
 
 export function* getCategories() {
   try {
-    const results: APIAthleteContestsCategoriesResponse = yield call(apiGetCategories);
+    const results: APIAthleteContestsCategoriesResponse = yield call(
+      apiGetCategories,
+    );
     yield put(actions.setCategories(results.items));
   } catch (err) {
     console.log('err: ', err);

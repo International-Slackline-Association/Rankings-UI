@@ -138,7 +138,7 @@ module.exports = require('./webpack.base.babel')({
       short_name: 'ISA Rankings',
       description: 'ISA Rankings Application',
       background_color: '#fafafa',
-      theme_color: '#b1624d',
+      theme_color: '#00A099',
       inject: true,
       ios: true,
       icons: [

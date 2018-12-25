@@ -9,3 +9,6 @@ stats.json
 npm-debug.log
 .idea
 .awcache
+.env.development
+.env.production
+.env.test

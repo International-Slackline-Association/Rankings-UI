@@ -42,8 +42,6 @@ class CategorySelect extends React.PureComponent<Props, State> {
   }
   public componentDidMount() {
     const elem = ReactDOM.findDOMNode(this.InputLabelRef.current) as any;
-    console.log(this.InputLabelRef);
-    console.log(elem);
     if (elem) {
       this.setState({
         labelWidth: elem.offsetWidth,
@@ -72,7 +70,6 @@ class CategorySelect extends React.PureComponent<Props, State> {
   };
 
   public render() {
-    console.log('Render: ', this.InputLabelRef);
     return (
       <Wrapper>
         <FormControl variant="outlined">

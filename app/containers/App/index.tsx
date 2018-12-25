@@ -30,6 +30,10 @@ import Contests from 'containers/Contests/Loadable';
 import Contest from 'containers/Contest/Loadable';
 import Athlete from 'containers/Athlete/Loadable';
 import { MuiThemeProvider } from '@material-ui/core';
+import AuthenticatorHoc from 'containers/Authenticator';
+import AdminAthlete from 'containers/AdminAthlete/Loadable';
+import AdminLogin from 'containers/AdminLogin/Loadable';
+import AdminTopBarTabs from 'containers/AdminTopBarTabs';
 
 const AppWrapper = styled.div`
   width: 100%;
@@ -60,19 +64,43 @@ class App extends React.Component<{}, {}> {
               <meta name="description" content="ISA Rankings" />
             </Helmet>
             <HeaderBar />
-            <TopBarTabs />
             <Switch>
-              <Redirect exact from="/" to="/rankings" />
-              <Route exact path="/rankings" component={Rankings} />
-              <Route exact path="/contests" component={Contests} />
-              <Route
-                exact
-                path="/contest/:id/:discipline"
-                component={Contest}
-              />
-              <Route exact path="/athlete/:id" component={Athlete} />
-              <Route exact path="/notfound" component={NotFoundPage} />
-              <Route component={NotFoundPage} />
+              <Route path="/admin">
+                <Switch>
+                  <Redirect exact from="/admin" to="/admin/login" />
+                  <Route exact path="/admin/login" component={AdminLogin} />
+                  <Route path="/admin/">
+                    <React.Fragment>
+                      <AdminTopBarTabs />
+                      <Switch>
+                        <Route
+                          exact
+                          path="/admin/athlete"
+                          component={AuthenticatorHoc(AdminAthlete)}
+                        />
+                      </Switch>
+                    </React.Fragment>
+                  </Route>
+                </Switch>
+              </Route>
+              <Route path="/">
+                <React.Fragment>
+                  <TopBarTabs />
+                  <Switch>
+                    <Redirect exact from="/" to="/rankings" />
+                    <Route exact path="/rankings" component={Rankings} />
+                    <Route exact path="/contests" component={Contests} />
+                    <Route
+                      exact
+                      path="/contest/:id/:discipline"
+                      component={Contest}
+                    />
+                    <Route exact path="/athlete/:id" component={Athlete} />
+                    <Route exact path="/notfound" component={NotFoundPage} />
+                    <Route component={NotFoundPage} />
+                  </Switch>
+                </React.Fragment>
+              </Route>
             </Switch>
             <GlobalStyle />
           </AppWrapper>

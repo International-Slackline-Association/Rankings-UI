@@ -1,4 +1,3 @@
-
 import { combineReducers } from 'redux';
 
 import { ContainerState, ContainerActions } from './types';

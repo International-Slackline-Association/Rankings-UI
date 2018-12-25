@@ -26,12 +26,10 @@ export const getAthlete = async (
   request: APIGetAthleteRequest,
 ): Promise<APIGetAthleteResponse> => {
   const url = `${requestURL}/${request.id}`;
-  return axios
-    .get(url, dummyResponseConfig(dummyResponse, 1000))
-    .then(resp => {
-      const result = resp.data as APIGetAthleteResponse;
-      return result;
-    });
+  return axios.get(url, dummyResponseConfig(dummyResponse, 1000)).then(resp => {
+    const result = resp.data as APIGetAthleteResponse;
+    return result;
+  });
 };
 
 const dummyResponse = (): AxiosResponse<APIGetAthleteResponse> => {

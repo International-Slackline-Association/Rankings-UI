@@ -13,7 +13,7 @@ const buttonLoadingAnimtionSpin = keyframes`
   }
 `;
 
-const Button = styled<Props, 'button'>('button')`
+const LoadableButton = styled<Props, 'button'>('button')`
   /* ${clickEffect} */
   display: block;
   border: none;
@@ -35,8 +35,7 @@ const Button = styled<Props, 'button'>('button')`
   ${props =>
     props.loading &&
     css`
-      background-color: ${p =>
-        `${lighten(0.05, p.theme.primary)} !important`};
+      background-color: ${p => `${lighten(0.05, p.theme.primary)} !important`};
       color: rgba(0, 0, 0, 0) !important;
 
       &::after {
@@ -88,4 +87,4 @@ const Button = styled<Props, 'button'>('button')`
 //   `};
 // `;
 
-export default Button;
+export default LoadableButton;

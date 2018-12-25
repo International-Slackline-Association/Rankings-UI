@@ -21,7 +21,9 @@ interface ISelectOption {
 }
 
 const requestURL = '';
-export async function getRankingCategories(): Promise<APIRankingCategoriesResponse> {
+export async function getRankingCategories(): Promise<
+  APIRankingCategoriesResponse
+> {
   return axios
     .get(requestURL, dummyResponseConfig(dummyResponse, 1000))
     .then(resp => {

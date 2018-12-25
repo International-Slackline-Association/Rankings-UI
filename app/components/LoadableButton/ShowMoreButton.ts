@@ -1,7 +1,7 @@
-import Button from '../Button';
+import LoadableButton from '../LoadableButton';
 import styled from 'styles/styled-components';
 
-const ShowMoreButton = styled(Button)`
+const ShowMoreButton = styled(LoadableButton)`
   margin: 0 auto;
 `;
 

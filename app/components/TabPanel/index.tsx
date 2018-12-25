@@ -5,8 +5,8 @@ import media from 'styles/media';
 import breakpoints from 'styles/breakpoints';
 import AppConstants from 'styles/AppConstants';
 
-const TabPanel: React.SFC<{}> = props => {
-  return <Wrapper>{props.children}</Wrapper>;
+const TabPanel: React.SFC<{ className?: string }> = props => {
+  return <Wrapper className={props.className}>{props.children}</Wrapper>;
 };
 
 const padding = (size: number) => AppConstants.LeftPadding(size);
@@ -24,7 +24,6 @@ const Wrapper = styled.div`
   padding: 24px ${padding(breakpoints.mobile)}px 8px
     ${padding(breakpoints.mobile)}px;
   min-height: calc(100vh - 36px - 36px - 36px);
-  /* position: relative; */
 
   ${media.tablet`
     min-height: calc(100vh - 36px - 36px - 36px);

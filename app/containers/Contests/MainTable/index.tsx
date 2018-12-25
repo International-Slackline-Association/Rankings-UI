@@ -7,7 +7,7 @@ import Group from 'components/TableWrapper/Group';
 import ContestAvatar from 'components/Avatars/ContestAvatar';
 import { EmptyContainer } from 'components/Containers';
 import { TableItemsResult } from '../types';
-import ShowMoreButton from 'components/Button/ShowMoreButton';
+import ShowMoreButton from 'components/LoadableButton/ShowMoreButton';
 
 interface Props {
   tableItems: TableItemsResult;

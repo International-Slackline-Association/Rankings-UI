@@ -4,7 +4,7 @@ import media from 'styles/media';
 import { SmallLoading } from 'components/Loading';
 import TableWrapper from 'components/TableWrapper';
 import Group from 'components/TableWrapper/Group';
-import ShowMoreButton from 'components/Button/ShowMoreButton';
+import ShowMoreButton from 'components/LoadableButton/ShowMoreButton';
 import { TableItemsResult } from '../types';
 import { EmptyContainer } from 'components/Containers';
 import ContestAvatar from 'components/Avatars/ContestAvatar';

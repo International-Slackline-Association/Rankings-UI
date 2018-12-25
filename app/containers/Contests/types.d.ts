@@ -2,7 +2,10 @@ import { ActionType } from 'typesafe-actions';
 import * as actions from './actions';
 import { ApplicationRootState } from 'types';
 import { TabContentState } from 'containers/GenericTabContent/types';
-import { ICategoryEntity, ISelectOption } from 'components/CategoriesFilters/types';
+import {
+  ICategoryEntity,
+  ISelectOption,
+} from 'components/CategoriesFilters/types';
 
 /* --- EXPORTS --- */
 

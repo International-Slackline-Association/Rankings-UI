@@ -45,4 +45,3 @@ const dummyResponse = (): AxiosResponse<APIContestResultsResponse> => {
     request: undefined,
   };
 };
-
