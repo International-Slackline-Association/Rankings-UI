@@ -10,18 +10,12 @@ const selectAdminAthleteDomain = (state: ApplicationRootState) => {
   return state.adminAthlete ? state.adminAthlete : initialState;
 };
 
-/**
- * Other specific selectors
- */
-
-/**
- * Default selector used by AdminAthlete
- */
-
-const selectAdminAthlete = () =>
+export const selectAthleteFilter = () =>
   createSelector(selectAdminAthleteDomain, substate => {
-    return substate;
+    return substate.athleteFilter;
   });
 
-export default selectAdminAthlete;
-export { selectAdminAthleteDomain };
+export const selectAthlete = () =>
+  createSelector(selectAdminAthleteDomain, substate => {
+    return substate.athlete;
+  });

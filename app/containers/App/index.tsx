@@ -22,7 +22,6 @@ import { hot } from 'react-hot-loader';
 import HeaderBar from 'components/NavBar';
 import media from 'styles/media';
 
-import 'bootstrap/dist/css/bootstrap.min.css';
 import TopBarTabs from 'containers/TopBarTabs';
 import Rankings from 'containers/Rankings/Loadable';
 import GlobalStyle from './GlobalStyle';

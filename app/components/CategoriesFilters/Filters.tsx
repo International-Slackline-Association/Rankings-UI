@@ -19,15 +19,17 @@ class Filters extends React.PureComponent<Props> {
         <Section type="filter" width="87.44px" />
         <VerticalDivider />
         {filters.map(filter => (
-          <AutoCompleteFilter
-            key={filter.title}
-            title={filter.title}
-            placeholder={filter.placeholder}
-            loadSuggestions={filter.loadSuggestions}
-            suggestionSelected={filter.suggestionSelected}
-            suggestions={filter.suggestions}
-            selectedValue={filter.selectedValue}
-          />
+          <FilterWrapper>
+            <AutoCompleteFilter
+              key={filter.title}
+              title={filter.title}
+              placeholder={filter.placeholder}
+              loadSuggestions={filter.loadSuggestions}
+              suggestionSelected={filter.suggestionSelected}
+              suggestions={filter.suggestions}
+              selectedValue={filter.selectedValue}
+            />
+          </FilterWrapper>
         ))}
       </Wrapper>
     );
@@ -38,6 +40,11 @@ const Wrapper = styled.div`
   display: flex;
   justify-content: flex-start;
   align-self: auto;
+`;
+
+const FilterWrapper = styled.div`
+  margin: 0px 16px;
+
 `;
 
 export default Filters;

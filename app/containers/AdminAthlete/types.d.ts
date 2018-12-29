@@ -1,10 +1,25 @@
 import { ActionType } from 'typesafe-actions';
 import * as actions from './actions';
 import { ApplicationRootState } from 'types';
+import { ISelectOption } from 'components/CategoriesFilters/types';
+
+export interface Athlete {
+  name: string;
+  surname: string;
+}
+
+export interface AthleteFormValues extends Athlete {}
 
 /* --- STATE --- */
 interface AdminAthleteState {
-  readonly default: any;
+  readonly athleteFilter: IFilter;
+  readonly athlete: Athlete | null;
+  readonly isAthleteLoading: boolean;
+}
+
+export interface IFilter {
+  readonly selectedValue?: string;
+  readonly suggestions: ISelectOption[];
 }
 
 /* --- ACTIONS --- */

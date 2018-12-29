@@ -1,24 +1,25 @@
 import * as React from 'react';
 import deburr from 'lodash/deburr';
-import Autosuggest from 'react-autosuggest';
+import Autosuggest, {
+  AutosuggestProps,
+  RenderInputComponent,
+} from 'react-autosuggest';
 import match from 'autosuggest-highlight/match';
 import parse from 'autosuggest-highlight/parse';
 import TextField from '@material-ui/core/TextField';
 import ComponentBackground from 'components/ComponentBackground';
 import Popper from '@material-ui/core/Popper';
-import {
-  AutosuggestChildWrapperDiv,
-  AutosuggestsWrapperDiv,
-} from 'components/AutosuggestWrapper';
+import { AutosuggestChildWrapperDiv } from 'components/AutosuggestWrapper';
 import styled from 'styles/styled-components';
 import InputAdornment from '@material-ui/core/InputAdornment';
 import IconClose from 'components/Icons/IconClose';
 import { DefaultButton } from 'styles/mixins';
 import { TinyLoading } from 'components/Loading';
-import { ISelectOption, IFilter } from './types';
+import { IFilter, ISelectOption } from 'components/CategoriesFilters/types';
 
 interface Props extends IFilter {
-  className?: string;
+  onChange(e: any): void;
+  inputName: string;
 }
 
 interface State {
@@ -70,12 +71,22 @@ class AutoCompleteFilter extends React.PureComponent<Props, State> {
     }
   }
 
-  private renderInputComponent = inputProps => {
+  private onInputChanged = (onChangeHandler: any) => {
+    return (evt: any) => {
+      this.props.onChange(evt);
+      onChangeHandler(evt);
+    };
+  };
+
+  private renderInputComponent: RenderInputComponent<
+    ISelectOption
+  > = inputProps => {
     // tslint:disable-next-line:no-empty
     const { classes, inputRef = () => {}, ref, ...other } = inputProps;
+    console.log(other);
+    // console.log(this.props);
     return (
       <TextField
-        // fullWidth
         InputProps={{
           inputRef: node => {
             ref(node);
@@ -96,7 +107,9 @@ class AutoCompleteFilter extends React.PureComponent<Props, State> {
             </InputAdornment>
           ),
         }}
-        {...other}
+        {...other as any}
+        name={this.props.inputName}
+        onChange={this.onInputChanged(other.onChange)}
       />
     );
   };
@@ -170,20 +183,16 @@ class AutoCompleteFilter extends React.PureComponent<Props, State> {
   };
 
   public render() {
-    const autosuggestProps = {
-      renderInputComponent: this.renderInputComponent,
-      suggestions: this.state.suggestions,
-      onSuggestionsFetchRequested: this.handleSuggestionsFetchRequested,
-      onSuggestionsClearRequested: this.handleSuggestionsClearRequested,
-      getSuggestionValue: this.getSuggestionValue,
-      renderSuggestion: renderSuggestion,
-      renderSuggestionsContainer: this.renderSuggestionsContainer,
-    };
-
     return (
-      <Wrapper className={this.props.className}>
-        <Autosuggest
-          {...autosuggestProps}
+      <Wrapper>
+        <Autosuggest<ISelectOption>
+          renderInputComponent={this.renderInputComponent}
+          suggestions={this.state.suggestions}
+          onSuggestionsFetchRequested={this.handleSuggestionsFetchRequested}
+          onSuggestionsClearRequested={this.handleSuggestionsClearRequested}
+          getSuggestionValue={this.getSuggestionValue}
+          renderSuggestion={renderSuggestion}
+          renderSuggestionsContainer={this.renderSuggestionsContainer}
           inputProps={{
             label: this.props.title,
             placeholder: this.props.placeholder,
@@ -209,7 +218,7 @@ const Button = styled(DefaultButton)`
 `;
 
 const Wrapper = styled.div`
-  /* margin: 0px 16px; */
+  margin: 0px 16px;
   width: 156px;
 
   .react-autosuggest__input {

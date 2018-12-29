@@ -1,36 +1,42 @@
-/*
- *
- * AdminAthlete reducer
- *
- */
-
 import { combineReducers } from 'redux';
 
 import ActionTypes from './constants';
 import { ContainerState, ContainerActions } from './types';
 
 export const initialState: ContainerState = {
-  default: null,
+  athleteFilter: { suggestions: [] },
+  athlete: null,
+  isAthleteLoading: false,
 };
 
-// function adminAthleteReducer(state: ContainerState = initialState, action: ContainerActions ) {
-//   switch (action.type) {
-//     case ActionTypes.DEFAULT_ACTION:
-//       return state;
-//     default:
-//       return state;
-//   }
-// }
-
-// export default adminAthleteReducer;
-
 export default combineReducers<ContainerState, ContainerActions>({
-  default: (state = initialState, action) => {
+  athleteFilter: (state = initialState.athleteFilter, action) => {
     switch (action.type) {
-      case ActionTypes.DEFAULT_ACTION:
-        return state;
-      default:
-        return state;
+      case ActionTypes.SET_ATHLETE_FILTER_SELECTED_VALUE:
+        return { ...state, selectedValue: action.payload };
+      case ActionTypes.SET_ATHLETE_SUGGESTIONS:
+        return { ...state, suggestions: action.payload };
+      case ActionTypes.LOAD_ATHLETE_SUGGESTIONS:
+        return { ...state, suggestions: [] };
     }
+    return state;
+  },
+  athlete: (state = initialState.athlete, action) => {
+    switch (action.type) {
+      case ActionTypes.LOAD_ATHLETE:
+        return null;
+      case ActionTypes.SET_ATHLETE:
+        return action.payload;
+    }
+    return state;
+  },
+  isAthleteLoading: (state = initialState.isAthleteLoading, action) => {
+    switch (action.type) {
+      case ActionTypes.LOAD_ATHLETE:
+        return true;
+      case ActionTypes.SET_ATHLETE:
+        return false;
+    }
+    return state;
   },
 });

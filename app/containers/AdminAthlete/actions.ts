@@ -1,12 +1,18 @@
-/*
- *
- * AdminAthlete actions
- *
- */
-
 import { action } from 'typesafe-actions';
-import {} from './types';
+import { Athlete } from './types';
 
 import ActionTypes from './constants';
+import { ISelectOption } from 'components/CategoriesFilters/types';
 
-export const defaultAction = () => action(ActionTypes.DEFAULT_ACTION);
+export const loadAthleteSuggestions = (value: string) =>
+  action(ActionTypes.LOAD_ATHLETE_SUGGESTIONS, value);
+
+export const setAthleteSuggestions = (items: ISelectOption[]) =>
+  action(ActionTypes.SET_ATHLETE_SUGGESTIONS, items);
+
+export const setAthleteFilterSelectedValue = (value: string) =>
+  action(ActionTypes.SET_ATHLETE_FILTER_SELECTED_VALUE, value);
+
+export const loadAthlete = (id: string) => action(ActionTypes.LOAD_ATHLETE, id);
+
+export const setAthlete = (athlete: Athlete) => action(ActionTypes.SET_ATHLETE, athlete);
