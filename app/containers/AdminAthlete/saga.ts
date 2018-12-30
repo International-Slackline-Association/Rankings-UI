@@ -9,6 +9,8 @@ import {
   apiGetAthleteSuggestions,
   apiAdminGetAthlete,
   APIAdminGetAthleteResponse,
+  APIGetCountrySuggestionsResponse,
+  apiGetCountrySuggestions,
 } from './api';
 
 export function* getAthleteSuggestions(
@@ -46,7 +48,33 @@ export function* getAthlete(
   }
 }
 
+export function* getCountrySuggestions(
+  action: ReturnType<typeof actions.loadCountrySuggestions>,
+) {
+  yield call(delay, 500);
+  const value = action.payload;
+  try {
+    const results: APIGetCountrySuggestionsResponse = yield call(
+      apiGetCountrySuggestions,
+      value,
+    );
+    const options = results.items.map(item => {
+      const option: ISelectOption = {
+        value: item.code,
+        label: `${item.code} - (${item.name})`,
+      };
+      return option;
+    });
+    yield put(actions.setCountrySuggestions(options));
+  } catch (err) {
+    console.log('err: ', err);
+  }
+}
+
+
 export default function* adminAthleteSaga() {
   yield takeLatest(ActionTypes.LOAD_ATHLETE_SUGGESTIONS, getAthleteSuggestions);
   yield takeLatest(ActionTypes.LOAD_ATHLETE, getAthlete);
+  yield takeLatest(ActionTypes.LOAD_COUNTRY_SUGGESTIONS, getCountrySuggestions);
+
 }

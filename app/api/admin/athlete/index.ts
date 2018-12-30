@@ -7,10 +7,16 @@ export interface APIAdminGetAthleteResponse {
   athlete: AthleteItem;
 }
 
-interface AthleteItem {
+export interface AthleteItem {
   id: string;
   name: string;
   surname: string;
+  profileUrl: string;
+  country: string;
+  gender: number;
+  birthdate: string;
+  email: string;
+  city: string;
 }
 
 const requestURL = '';

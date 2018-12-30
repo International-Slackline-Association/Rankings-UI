@@ -24,7 +24,7 @@ const resultsDefaultGenerator = (): APIRankingsResponse => {
         country: 'CH',
         points: '230',
         smallProfileUrl:
-          'http://www.slackattack.ch/wp-content/uploads/2015/11/Vorstand_Tom.jpg',
+          'http://www.slackattack.ch/wp-content/uploads/2015/11/Vorstand_Tom2.jpg',
       },
       {
         id: 'snould-veryveryveryLongSurname',

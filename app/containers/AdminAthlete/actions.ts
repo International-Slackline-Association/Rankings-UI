@@ -15,4 +15,14 @@ export const setAthleteFilterSelectedValue = (value: string) =>
 
 export const loadAthlete = (id: string) => action(ActionTypes.LOAD_ATHLETE, id);
 
-export const setAthlete = (athlete: Athlete) => action(ActionTypes.SET_ATHLETE, athlete);
+export const setAthlete = (athlete: Athlete) =>
+  action(ActionTypes.SET_ATHLETE, athlete);
+
+export const loadCountrySuggestions = (value: string) =>
+  action(ActionTypes.LOAD_COUNTRY_SUGGESTIONS, value);
+
+export const setCountrySuggestions = (items: ISelectOption[]) =>
+  action(ActionTypes.SET_COUNTRY_SUGGESTIONS, items);
+
+export const clearForm = () =>
+  action(ActionTypes.CLEAR_FORM);

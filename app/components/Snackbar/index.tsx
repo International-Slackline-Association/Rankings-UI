@@ -7,14 +7,14 @@ import IconButton from '@material-ui/core/IconButton';
 import CloseIcon from '@material-ui/icons/Close';
 import styled from 'styles/styled-components';
 
-interface Props {
+export interface SnackbarProps {
   open: boolean;
   message: string;
   handleClose(event, reason): void;
   type?: 'error' | 'success';
 }
 
-class SimpleSnackbar extends React.Component<Props> {
+class SimpleSnackbar extends React.Component<SnackbarProps> {
   public render() {
     const type = this.props.type || 'error';
     return (
@@ -24,7 +24,7 @@ class SimpleSnackbar extends React.Component<Props> {
           horizontal: 'left',
         }}
         open={this.props.open}
-        autoHideDuration={2000}
+        autoHideDuration={3000}
         onClose={this.props.handleClose}
         ContentProps={{
           'aria-describedby': 'message-id',

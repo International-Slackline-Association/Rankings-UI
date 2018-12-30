@@ -14,7 +14,13 @@ function ContestAvatar(props: Props) {
   const size = props.size || 'small';
   return (
     <Wrapper size={size}>
-      <img src={props.imageUrl} />
+      <img
+        src={props.imageUrl} // tslint:disable-next-line:jsx-no-lambda
+        onError={(e: any) => {
+          e.target.onerror = null;
+          e.target.src = '';
+        }}
+      />
     </Wrapper>
   );
 }
@@ -28,7 +34,7 @@ const Wrapper = styled<WrapperProps, 'div'>('div')`
   width: ${props => (props.size === 'small' ? '30px' : '120px')};
   height: ${props => (props.size === 'small' ? '30px' : '120px')};
   overflow: hidden;
-  border-radius: 120px;
+  border-radius: 50%;
   background-image: url(${isaLogo});
   background-size: contain;
   background-position: center;

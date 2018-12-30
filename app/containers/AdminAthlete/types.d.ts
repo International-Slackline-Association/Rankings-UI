@@ -4,8 +4,15 @@ import { ApplicationRootState } from 'types';
 import { ISelectOption } from 'components/CategoriesFilters/types';
 
 export interface Athlete {
+  id: string;
   name: string;
   surname: string;
+  profileUrl: string;
+  country: string;
+  gender: number;
+  birthdate: string;
+  email: string;
+  city: string;
 }
 
 export interface AthleteFormValues extends Athlete {}
@@ -15,6 +22,7 @@ interface AdminAthleteState {
   readonly athleteFilter: IFilter;
   readonly athlete: Athlete | null;
   readonly isAthleteLoading: boolean;
+  readonly countryFilter: IFilter;
 }
 
 export interface IFilter {

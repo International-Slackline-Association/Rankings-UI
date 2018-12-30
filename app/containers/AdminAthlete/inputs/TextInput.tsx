@@ -4,8 +4,10 @@ import TextField, {
   TextFieldProps,
 } from '@material-ui/core/TextField/TextField';
 import styled from 'styles/styled-components';
-import { AthleteFormValues } from './types';
+import { AthleteFormValues } from '../types';
 import { isNil } from 'lodash';
+import Wrapper from './Wrapper';
+import ErrorLabel from './ErrorLabel';
 
 // const ForminInputComponent = (x: FieldProps<string>{
 //   field, // { name, value, onChange, onBlur }
@@ -27,7 +29,7 @@ export interface ForminInputComponentProps {
   required: boolean;
 }
 
-class FormikInputComponent extends React.PureComponent<
+class TextInput extends React.PureComponent<
   ForminInputComponentProps & FieldProps<AthleteFormValues>
 > {
   public render() {
@@ -42,6 +44,7 @@ class FormikInputComponent extends React.PureComponent<
           placeholder={field.name}
           required={this.props.required}
           error={isError}
+          autoComplete={'off'}
           {...field}
           {...this.props}
         />
@@ -51,21 +54,12 @@ class FormikInputComponent extends React.PureComponent<
   }
 }
 
-const ErrorLabel = styled.span`
-  color: red;
-`;
-
 const textField = (props: any) => <TextField {...props} />;
 
 const StyledTextField = styled(textField)`
   && {
     width: 150px;
-    margin-bottom: 8px;
+    /* margin-bottom: 8px; */
   }
 `;
-
-const Wrapper = styled.div`
-  display: flex;
-  flex-direction: column;
-`;
-export default FormikInputComponent;
+export default TextInput;

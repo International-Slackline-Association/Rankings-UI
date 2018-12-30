@@ -19,3 +19,8 @@ export const selectAthlete = () =>
   createSelector(selectAdminAthleteDomain, substate => {
     return substate.athlete;
   });
+
+export const selectCountryFilter = () =>
+  createSelector(selectAdminAthleteDomain, substate => {
+    return substate.countryFilter;
+  });

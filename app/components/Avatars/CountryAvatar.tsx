@@ -19,7 +19,6 @@ function CountryAvatar(props: Props) {
         code={props.code}
         svg
       />
-      {/* <img src={props.imageUrl} /> */}
     </Wrapper>
   );
 }
@@ -34,7 +33,7 @@ const Wrapper = styled.div`
   width: 25px;
   height: 25px;
   overflow: hidden;
-  border-radius: 30px;
+  border-radius: 50%;
   background-size: 100%;
 `;
 export default CountryAvatar;

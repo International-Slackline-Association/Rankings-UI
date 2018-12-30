@@ -51,7 +51,7 @@ function renderSuggestion(suggestion: ISelectOption, { query, isHighlighted }) {
 
 class AutoCompleteFilter extends React.PureComponent<Props, State> {
   private popperNode: any;
-  constructor(props) {
+  constructor(props: Props) {
     super(props);
     this.state = {
       value: this.props.selectedValue || '',
@@ -59,7 +59,7 @@ class AutoCompleteFilter extends React.PureComponent<Props, State> {
     };
   }
 
-  public componentDidUpdate(prevProps: Props) {
+  public componentDidUpdate(prevProps: Props, prevState: State) {
     if (prevProps.suggestions) {
       const suggestions = this.props.suggestions || [];
       if (prevProps.suggestions.length !== suggestions.length) {
@@ -68,12 +68,17 @@ class AutoCompleteFilter extends React.PureComponent<Props, State> {
         }
         this.setSuggestions(this.props.suggestions);
       }
+
+      // const selectedValue = this.props.selectedValue || '';
+      // if (!prevProps.selectedValue && selectedValue) {
+      //   this.setValue(selectedValue);
+      // }
     }
   }
 
   private onInputChanged = (onChangeHandler: any) => {
     return (evt: any) => {
-      this.props.onChange(evt);
+      // this.props.onChange(evt);
       onChangeHandler(evt);
     };
   };
@@ -83,8 +88,6 @@ class AutoCompleteFilter extends React.PureComponent<Props, State> {
   > = inputProps => {
     // tslint:disable-next-line:no-empty
     const { classes, inputRef = () => {}, ref, ...other } = inputProps;
-    console.log(other);
-    // console.log(this.props);
     return (
       <TextField
         InputProps={{
@@ -218,8 +221,7 @@ const Button = styled(DefaultButton)`
 `;
 
 const Wrapper = styled.div`
-  margin: 0px 16px;
-  width: 156px;
+  width: 150px;
 
   .react-autosuggest__input {
     width: 100%;

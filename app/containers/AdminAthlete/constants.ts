@@ -4,6 +4,10 @@ enum ActionTypes {
   SET_ATHLETE_FILTER_SELECTED_VALUE = 'app/AdminAthlete/SET_ATHLETE_FILTER_SELECTED_VALUE',
   LOAD_ATHLETE = 'app/AdminAthlete/LOAD_ATHLETE',
   SET_ATHLETE = 'app/AdminAthlete/SET_ATHLETE',
+  LOAD_COUNTRY_SUGGESTIONS = 'app/AdminAthlete/LOAD_COUNTRY_SUGGESTIONS',
+  SET_COUNTRY_SUGGESTIONS = 'app/AdminAthlete/SET_COUNTRY_SUGGESTIONS',
+  CLEAR_FORM = 'app/AdminAthlete/CLEAR_FORM',
+
 }
 
 export default ActionTypes;

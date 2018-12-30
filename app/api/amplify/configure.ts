@@ -7,6 +7,10 @@ Amplify.configure({
     userPoolId: process.env.USER_POOL_ID,
     userPoolWebClientId: process.env.USER_POOL_WEB_CLIENT_ID,
   },
+  Storage: {
+    bucket: 'isa.rankings.images',
+    region: process.env.REGION,
+  },
   API: {
     endpoints: [
       {
@@ -18,4 +22,3 @@ Amplify.configure({
     ],
   },
 });
-

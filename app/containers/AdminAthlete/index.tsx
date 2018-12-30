@@ -11,7 +11,7 @@ import reducer from './reducer';
 import saga from './saga';
 import * as actions from './actions';
 
-import { RootState, ContainerState } from './types';
+import { RootState, ContainerState, AthleteFormValues } from './types';
 import TabPanel from 'components/TabPanel';
 import FormikForm from './Form';
 import AutoCompleteFilter from 'components/CategoriesFilters/AutoCompleteFilter';
@@ -19,12 +19,17 @@ import { ISelectOption } from 'components/CategoriesFilters/types';
 import Wrapper from './Wrapper';
 import Header from './Header';
 import styled from 'styles/styled-components';
+import { apiSubmitAthlete } from './api';
+import { APIAdminSubmitAthleteRequest } from 'api/admin/athlete/submit';
+import Snackbar, { SnackbarProps } from 'components/Snackbar';
+import { Storage } from 'aws-amplify';
 
 interface OwnProps {}
 
 interface StateProps {
   athleteFilter: ContainerState['athleteFilter'];
   athlete: ContainerState['athlete'];
+  countryFilter: ContainerState['countryFilter'];
 }
 
 interface DispatchProps {
@@ -33,7 +38,27 @@ interface DispatchProps {
 
 type Props = StateProps & DispatchProps & OwnProps;
 
-class AdminAthlete extends React.PureComponent<Props> {
+interface State {
+  snackbar: {
+    open: boolean;
+    message: string;
+    type?: 'error' | 'success';
+  };
+}
+
+class AdminAthlete extends React.PureComponent<Props, State> {
+  private profilePicture: any;
+  constructor(props: Props) {
+    super(props);
+    this.state = {
+      snackbar: {
+        type: 'success',
+        message: '',
+        open: false,
+      },
+    };
+  }
+
   private loadSuggestions = (value: string) => {
     this.props.dispatch(actions.loadAthleteSuggestions(value));
   };
@@ -47,7 +72,73 @@ class AdminAthlete extends React.PureComponent<Props> {
     }
   };
 
+  private loadCountrySuggestions = (value: string) => {
+    this.props.dispatch(actions.loadCountrySuggestions(value));
+  };
+
+  private submit = async (values: AthleteFormValues): Promise<void> => {
+    const request: APIAdminSubmitAthleteRequest = {
+      athlete: values,
+    };
+    return apiSubmitAthlete(request)
+      .then(async response => {
+        if (!response.success) {
+          this.openSnackbar(true, response.errorMessage, 'error');
+        } else {
+          let text = 'Saved Successfully.';
+          if (this.profilePicture) {
+            text += ' Uploading picture...';
+          }
+          this.openSnackbar(true, text, 'success');
+
+          if (this.profilePicture) {
+            await this.uploadProfilePicture(this.profilePicture, response.id);
+          }
+
+          this.props.dispatch(actions.clearForm());
+        }
+      })
+      .catch(err => {
+        this.openSnackbar(true, err.message, 'error');
+      });
+  };
+
+  private openSnackbar = (
+    state: boolean,
+    message: string = '',
+    type: State['snackbar']['type'] = 'success',
+  ) => {
+    this.setState({ snackbar: { open: state, message: message, type: type } });
+  };
+
+  private onSnackbarClose = (event, reason) => {
+    if (reason === 'clickaway') {
+      return;
+    }
+    this.openSnackbar(false);
+  };
+
+  private profilePictureSelected = (file: any) => {
+    this.profilePicture = file;
+  };
+
+  private uploadProfilePicture = (file: any, name: string) => {
+    const options = {
+      contentType: 'image/png',
+    };
+    return Storage.put(`athlete/${name}.jpg`, file, options)
+      .then((result: any) => {
+        this.openSnackbar(false);
+        this.openSnackbar(true, 'Picture Uploaded', 'success');
+      })
+      .catch(err => {
+        this.openSnackbar(false);
+        this.openSnackbar(true, err.message, 'error');
+      });
+  };
+
   public render() {
+    const { countryFilter } = this.props;
     return (
       <TabPanel>
         <Helmet>
@@ -57,7 +148,7 @@ class AdminAthlete extends React.PureComponent<Props> {
         <Wrapper>
           <Header>Modify Athlete</Header>
           <StyledAutoCompleteFilter
-            title={''}
+            title={'Name'}
             placeholder={'Search athlete to modify'}
             // required={this.props.required}
             loadSuggestions={this.loadSuggestions}
@@ -65,8 +156,21 @@ class AdminAthlete extends React.PureComponent<Props> {
             suggestions={this.props.athleteFilter.suggestions}
             selectedValue={this.props.athleteFilter.selectedValue}
           />
-          <FormikForm values={this.props.athlete} />
+          <FormikForm
+            key={this.props.athlete ? this.props.athlete.id : undefined}
+            values={this.props.athlete}
+            countrySuggestions={countryFilter.suggestions}
+            loadCountrySuggestions={this.loadCountrySuggestions}
+            pictureSelected={this.profilePictureSelected}
+            submit={this.submit}
+          />
         </Wrapper>
+        <Snackbar
+          open={this.state.snackbar.open}
+          handleClose={this.onSnackbarClose}
+          message={this.state.snackbar.message}
+          type={this.state.snackbar.type}
+        />
       </TabPanel>
     );
   }
@@ -83,6 +187,7 @@ const StyledAutoCompleteFilter = styled(AutoCompleteFilter)`
 const mapStateToProps = createStructuredSelector<RootState, StateProps>({
   athleteFilter: selectors.selectAthleteFilter(),
   athlete: selectors.selectAthlete(),
+  countryFilter: selectors.selectCountryFilter(),
 });
 
 function mapDispatchToProps(
