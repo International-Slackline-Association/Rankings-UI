@@ -15,7 +15,8 @@ import InputAdornment from '@material-ui/core/InputAdornment';
 import IconClose from 'components/Icons/IconClose';
 import { DefaultButton } from 'styles/mixins';
 import { TinyLoading } from 'components/Loading';
-import { IFilter, ISelectOption } from 'components/CategoriesFilters/types';
+import { IFilter } from 'components/CategoriesFilters/types';
+import { ISelectOption } from 'types/application';
 
 interface Props extends IFilter {
   onChange(e: any): void;

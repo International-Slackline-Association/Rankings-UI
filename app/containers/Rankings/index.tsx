@@ -23,8 +23,8 @@ import CategoriesFilters from 'components/CategoriesFilters';
 import {
   ICategory,
   IFilter,
-  ISelectOption,
 } from 'components/CategoriesFilters/types';
+import { ISelectOption } from 'types/application';
 
 interface OwnProps {}
 

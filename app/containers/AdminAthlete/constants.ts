@@ -7,7 +7,6 @@ enum ActionTypes {
   LOAD_COUNTRY_SUGGESTIONS = 'app/AdminAthlete/LOAD_COUNTRY_SUGGESTIONS',
   SET_COUNTRY_SUGGESTIONS = 'app/AdminAthlete/SET_COUNTRY_SUGGESTIONS',
   CLEAR_FORM = 'app/AdminAthlete/CLEAR_FORM',
-
 }
 
 export default ActionTypes;

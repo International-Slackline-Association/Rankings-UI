@@ -16,14 +16,17 @@ const requestURL = '';
 export const adminSubmitAthletePicture = async (
   request: APIAdminSubmitAthletePictureRequest,
 ): Promise<APIAdminSubmitAthletePictureResponse> => {
-  return axios.post(requestURL, request, dummyResponseConfig(dummyResponse, 1000)).then(resp => {
-    const result = resp.data as APIAdminSubmitAthletePictureResponse;
-    return result;
-  });
+  return axios
+    .post(requestURL, request, dummyResponseConfig(dummyResponse, 1000))
+    .then(resp => {
+      const result = resp.data as APIAdminSubmitAthletePictureResponse;
+      return result;
+    });
 };
 
-
-const dummyResponse = (): AxiosResponse<APIAdminSubmitAthletePictureResponse> => {
+const dummyResponse = (): AxiosResponse<
+  APIAdminSubmitAthletePictureResponse
+> => {
   return {
     data: mockResponse(),
     status: 200,

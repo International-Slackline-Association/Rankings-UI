@@ -4,6 +4,7 @@ import { ApplicationRootState } from 'types';
 import { TabContentState } from 'containers/GenericTabContent/types';
 import { LocationChangeAction } from 'connected-react-router';
 import { ICategoryEntity } from 'components/CategoriesFilters/types';
+import { Discipline, ContestCategory } from 'types/application';
 
 /* --- EXPORTS --- */
 
@@ -46,10 +47,10 @@ interface AthleteItem {
 interface TableItem {
   readonly id: string;
   readonly name: string;
-  readonly size: string;
+  readonly contestCategory: ContestCategory;
   readonly date: string;
   readonly rank: number;
-  readonly discipline: string;
+  readonly discipline: Discipline;
   readonly smallProfileUrl: string;
 }
 

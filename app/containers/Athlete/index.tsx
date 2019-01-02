@@ -38,7 +38,7 @@ interface StateProps {
 // tslint:disable-next-line:no-empty-interface
 interface DispatchProps {
   readonly dispatch: Dispatch;
-  updateLocation(path: string, id: string, param1: string): void;
+  updateLocation(path: string, id: string, param1: number): void;
 }
 
 type Props = StateProps & DispatchProps & OwnProps;
@@ -77,7 +77,7 @@ class Athlete extends React.PureComponent<Props, State> {
     this.props.dispatch(actions.loadNextItems());
   };
 
-  private onContestClick = (id: string, discipline: string) => {
+  private onContestClick = (id: string, discipline: number) => {
     this.props.updateLocation('contest', id, discipline);
   };
 
@@ -143,7 +143,7 @@ function mapDispatchToProps(
 ): DispatchProps {
   return {
     dispatch: dispatch,
-    updateLocation: (path: string, id: string, param1: string) => {
+    updateLocation: (path: string, id: string, param1: number) => {
       if (id) {
         dispatch(push(`/${path}/${id}/${param1}`));
       }

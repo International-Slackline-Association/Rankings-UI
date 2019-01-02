@@ -5,7 +5,7 @@ import ActionTypes from './constants';
 
 export const initialState: ContainerState = {
   id: '',
-  discipline: '',
+  discipline: 0,
   contest: null,
   isContestLoading: false,
   tableResult: { items: [], next: null },

@@ -24,7 +24,6 @@ export default combineReducers<ContainerState, ContainerActions>({
     switch (action.type) {
       case LOCATION_CHANGE:
         const { path, id } = findPathAndId(action.payload.location.pathname);
-        console.log(path , id);
         if (id && path != null) {
           return id;
         } else if (path) {

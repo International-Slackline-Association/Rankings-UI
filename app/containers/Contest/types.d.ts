@@ -3,6 +3,7 @@ import * as actions from './actions';
 import { ApplicationRootState } from 'types';
 import { TabContentState } from 'containers/GenericTabContent/types';
 import { LocationChangeAction } from 'connected-react-router';
+import { Discipline, ContestCategory } from 'types/application';
 
 /* --- EXPORTS --- */
 
@@ -16,7 +17,7 @@ export { RootState, ContainerState, ContainerActions };
 
 interface ContestState {
   readonly id: string;
-  readonly discipline: string;
+  readonly discipline: number;
   readonly contest: ContestItem | null;
   readonly isContestLoading: boolean;
   readonly tableResult: TableItemsResult;
@@ -29,10 +30,10 @@ export interface ContestItem {
   readonly id: string;
   readonly name: string;
   readonly prize: string;
-  readonly size: string;
+  readonly contestCategory: ContestCategory;
   readonly date: string;
   readonly location: string;
-  readonly discipline: string;
+  readonly discipline: Discipline;
   readonly profileUrl: string;
 }
 

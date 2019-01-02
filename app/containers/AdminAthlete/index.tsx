@@ -15,7 +15,6 @@ import { RootState, ContainerState, AthleteFormValues } from './types';
 import TabPanel from 'components/TabPanel';
 import FormikForm from './Form';
 import AutoCompleteFilter from 'components/CategoriesFilters/AutoCompleteFilter';
-import { ISelectOption } from 'components/CategoriesFilters/types';
 import Wrapper from './Wrapper';
 import Header from './Header';
 import styled from 'styles/styled-components';
@@ -23,6 +22,7 @@ import { apiSubmitAthlete, apiSubmitAthletePicture } from './api';
 import { APIAdminSubmitAthleteRequest } from 'api/admin/athlete/submit';
 import Snackbar, { SnackbarProps } from 'components/Snackbar';
 import { Storage } from 'aws-amplify';
+import { ISelectOption } from 'types/application';
 
 interface OwnProps {}
 

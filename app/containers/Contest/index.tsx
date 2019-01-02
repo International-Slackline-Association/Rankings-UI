@@ -65,7 +65,7 @@ class Contest extends React.PureComponent<Props, State> {
 
   private getIdDisciplineFromPath = (path: string) => {
     const [{}, {}, id, discipline] = path.split('/');
-    return { id: id, discipline: discipline };
+    return { id: id, discipline: parseInt(discipline, 10) };
   };
 
   private loadMoreItems = () => {

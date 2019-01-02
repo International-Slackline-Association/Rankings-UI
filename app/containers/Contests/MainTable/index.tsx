@@ -11,19 +11,10 @@ import ShowMoreButton from 'components/LoadableButton/ShowMoreButton';
 
 interface Props {
   tableItems: TableItemsResult;
-  onItemClick(id: string, discipline: string): void;
+  onItemClick(id: string, discipline: number): void;
   isItemsLoading: boolean | null;
   isNextItemsLoading: boolean | null;
   showMoreClicked(): void;
-}
-
-interface TableItem {
-  id: string;
-  name: string;
-  discipline: string;
-  prize: string;
-  size: string;
-  date: string;
 }
 
 interface State {}
@@ -32,7 +23,7 @@ class MainTable extends React.PureComponent<Props, State> {
   public constructor(props) {
     super(props);
   }
-  private onItemClick = (id: string, discipline: string) => {
+  private onItemClick = (id: string, discipline: number) => {
     return (event) => {
       event.preventDefault();
       this.props.onItemClick(id, discipline);
@@ -66,16 +57,16 @@ class MainTable extends React.PureComponent<Props, State> {
                         <Group alignLeft={true}>
                           <ContestAvatar imageUrl={item.smallProfileUrl} />
                           <a
-                            href={`/contest/${item.id}/${item.discipline}`}
-                            onClick={this.onItemClick(item.id, item.discipline)}
+                            href={`/contest/${item.id}/${item.discipline.id}`}
+                            onClick={this.onItemClick(item.id, item.discipline.id)}
                           >
                             {item.name}
                           </a>
                         </Group>
                       </td>
-                      <td>{item.discipline}</td>
+                      <td>{item.discipline.name}</td>
                       <td>{item.prize}</td>
-                      <td>{item.size}</td>
+                      <td>{item.contestCategory.name}</td>
                       <td>{item.date}</td>
                     </tr>
                   );

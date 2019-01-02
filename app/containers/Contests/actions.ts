@@ -2,7 +2,7 @@ import { action } from 'typesafe-actions';
 
 import ActionTypes from './constants';
 import { ICategory, TableItemsResult } from './types';
-import { ISelectOption } from 'components/CategoriesFilters/types';
+import { ISelectOption } from 'types/application';
 
 export const loadCategories = () => action(ActionTypes.LOAD_CATEGORIES);
 

@@ -2,6 +2,7 @@ import axios, { dummyResponseConfig } from 'api/axios';
 import { AxiosResponse } from 'axios';
 
 import mockResponse from './__mocks__/categories_mock';
+import { UISelectOption } from 'types/application';
 
 export interface APIRankingCategoriesResponse {
   items: CategoryItem[];
@@ -9,17 +10,9 @@ export interface APIRankingCategoriesResponse {
 
 interface CategoryItem {
   title: string;
-  options: ISelectOption[];
+  options: UISelectOption[];
   selectedValue: string;
 }
-
-interface ISelectOption {
-  value: string;
-  label: string;
-  isContainerStyle?: boolean;
-  inlineLevel?: number;
-}
-
 const requestURL = '';
 export async function getRankingCategories(): Promise<
   APIRankingCategoriesResponse

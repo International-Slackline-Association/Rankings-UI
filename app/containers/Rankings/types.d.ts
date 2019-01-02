@@ -3,10 +3,10 @@ import * as actions from './actions';
 import { ApplicationRootState } from 'types';
 import { TabContentState } from 'containers/GenericTabContent/types';
 import {
-  ISelectOption,
   ICategoryEntity,
   IFilterEntity,
 } from 'components/CategoriesFilters/types';
+import { ISelectOption } from 'types/application';
 
 /* --- EXPORTS --- */
 

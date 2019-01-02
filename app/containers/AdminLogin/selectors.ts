@@ -10,7 +10,6 @@ const selectAdminLoginDomain = (state: ApplicationRootState) => {
   return state.adminLogin ? state.adminLogin : initialState;
 };
 
-
 export const selectAdminLogin = () =>
   createSelector(selectAdminLoginDomain, substate => {
     return substate;

@@ -2,30 +2,31 @@ import axios, { dummyResponseConfig } from 'api/axios';
 import { AxiosRequestConfig, AxiosResponse } from 'axios';
 
 import mockResponse from './__mocks__/contests_mock';
+import { Discipline, ContestCategory } from 'types/application';
 
 export interface APIGetContestsRequest {
-  filters: SelectedFilter[];
-  searchInput: string;
+  readonly filters: SelectedFilter[];
+  readonly searchInput: string;
 }
 
 interface SelectedFilter {
-  id: string;
-  name: string;
+  readonly id: string;
+  readonly name: string;
 }
 
 export interface APIGetContestsResponse {
-  items: ContestsItem[];
-  next: any;
+  readonly items: ContestsItem[];
+  readonly next: any;
 }
 
 interface ContestsItem {
-  id: string;
-  name: string;
-  prize: string;
-  size: string;
-  date: number;
-  discipline: string;
-  smallProfileUrl: string;
+  readonly id: string;
+  readonly  name: string;
+  readonly prize: string;
+  readonly contestCategory: ContestCategory;
+  readonly date: number;
+  readonly discipline: Discipline;
+  readonly smallProfileUrl: string;
 }
 
 const requestURL = '';

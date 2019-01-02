@@ -31,8 +31,8 @@ import Athlete from 'containers/Athlete/Loadable';
 import { MuiThemeProvider } from '@material-ui/core';
 import AuthenticatorHoc from 'containers/Authenticator';
 import AdminAthlete from 'containers/AdminAthlete/Loadable';
-import AdminLogin from 'containers/AdminLogin/Loadable';
 import AdminTopBarTabs from 'containers/AdminTopBarTabs';
+import AdminContest from 'containers/AdminContest/Loadable';
 
 const AppWrapper = styled.div`
   width: 100%;
@@ -65,22 +65,22 @@ class App extends React.Component<{}, {}> {
             <HeaderBar />
             <Switch>
               <Route path="/admin">
-                <Switch>
-                  <Redirect exact from="/admin" to="/admin/athlete" />
-                  {/* <Route exact path="/admin/login"  component={AdminLogin} /> */}
-                  <Route path="/admin/">
-                    <React.Fragment>
-                      <AdminTopBarTabs />
-                      <Switch>
-                        <Route
-                          exact
-                          path="/admin/athlete"
-                          component={AuthenticatorHoc(AdminAthlete)}
-                        />
-                      </Switch>
-                    </React.Fragment>
-                  </Route>
-                </Switch>
+                <React.Fragment>
+                  <AdminTopBarTabs />
+                  <Switch>
+                    <Redirect exact from="/admin" to="/admin/athlete" />
+                    <Route
+                      exact
+                      path="/admin/athlete"
+                      component={AuthenticatorHoc(AdminAthlete)}
+                    />
+                    <Route
+                      exact
+                      path="/admin/contest"
+                      component={AuthenticatorHoc(AdminContest)}
+                    />
+                  </Switch>
+                </React.Fragment>
               </Route>
               <Route path="/">
                 <React.Fragment>

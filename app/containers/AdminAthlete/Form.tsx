@@ -8,10 +8,10 @@ import Header from './Header';
 import * as Yup from 'yup';
 import ImageUpload from './inputs/ImageUpload';
 import AutoCompleteTextInput from './inputs/AutoCompleteTextInput';
-import { ISelectOption } from 'components/CategoriesFilters/types';
 import GenderInput from './inputs/GenderInput';
 import DateInput from './inputs/DateInput';
 import media from 'styles/media';
+import { ISelectOption } from 'types/application';
 
 interface Props {
   readonly values?: AthleteFormValues | null;

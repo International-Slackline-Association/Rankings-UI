@@ -1,9 +1,3 @@
-/**
- *
- * Rankings
- *
- */
-
 import * as React from 'react';
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
@@ -25,10 +19,10 @@ import * as actions from './actions';
 import { replace, push } from 'connected-react-router';
 import CategoriesFilters from 'components/CategoriesFilters';
 import {
-  ISelectOption,
   IFilter,
   ICategory,
 } from 'components/CategoriesFilters/types';
+import { ISelectOption } from 'types/application';
 
 interface OwnProps {}
 
@@ -44,7 +38,7 @@ interface StateProps {
 
 interface DispatchProps {
   dispatch: Dispatch;
-  updateLocation(path: string, id: string, param1: string): void;
+  updateLocation(path: string, id: string, param1: number): void;
 }
 
 type Props = StateProps & DispatchProps & OwnProps;
@@ -107,7 +101,7 @@ class Contests extends React.PureComponent<Props, State> {
     this.props.dispatch(actions.loadNextItems());
   };
 
-  private onContestClick = (id: string, discipline: string) => {
+  private onContestClick = (id: string, discipline: number) => {
     this.props.updateLocation('Contest', id, discipline);
   };
 
@@ -152,7 +146,7 @@ function mapDispatchToProps(
 ): DispatchProps {
   return {
     dispatch: dispatch,
-    updateLocation: (path: string, id: string, param1: string) => {
+    updateLocation: (path: string, id: string, param1: number) => {
       if (id) {
         dispatch(push(`/${path}/${id}/${param1}`));
       }

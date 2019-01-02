@@ -4,8 +4,8 @@ import { ApplicationRootState } from 'types';
 import { TabContentState } from 'containers/GenericTabContent/types';
 import {
   ICategoryEntity,
-  ISelectOption,
 } from 'components/CategoriesFilters/types';
+import { ContestCategory, Discipline, ISelectOption } from 'types/application';
 
 /* --- EXPORTS --- */
 
@@ -29,8 +29,6 @@ interface ContestsState {
   readonly isTableItemsLoading: boolean | null;
   readonly nextTableItemsCursor: any;
   readonly isNextTableItemsLoading: boolean;
-  // readonly isCategoriesOpen: boolean;
-  // readonly isCategoriesOpenOnce: boolean;
 }
 
 export interface ICategory extends ICategoryEntity {}
@@ -42,9 +40,9 @@ export interface IFilter {
 interface TableItem {
   readonly id: string;
   readonly name: string;
-  readonly discipline: string;
+  readonly discipline: Discipline;
   readonly prize: string;
-  readonly size: string;
+  readonly contestCategory: ContestCategory;
   readonly date: string;
   readonly smallProfileUrl: string;
 }

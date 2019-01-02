@@ -2,10 +2,11 @@ import axios, { dummyResponseConfig } from 'api/axios';
 import { AxiosResponse } from 'axios';
 
 import mockResponse from './__mocks__/contest_mock';
+import { ContestCategory, Discipline } from 'types/application';
 
 export interface APIGetContestRequest {
   id: string;
-  discipline: string;
+  discipline: number;
 }
 
 export interface APIGetContestResponse {
@@ -16,11 +17,11 @@ interface ContestItem {
   readonly id: string;
   readonly name: string;
   readonly prize: string;
-  readonly size: string;
+  readonly contestCategory: ContestCategory;
   readonly date: number;
   readonly city: string;
   readonly country: string;
-  readonly discipline: string;
+  readonly discipline: Discipline;
   readonly profileUrl: string;
 }
 

@@ -1,6 +1,8 @@
+import { UISelectOption } from 'types/application';
+
 export interface ICategoryEntity {
   readonly title: string;
-  readonly options: ISelectOption[];
+  readonly options: UISelectOption[];
   readonly selectedValue: string;
 }
 
@@ -11,19 +13,12 @@ export interface ICategory extends ICategoryEntity {
 export interface IFilterEntity {
   readonly title: string;
   readonly placeholder: string;
-  readonly suggestions?: ISelectOption[];
+  readonly suggestions?: UISelectOption[];
   readonly selectedValue?: string;
 }
 
 export interface IFilter extends IFilterEntity {
   loadSuggestions(searchValue: string): void;
-  suggestionSelected(suggestion: ISelectOption): void;
+  suggestionSelected(suggestion: UISelectOption): void;
   // clearSuggestions(value: string);
-}
-
-export interface ISelectOption {
-  readonly value: string;
-  readonly label: string;
-  readonly isContainerStyle?: boolean;
-  readonly inlineLevel?: number;
 }

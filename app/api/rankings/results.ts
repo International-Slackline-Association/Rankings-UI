@@ -4,28 +4,28 @@ import { AxiosResponse } from 'axios';
 import mockResponse from './__mocks__/rankings_mock';
 
 export interface APIGetRankingsRequest {
-  filters: SelectedFilter[];
-  searchInput: string;
+  readonly filters: SelectedFilter[];
+  readonly searchInput: string;
 }
 interface SelectedFilter {
-  id: string;
-  name: string;
+  readonly id: string;
+  readonly name: string;
 }
 
 export interface APIRankingsResponse {
-  items: RankingsItem[];
-  next: any;
+  readonly items: RankingsItem[];
+  readonly next: any;
 }
 
 interface RankingsItem {
-  id: string;
-  rank: number;
-  name: string;
-  surname: string;
-  age: number;
-  country: string;
-  points: string;
-  smallProfileUrl: string;
+  readonly id: string;
+  readonly rank: number;
+  readonly name: string;
+  readonly surname: string;
+  readonly age: number;
+  readonly country: string;
+  readonly points: string;
+  readonly smallProfileUrl: string;
 }
 
 const requestURL = '';

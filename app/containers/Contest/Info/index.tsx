@@ -8,6 +8,7 @@ import InfoField from './InfoField';
 import media from 'styles/media';
 import { SmallLoading } from 'components/Loading';
 import { EmptyContainer } from 'components/Containers';
+import { ContestCategory, Discipline } from 'types/application';
 
 interface Props {
   isLoading: boolean;
@@ -17,10 +18,10 @@ interface Props {
 interface ContestItem {
   profileUrl: string;
   name: string;
-  discipline: string;
+  discipline: Discipline;
   location: string;
   date: string;
-  size: string;
+  contestCategory: ContestCategory;
   prize: string;
 }
 
@@ -42,12 +43,12 @@ class ContestInfo extends React.PureComponent<Props> {
                 <InfoField keyField={'Prize'} valueField={item.prize} />
                 <InfoField
                   keyField={'Discipline'}
-                  valueField={item.discipline}
+                  valueField={item.discipline.name}
                 />
               </RightSection>
               <RightSection style={{ marginTop: 0 }}>
                 <InfoField keyField={'Date'} valueField={item.date} />
-                <InfoField keyField={'Size'} valueField={item.size} />
+                <InfoField keyField={'Size'} valueField={item.contestCategory.name} />
               </RightSection>
             </React.Fragment>
           ) : isLoading ? (

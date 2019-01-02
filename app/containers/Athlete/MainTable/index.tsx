@@ -11,7 +11,7 @@ import ContestAvatar from 'components/Avatars/ContestAvatar';
 
 interface Props {
   tableItems: TableItemsResult;
-  onItemClick(id: string, discipline: string): void;
+  onItemClick(id: string, discipline: number): void;
   isItemsLoading: boolean | null;
   isNextItemsLoading: boolean | null;
   showMoreClicked(): void;
@@ -26,7 +26,7 @@ class MainTable extends React.PureComponent<Props, State> {
       selectedItem: null,
     };
   }
-  private onItemClick = (id: string, discipline) => {
+  private onItemClick = (id: string, discipline: number) => {
     return event => {
       event.preventDefault();
       this.props.onItemClick(id, discipline);
@@ -57,16 +57,16 @@ class MainTable extends React.PureComponent<Props, State> {
                         <Group alignLeft={true}>
                           <ContestAvatar imageUrl={item.smallProfileUrl} />
                           <a
-                            href={`/contest/${item.id}/${item.discipline}`}
-                            onClick={this.onItemClick(item.id, item.discipline)}
+                            href={`/contest/${item.id}/${item.discipline.id}`}
+                            onClick={this.onItemClick(item.id, item.discipline.id)}
                           >
                             {item.name}
                           </a>
                         </Group>
                       </td>
-                      <td>{item.discipline}</td>
+                      <td>{item.discipline.name}</td>
                       <td>{item.rank}</td>
-                      <td>{item.size}</td>
+                      <td>{item.contestCategory.name}</td>
                       <td>{item.date}</td>
                     </tr>
                   );

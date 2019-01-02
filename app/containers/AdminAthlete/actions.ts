@@ -2,7 +2,7 @@ import { action } from 'typesafe-actions';
 import { Athlete } from './types';
 
 import ActionTypes from './constants';
-import { ISelectOption } from 'components/CategoriesFilters/types';
+import { ISelectOption } from 'types/application';
 
 export const loadAthleteSuggestions = (value: string) =>
   action(ActionTypes.LOAD_ATHLETE_SUGGESTIONS, value);
@@ -24,5 +24,4 @@ export const loadCountrySuggestions = (value: string) =>
 export const setCountrySuggestions = (items: ISelectOption[]) =>
   action(ActionTypes.SET_COUNTRY_SUGGESTIONS, items);
 
-export const clearForm = () =>
-  action(ActionTypes.CLEAR_FORM);
+export const clearForm = () => action(ActionTypes.CLEAR_FORM);

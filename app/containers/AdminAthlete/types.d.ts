@@ -1,18 +1,18 @@
 import { ActionType } from 'typesafe-actions';
 import * as actions from './actions';
 import { ApplicationRootState } from 'types';
-import { ISelectOption } from 'components/CategoriesFilters/types';
+import { ISelectOption } from 'types/application';
 
 export interface Athlete {
-  id: string;
-  name: string;
-  surname: string;
-  profileUrl: string;
-  country: string;
-  gender: number;
-  birthdate: string;
-  email: string;
-  city: string;
+  readonly id: string;
+  readonly name: string;
+  readonly surname: string;
+  readonly profileUrl: string;
+  readonly country: string;
+  readonly gender: number;
+  readonly birthdate: string;
+  readonly email: string;
+  readonly city: string;
 }
 
 export interface AthleteFormValues extends Athlete {}

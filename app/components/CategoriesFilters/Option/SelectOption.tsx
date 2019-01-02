@@ -2,9 +2,9 @@ import * as React from 'react';
 import styled from 'styles/styled-components';
 import { clickEffect } from 'styles/mixins';
 import Divider from 'components/Divider';
-import { ISelectOption } from '../types';
+import { UISelectOption } from 'types/application';
 
-interface Props extends ISelectOption {
+interface Props extends UISelectOption {
   hideDivider?: boolean;
   onSelect(value: string);
 }

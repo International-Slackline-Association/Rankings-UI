@@ -4,12 +4,12 @@ import { AxiosResponse } from 'axios';
 import mockResponse from './__mocks__/countrySuggestions_mock';
 
 export interface APIGetCountrySuggestionsResponse {
-  items: CountrySuggestionItem[];
+  readonly items: CountrySuggestionItem[];
 }
 
 interface CountrySuggestionItem {
-  code: string;
-  name: string;
+  readonly code: string;
+  readonly name: string;
 }
 
 const requestURL = '';

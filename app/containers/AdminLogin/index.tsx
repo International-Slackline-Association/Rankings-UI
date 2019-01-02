@@ -115,6 +115,7 @@ class AdminLogin extends React.PureComponent<Props, State> {
           />
           <StyledTextField
             onChange={this.updatePassword}
+            type={'password'}
             label={'password'}
             placeholder={'password'}
           />

@@ -18,10 +18,12 @@ const requestURL = '';
 export const adminSubmitAthlete = async (
   request: APIAdminSubmitAthleteRequest,
 ): Promise<APIAdminSubmitAthleteResponse> => {
-  return axios.post(requestURL, request, dummyResponseConfig(dummyResponse, 1000)).then(resp => {
-    const result = resp.data as APIAdminSubmitAthleteResponse;
-    return result;
-  });
+  return axios
+    .post(requestURL, request, dummyResponseConfig(dummyResponse, 1000))
+    .then(resp => {
+      const result = resp.data as APIAdminSubmitAthleteResponse;
+      return result;
+    });
 };
 
 const dummyResponse = (): AxiosResponse<APIAdminSubmitAthleteResponse> => {

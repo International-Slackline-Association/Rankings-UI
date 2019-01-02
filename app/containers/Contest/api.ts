@@ -26,7 +26,7 @@ export async function apiGetContest(request: APIGetContestRequest) {
       name: result.contest.name,
       prize: result.contest.prize,
       profileUrl: result.contest.profileUrl,
-      size: result.contest.size,
+      contestCategory: result.contest.contestCategory,
     },
   };
   return resp;

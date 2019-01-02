@@ -16,7 +16,7 @@ import {
   APIGetCountrySuggestionsResponse,
   apiGetCountrySuggestions,
 } from './api';
-import { ISelectOption } from 'components/CategoriesFilters/types';
+import { ISelectOption } from 'types/application';
 
 export function* getCategories() {
   try {

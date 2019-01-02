@@ -15,7 +15,8 @@ import InputAdornment from '@material-ui/core/InputAdornment';
 import IconClose from 'components/Icons/IconClose';
 import { DefaultButton } from 'styles/mixins';
 import { TinyLoading } from 'components/Loading';
-import { ISelectOption, IFilter } from './types';
+import { IFilter } from './types';
+import { UISelectOption } from 'types/application';
 
 interface Props extends IFilter {
   className?: string;
@@ -24,10 +25,10 @@ interface Props extends IFilter {
 interface State {
   value: string;
   isLoading?: boolean;
-  suggestions: ISelectOption[];
+  suggestions: UISelectOption[];
 }
 
-function renderSuggestion(suggestion: ISelectOption, { query, isHighlighted }) {
+function renderSuggestion(suggestion: UISelectOption, { query, isHighlighted }) {
   const matches = match(suggestion.label, query);
   const parts = parse(suggestion.label, matches);
 
@@ -124,7 +125,7 @@ class AutoCompleteFilter extends React.PureComponent<Props, State> {
     }
   };
 
-  private getSuggestionValue = (suggestion: ISelectOption) => {
+  private getSuggestionValue = (suggestion: UISelectOption) => {
     this.props.suggestionSelected(suggestion);
     return suggestion.label;
   };
@@ -145,7 +146,7 @@ class AutoCompleteFilter extends React.PureComponent<Props, State> {
       isLoading: loading,
     });
   }
-  private setSuggestions(suggestions?: ISelectOption[]) {
+  private setSuggestions(suggestions?: UISelectOption[]) {
     this.setState({
       suggestions: suggestions || [],
     });

@@ -2,25 +2,26 @@ import axios, { dummyResponseConfig } from 'api/axios';
 import { AxiosResponse } from 'axios';
 
 import mockResponse from './__mocks__/athlete_contests_mock';
+import { Discipline, ContestCategory } from 'types/application';
 
 export interface APIGetAthleteContestsRequest {
-  id: string;
-  year: string;
+  readonly id: string;
+  readonly year: string;
 }
 
 export interface APIAthleteContestsResponse {
-  items: ContestItem[];
-  next: any;
+  readonly items: ContestItem[];
+  readonly next: any;
 }
 
 interface ContestItem {
-  id: string;
-  name: string;
-  rank: number;
-  size: string;
-  date: number;
-  discipline: string;
-  smallProfileUrl: string;
+  readonly id: string;
+  readonly name: string;
+  readonly rank: number;
+  readonly contestCategory: ContestCategory;
+  readonly date: number;
+  readonly discipline: Discipline;
+  readonly smallProfileUrl: string;
 }
 
 const requestURL = '';

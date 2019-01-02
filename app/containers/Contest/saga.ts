@@ -10,12 +10,13 @@ import {
   APIContestResultsResponse,
 } from './api';
 import { selectId } from './selectors';
+import { APIGetContestResultsRequest } from 'api/contests/contest-results';
 
 export function* getContest() {
   const id = yield select(selectId());
   const request: APIGetContestRequest = {
     id: id,
-    discipline: '0',
+    discipline: 0,
   };
   try {
     const result: GetContestResponse = yield call(apiGetContest, request);
@@ -27,9 +28,9 @@ export function* getContest() {
 
 export function* getResults() {
   const id = yield select(selectId());
-  const request: APIGetContestRequest = {
+  const request: APIGetContestResultsRequest = {
     id: id,
-    discipline: '0',
+    discipline: 0,
   };
   try {
     const results: APIContestResultsResponse = yield call(

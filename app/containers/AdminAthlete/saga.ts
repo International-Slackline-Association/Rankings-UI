@@ -3,7 +3,6 @@ import ActionTypes from './constants';
 import {} from './selectors';
 import * as actions from './actions';
 import { delay } from 'redux-saga';
-import { ISelectOption } from 'components/CategoriesFilters/types';
 import {
   APIGetAthleteSuggestionsResponse,
   apiGetAthleteSuggestions,
@@ -12,6 +11,7 @@ import {
   APIGetCountrySuggestionsResponse,
   apiGetCountrySuggestions,
 } from './api';
+import { ISelectOption } from 'types/application';
 
 export function* getAthleteSuggestions(
   action: ReturnType<typeof actions.loadAthleteSuggestions>,
@@ -36,12 +36,13 @@ export function* getAthleteSuggestions(
   }
 }
 
-export function* getAthlete(
-  action: ReturnType<typeof actions.loadAthlete>,
-) {
+export function* getAthlete(action: ReturnType<typeof actions.loadAthlete>) {
   try {
     const id = action.payload;
-    const result: APIAdminGetAthleteResponse = yield call(apiAdminGetAthlete, id);
+    const result: APIAdminGetAthleteResponse = yield call(
+      apiAdminGetAthlete,
+      id,
+    );
     yield put(actions.setAthlete(result.athlete));
   } catch (err) {
     console.log('err: ', err);
@@ -71,10 +72,8 @@ export function* getCountrySuggestions(
   }
 }
 
-
 export default function* adminAthleteSaga() {
   yield takeLatest(ActionTypes.LOAD_ATHLETE_SUGGESTIONS, getAthleteSuggestions);
   yield takeLatest(ActionTypes.LOAD_ATHLETE, getAthlete);
   yield takeLatest(ActionTypes.LOAD_COUNTRY_SUGGESTIONS, getCountrySuggestions);
-
 }

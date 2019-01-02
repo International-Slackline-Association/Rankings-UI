@@ -1,20 +1,17 @@
 import * as React from 'react';
 import { FieldProps } from 'formik';
-import TextField from '@material-ui/core/TextField/TextField';
-import styled from 'styles/styled-components';
-import { AthleteFormValues } from '../types';
 import { isNil } from 'lodash';
 import AutoCompleteFilter from './AutoCompleteFilter';
-import { ISelectOption } from 'components/CategoriesFilters/types';
 import Wrapper from './Wrapper';
 import ErrorLabel from './ErrorLabel';
+import { ISelectOption } from 'types/application';
 
 export interface ForminInputComponentProps {
   readonly suggestions: ISelectOption[];
   loadSuggestions(value: string): void;
 }
 
-type Props = ForminInputComponentProps & FieldProps<AthleteFormValues>;
+type Props = ForminInputComponentProps & FieldProps;
 
 interface State {
   readonly selectedValue: string;
@@ -42,12 +39,10 @@ class AutoCompleteTextInput extends React.PureComponent<Props, State> {
   };
 
   private loadSuggestions = (value: string) => {
-    console.log('Load: ', value);
     this.props.loadSuggestions(value);
   };
 
   private selectSuggestion = (suggestion: ISelectOption) => {
-    console.log('Select: ', suggestion);
     this.setState({ selectedValue: suggestion.value });
     this.updateFormikValue(suggestion.value);
   };

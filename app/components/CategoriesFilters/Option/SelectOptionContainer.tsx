@@ -1,9 +1,9 @@
 import * as React from 'react';
 import SelectOption from './SelectOption';
-import { ISelectOption } from '../types';
+import { UISelectOption } from 'types/application';
 
 export interface CategorySelectProps {
-  options: ISelectOption[];
+  options: UISelectOption[];
   categorySelected(value: string);
 }
 

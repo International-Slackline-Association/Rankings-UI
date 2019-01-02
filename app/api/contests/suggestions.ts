@@ -2,6 +2,7 @@ import axios, { dummyResponseConfig } from 'api/axios';
 import { AxiosRequestConfig, AxiosResponse } from 'axios';
 
 import mockResponse from './__mocks__/contest_suggestions_mock';
+import { Discipline } from 'types/application';
 
 export interface APIGetContestSuggestionsResponse {
   items: ContestSuggestionItem[];
@@ -10,6 +11,7 @@ export interface APIGetContestSuggestionsResponse {
 interface ContestSuggestionItem {
   id: string;
   name: string;
+  discipline: Discipline;
 }
 
 const requestURL = '';

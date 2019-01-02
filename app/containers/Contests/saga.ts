@@ -12,9 +12,9 @@ import {
   apiGetContests,
   GetContestsResponse,
 } from './api';
-import { ISelectOption } from 'components/CategoriesFilters/types';
 import { APIGetContestSuggestionsResponse } from 'api/contests/suggestions';
 import { APIContestsCategoriesResponse } from 'api/contests/categories';
+import { ISelectOption } from 'types/application';
 
 export function* getCategories() {
   try {

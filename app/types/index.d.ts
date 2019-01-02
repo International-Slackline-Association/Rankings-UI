@@ -9,6 +9,7 @@ import { ContainerState as ContestState } from 'containers/Contest/types';
 import { ContainerState as AthleteState } from 'containers/Athlete/types';
 import { ContainerState as AdminLoginState } from 'containers/AdminLogin/types';
 import { ContainerState as AdminAthleteState } from 'containers/AdminAthlete/types';
+import { ContainerState as AdminContestState } from 'containers/AdminContest/types';
 import { ContainerState as AdminTopBarTabs } from 'containers/AdminTopBarTabs/types';
 
 export interface LifeStore extends Store<{}> {
@@ -30,7 +31,6 @@ export interface InjectSagaParams {
 
 export interface ApplicationRootState {
   readonly router: RouterState;
-  readonly global: object;
   readonly language: ILanguageProviderProps;
   readonly topBarTabs: TopBarState;
   readonly rankings: RankingsState;
@@ -38,6 +38,7 @@ export interface ApplicationRootState {
   readonly contest: ContestState;
   readonly athlete: AthleteState;
   readonly adminLogin: AdminLoginState;
-  readonly adminAthlete: AdminAthleteState;
   readonly adminTopBarTabs: AdminTopBarTabs;
+  readonly adminAthlete: AdminAthleteState;
+  readonly adminContest: AdminContestState;
 }

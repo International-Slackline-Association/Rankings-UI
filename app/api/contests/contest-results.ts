@@ -4,24 +4,24 @@ import { AxiosResponse } from 'axios';
 import mockResponse from './__mocks__/contest_results_mock';
 
 export interface APIGetContestResultsRequest {
-  id: string;
-  discipline: string;
+  readonly id: string;
+  readonly discipline: number;
 }
 
 export interface APIContestResultsResponse {
-  items: AthleteItem[];
-  next: any;
+  readonly items: AthleteItem[];
+  readonly next: any;
 }
 
 interface AthleteItem {
-  id: string;
-  rank: number;
-  name: string;
-  surname: string;
-  age: number;
-  country: string;
-  points: string;
-  smallProfileUrl: string;
+  readonly id: string;
+  readonly rank: number;
+  readonly name: string;
+  readonly surname: string;
+  readonly age: number;
+  readonly country: string;
+  readonly points: string;
+  readonly smallProfileUrl: string;
 }
 
 const requestURL = '';
