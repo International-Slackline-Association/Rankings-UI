@@ -11,6 +11,7 @@ import AutoCompleteTextInput from './inputs/AutoCompleteTextInput';
 import { ISelectOption } from 'components/CategoriesFilters/types';
 import GenderInput from './inputs/GenderInput';
 import DateInput from './inputs/DateInput';
+import media from 'styles/media';
 
 interface Props {
   readonly values?: AthleteFormValues | null;
@@ -82,7 +83,6 @@ class FormikForm extends React.PureComponent<Props, State> {
           // tslint:disable-next-line:jsx-no-lambda
           onSubmit={(values, { setSubmitting }) => {
             this.props.submit(values).then(_ => setSubmitting(false));
-
           }}
         >
           {({ isSubmitting }) => (
@@ -124,6 +124,11 @@ const StyledForm = styled(Form)`
   flex-direction: column;
   justify-content: flex-start;
   flex-wrap: nowrap;
+
+  ${media.tablet`
+    flex-wrap: wrap;
+    max-height: 400px;
+  `};
 `;
 
 const StyledLoadableButton = styled(LoadableButton).attrs({
@@ -136,6 +141,7 @@ const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
+  width: 100%;
   /* padding: 32px; */
 `;
 

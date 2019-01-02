@@ -5,6 +5,7 @@ import { compose, Dispatch } from 'redux';
 
 import { push } from 'connected-react-router';
 import { ApplicationRootState } from 'types';
+import AdminLogin from 'containers/AdminLogin';
 
 interface OwnProps {}
 
@@ -21,7 +22,6 @@ type Props = StateProps & DispatchProps & OwnProps;
 export default function AuthenticatorHoc(
   WrappedComponent: React.ComponentType,
 ) {
-
   class Authenticate extends React.Component<Props> {
     public componentDidMount() {
       this.checkAndRedirect();
@@ -35,15 +35,17 @@ export default function AuthenticatorHoc(
       const { isAuthenticated, redirectToLogin } = this.props;
 
       if (!isAuthenticated) {
-        redirectToLogin();
+        // redirectToLogin();
       }
     }
 
     public render() {
       return (
         <div>
-          {this.props.isAuthenticated && (
+          {this.props.isAuthenticated ? (
             <WrappedComponent {...this.props} />
+          ) : (
+            <AdminLogin />
           )}
         </div>
       );

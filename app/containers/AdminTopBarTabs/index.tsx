@@ -21,6 +21,7 @@ interface OwnProps {}
 interface StateProps {
   selectedId: ContainerState['selectedId'];
   locationPath: string;
+  isAuthenticated: boolean;
 }
 
 interface DispatchProps {
@@ -38,7 +39,6 @@ class TopBarTabs extends React.Component<Props> {
 
   private modifyItems() {
     const { id } = findPathAndId(this.props.locationPath);
-    console.log(id);
     if (id) {
       this.props.dispatch(actions.changeTopBarIndex(id));
     }
@@ -55,29 +55,30 @@ class TopBarTabs extends React.Component<Props> {
 
   public render() {
     const { selectedId } = this.props;
-    console.log(selectedId);
     const tabItems = this.tabItems();
     const selectedValue = tabItems.findIndex(x => x === selectedId);
     return (
       <Background>
-        <StyledTabs
-          scrollButtons={'off'}
-          scrollable={true}
-          fullWidth={true}
-          value={selectedValue}
-        >
-          {tabItems.map(item => {
-            return (
-              <AdminTopBarButton
-                key={item}
-                id={item}
-                name={item}
-                onSelect={this.onButtonSelect}
-                isSelected={item === selectedId}
-              />
-            );
-          })}
-        </StyledTabs>
+        {this.props.isAuthenticated && (
+          <StyledTabs
+            scrollButtons={'off'}
+            scrollable={true}
+            fullWidth={true}
+            value={selectedValue}
+          >
+            {tabItems.map(item => {
+              return (
+                <AdminTopBarButton
+                  key={item}
+                  id={item}
+                  name={item}
+                  onSelect={this.onButtonSelect}
+                  isSelected={item === selectedId}
+                />
+              );
+            })}
+          </StyledTabs>
+        )}
       </Background>
     );
   }
@@ -86,6 +87,7 @@ class TopBarTabs extends React.Component<Props> {
 const mapStateToProps = createStructuredSelector<RootState, StateProps>({
   selectedId: selectors.selectSelectedId(),
   locationPath: selectors.selectLocationPath(),
+  isAuthenticated: selectors.selectIsAuthenticated(),
 });
 
 function mapDispatchToProps(
@@ -119,4 +121,3 @@ export default compose(
   withSaga,
   withConnect,
 )(TopBarTabs);
-

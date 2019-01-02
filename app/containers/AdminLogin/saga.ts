@@ -13,7 +13,7 @@ export function* login(action: ReturnType<typeof actions.login>) {
     const result: { username: string } = yield call(signin, email, password);
     console.log('Login ', result);
     yield put(actions.loginSuccess());
-    yield put(replace('/admin/athlete'));
+    // yield put(replace('/admin/athlete'));
   } catch (err) {
     console.log('err: ', err);
     yield put(actions.loginError(err));

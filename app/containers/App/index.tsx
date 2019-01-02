@@ -66,8 +66,8 @@ class App extends React.Component<{}, {}> {
             <Switch>
               <Route path="/admin">
                 <Switch>
-                  <Redirect exact from="/admin" to="/admin/login" />
-                  <Route exact path="/admin/login" component={AdminLogin} />
+                  <Redirect exact from="/admin" to="/admin/athlete" />
+                  {/* <Route exact path="/admin/login"  component={AdminLogin} /> */}
                   <Route path="/admin/">
                     <React.Fragment>
                       <AdminTopBarTabs />

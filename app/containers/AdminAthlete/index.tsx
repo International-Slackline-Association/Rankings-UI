@@ -19,7 +19,7 @@ import { ISelectOption } from 'components/CategoriesFilters/types';
 import Wrapper from './Wrapper';
 import Header from './Header';
 import styled from 'styles/styled-components';
-import { apiSubmitAthlete } from './api';
+import { apiSubmitAthlete, apiSubmitAthletePicture } from './api';
 import { APIAdminSubmitAthleteRequest } from 'api/admin/athlete/submit';
 import Snackbar, { SnackbarProps } from 'components/Snackbar';
 import { Storage } from 'aws-amplify';
@@ -108,6 +108,10 @@ class AdminAthlete extends React.PureComponent<Props, State> {
     message: string = '',
     type: State['snackbar']['type'] = 'success',
   ) => {
+    if (state) {
+      this.openSnackbar(false);
+    }
+
     this.setState({ snackbar: { open: state, message: message, type: type } });
   };
 
@@ -126,13 +130,21 @@ class AdminAthlete extends React.PureComponent<Props, State> {
     const options = {
       contentType: 'image/png',
     };
-    return Storage.put(`athlete/${name}.jpg`, file, options)
-      .then((result: any) => {
-        this.openSnackbar(false);
-        this.openSnackbar(true, 'Picture Uploaded', 'success');
+    return Storage.put(`athlete/${name}.png`, file, options)
+      .then(async (result: any) => {
+        return Storage.get(result.key).then((presignedUrl: string) => {
+          const imageUrl = presignedUrl.split('?')[0];
+          if (imageUrl) {
+            return apiSubmitAthletePicture({
+              url: imageUrl,
+            }).then(rsp => {
+              this.openSnackbar(true, 'Picture Uploaded', 'success');
+            });
+          }
+          return Promise.resolve();
+        });
       })
       .catch(err => {
-        this.openSnackbar(false);
         this.openSnackbar(true, err.message, 'error');
       });
   };
