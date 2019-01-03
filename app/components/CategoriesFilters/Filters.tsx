@@ -19,7 +19,7 @@ class Filters extends React.PureComponent<Props> {
         <Section type="filter" width="87.44px" />
         <VerticalDivider />
         {filters.map(filter => (
-          <FilterWrapper>
+          <FilterWrapper key={filter.title}>
             <AutoCompleteFilter
               key={filter.title}
               title={filter.title}
@@ -44,7 +44,6 @@ const Wrapper = styled.div`
 
 const FilterWrapper = styled.div`
   margin: 0px 16px;
-
 `;
 
 export default Filters;

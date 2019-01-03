@@ -1,7 +1,6 @@
 import { createSelector } from 'reselect';
 import { ApplicationRootState } from 'types';
 
-
 const selectRouter = (state: ApplicationRootState) => state.router;
 
 const makeSelectLocation = () =>

@@ -20,6 +20,7 @@ import LoadableButton from 'components/LoadableButton';
 import Snackbar from 'components/Snackbar';
 import { replace } from 'connected-react-router';
 import cognitoUser from 'api/amplify/user';
+import { SmallLoading } from 'components/Loading';
 
 interface OwnProps {}
 

@@ -19,6 +19,7 @@ interface ContestItem {
   readonly contestCategory: number;
   readonly prize: number;
   readonly profileUrl: string;
+  readonly infoUrl: string;
 }
 
 export interface APIAdminSubmitContestRequest {

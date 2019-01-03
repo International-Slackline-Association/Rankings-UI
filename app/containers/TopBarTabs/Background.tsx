@@ -20,7 +20,7 @@ const Background = styled(paper)` && {
   align-items: center;
   z-index: ${zIndex('TopBarTabs')};
   justify-content: flex-start;
-  overflow-y: scroll;
+  overflow-x: scroll;
 
   ${media.tablet`
     height: ${AppConstants.TopBarHeight(breakpoints.tablet)}px;

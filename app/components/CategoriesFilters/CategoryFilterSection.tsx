@@ -58,6 +58,7 @@ const Wrapper = styled(ComponentBackground)`
   margin-bottom: 16px;
   overflow: hidden;
   overflow-x: scroll;
+  overflow-y: hidden;
   display: flex;
   flex-direction: column;
   align-self: flex-start;

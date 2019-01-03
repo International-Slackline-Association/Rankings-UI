@@ -28,7 +28,10 @@ interface State {
   suggestions: UISelectOption[];
 }
 
-function renderSuggestion(suggestion: UISelectOption, { query, isHighlighted }) {
+function renderSuggestion(
+  suggestion: UISelectOption,
+  { query, isHighlighted },
+) {
   const matches = match(suggestion.label, query);
   const parts = parse(suggestion.label, matches);
 
@@ -51,10 +54,13 @@ function renderSuggestion(suggestion: UISelectOption, { query, isHighlighted }) 
 
 class AutoCompleteFilter extends React.PureComponent<Props, State> {
   private popperNode: any;
-  constructor(props) {
+  constructor(props: Props) {
     super(props);
+    const selectedLabel = (this.props.suggestions || []).find(
+      s => s.value === this.props.selectedValue,
+    );
     this.state = {
-      value: this.props.selectedValue || '',
+      value: (selectedLabel && selectedLabel.label) || '',
       suggestions: this.props.suggestions || [],
     };
   }

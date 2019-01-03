@@ -18,6 +18,7 @@ export interface ContestItem {
   readonly contestCategory: ContestCategory;
   readonly prize: number;
   readonly profileUrl: string;
+  readonly infoUrl: string;
 }
 
 const requestURL = '';

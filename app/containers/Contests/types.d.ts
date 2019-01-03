@@ -2,9 +2,7 @@ import { ActionType } from 'typesafe-actions';
 import * as actions from './actions';
 import { ApplicationRootState } from 'types';
 import { TabContentState } from 'containers/GenericTabContent/types';
-import {
-  ICategoryEntity,
-} from 'components/CategoriesFilters/types';
+import { ICategoryEntity } from 'components/CategoriesFilters/types';
 import { ContestCategory, Discipline, ISelectOption } from 'types/application';
 
 /* --- EXPORTS --- */

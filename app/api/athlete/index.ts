@@ -4,21 +4,22 @@ import { AxiosResponse } from 'axios';
 import mockResponse from './__mocks__/athlete_mock';
 
 export interface APIGetAthleteRequest {
-  id: string;
+  readonly id: string;
 }
 
 export interface APIGetAthleteResponse {
-  athlete: AthleteItem;
+  readonly athlete: AthleteItem;
 }
 
 interface AthleteItem {
-  id: string;
-  name: string;
-  surname: string;
-  age: number;
-  country: string;
-  profileUrl: string;
-  overallRank: number;
+  readonly id: string;
+  readonly name: string;
+  readonly surname: string;
+  readonly age: number;
+  readonly country: string;
+  readonly profileUrl: string;
+  readonly overallRank: number;
+  readonly infoUrl: string;
 }
 
 const requestURL = '';

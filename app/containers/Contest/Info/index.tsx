@@ -11,18 +11,19 @@ import { EmptyContainer } from 'components/Containers';
 import { ContestCategory, Discipline } from 'types/application';
 
 interface Props {
-  isLoading: boolean;
-  item: ContestItem | null;
+  readonly isLoading: boolean;
+  readonly item: ContestItem | null;
 }
 
 interface ContestItem {
-  profileUrl: string;
-  name: string;
-  discipline: Discipline;
-  location: string;
-  date: string;
-  contestCategory: ContestCategory;
-  prize: string;
+  readonly profileUrl: string;
+  readonly name: string;
+  readonly discipline: Discipline;
+  readonly location: string;
+  readonly date: string;
+  readonly contestCategory: ContestCategory;
+  readonly prize: string;
+  readonly infoUrl: string;
 }
 
 class ContestInfo extends React.PureComponent<Props> {
@@ -48,7 +49,15 @@ class ContestInfo extends React.PureComponent<Props> {
               </RightSection>
               <RightSection style={{ marginTop: 0 }}>
                 <InfoField keyField={'Date'} valueField={item.date} />
-                <InfoField keyField={'Size'} valueField={item.contestCategory.name} />
+                <InfoField
+                  keyField={'Size'}
+                  valueField={item.contestCategory.name}
+                />
+                <InfoField
+                  keyField={'Further Info'}
+                  valueField={item.infoUrl}
+                  href={'Website'}
+                />
               </RightSection>
             </React.Fragment>
           ) : isLoading ? (

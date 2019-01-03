@@ -40,6 +40,7 @@ class FormikForm extends React.PureComponent<Props, State> {
         birthdate: '',
         email: '',
         city: '',
+        infoUrl: '',
       };
     }
     return values;
@@ -69,6 +70,9 @@ class FormikForm extends React.PureComponent<Props, State> {
     birthdate: Yup.string().required(),
     email: Yup.string().email('Invalid Email!'),
     city: Yup.string().min(2, 'Too Short!'),
+    infoUrl: Yup.string()
+      .url('Invalid Url')
+      .notRequired(),
   });
 
   public render() {
@@ -99,6 +103,7 @@ class FormikForm extends React.PureComponent<Props, State> {
                 loadSuggestions={this.props.loadCountrySuggestions}
               />
               <Field name="city" component={TextInput} />
+              <Field name="infoUrl" component={TextInput} />
 
               <ImageUpload
                 fileSelected={this.profilePictureSelected}
@@ -127,7 +132,7 @@ const StyledForm = styled(Form)`
 
   ${media.tablet`
     flex-wrap: wrap;
-    max-height: 400px;
+    max-height: 450px;
   `};
 `;
 

@@ -19,7 +19,6 @@ class DisciplineInput extends React.PureComponent<
     const field = this.props.field;
     const { touched, errors } = this.props.form;
     const isError = touched[field.name] && !isNil(errors[field.name]);
-
     return (
       <Wrapper>
         <div>
@@ -27,10 +26,16 @@ class DisciplineInput extends React.PureComponent<
           <select
             disabled={this.props.disabled}
             {...field}
+            value={field.value}
             placeholder="Discipline"
           >
+            <option value={-1}>
+              None
+            </option>
             {this.props.disciplines.map(discipline => (
-              <option value={discipline.value}>{discipline.label}</option>
+              <option key={discipline.value} value={discipline.value}>
+                {discipline.label}
+              </option>
             ))}
           </select>
         </div>

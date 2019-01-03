@@ -29,7 +29,7 @@ export function* getContestSuggestions(
     const options = results.items.map(item => {
       const option: ISelectOption = {
         value: `${item.id}:${item.discipline.id}`,
-        label: `${item.name} - ${item.discipline}`,
+        label: `${item.name} - ${item.discipline.name}`,
       };
       return option;
     });
@@ -89,9 +89,7 @@ export function* getDisciplines() {
 
 export function* getContestCategories() {
   try {
-    const result: APIAdminGetCategoriesResponse = yield call(
-      apiGetCategories,
-    );
+    const result: APIAdminGetCategoriesResponse = yield call(apiGetCategories);
     yield put(actions.setContestCategories(result.categories));
   } catch (err) {
     console.log('err: ', err);
@@ -104,5 +102,4 @@ export default function* adminAthleteSaga() {
   yield takeLatest(ActionTypes.LOAD_COUNTRY_SUGGESTIONS, getCountrySuggestions);
   yield takeLatest(ActionTypes.LOAD_DISCIPLINES, getDisciplines);
   yield takeLatest(ActionTypes.LOAD_CATEGORIES, getContestCategories);
-
 }

@@ -30,9 +30,9 @@ interface StateProps {
 }
 
 interface DispatchProps {
-  onSelectedIndexChanged(id: string);
-  setTabBarTabs(items: ContainerState['items']);
-  updateLocation(path: string, id: string, discipline?: string);
+  onSelectedIndexChanged(id: string): void;
+  setTabBarTabs(items: ContainerState['items']): void;
+  updateLocation(path: string, id: string, discipline?: string): void;
 }
 
 type Props = StateProps & DispatchProps & OwnProps;

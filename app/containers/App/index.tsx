@@ -33,6 +33,7 @@ import AuthenticatorHoc from 'containers/Authenticator';
 import AdminAthlete from 'containers/AdminAthlete/Loadable';
 import AdminTopBarTabs from 'containers/AdminTopBarTabs';
 import AdminContest from 'containers/AdminContest/Loadable';
+import AdminResults from 'containers/AdminResults/Loadable';
 
 const AppWrapper = styled.div`
   width: 100%;
@@ -78,6 +79,11 @@ class App extends React.Component<{}, {}> {
                       exact
                       path="/admin/contest"
                       component={AuthenticatorHoc(AdminContest)}
+                    />
+                    <Route
+                      exact
+                      path="/admin/results"
+                      component={AuthenticatorHoc(AdminResults)}
                     />
                   </Switch>
                 </React.Fragment>

@@ -13,6 +13,7 @@ const generator = (): APIAdminGetAthleteResponse => {
       birthdate: '2017-10-25',
       email: 'test@test.com',
       city: 'Bern',
+      infoUrl: 'https://www.facebook.com/events/529600260719152/',
     },
   };
 };

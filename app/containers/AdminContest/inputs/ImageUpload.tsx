@@ -36,12 +36,6 @@ class ImageUpload extends React.PureComponent<Props, State> {
     reader.readAsDataURL(file);
 
     this.props.fileSelected(file);
-    // const options = {
-    //   contentType: 'image/png',
-    // };
-    // Storage.put('example.png', file, options)
-    //   .then((result: any) => Storage.get(result.key).then(r => console.log(r)))
-    //   .catch(err => console.log(err));
   };
   public render() {
     const previewSrc = this.state.previewSrc || this.props.url;

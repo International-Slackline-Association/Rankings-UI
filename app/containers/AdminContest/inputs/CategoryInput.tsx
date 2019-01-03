@@ -18,15 +18,17 @@ class CategoryInput extends React.PureComponent<
     const field = this.props.field;
     const { touched, errors } = this.props.form;
     const isError = touched[field.name] && !isNil(errors[field.name]);
-    const categories = this.props.categories;
 
     return (
       <Wrapper>
         <div>
           <Span>Category: </Span>
-          <select {...field} placeholder="Category">
+          <select {...field} value={field.value} placeholder="Category">
+            <option value={-1}>None</option>
             {this.props.categories.map(category => (
-              <option value={category.value}>{category.label}</option>
+              <option key={category.value} value={category.value}>
+                {category.label}
+              </option>
             ))}
           </select>
         </div>

@@ -17,7 +17,7 @@ class DateInput extends React.PureComponent<
     return (
       <Wrapper>
         <div>
-          <Span>Birthdate: </Span>
+          <Span>Start Date: </Span>
           <input type="date" {...field}/>
         </div>
         {isError && <ErrorLabel>{errors[field.name]}</ErrorLabel>}

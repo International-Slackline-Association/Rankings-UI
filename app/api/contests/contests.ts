@@ -21,7 +21,7 @@ export interface APIGetContestsResponse {
 
 interface ContestsItem {
   readonly id: string;
-  readonly  name: string;
+  readonly name: string;
   readonly prize: string;
   readonly contestCategory: ContestCategory;
   readonly date: number;

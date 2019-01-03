@@ -15,6 +15,14 @@ const Group = styled<Props, 'span'>('span')`
   div {
     margin-right: 8px;
   }
+
+  & a {
+    text-decoration: none;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
 `;
 
 export default Group;

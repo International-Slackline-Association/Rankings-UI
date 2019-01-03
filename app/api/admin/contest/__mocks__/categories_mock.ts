@@ -4,11 +4,11 @@ const generator = (): APIAdminGetCategoriesResponse => {
   return {
     categories: [
       {
-        value: '0',
+        value: '2',
         label: 'World Games',
       },
       {
-        value: '1',
+        value: '3',
         label: 'Open Challenge',
       },
     ],

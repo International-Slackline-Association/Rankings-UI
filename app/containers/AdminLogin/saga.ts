@@ -25,7 +25,8 @@ export function* checkUser() {
     const result = yield call(cognitoUser);
     if (result) {
       yield put(actions.loginSuccess());
-      yield put(replace('/admin/athlete'));
+    } else {
+      yield put(actions.loginError());
     }
   } catch (err) {
     yield put(actions.loginError(err));

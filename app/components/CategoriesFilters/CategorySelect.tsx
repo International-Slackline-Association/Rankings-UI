@@ -117,6 +117,7 @@ const CustomSelect = props => <Select {...props} />;
 const StyledSelect = styled(CustomSelect)`
   && {
     min-width: 96px;
+    height: 40px;
   }
 `;
 

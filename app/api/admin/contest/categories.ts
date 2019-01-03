@@ -12,10 +12,12 @@ const requestURL = '';
 export const adminGetCategories = async (): Promise<
   APIAdminGetCategoriesResponse
 > => {
-  return axios.get(requestURL, dummyResponseConfig(dummyResponse, 1000)).then(resp => {
-    const result = resp.data as APIAdminGetCategoriesResponse;
-    return result;
-  });
+  return axios
+    .get(requestURL, dummyResponseConfig(dummyResponse, 1000))
+    .then(resp => {
+      const result = resp.data as APIAdminGetCategoriesResponse;
+      return result;
+    });
 };
 
 const dummyResponse = (): AxiosResponse<APIAdminGetCategoriesResponse> => {

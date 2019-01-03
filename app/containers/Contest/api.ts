@@ -27,6 +27,7 @@ export async function apiGetContest(request: APIGetContestRequest) {
       prize: result.contest.prize,
       profileUrl: result.contest.profileUrl,
       contestCategory: result.contest.contestCategory,
+      infoUrl: result.contest.infoUrl,
     },
   };
   return resp;

@@ -28,7 +28,7 @@ export default combineReducers<ContainerState, ContainerActions>({
   loginError: (state = initialState.loginError, action) => {
     switch (action.type) {
       case ActionTypes.LOGIN_ERROR:
-        return action.payload;
+        return action.payload || initialState.loginError;
       case ActionTypes.CLEAR_LOGIN_ERROR:
         return initialState.loginError;
     }
@@ -37,6 +37,7 @@ export default combineReducers<ContainerState, ContainerActions>({
   isLoginLoading: (state = initialState.isLoginLoading, action) => {
     switch (action.type) {
       case ActionTypes.LOGIN:
+      case ActionTypes.CHECK_USER:
         return true;
       case ActionTypes.LOGIN_ERROR:
       case ActionTypes.LOGIN_SUCCESS:

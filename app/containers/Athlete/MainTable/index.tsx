@@ -41,11 +41,11 @@ class MainTable extends React.PureComponent<Props, State> {
           <table>
             <thead>
               <tr>
-                <td title="Name">Name</td>
-                <td title="Discipline">Discipline</td>
-                <td title="Rank">Rank</td>
-                <td title="Size">Size</td>
-                <td title="Date">Date</td>
+                <td>Contest Name</td>
+                <td>Discipline</td>
+                <td>Rank</td>
+                <td>Contest Type</td>
+                <td>Start Date</td>
               </tr>
             </thead>
             <tbody>
@@ -58,7 +58,10 @@ class MainTable extends React.PureComponent<Props, State> {
                           <ContestAvatar imageUrl={item.smallProfileUrl} />
                           <a
                             href={`/contest/${item.id}/${item.discipline.id}`}
-                            onClick={this.onItemClick(item.id, item.discipline.id)}
+                            onClick={this.onItemClick(
+                              item.id,
+                              item.discipline.id,
+                            )}
                           >
                             {item.name}
                           </a>

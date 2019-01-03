@@ -35,6 +35,7 @@ export interface ContestItem {
   readonly location: string;
   readonly discipline: Discipline;
   readonly profileUrl: string;
+  readonly infoUrl: string;
 }
 
 export interface TableItemsResult {

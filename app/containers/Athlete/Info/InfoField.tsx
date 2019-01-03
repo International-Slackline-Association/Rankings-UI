@@ -4,6 +4,7 @@ import styled from 'styles/styled-components';
 interface Props {
   keyField: string;
   valueField: string;
+  href?: string;
 }
 
 class InfoField extends React.PureComponent<Props> {
@@ -11,7 +12,11 @@ class InfoField extends React.PureComponent<Props> {
     return (
       <Wrapper>
         <Key>{this.props.keyField}: </Key>
-        <Value>{this.props.valueField}</Value>
+        {this.props.href ? (
+          <HrefValue href={this.props.valueField} target="_blank">{this.props.href}</HrefValue>
+        ) : (
+          <Value>{this.props.valueField}</Value>
+        )}
       </Wrapper>
     );
   }
@@ -26,6 +31,13 @@ const Key = styled.span`
 `;
 
 const Value = styled.span`
+  color: ${props => props.theme.textInverted};
+  font-size: 1.2em;
+  font-weight: bold;
+  text-align: center;
+`;
+
+const HrefValue = styled.a`
   color: ${props => props.theme.textInverted};
   font-size: 1.2em;
   font-weight: bold;

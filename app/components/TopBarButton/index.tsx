@@ -43,10 +43,11 @@ class TopBarButton extends React.PureComponent<OwnProps> {
   };
   public render() {
     const { name, discipline, contentType } = this.props;
-    const label =
-      contentType === TopBarTabContentType.contest
-        ? `${name}-${discipline}`
-        : name;
+    // const label =
+    //   contentType === TopBarTabContentType.contest
+    //     ? `${name}-${discipline}`
+    //     : name;
+    const label = name;
     return (
       <Button
         isDynamicType={this.props.type === TopBarTabType.Dynamic}

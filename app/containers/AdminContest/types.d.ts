@@ -13,9 +13,22 @@ export interface Contest {
   readonly contestCategory: ContestCategory;
   readonly prize: number;
   readonly profileUrl: string;
+  readonly infoUrl: string;
+
 }
 
-export interface ContestFormValues extends Contest {}
+export interface ContestFormValues {
+  readonly id: string;
+  readonly name: string;
+  readonly date: string;
+  readonly city: string;
+  readonly country: string;
+  readonly discipline: number;
+  readonly contestCategory: number;
+  readonly prize: number;
+  readonly profileUrl: string;
+  readonly infoUrl: string;
+}
 
 /* --- STATE --- */
 interface AdminContestState {
@@ -27,7 +40,7 @@ interface AdminContestState {
   readonly disciplines: ISelectOption[];
 }
 
-export interface IFilter {
+interface IFilter {
   readonly selectedValue?: string;
   readonly suggestions: ISelectOption[];
 }

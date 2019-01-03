@@ -42,6 +42,7 @@ interface AthleteItem {
   readonly age: number;
   readonly profileUrl: string;
   readonly overallRank: number;
+  readonly infoUrl: string;
 }
 
 interface TableItem {

@@ -14,7 +14,6 @@ interface CategoryItem {
   selectedValue: string;
 }
 
-
 const requestURL = '';
 export async function getAthleteContestsCategories(): Promise<
   APIAthleteContestsCategoriesResponse

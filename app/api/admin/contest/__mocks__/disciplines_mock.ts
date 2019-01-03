@@ -4,11 +4,11 @@ const generator = (): APIAdminGetDisciplinesResponse => {
   return {
     disciplines: [
       {
-        value: '2',
+        value: '1',
         label: 'Trickline - Aerial',
       },
       {
-        value: '3',
+        value: '2',
         label: 'Trickline - Jib-Static',
       },
     ],

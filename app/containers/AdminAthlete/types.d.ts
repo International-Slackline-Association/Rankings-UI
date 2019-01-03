@@ -13,6 +13,7 @@ export interface Athlete {
   readonly birthdate: string;
   readonly email: string;
   readonly city: string;
+  readonly infoUrl: string;
 }
 
 export interface AthleteFormValues extends Athlete {}
@@ -25,7 +26,7 @@ interface AdminAthleteState {
   readonly countryFilter: IFilter;
 }
 
-export interface IFilter {
+interface IFilter {
   readonly selectedValue?: string;
   readonly suggestions: ISelectOption[];
 }

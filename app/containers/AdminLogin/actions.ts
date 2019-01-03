@@ -17,7 +17,7 @@ export const loginSuccess = () => action(ActionTypes.LOGIN_SUCCESS);
 
 export const checkUser = () => action(ActionTypes.CHECK_USER);
 
-export const loginError = (error: CustomError) =>
+export const loginError = (error?: CustomError) =>
   action(ActionTypes.LOGIN_ERROR, error);
 
 export const clearLoginError = () => action(ActionTypes.CLEAR_LOGIN_ERROR);

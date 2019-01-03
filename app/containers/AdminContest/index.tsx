@@ -89,8 +89,8 @@ class AdminContest extends React.PureComponent<Props, State> {
     const request: APIAdminSubmitContestRequest = {
       contest: {
         ...values,
-        contestCategory: values.contestCategory.id,
-        discipline: values.discipline.id,
+        // contestCategory: values.contestCategory.id,
+        // discipline: values.discipline.id,
       },
     };
     return apiSubmitContest(request)
@@ -143,7 +143,7 @@ class AdminContest extends React.PureComponent<Props, State> {
     const options = {
       contentType: 'image/png',
     };
-    return Storage.put(`athlete/${name}.png`, file, options)
+    return Storage.put(`contest/${name}.png`, file, options)
       .then(async (result: any) => {
         return Storage.get(result.key).then((presignedUrl: string) => {
           const imageUrl = presignedUrl.split('?')[0];
@@ -164,8 +164,14 @@ class AdminContest extends React.PureComponent<Props, State> {
 
   public render() {
     const { countryFilter, contestCategories, disciplines } = this.props;
-
-
+    let values: ContestFormValues | null = null;
+    if (this.props.contest) {
+      values = {
+        ...this.props.contest,
+        contestCategory: this.props.contest.contestCategory.id,
+        discipline: this.props.contest.discipline.id,
+      };
+    }
     return (
       <TabPanel>
         <Helmet>
@@ -175,6 +181,7 @@ class AdminContest extends React.PureComponent<Props, State> {
         <Wrapper>
           <Header>Modify Contest</Header>
           <StyledAutoCompleteFilter
+            key={this.props.contestFilter.selectedValue}
             title={'Name'}
             placeholder={'Search contest to modify'}
             loadSuggestions={this.loadSuggestions}
@@ -184,7 +191,7 @@ class AdminContest extends React.PureComponent<Props, State> {
           />
           <FormikForm
             key={this.props.contest ? this.props.contest.id : undefined}
-            values={this.props.contest}
+            values={values}
             countrySuggestions={countryFilter.suggestions}
             loadCountrySuggestions={this.loadCountrySuggestions}
             pictureSelected={this.profilePictureSelected}

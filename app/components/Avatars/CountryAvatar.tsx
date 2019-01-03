@@ -12,9 +12,9 @@ function CountryAvatar(props: Props) {
     <Wrapper>
       <ReactCountryFlag
         styleProps={{
-          'width': '25px',
-          'height': '25px',
-          'background-size': 'cover',
+          width: '25px',
+          height: '25px',
+          backgroundSize: 'cover',
         }}
         code={props.code}
         svg

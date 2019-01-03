@@ -20,7 +20,10 @@ import {
   adminGetDisciplines,
   APIAdminGetDisciplinesResponse,
 } from 'api/admin/contest/disciplines';
-import { adminGetCategories, APIAdminGetCategoriesResponse } from 'api/admin/contest/categories';
+import {
+  adminGetCategories,
+  APIAdminGetCategoriesResponse,
+} from 'api/admin/contest/categories';
 
 export async function apiGetContestSuggestions(value: string) {
   const results = await getContestSuggestions(value);

@@ -38,11 +38,12 @@ class FormikForm extends React.PureComponent<Props, State> {
         name: '',
         country: '',
         city: '',
-        contestCategory: {id: 0, name: ''},
+        contestCategory: -1,
         date: '',
-        discipline: {id: 0, name: ''},
+        discipline: -1,
         prize: 0,
         profileUrl: '',
+        infoUrl: '',
       };
     }
     return values;
@@ -72,10 +73,13 @@ class FormikForm extends React.PureComponent<Props, State> {
     prize: Yup.number()
       .min(1, 'Invalid Prize')
       .required('Required'),
+    infoUrl: Yup.string().url('Invalid Url')
+      .notRequired(),
   });
 
   public render() {
     const initialValues = this.initialValues();
+    const disableNotEditableField = initialValues.id;
     return (
       <Wrapper>
         <Header>Contest</Header>
@@ -85,6 +89,7 @@ class FormikForm extends React.PureComponent<Props, State> {
           validationSchema={this.validationSchema}
           // tslint:disable-next-line:jsx-no-lambda
           onSubmit={(values, { setSubmitting }) => {
+            console.log(values);
             this.props.submit(values).then(_ => setSubmitting(false));
           }}
         >
@@ -103,9 +108,20 @@ class FormikForm extends React.PureComponent<Props, State> {
                 name="discipline"
                 component={DisciplineInput}
                 disciplines={this.props.disciplines}
+                disabled={disableNotEditableField}
               />
-              <Field name="prize" component={TextInput} required />
-              <Field name="category" component={CategoryInput} categories={this.props.categories} />
+              <Field
+                name="prize"
+                component={TextInput}
+                label={'prize (in Euro)'}
+                required
+              />
+              <Field
+                name="contestCategory"
+                component={CategoryInput}
+                categories={this.props.categories}
+              />
+              <Field name="infoUrl" component={TextInput} />
 
               <ImageUpload
                 fileSelected={this.profilePictureSelected}
@@ -134,7 +150,7 @@ const StyledForm = styled(Form)`
 
   ${media.tablet`
     flex-wrap: wrap;
-    max-height: 400px;
+    max-height: 450px;
   `};
 `;
 

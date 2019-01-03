@@ -11,18 +11,19 @@ import { EmptyContainer } from 'components/Containers';
 import ProfileAvatar from 'components/Avatars/ProfileAvatar';
 
 interface Props {
-  isLoading: boolean;
-  item: AthleteItem | null;
+  readonly isLoading: boolean;
+  readonly item: AthleteItem | null;
 }
 
 interface AthleteItem {
-  id: string;
-  name: string;
-  surname: string;
-  country: string;
-  age: number;
-  profileUrl: string;
-  overallRank: number;
+  readonly id: string;
+  readonly name: string;
+  readonly surname: string;
+  readonly country: string;
+  readonly age: number;
+  readonly profileUrl: string;
+  readonly overallRank: number;
+  readonly infoUrl: string;
 }
 
 class AthleteInfo extends React.PureComponent<Props> {
@@ -46,6 +47,11 @@ class AthleteInfo extends React.PureComponent<Props> {
                 <InfoField
                   keyField={'OverallRank'}
                   valueField={item.overallRank.toString()}
+                />
+                <InfoField
+                  keyField={'Further Info'}
+                  valueField={item.infoUrl}
+                  href={'Website'}
                 />
               </RightSection>
             </React.Fragment>

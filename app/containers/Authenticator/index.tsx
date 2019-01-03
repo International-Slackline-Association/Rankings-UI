@@ -40,10 +40,11 @@ export default function AuthenticatorHoc(
     }
 
     public render() {
+      const { isAuthenticated, redirectToLogin, ...props } = this.props;
       return (
         <div>
           {this.props.isAuthenticated ? (
-            <WrappedComponent {...this.props} />
+            <WrappedComponent {...props} />
           ) : (
             <AdminLogin />
           )}

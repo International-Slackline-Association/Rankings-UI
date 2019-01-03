@@ -25,7 +25,7 @@ export const adminSubmitContestPicture = async (
 };
 
 const dummyResponse = (): AxiosResponse<
-APIAdminSubmitContestPictureResponse
+  APIAdminSubmitContestPictureResponse
 > => {
   return {
     data: mockResponse(),

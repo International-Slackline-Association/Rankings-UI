@@ -23,6 +23,7 @@ interface ContestItem {
   readonly country: string;
   readonly discipline: Discipline;
   readonly profileUrl: string;
+  readonly infoUrl: string;
 }
 
 const requestURL = '';

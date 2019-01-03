@@ -160,9 +160,9 @@ class AdminAthlete extends React.PureComponent<Props, State> {
         <Wrapper>
           <Header>Modify Athlete</Header>
           <StyledAutoCompleteFilter
+            key={this.props.athleteFilter.selectedValue}
             title={'Name'}
             placeholder={'Search athlete to modify'}
-            // required={this.props.required}
             loadSuggestions={this.loadSuggestions}
             suggestionSelected={this.selectSuggestion}
             suggestions={this.props.athleteFilter.suggestions}
