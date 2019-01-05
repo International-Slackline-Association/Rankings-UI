@@ -23,6 +23,7 @@ import { APIAdminSubmitAthleteRequest } from 'api/admin/athlete/submit';
 import Snackbar, { SnackbarProps } from 'components/Snackbar';
 import { Storage } from 'aws-amplify';
 import { ISelectOption } from 'types/application';
+import { AxiosError } from 'axios';
 
 interface OwnProps {}
 
@@ -69,6 +70,11 @@ class AdminAthlete extends React.PureComponent<Props, State> {
     );
     if (suggestion.value.length > 0) {
       this.props.dispatch(actions.loadAthlete(suggestion.value));
+    } else {
+      if (this.props.athlete) {
+        const update = { ...this.props.athlete, id: '' };
+        this.props.dispatch(actions.setAthlete(update));
+      }
     }
   };
 
@@ -82,24 +88,23 @@ class AdminAthlete extends React.PureComponent<Props, State> {
     };
     return apiSubmitAthlete(request)
       .then(async response => {
-        if (!response.success) {
-          this.openSnackbar(true, response.errorMessage, 'error');
-        } else {
-          let text = 'Saved Successfully.';
-          if (this.profilePicture) {
-            text += ' Uploading picture...';
-          }
-          this.openSnackbar(true, text, 'success');
-
-          if (this.profilePicture) {
-            await this.uploadProfilePicture(this.profilePicture, response.id);
-          }
-
-          this.props.dispatch(actions.clearForm());
+        let text = 'Saved Successfully.';
+        if (this.profilePicture) {
+          text += ' Uploading picture...';
         }
+        this.openSnackbar(true, text, 'success');
+
+        if (this.profilePicture) {
+          await this.uploadProfilePicture(this.profilePicture, response.id);
+        }
+
+        this.props.dispatch(actions.clearForm());
       })
-      .catch(err => {
-        this.openSnackbar(true, err.message, 'error');
+      .catch((err: AxiosError) => {
+        const message = err.response
+          ? err.response.data.message || err.message
+          : err.message;
+        this.openSnackbar(true, message, 'error');
       });
   };
 
@@ -126,16 +131,17 @@ class AdminAthlete extends React.PureComponent<Props, State> {
     this.profilePicture = file;
   };
 
-  private uploadProfilePicture = (file: any, name: string) => {
+  private uploadProfilePicture = (file: any, athleteId: string) => {
     const options = {
       contentType: 'image/png',
     };
-    return Storage.put(`athlete/${name}.png`, file, options)
+    return Storage.put(`athlete/${athleteId}.png`, file, options)
       .then(async (result: any) => {
-        return Storage.get(result.key).then((presignedUrl: string) => {
+        return Storage.get(result.key).then(async (presignedUrl: string) => {
           const imageUrl = presignedUrl.split('?')[0];
           if (imageUrl) {
             return apiSubmitAthletePicture({
+              id: athleteId,
               url: imageUrl,
             }).then(rsp => {
               this.openSnackbar(true, 'Picture Uploaded', 'success');
@@ -144,13 +150,19 @@ class AdminAthlete extends React.PureComponent<Props, State> {
           return Promise.resolve();
         });
       })
-      .catch(err => {
-        this.openSnackbar(true, err.message, 'error');
+      .catch((err: AxiosError) => {
+        const message = err.response
+          ? err.response.data.message || err.message
+          : err.message;
+        this.openSnackbar(true, message, 'error');
       });
   };
 
   public render() {
     const { countryFilter } = this.props;
+    const formikKey = this.props.athlete
+      ? this.props.athlete.id || undefined
+      : undefined;
     return (
       <TabPanel>
         <Helmet>
@@ -169,7 +181,7 @@ class AdminAthlete extends React.PureComponent<Props, State> {
             selectedValue={this.props.athleteFilter.selectedValue}
           />
           <FormikForm
-            key={this.props.athlete ? this.props.athlete.id : undefined}
+            key={formikKey}
             values={this.props.athlete}
             countrySuggestions={countryFilter.suggestions}
             loadCountrySuggestions={this.loadCountrySuggestions}

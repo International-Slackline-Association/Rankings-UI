@@ -1,4 +1,4 @@
-import axios, { dummyResponseConfig } from 'api/axios';
+import axios, { axiosConfig } from 'api/axios';
 import { AxiosResponse } from 'axios';
 
 import mockResponse from './__mocks__/countrySuggestions_mock';
@@ -17,7 +17,7 @@ export async function getCountrySuggestions(
   value: string,
 ): Promise<APIGetCountrySuggestionsResponse> {
   const url = requestURL + '/' + value;
-  return axios.get(url, dummyResponseConfig(dummyResponse, 1000)).then(resp => {
+  return axios.get(url, axiosConfig(dummyResponse, 1000)).then(resp => {
     const result = resp.data as APIGetCountrySuggestionsResponse;
     return result;
   });

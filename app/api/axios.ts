@@ -1,20 +1,30 @@
 import axios, { AxiosRequestConfig, AxiosResponse } from 'axios';
+import cognitoOptions from './amplify/options';
 
 const baseURL = process.env.API_BASE_URL as string;
 const isDummy = baseURL === undefined;
 
-export const dummyResponseConfig = (
-  dummyResponse: () => AxiosResponse,
+export const axiosConfigWithAuthToken = async (): Promise<
+  AxiosRequestConfig
+> => {
+  const options = await cognitoOptions();
+  return { headers: options.headers };
+};
+
+export const axiosConfig = (
+  dummyResponse?: () => AxiosResponse,
   sleep?: number,
+  forceMock?: boolean | string,
+  config: AxiosRequestConfig = axios.defaults,
 ) => {
-  if (!isDummy) {
-    return undefined;
+  if ((forceMock === undefined || forceMock) && dummyResponse) {
+    const { adapter, ...rest } = config;
+    const finalConfig: AxiosRequestConfig = {
+      ...rest,
+      adapter: customAdapter(dummyResponse, sleep),
+    };
+    return finalConfig;
   }
-  const { adapter, ...rest } = axios.defaults;
-  const config: AxiosRequestConfig = {
-    adapter: customAdapter(dummyResponse, sleep),
-    ...rest,
-  };
   return config;
 };
 

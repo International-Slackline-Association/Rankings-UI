@@ -73,7 +73,8 @@ class FormikForm extends React.PureComponent<Props, State> {
     prize: Yup.number()
       .min(1, 'Invalid Prize')
       .required('Required'),
-    infoUrl: Yup.string().url('Invalid Url')
+    infoUrl: Yup.string()
+      .url('Invalid Url')
       .notRequired(),
   });
 
@@ -121,7 +122,7 @@ class FormikForm extends React.PureComponent<Props, State> {
                 component={CategoryInput}
                 categories={this.props.categories}
               />
-              <Field name="infoUrl" component={TextInput} />
+              <Field name="infoUrl" component={TextInput} label={'Info Url'} />
 
               <ImageUpload
                 fileSelected={this.profilePictureSelected}

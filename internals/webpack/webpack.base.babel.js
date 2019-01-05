@@ -133,6 +133,7 @@ module.exports = options => ({
     new webpack.DefinePlugin({
       'process.env': {
         NODE_ENV: JSON.stringify(process.env.NODE_ENV),
+        API_BASE_URL: JSON.stringify(process.env.API_BASE_URL),
         API_ENV: JSON.stringify(process.env.API_ENV),
         APP_VERSION: JSON.stringify(require('../../package.json').version), // eslint-disable-line
         IDENTITY_POOL_ID: JSON.stringify(process.env.IDENTITY_POOL_ID),

@@ -1,4 +1,4 @@
-import axios, { dummyResponseConfig } from 'api/axios';
+import axios, { axiosConfig, axiosConfigWithAuthToken } from 'api/axios';
 import { AxiosResponse } from 'axios';
 
 import mockResponse from './__mocks__/submit_athlete_mock';
@@ -6,20 +6,28 @@ import { AthleteItem } from '.';
 
 export interface APIAdminSubmitAthleteResponse {
   id: string;
-  success: boolean;
-  errorMessage: string;
 }
 
 export interface APIAdminSubmitAthleteRequest {
   athlete: AthleteItem;
 }
 
-const requestURL = '';
+const requestURL = 'admin/api/submit/athlete';
 export const adminSubmitAthlete = async (
   request: APIAdminSubmitAthleteRequest,
 ): Promise<APIAdminSubmitAthleteResponse> => {
+  const body = request.athlete;
   return axios
-    .post(requestURL, request, dummyResponseConfig(dummyResponse, 1000))
+    .post(
+      requestURL,
+      body,
+      axiosConfig(
+        dummyResponse,
+        1000,
+        false,
+        await axiosConfigWithAuthToken(),
+      ),
+    )
     .then(resp => {
       const result = resp.data as APIAdminSubmitAthleteResponse;
       return result;

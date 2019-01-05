@@ -103,7 +103,7 @@ class FormikForm extends React.PureComponent<Props, State> {
                 loadSuggestions={this.props.loadCountrySuggestions}
               />
               <Field name="city" component={TextInput} />
-              <Field name="infoUrl" component={TextInput} />
+              <Field name="infoUrl" component={TextInput} label={'Info Url'}/>
 
               <ImageUpload
                 fileSelected={this.profilePictureSelected}

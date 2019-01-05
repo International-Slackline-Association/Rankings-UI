@@ -1,4 +1,4 @@
-import axios, { dummyResponseConfig } from 'api/axios';
+import axios, { axiosConfig } from 'api/axios';
 import { AxiosResponse } from 'axios';
 
 import mockResponse from './__mocks__/contest_mock';
@@ -26,7 +26,7 @@ export const adminGetContest = async (
   id: string,
 ): Promise<APIAdminGetContestResponse> => {
   const url = `${requestURL}/${id}`;
-  return axios.get(url, dummyResponseConfig(dummyResponse, 1000)).then(resp => {
+  return axios.get(url, axiosConfig(dummyResponse, 1000)).then(resp => {
     const result = resp.data as APIAdminGetContestResponse;
     return result;
   });

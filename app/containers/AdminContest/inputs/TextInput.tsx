@@ -12,6 +12,7 @@ import ErrorLabel from './ErrorLabel';
 
 export interface ForminInputComponentProps {
   required: boolean;
+  label?: string;
 }
 
 class TextInput extends React.PureComponent<
@@ -24,7 +25,7 @@ class TextInput extends React.PureComponent<
     return (
       <Wrapper>
         <StyledTextField
-          label={field.name}
+          label={this.props.label || field.name}
           placeholder={field.name}
           required={this.props.required}
           error={isError}

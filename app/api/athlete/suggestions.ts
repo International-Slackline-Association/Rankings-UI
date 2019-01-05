@@ -1,4 +1,4 @@
-import axios, { dummyResponseConfig } from 'api/axios';
+import axios, { axiosConfig } from 'api/axios';
 import { AxiosRequestConfig, AxiosResponse } from 'axios';
 
 import mockResponse from './__mocks__/athlete_suggestions_mock';
@@ -18,7 +18,7 @@ const getAthleteSuggestions = async (
   value: string,
 ): Promise<APIGetAthleteSuggestionsResponse> => {
   const url = requestURL + '/' + value;
-  return axios.get(url, dummyResponseConfig(dummyResponse, 1000)).then(resp => {
+  return axios.get(url, axiosConfig(dummyResponse, 1000)).then(resp => {
     const result = resp.data as APIGetAthleteSuggestionsResponse;
     return result;
   });

@@ -3,7 +3,7 @@ import { APIAdminGetContestResponse } from '..';
 const generator = (): APIAdminGetContestResponse => {
   return {
     contest: {
-      id: 'swiss-open_2018',
+      id: 'swiss-open_2017',
       name: 'Swiss Open',
       profileUrl:
         'http://www.slackattack.ch/wp-content/uploads/2015/11/Vorstand_Tom.jpg',

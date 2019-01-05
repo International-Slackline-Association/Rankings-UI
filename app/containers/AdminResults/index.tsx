@@ -92,7 +92,7 @@ export class AdminResults extends React.PureComponent<Props, State> {
       if (this.findAthleteInForm(suggestion.value)) {
         this.openSnackbar(
           true,
-          'Cannot have duplicated athletes in form',
+          'Cannot have duplicate athletes in form',
           'error',
         );
         this.props.dispatch(actions.setAthleteFilterSelectedValue('', index));

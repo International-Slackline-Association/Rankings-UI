@@ -1,4 +1,4 @@
-import axios, { dummyResponseConfig } from 'api/axios';
+import axios, { axiosConfig } from 'api/axios';
 import { AxiosRequestConfig, AxiosResponse } from 'axios';
 
 import mockResponse from './__mocks__/contest_suggestions_mock';
@@ -20,7 +20,7 @@ export async function getContestSuggestions(
 ): Promise<APIGetContestSuggestionsResponse> {
   const url = requestURL + '/' + value;
   return axios
-    .get(url, dummyResponseConfig(dummyContestsResponse, 1000))
+    .get(url, axiosConfig(dummyContestsResponse, 1000))
     .then(resp => {
       const result = resp.data as APIGetContestSuggestionsResponse;
       return result;

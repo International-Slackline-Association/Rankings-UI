@@ -27,6 +27,7 @@ import {
   apiSubmitContestPicture,
 } from './api';
 import { ISelectOption } from 'types/application';
+import { AxiosError } from 'axios';
 
 interface OwnProps {}
 
@@ -78,6 +79,11 @@ class AdminContest extends React.PureComponent<Props, State> {
     if (suggestion.value.length > 0) {
       const [id, discipline] = suggestion.value.split(':');
       this.props.dispatch(actions.loadContest(id, parseInt(discipline, 10)));
+    } else {
+      if (this.props.contest) {
+        const update = { ...this.props.contest, id: '' };
+        this.props.dispatch(actions.setContest(update));
+      }
     }
   };
 
@@ -95,24 +101,23 @@ class AdminContest extends React.PureComponent<Props, State> {
     };
     return apiSubmitContest(request)
       .then(async response => {
-        if (!response.success) {
-          this.openSnackbar(true, response.errorMessage, 'error');
-        } else {
-          let text = 'Saved Successfully.';
-          if (this.profilePicture) {
-            text += ' Uploading picture...';
-          }
-          this.openSnackbar(true, text, 'success');
-
-          if (this.profilePicture) {
-            await this.uploadProfilePicture(this.profilePicture, response.id);
-          }
-
-          this.props.dispatch(actions.clearForm());
+        let text = 'Saved Successfully.';
+        if (this.profilePicture) {
+          text += ' Uploading picture...';
         }
+        this.openSnackbar(true, text, 'success');
+
+        if (this.profilePicture) {
+          await this.uploadProfilePicture(this.profilePicture, response.id, response.discipline);
+        }
+
+        this.props.dispatch(actions.clearForm());
       })
-      .catch(err => {
-        this.openSnackbar(true, err.message, 'error');
+      .catch((err: AxiosError) => {
+        const message = err.response
+          ? err.response.data.message || err.message
+          : err.message;
+        this.openSnackbar(true, message, 'error');
       });
   };
 
@@ -139,16 +144,18 @@ class AdminContest extends React.PureComponent<Props, State> {
     this.profilePicture = file;
   };
 
-  private uploadProfilePicture = (file: any, name: string) => {
+  private uploadProfilePicture = (file: any, id: string, discipline: number) => {
     const options = {
       contentType: 'image/png',
     };
-    return Storage.put(`contest/${name}.png`, file, options)
+    return Storage.put(`contest/${id}-${discipline}.png`, file, options)
       .then(async (result: any) => {
         return Storage.get(result.key).then((presignedUrl: string) => {
           const imageUrl = presignedUrl.split('?')[0];
           if (imageUrl) {
             return apiSubmitContestPicture({
+              id: id,
+              discipline: discipline,
               url: imageUrl,
             }).then(rsp => {
               this.openSnackbar(true, 'Picture Uploaded', 'success');
@@ -157,8 +164,11 @@ class AdminContest extends React.PureComponent<Props, State> {
           return Promise.resolve();
         });
       })
-      .catch(err => {
-        this.openSnackbar(true, err.message, 'error');
+      .catch((err: AxiosError) => {
+        const message = err.response
+          ? err.response.data.message || err.message
+          : err.message;
+        this.openSnackbar(true, message, 'error');
       });
   };
 
@@ -172,6 +182,9 @@ class AdminContest extends React.PureComponent<Props, State> {
         discipline: this.props.contest.discipline.id,
       };
     }
+    const formikKey = this.props.contest
+      ? this.props.contest.id || undefined
+      : undefined;
     return (
       <TabPanel>
         <Helmet>
@@ -190,7 +203,7 @@ class AdminContest extends React.PureComponent<Props, State> {
             selectedValue={this.props.contestFilter.selectedValue}
           />
           <FormikForm
-            key={this.props.contest ? this.props.contest.id : undefined}
+            key={formikKey}
             values={values}
             countrySuggestions={countryFilter.suggestions}
             loadCountrySuggestions={this.loadCountrySuggestions}

@@ -1,4 +1,4 @@
-import axios, { dummyResponseConfig } from 'api/axios';
+import axios, { axiosConfig } from 'api/axios';
 import { AxiosResponse } from 'axios';
 
 import mockResponse from './__mocks__/disciplines_mock';
@@ -13,7 +13,7 @@ export const adminGetDisciplines = async (): Promise<
   APIAdminGetDisciplinesResponse
 > => {
   return axios
-    .get(requestURL, dummyResponseConfig(dummyResponse, 1000))
+    .get(requestURL, axiosConfig(dummyResponse, 1000))
     .then(resp => {
       const result = resp.data as APIAdminGetDisciplinesResponse;
       return result;

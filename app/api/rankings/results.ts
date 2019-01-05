@@ -1,4 +1,4 @@
-import axios, { dummyResponseConfig } from 'api/axios';
+import axios, { axiosConfig } from 'api/axios';
 import { AxiosResponse } from 'axios';
 
 import mockResponse from './__mocks__/rankings_mock';
@@ -33,7 +33,7 @@ export async function getRankingResults(
   request: APIGetRankingsRequest,
 ): Promise<APIRankingsResponse> {
   return axios
-    .post(requestURL, request, dummyResponseConfig(dummyResponse, 1000))
+    .post(requestURL, request, axiosConfig(dummyResponse, 1000))
     .then(resp => {
       const result = resp.data as APIRankingsResponse;
       return result;
