@@ -4,8 +4,8 @@ import ActionTypes from './constants';
 import { ContainerState, ContainerActions } from './types';
 
 export const initialState: ContainerState = {
-  contestFilter: { suggestions: [] },
-  athleteFilters: [{ suggestions: [] }],
+  contestFilter: { suggestions: undefined },
+  athleteFilters: [{ suggestions: undefined }],
 };
 
 export default combineReducers<ContainerState, ContainerActions>({
@@ -42,12 +42,12 @@ export default combineReducers<ContainerState, ContainerActions>({
       case ActionTypes.LOAD_ATHLETE_SUGGESTIONS:
         filters = [...state];
         filters[action.payload.index] = {
-          suggestions: [],
+          suggestions: undefined,
           selectedValue: filters[action.payload.index].selectedValue,
         };
         return filters;
       case ActionTypes.ADD_ATHLETE_FILTER:
-        filters = [...state, { suggestions: [] }];
+        filters = [...state, { suggestions: undefined }];
         return filters;
       case ActionTypes.CLEAR_FORM:
         return initialState.athleteFilters;

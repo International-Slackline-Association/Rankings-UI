@@ -12,15 +12,20 @@ interface CountrySuggestionItem {
   readonly name: string;
 }
 
-const requestURL = '';
+const requestURL = 'api/country/suggestions';
 export async function getCountrySuggestions(
   value: string,
 ): Promise<APIGetCountrySuggestionsResponse> {
-  const url = requestURL + '/' + value;
-  return axios.get(url, axiosConfig(dummyResponse, 1000)).then(resp => {
-    const result = resp.data as APIGetCountrySuggestionsResponse;
-    return result;
-  });
+  const url = `${requestURL}/${value}`;
+  return axios
+    .get(
+      url,
+      axiosConfig(dummyResponse, 1000, false),
+    )
+    .then(resp => {
+      const result = resp.data as APIGetCountrySuggestionsResponse;
+      return result;
+    });
 }
 
 const dummyResponse = (): AxiosResponse<APIGetCountrySuggestionsResponse> => {

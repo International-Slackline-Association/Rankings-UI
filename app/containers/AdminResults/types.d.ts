@@ -12,7 +12,7 @@ interface AdminResultsState {
 
 interface IFilter {
   readonly selectedValue?: string;
-  readonly suggestions: ISelectOption[];
+  readonly suggestions?: ISelectOption[];
 }
 
 

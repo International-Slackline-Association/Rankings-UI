@@ -26,7 +26,7 @@ export function* getAthleteSuggestions(
     const options = results.items.map(item => {
       const option: ISelectOption = {
         value: item.id,
-        label: `${item.name} - ${item.email}`,
+        label: `${item.name} ${item.surname} - ${item.email}`,
       };
       return option;
     });

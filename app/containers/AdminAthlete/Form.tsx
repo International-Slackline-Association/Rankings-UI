@@ -15,7 +15,7 @@ import { ISelectOption } from 'types/application';
 
 interface Props {
   readonly values?: AthleteFormValues | null;
-  readonly countrySuggestions: ISelectOption[];
+  readonly countrySuggestions?: ISelectOption[];
   loadCountrySuggestions(value: string): void;
   pictureSelected(file: any): void;
   submit(values: AthleteFormValues): Promise<void>;

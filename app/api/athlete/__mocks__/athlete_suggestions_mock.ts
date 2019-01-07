@@ -5,22 +5,26 @@ const generator = (): APIGetAthleteSuggestionsResponse => {
     items: [
       {
         id: '1',
-        name: 'Can Sahin',
+        name: 'Can',
+        surname: 'Sahin',
         email: 'email',
       },
       {
         id: '2',
-        name: 'Thomas Buckingham',
+        name: 'Thomas',
+        surname: 'Buckingham',
         email: 'email',
       },
       {
         id: '3',
-        name: 'Samuel Volery',
+        name: 'Samuel',
+        surname: 'Volery',
         email: 'email',
       },
       {
         id: '4',
-        name: 'Lukas Irmler',
+        name: 'Lukas',
+        surname: 'Irmler',
         email: 'email',
       },
     ],

@@ -28,7 +28,7 @@ interface AdminAthleteState {
 
 interface IFilter {
   readonly selectedValue?: string;
-  readonly suggestions: ISelectOption[];
+  readonly suggestions?: ISelectOption[];
 }
 
 /* --- ACTIONS --- */

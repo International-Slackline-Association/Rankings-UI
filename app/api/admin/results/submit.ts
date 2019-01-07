@@ -1,12 +1,9 @@
-import axios, { axiosConfig } from 'api/axios';
+import axios, { axiosConfig, axiosConfigWithAuthToken } from 'api/axios';
 import { AxiosResponse } from 'axios';
 
 import mockResponse from './__mocks__/contest_results_mock';
 
-export interface APIAdminSubmitContestResultsResponse {
-  success: boolean;
-  errorMessage: string;
-}
+export interface APIAdminSubmitContestResultsResponse {}
 
 interface ContestResultsItem {
   readonly contestId: string;
@@ -22,12 +19,17 @@ export interface APIAdminSubmitContestResultsRequest {
   results: ContestResultsItem;
 }
 
-const requestURL = '';
+const requestURL = 'admin/api/submit/contest/results';
 export const adminSubmitContestResults = async (
   request: APIAdminSubmitContestResultsRequest,
 ): Promise<APIAdminSubmitContestResultsResponse> => {
+  const body = request.results;
   return axios
-    .post(requestURL, request, axiosConfig(dummyResponse, 1000))
+    .post(
+      requestURL,
+      body,
+      axiosConfig(dummyResponse, 1000, false, await axiosConfigWithAuthToken()),
+    )
     .then(resp => {
       const result = resp.data as APIAdminSubmitContestResultsResponse;
       return result;

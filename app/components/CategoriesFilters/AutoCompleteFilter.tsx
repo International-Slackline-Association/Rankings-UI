@@ -66,14 +66,9 @@ class AutoCompleteFilter extends React.PureComponent<Props, State> {
   }
 
   public componentDidUpdate(prevProps: Props) {
-    if (prevProps.suggestions) {
-      const suggestions = this.props.suggestions || [];
-      if (prevProps.suggestions.length !== suggestions.length) {
-        if (prevProps.suggestions.length === 0 && suggestions.length > 0) {
-          this.setLoading(false);
-        }
-        this.setSuggestions(this.props.suggestions);
-      }
+    if (!prevProps.suggestions && this.props.suggestions) {
+      this.setLoading(false);
+      this.setSuggestions(this.props.suggestions);
     }
   }
 
@@ -140,8 +135,9 @@ class AutoCompleteFilter extends React.PureComponent<Props, State> {
     const inputValue = deburr(value.trim()).toLowerCase();
     const inputLength = inputValue.length;
 
-    if (inputLength === 0) {
+    if (inputLength < 3) {
       this.setSuggestions([]);
+      return;
     }
     this.setLoading(true);
     this.props.loadSuggestions(value);

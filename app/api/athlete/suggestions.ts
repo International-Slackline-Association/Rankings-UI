@@ -10,15 +10,16 @@ export interface APIGetAthleteSuggestionsResponse {
 interface AthleteSuggestionItem {
   id: string;
   name: string;
+  surname: string;
   email: string;
 }
 
-const requestURL = '';
+const requestURL = 'api/athlete/suggestions';
 const getAthleteSuggestions = async (
   value: string,
 ): Promise<APIGetAthleteSuggestionsResponse> => {
-  const url = requestURL + '/' + value;
-  return axios.get(url, axiosConfig(dummyResponse, 1000)).then(resp => {
+  const url = `${requestURL}/${value}`;
+  return axios.get(url, axiosConfig(dummyResponse, 1000, false)).then(resp => {
     const result = resp.data as APIGetAthleteSuggestionsResponse;
     return result;
   });

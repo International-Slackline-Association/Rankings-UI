@@ -9,8 +9,8 @@ export const initialState: ContainerState = {
   nextTableItemsCursor: null,
   isNextTableItemsLoading: false,
   categories: null,
-  athleteFilter: { suggestions: [] },
-  countryFilter: { suggestions: [] },
+  athleteFilter: { suggestions: undefined },
+  countryFilter: { suggestions: undefined },
 };
 
 export default combineReducers<ContainerState, ContainerActions>({
@@ -59,7 +59,7 @@ export default combineReducers<ContainerState, ContainerActions>({
       case ActionTypes.SET_ATHLETE_SUGGESTIONS:
         return { ...state, suggestions: action.payload };
       case ActionTypes.LOAD_ATHLETE_SUGGESTIONS:
-        return { ...state, suggestions: [] };
+        return { ...state, suggestions: undefined };
     }
     return state;
   },
@@ -70,7 +70,7 @@ export default combineReducers<ContainerState, ContainerActions>({
       case ActionTypes.SET_COUNTRY_SUGGESTIONS:
         return { ...state, suggestions: action.payload };
       case ActionTypes.LOAD_COUNTRY_SUGGESTIONS:
-        return { ...state, suggestions: [] };
+        return { ...state, suggestions: undefined };
     }
     return state;
   },

@@ -7,7 +7,7 @@ import ErrorLabel from './ErrorLabel';
 import { ISelectOption } from 'types/application';
 
 export interface ForminInputComponentProps {
-  readonly suggestions: ISelectOption[];
+  readonly suggestions?: ISelectOption[];
   loadSuggestions(value: string): void;
 }
 
@@ -50,6 +50,7 @@ class AutoCompleteTextInput extends React.PureComponent<Props, State> {
   public render() {
     const field = this.props.field;
     const selectedValue = field.value;
+    console.log(field);
 
     this.updateFormikValue = this.setFieldValue(
       field.name,

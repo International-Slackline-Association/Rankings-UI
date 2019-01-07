@@ -24,7 +24,7 @@ class SimpleSnackbar extends React.Component<SnackbarProps> {
           horizontal: 'left',
         }}
         open={this.props.open}
-        autoHideDuration={3000}
+        autoHideDuration={ type === 'success' ? 3000 : 5000}
         onClose={this.props.handleClose}
         ContentProps={{
           'aria-describedby': 'message-id',

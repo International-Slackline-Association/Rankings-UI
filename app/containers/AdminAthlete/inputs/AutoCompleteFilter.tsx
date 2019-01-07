@@ -54,26 +54,20 @@ class AutoCompleteFilter extends React.PureComponent<Props, State> {
   private popperNode: any;
   constructor(props: Props) {
     super(props);
+    const selectedLabel = (this.props.suggestions || []).find(
+      s => s.value === this.props.selectedValue,
+    );
+    console.log('SelectedLabel: ', selectedLabel);
     this.state = {
-      value: this.props.selectedValue || '',
+      value: (selectedLabel && selectedLabel.label) || '',
       suggestions: this.props.suggestions || [],
     };
   }
 
   public componentDidUpdate(prevProps: Props, prevState: State) {
-    if (prevProps.suggestions) {
-      const suggestions = this.props.suggestions || [];
-      if (prevProps.suggestions.length !== suggestions.length) {
-        if (prevProps.suggestions.length === 0 && suggestions.length > 0) {
-          this.setLoading(false);
-        }
-        this.setSuggestions(this.props.suggestions);
-      }
-
-      // const selectedValue = this.props.selectedValue || '';
-      // if (!prevProps.selectedValue && selectedValue) {
-      //   this.setValue(selectedValue);
-      // }
+    if (!prevProps.suggestions && this.props.suggestions) {
+      this.setLoading(false);
+      this.setSuggestions(this.props.suggestions);
     }
   }
 
@@ -150,8 +144,9 @@ class AutoCompleteFilter extends React.PureComponent<Props, State> {
     const inputValue = deburr(value.trim()).toLowerCase();
     const inputLength = inputValue.length;
 
-    if (inputLength === 0) {
+    if (inputLength < 3) {
       this.setSuggestions([]);
+      return;
     }
     this.setLoading(true);
     this.props.loadSuggestions(value);

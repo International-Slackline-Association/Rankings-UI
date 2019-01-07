@@ -31,6 +31,7 @@ import {
   APIAdminSubmitContestResultsRequest,
   apiSubmitContestResults,
 } from './api';
+import { AxiosError } from 'axios';
 
 interface OwnProps {}
 
@@ -163,17 +164,15 @@ export class AdminResults extends React.PureComponent<Props, State> {
     return apiSubmitContestResults(request)
       .then(async response => {
         this.setState({ isSubmitting: false });
-        if (!response.success) {
-          this.openSnackbar(true, response.errorMessage, 'error');
-        } else {
-          this.openSnackbar(true, 'Success', 'success');
-
-          this.props.dispatch(actions.clearForm());
-        }
+        this.openSnackbar(true, 'Saved Successfully', 'success');
+        this.props.dispatch(actions.clearForm());
       })
-      .catch(err => {
+      .catch((err: AxiosError) => {
         this.setState({ isSubmitting: false });
-        this.openSnackbar(true, err.message, 'error');
+        const message = err.response
+          ? err.response.data.message || err.message
+          : err.message;
+        this.openSnackbar(true, message, 'error');
       });
   };
 
