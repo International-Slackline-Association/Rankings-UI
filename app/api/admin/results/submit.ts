@@ -13,6 +13,7 @@ interface ContestResultsItem {
 
 interface Athlete {
   athleteId: string;
+  place: number;
 }
 
 export interface APIAdminSubmitContestResultsRequest {

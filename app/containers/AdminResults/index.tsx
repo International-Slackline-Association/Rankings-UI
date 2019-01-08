@@ -82,6 +82,13 @@ export class AdminResults extends React.PureComponent<Props, State> {
     this.props.dispatch(actions.setContestFilterSelectedValue(suggestion));
   };
 
+  private numberInputOnChanged = (index: number) => {
+    return (evt: any) => {
+      this.props.dispatch(
+        actions.changeAthleteFilterOrder(parseInt(evt.target.value, 10), index),
+      );
+    };
+  };
   private loadAthleteSuggestions = (index: number) => {
     return (value: string) => {
       this.props.dispatch(actions.loadAthleteSuggestions(value, index));
@@ -161,7 +168,10 @@ export class AdminResults extends React.PureComponent<Props, State> {
         contestId: id,
         discipline: parseInt(discipline, 10),
         places: athleteFilters.map(athleteFilter => {
-          return { athleteId: athleteFilter.selectedValue!.value };
+          return {
+            athleteId: athleteFilter.selectedValue!.value,
+            place: athleteFilter.orderNumber,
+          };
         }),
       },
     };
@@ -203,7 +213,10 @@ export class AdminResults extends React.PureComponent<Props, State> {
           <ResultsWrapper>
             {athleteFilters.map((athleteFilter, index) => (
               <AthleteFilterWrapper key={index}>
-                <span>{index + 1}: </span>
+                <NumberInput
+                  defaultValue={`${athleteFilter.orderNumber}`}
+                  onChange={this.numberInputOnChanged(index)}
+                />
                 <StyledAutoCompleteFilter
                   // key={athleteFilter.selectedValue}
                   title={'Name'}
@@ -239,6 +252,10 @@ export class AdminResults extends React.PureComponent<Props, State> {
     );
   }
 }
+
+const NumberInput = styled.input.attrs({ type: 'number', min: 1 })`
+  width: 30px;
+`;
 
 const AthleteFilterWrapper = styled.div`
   display: flex;

@@ -1,4 +1,4 @@
-import axios, { axiosConfig } from 'api/axios';
+import axios, { axiosConfig, axiosConfigWithAuthToken } from 'api/axios';
 import { AxiosResponse } from 'axios';
 
 import mockResponse from './__mocks__/athlete_mock';
@@ -20,15 +20,20 @@ export interface AthleteItem {
   readonly infoUrl: string;
 }
 
-const requestURL = '';
+const requestURL = 'admin/api/athlete';
 export const adminGetAthlete = async (
   id: string,
 ): Promise<APIAdminGetAthleteResponse> => {
   const url = `${requestURL}/${id}`;
-  return axios.get(url, axiosConfig(dummyResponse, 1000)).then(resp => {
-    const result = resp.data as APIAdminGetAthleteResponse;
-    return result;
-  });
+  return axios
+    .get(
+      url,
+      axiosConfig(dummyResponse, 1000, false, await axiosConfigWithAuthToken()),
+    )
+    .then(resp => {
+      const result = resp.data as APIAdminGetAthleteResponse;
+      return result;
+    });
 };
 
 const dummyResponse = (): AxiosResponse<APIAdminGetAthleteResponse> => {

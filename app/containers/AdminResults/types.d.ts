@@ -6,15 +6,16 @@ import { ISelectOption } from 'types/application';
 /* --- STATE --- */
 interface AdminResultsState {
   readonly contestFilter: IFilter;
-  readonly athleteFilters: IFilter[];
-
+  readonly athleteFilters: IOrderedFilter[];
 }
 
 interface IFilter {
   readonly selectedValue?: ISelectOption;
   readonly suggestions?: ISelectOption[];
 }
-
+interface IOrderedFilter extends IFilter {
+  readonly orderNumber: number;
+}
 
 /* --- ACTIONS --- */
 type AdminResultsActions = ActionType<typeof actions>;

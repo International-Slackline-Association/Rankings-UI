@@ -5,7 +5,7 @@ import { ContainerState, ContainerActions } from './types';
 
 export const initialState: ContainerState = {
   contestFilter: { suggestions: undefined },
-  athleteFilters: [{ suggestions: undefined }],
+  athleteFilters: [{ suggestions: undefined, orderNumber: 1 }],
 };
 
 export default combineReducers<ContainerState, ContainerActions>({
@@ -26,33 +26,41 @@ export default combineReducers<ContainerState, ContainerActions>({
     switch (action.type) {
       case ActionTypes.SET_ATHLETE_FILTER_SELECTED_VALUE:
         let filters = [...state];
-        const toChange = filters[action.payload.index];
         filters[action.payload.index] = {
-          suggestions: toChange.suggestions,
+          ...filters[action.payload.index],
           selectedValue: action.payload.value,
+        };
+        return filters;
+      case ActionTypes.CHANGE_ATHLETE_FILTER_ORDER:
+        filters = [...state];
+        filters[action.payload.index] = {
+          ...filters[action.payload.index],
+          orderNumber: action.payload.value,
         };
         return filters;
       case ActionTypes.SET_ATHLETE_SUGGESTIONS:
         filters = [...state];
         filters[action.payload.index] = {
+          ...filters[action.payload.index],
           suggestions: action.payload.items,
-          selectedValue: filters[action.payload.index].selectedValue,
         };
         return filters;
       case ActionTypes.LOAD_ATHLETE_SUGGESTIONS:
         filters = [...state];
         filters[action.payload.index] = {
+          ...filters[action.payload.index],
           suggestions: undefined,
-          selectedValue: filters[action.payload.index].selectedValue,
         };
         return filters;
       case ActionTypes.ADD_ATHLETE_FILTER:
-        filters = [...state, { suggestions: undefined }];
+        filters = [
+          ...state,
+          { suggestions: undefined, orderNumber: state.length + 1 },
+        ];
         return filters;
       case ActionTypes.CLEAR_FORM:
         return initialState.athleteFilters;
     }
     return state;
   },
-
 });

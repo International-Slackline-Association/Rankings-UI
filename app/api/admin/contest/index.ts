@@ -1,4 +1,4 @@
-import axios, { axiosConfig } from 'api/axios';
+import axios, { axiosConfig, axiosConfigWithAuthToken } from 'api/axios';
 import { AxiosResponse } from 'axios';
 
 import mockResponse from './__mocks__/contest_mock';
@@ -21,15 +21,21 @@ export interface ContestItem {
   readonly infoUrl: string;
 }
 
-const requestURL = '';
+const requestURL = 'admin/api/contest';
 export const adminGetContest = async (
   id: string,
+  discipline: number,
 ): Promise<APIAdminGetContestResponse> => {
-  const url = `${requestURL}/${id}`;
-  return axios.get(url, axiosConfig(dummyResponse, 1000)).then(resp => {
-    const result = resp.data as APIAdminGetContestResponse;
-    return result;
-  });
+  const url = `${requestURL}/${id}/${discipline}`;
+  return axios
+    .get(
+      url,
+      axiosConfig(dummyResponse, 1000, false, await axiosConfigWithAuthToken()),
+    )
+    .then(resp => {
+      const result = resp.data as APIAdminGetContestResponse;
+      return result;
+    });
 };
 
 const dummyResponse = (): AxiosResponse<APIAdminGetContestResponse> => {

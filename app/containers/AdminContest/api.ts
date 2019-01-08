@@ -31,8 +31,8 @@ export async function apiGetContestSuggestions(value: string) {
 }
 export { APIGetContestSuggestionsResponse };
 
-export async function apiAdminGetContest(id: string) {
-  const results = await adminGetContest(id);
+export async function apiAdminGetContest(id: string, discipline: number) {
+  const results = await adminGetContest(id, discipline);
   return results;
 }
 export { APIAdminGetContestResponse };
