@@ -16,7 +16,7 @@ export default combineReducers<ContainerState, ContainerActions>({
       case ActionTypes.SET_CONTEST_SUGGESTIONS:
         return { ...state, suggestions: action.payload };
       case ActionTypes.LOAD_CONTEST_SUGGESTIONS:
-        return { ...state, suggestions: [] };
+        return { ...state, suggestions: undefined };
       case ActionTypes.CLEAR_FORM:
         return initialState.contestFilter;
     }

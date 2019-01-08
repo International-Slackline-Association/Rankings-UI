@@ -69,7 +69,9 @@ export class AdminResults extends React.PureComponent<Props, State> {
   }
 
   private findAthleteInForm = (id: string) => {
-    return this.props.athleteFilters.find(a => a.selectedValue === id);
+    return this.props.athleteFilters.find(
+      a => (a.selectedValue ? a.selectedValue.value === id : false),
+    );
   };
 
   private loadContestSuggestions = (value: string) => {
@@ -77,9 +79,7 @@ export class AdminResults extends React.PureComponent<Props, State> {
   };
 
   private selectContestSuggestion = (suggestion: ISelectOption) => {
-    this.props.dispatch(
-      actions.setContestFilterSelectedValue(suggestion.value),
-    );
+    this.props.dispatch(actions.setContestFilterSelectedValue(suggestion));
   };
 
   private loadAthleteSuggestions = (index: number) => {
@@ -96,10 +96,15 @@ export class AdminResults extends React.PureComponent<Props, State> {
           'Cannot have duplicate athletes in form',
           'error',
         );
-        this.props.dispatch(actions.setAthleteFilterSelectedValue('', index));
+        this.props.dispatch(
+          actions.setAthleteFilterSelectedValue(
+            { value: '', label: '' },
+            index,
+          ),
+        );
       } else {
         this.props.dispatch(
-          actions.setAthleteFilterSelectedValue(suggestion.value, index),
+          actions.setAthleteFilterSelectedValue(suggestion, index),
         );
       }
     };
@@ -150,13 +155,13 @@ export class AdminResults extends React.PureComponent<Props, State> {
     }
     const { athleteFilters, contestFilter } = this.props;
 
-    const [id, discipline] = contestFilter.selectedValue!.split(':');
+    const [id, discipline] = contestFilter.selectedValue!.value.split(':');
     const request: APIAdminSubmitContestResultsRequest = {
       results: {
         contestId: id,
         discipline: parseInt(discipline, 10),
         places: athleteFilters.map(athleteFilter => {
-          return { athleteId: athleteFilter.selectedValue! };
+          return { athleteId: athleteFilter.selectedValue!.value };
         }),
       },
     };
@@ -187,13 +192,12 @@ export class AdminResults extends React.PureComponent<Props, State> {
         <Wrapper>
           <Header>Contest</Header>
           <StyledAutoCompleteFilter
-            key={contestFilter.selectedValue}
             title={'Name'}
             placeholder={'Search contest'}
             loadSuggestions={this.loadContestSuggestions}
             suggestionSelected={this.selectContestSuggestion}
             suggestions={contestFilter.suggestions}
-            selectedValue={contestFilter.selectedValue}
+            selectedOption={contestFilter.selectedValue}
           />
           <Header>Results</Header>
           <ResultsWrapper>
@@ -201,13 +205,13 @@ export class AdminResults extends React.PureComponent<Props, State> {
               <AthleteFilterWrapper key={index}>
                 <span>{index + 1}: </span>
                 <StyledAutoCompleteFilter
-                  key={athleteFilter.selectedValue}
+                  // key={athleteFilter.selectedValue}
                   title={'Name'}
                   placeholder={'Searh Athlete'}
                   loadSuggestions={this.loadAthleteSuggestions(index)}
                   suggestionSelected={this.selectAthleteSuggestion(index)}
                   suggestions={athleteFilter.suggestions}
-                  selectedValue={athleteFilter.selectedValue}
+                  selectedOption={athleteFilter.selectedValue}
                 />
               </AthleteFilterWrapper>
             ))}

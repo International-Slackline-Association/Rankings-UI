@@ -49,8 +49,7 @@ class AutoCompleteTextInput extends React.PureComponent<Props, State> {
 
   public render() {
     const field = this.props.field;
-    const selectedValue = field.value;
-    console.log(field);
+    const selectedValue = field.value as string;
 
     this.updateFormikValue = this.setFieldValue(
       field.name,
@@ -66,7 +65,7 @@ class AutoCompleteTextInput extends React.PureComponent<Props, State> {
           loadSuggestions={this.loadSuggestions}
           suggestionSelected={this.selectSuggestion}
           suggestions={this.props.suggestions}
-          selectedValue={selectedValue}
+          selectedOption={{ value: selectedValue, label: selectedValue }}
           inputName={field.name}
           {...field}
         />

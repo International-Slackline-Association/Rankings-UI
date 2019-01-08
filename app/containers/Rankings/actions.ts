@@ -26,11 +26,11 @@ export const setAthleteSuggestions = (items: ISelectOption[]) =>
 export const setCountrySuggestions = (items: ISelectOption[]) =>
   action(ActionTypes.SET_COUNTRY_SUGGESTIONS, items);
 
-export const setAthleteFilterSelectedValue = (value: string) =>
-  action(ActionTypes.SET_ATHLETE_FILTER_SELECTED_VALUE, value);
+export const setAthleteFilterSelectedValue = (option: ISelectOption) =>
+  action(ActionTypes.SET_ATHLETE_FILTER_SELECTED_VALUE, option);
 
-export const setCountryFilterSelectedValue = (value: string) =>
-  action(ActionTypes.SET_COUNTRY_FILTER_SELECTED_VALUE, value);
+export const setCountryFilterSelectedValue = (option: ISelectOption) =>
+  action(ActionTypes.SET_COUNTRY_FILTER_SELECTED_VALUE, option);
 
 export const loadTableItems = () => action(ActionTypes.LOAD_TABLE_ITEMS);
 

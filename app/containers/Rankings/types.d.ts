@@ -29,7 +29,7 @@ interface RankingsState {
 
 export interface ICategory extends ICategoryEntity {}
 export interface IFilter {
-  readonly selectedValue?: string;
+  readonly selectedValue?: ISelectOption;
   readonly suggestions?: ISelectOption[];
 }
 

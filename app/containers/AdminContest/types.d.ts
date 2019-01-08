@@ -41,8 +41,8 @@ interface AdminContestState {
 }
 
 interface IFilter {
-  readonly selectedValue?: string;
-  readonly suggestions: ISelectOption[];
+  readonly selectedValue?: ISelectOption;
+  readonly suggestions?: ISelectOption[];
 }
 
 /* --- ACTIONS --- */

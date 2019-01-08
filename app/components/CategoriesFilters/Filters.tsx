@@ -27,7 +27,7 @@ class Filters extends React.PureComponent<Props> {
               loadSuggestions={filter.loadSuggestions}
               suggestionSelected={filter.suggestionSelected}
               suggestions={filter.suggestions}
-              selectedValue={filter.selectedValue}
+              selectedOption={filter.selectedOption}
             />
           </FilterWrapper>
         ))}

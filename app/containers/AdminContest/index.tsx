@@ -74,7 +74,7 @@ class AdminContest extends React.PureComponent<Props, State> {
 
   private selectSuggestion = (suggestion: ISelectOption) => {
     this.props.dispatch(
-      actions.setContestFilterSelectedValue(suggestion.value),
+      actions.setContestFilterSelectedValue(suggestion),
     );
     if (suggestion.value.length > 0) {
       const [id, discipline] = suggestion.value.split(':');
@@ -194,13 +194,13 @@ class AdminContest extends React.PureComponent<Props, State> {
         <Wrapper>
           <Header>Modify Contest</Header>
           <StyledAutoCompleteFilter
-            key={this.props.contestFilter.selectedValue}
+            // key={this.props.contestFilter.selectedValue}
             title={'Name'}
             placeholder={'Search contest to modify'}
             loadSuggestions={this.loadSuggestions}
             suggestionSelected={this.selectSuggestion}
             suggestions={this.props.contestFilter.suggestions}
-            selectedValue={this.props.contestFilter.selectedValue}
+            selectedOption={this.props.contestFilter.selectedValue}
           />
           <FormikForm
             key={formikKey}

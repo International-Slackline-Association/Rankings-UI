@@ -56,11 +56,10 @@ class AutoCompleteFilter extends React.PureComponent<Props, State> {
   private popperNode: any;
   constructor(props: Props) {
     super(props);
-    const selectedLabel = (this.props.suggestions || []).find(
-      s => s.value === this.props.selectedValue,
-    );
+
     this.state = {
-      value: (selectedLabel && selectedLabel.label) || '',
+      value:
+        (this.props.selectedOption && this.props.selectedOption.value) || '',
       suggestions: this.props.suggestions || [],
     };
   }
@@ -69,6 +68,11 @@ class AutoCompleteFilter extends React.PureComponent<Props, State> {
     if (!prevProps.suggestions && this.props.suggestions) {
       this.setLoading(false);
       this.setSuggestions(this.props.suggestions);
+    }
+    const prevSelected = prevProps.selectedOption;
+    const selected = this.props.selectedOption;
+    if (prevSelected !== selected) {
+      this.setValue(selected ? selected.label : '');
     }
   }
 
@@ -121,7 +125,7 @@ class AutoCompleteFilter extends React.PureComponent<Props, State> {
   private clearFilter = () => {
     this.setSuggestions([]);
     this.setValue('');
-    if (this.props.selectedValue) {
+    if (this.props.selectedOption) {
       this.props.suggestionSelected({ label: '', value: '' });
     }
   };
@@ -182,7 +186,6 @@ class AutoCompleteFilter extends React.PureComponent<Props, State> {
       renderSuggestion: renderSuggestion,
       renderSuggestionsContainer: this.renderSuggestionsContainer,
     };
-
     return (
       <Wrapper className={this.props.className}>
         <Autosuggest

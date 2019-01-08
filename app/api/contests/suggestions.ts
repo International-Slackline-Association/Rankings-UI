@@ -14,13 +14,13 @@ interface ContestSuggestionItem {
   discipline: Discipline;
 }
 
-const requestURL = '';
+const requestURL = 'api/contest/suggestions';
 export async function getContestSuggestions(
   value: string,
 ): Promise<APIGetContestSuggestionsResponse> {
-  const url = requestURL + '/' + value;
+  const url = `${requestURL}/${value}`;
   return axios
-    .get(url, axiosConfig(dummyContestsResponse, 1000))
+    .get(url, axiosConfig(dummyContestsResponse, 1000, false))
     .then(resp => {
       const result = resp.data as APIGetContestSuggestionsResponse;
       return result;

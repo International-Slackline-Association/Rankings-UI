@@ -21,8 +21,8 @@ export const loadContestSuggestions = (value: string) =>
 export const setContestSuggestions = (items: ISelectOption[]) =>
   action(ActionTypes.SET_CONTEST_SUGGESTIONS, items);
 
-export const setContestFilterSelectedValue = (value: string) =>
-  action(ActionTypes.SET_CONTEST_FILTER_SELECTED_VALUE, value);
+export const setContestFilterSelectedValue = (option: ISelectOption) =>
+  action(ActionTypes.SET_CONTEST_FILTER_SELECTED_VALUE, option);
 
 export const loadTableItems = () => action(ActionTypes.LOAD_TABLE_ITEMS);
 

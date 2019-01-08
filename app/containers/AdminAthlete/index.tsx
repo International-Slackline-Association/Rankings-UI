@@ -65,9 +65,7 @@ class AdminAthlete extends React.PureComponent<Props, State> {
   };
 
   private selectSuggestion = (suggestion: ISelectOption) => {
-    this.props.dispatch(
-      actions.setAthleteFilterSelectedValue(suggestion.value),
-    );
+    this.props.dispatch(actions.setAthleteFilterSelectedValue(suggestion));
     if (suggestion.value.length > 0) {
       this.props.dispatch(actions.loadAthlete(suggestion.value));
     } else {
@@ -159,10 +157,8 @@ class AdminAthlete extends React.PureComponent<Props, State> {
   };
 
   public render() {
-    const { countryFilter } = this.props;
-    const formikKey = this.props.athlete
-      ? this.props.athlete.id || undefined
-      : undefined;
+    const { countryFilter, athlete } = this.props;
+    const formikKey = athlete ? athlete.id || undefined : undefined;
     return (
       <TabPanel>
         <Helmet>
@@ -172,13 +168,12 @@ class AdminAthlete extends React.PureComponent<Props, State> {
         <Wrapper>
           <Header>Modify Athlete</Header>
           <StyledAutoCompleteFilter
-            // key={this.props.athleteFilter.selectedValue}
             title={'Name'}
             placeholder={'Search athlete to modify'}
             loadSuggestions={this.loadSuggestions}
             suggestionSelected={this.selectSuggestion}
             suggestions={this.props.athleteFilter.suggestions}
-            selectedValue={this.props.athleteFilter.selectedValue}
+            selectedOption={this.props.athleteFilter.selectedValue}
           />
           <FormikForm
             key={formikKey}

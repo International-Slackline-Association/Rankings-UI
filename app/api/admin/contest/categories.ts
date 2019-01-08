@@ -1,4 +1,4 @@
-import axios, { axiosConfig } from 'api/axios';
+import axios, { axiosConfig, axiosConfigWithAuthToken } from 'api/axios';
 import { AxiosResponse } from 'axios';
 
 import mockResponse from './__mocks__/categories_mock';
@@ -8,12 +8,15 @@ export interface APIAdminGetCategoriesResponse {
   categories: ISelectOption[];
 }
 
-const requestURL = '';
+const requestURL = 'admin/api/contest/categories';
 export const adminGetCategories = async (): Promise<
   APIAdminGetCategoriesResponse
 > => {
   return axios
-    .get(requestURL, axiosConfig(dummyResponse, 1000))
+    .get(
+      requestURL,
+      axiosConfig(dummyResponse, 1000, false, await axiosConfigWithAuthToken()),
+    )
     .then(resp => {
       const result = resp.data as APIAdminGetCategoriesResponse;
       return result;

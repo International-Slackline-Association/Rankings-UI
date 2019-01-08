@@ -81,7 +81,7 @@ class Rankings extends React.PureComponent<Props, State> {
 
   private selectAthleteSuggestion = (suggestion: ISelectOption) => {
     this.props.dispatch(
-      actions.setAthleteFilterSelectedValue(suggestion.value),
+      actions.setAthleteFilterSelectedValue(suggestion),
     );
     this.props.dispatch(actions.loadTableItems());
   };
@@ -92,7 +92,7 @@ class Rankings extends React.PureComponent<Props, State> {
 
   private selectCountrySuggestion = (suggestion: ISelectOption) => {
     this.props.dispatch(
-      actions.setCountryFilterSelectedValue(suggestion.value),
+      actions.setCountryFilterSelectedValue(suggestion),
     );
     this.props.dispatch(actions.loadTableItems());
   };
@@ -108,7 +108,7 @@ class Rankings extends React.PureComponent<Props, State> {
       loadSuggestions: this.loadAthleteSuggestions,
       suggestionSelected: this.selectAthleteSuggestion,
       suggestions: this.props.athleteFilter.suggestions,
-      selectedValue: this.props.athleteFilter.selectedValue,
+      selectedOption: this.props.athleteFilter.selectedValue,
     };
 
     const countryFilter: IFilter = {
@@ -117,7 +117,7 @@ class Rankings extends React.PureComponent<Props, State> {
       loadSuggestions: this.loadCountrySuggestions,
       suggestionSelected: this.selectCountrySuggestion,
       suggestions: this.props.countryFilter.suggestions,
-      selectedValue: this.props.countryFilter.selectedValue,
+      selectedOption: this.props.countryFilter.selectedValue,
     };
 
     return [athleteFilter, countryFilter];

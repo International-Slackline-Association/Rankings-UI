@@ -4,10 +4,10 @@ import ActionTypes from './constants';
 import { ContainerState, ContainerActions } from './types';
 
 export const initialState: ContainerState = {
-  contestFilter: { suggestions: [] },
+  contestFilter: { suggestions: undefined },
   contest: null,
   isContestLoading: false,
-  countryFilter: { suggestions: [] },
+  countryFilter: { suggestions: undefined },
   disciplines: [],
   contestCategories: [],
 };
@@ -20,7 +20,7 @@ export default combineReducers<ContainerState, ContainerActions>({
       case ActionTypes.SET_CONTEST_SUGGESTIONS:
         return { ...state, suggestions: action.payload };
       case ActionTypes.LOAD_CONTEST_SUGGESTIONS:
-        return { ...state, suggestions: [] };
+        return { ...state, suggestions: undefined };
       case ActionTypes.CLEAR_FORM:
         return initialState.contestFilter;
     }
@@ -51,7 +51,7 @@ export default combineReducers<ContainerState, ContainerActions>({
       case ActionTypes.SET_COUNTRY_SUGGESTIONS:
         return { ...state, suggestions: action.payload };
       case ActionTypes.LOAD_COUNTRY_SUGGESTIONS:
-        return { ...state, suggestions: [] };
+        return { ...state, suggestions: undefined };
     }
     return state;
   },

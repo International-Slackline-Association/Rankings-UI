@@ -16,7 +16,7 @@ import { ISelectOption } from 'types/application';
 
 interface Props {
   readonly values?: ContestFormValues | null;
-  readonly countrySuggestions: ISelectOption[];
+  readonly countrySuggestions?: ISelectOption[];
   readonly categories: ISelectOption[];
   readonly disciplines: ISelectOption[];
   loadCountrySuggestions(value: string): void;

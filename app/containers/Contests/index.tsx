@@ -80,7 +80,7 @@ class Contests extends React.PureComponent<Props, State> {
 
   private selectContestSuggestion = (suggestion: ISelectOption) => {
     this.props.dispatch(
-      actions.setContestFilterSelectedValue(suggestion.value),
+      actions.setContestFilterSelectedValue(suggestion),
     );
     this.props.dispatch(actions.loadTableItems());
   };
@@ -92,7 +92,7 @@ class Contests extends React.PureComponent<Props, State> {
       loadSuggestions: this.loadContestSuggestions,
       suggestionSelected: this.selectContestSuggestion,
       suggestions: this.props.contestFilter.suggestions,
-      selectedValue: this.props.contestFilter.selectedValue,
+      selectedOption: this.props.contestFilter.selectedValue,
     };
     return [contestFilter];
   }

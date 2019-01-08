@@ -10,8 +10,8 @@ export const loadAthleteSuggestions = (value: string) =>
 export const setAthleteSuggestions = (items: ISelectOption[]) =>
   action(ActionTypes.SET_ATHLETE_SUGGESTIONS, items);
 
-export const setAthleteFilterSelectedValue = (value: string) =>
-  action(ActionTypes.SET_ATHLETE_FILTER_SELECTED_VALUE, value);
+export const setAthleteFilterSelectedValue = (option: ISelectOption) =>
+  action(ActionTypes.SET_ATHLETE_FILTER_SELECTED_VALUE, option);
 
 export const loadAthlete = (id: string) => action(ActionTypes.LOAD_ATHLETE, id);
 

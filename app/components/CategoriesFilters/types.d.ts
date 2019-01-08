@@ -14,7 +14,7 @@ export interface IFilterEntity {
   readonly title: string;
   readonly placeholder: string;
   readonly suggestions?: UISelectOption[];
-  readonly selectedValue?: string;
+  readonly selectedOption?: UISelectOption;
 }
 
 export interface IFilter extends IFilterEntity {
