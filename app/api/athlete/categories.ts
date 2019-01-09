@@ -2,24 +2,18 @@ import axios, { axiosConfig } from 'api/axios';
 import { AxiosResponse } from 'axios';
 
 import mockResponse from './__mocks__/categories_mock';
-import { UISelectOption } from 'types/application';
+import { CategoryItem } from 'api/types';
 
 export interface APIAthleteContestsCategoriesResponse {
   items: CategoryItem[];
 }
 
-interface CategoryItem {
-  title: string;
-  options: UISelectOption[];
-  selectedValue: string;
-}
-
-const requestURL = '';
+const requestURL = 'api/athlete/categories';
 export async function getAthleteContestsCategories(): Promise<
   APIAthleteContestsCategoriesResponse
 > {
   return axios
-    .get(requestURL, axiosConfig(dummyResponse, 1000))
+    .get(requestURL, axiosConfig(dummyResponse, 1000, false))
     .then(resp => {
       const result = resp.data as APIAthleteContestsCategoriesResponse;
       return result;

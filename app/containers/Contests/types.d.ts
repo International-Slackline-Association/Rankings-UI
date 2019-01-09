@@ -32,7 +32,7 @@ interface ContestsState {
 export interface ICategory extends ICategoryEntity {}
 export interface IFilter {
   readonly selectedValue?: ISelectOption;
-  readonly suggestions: ISelectOption[];
+  readonly suggestions?: ISelectOption[];
 }
 
 interface TableItem {

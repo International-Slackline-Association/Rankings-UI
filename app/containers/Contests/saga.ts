@@ -7,18 +7,18 @@ import { delay } from 'redux-saga';
 
 import {
   apiGetContestSuggestions,
-  apiGetCategories,
+  apiGetDisciplineCategories,
   APIGetContestsRequest,
   apiGetContests,
   GetContestsResponse,
 } from './api';
 import { APIGetContestSuggestionsResponse } from 'api/contests/suggestions';
-import { APIContestsCategoriesResponse } from 'api/contests/categories';
+import { APIContestsDisciplineCategoriesResponse } from 'api/contests/discipline-categories';
 import { ISelectOption } from 'types/application';
 
 export function* getCategories() {
   try {
-    const results: APIContestsCategoriesResponse = yield call(apiGetCategories);
+    const results: APIContestsDisciplineCategoriesResponse = yield call(apiGetDisciplineCategories);
     yield put(actions.setCategories(results.items));
   } catch (err) {
     console.log('err: ', err);

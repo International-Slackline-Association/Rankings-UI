@@ -2,27 +2,26 @@ import axios, { axiosConfig } from 'api/axios';
 import { AxiosResponse } from 'axios';
 
 import mockResponse from './__mocks__/categories_mock';
-import { UISelectOption } from 'types/application';
 import { CategoryItem } from 'api/types';
 
-export interface APIRankingCategoriesResponse {
+export interface APIContestsDisciplineCategoriesResponse {
   items: CategoryItem[];
 }
-
-
-const requestURL = 'api/rankings/categories';
-export async function getRankingCategories(): Promise<
-  APIRankingCategoriesResponse
+const requestURL = 'api/contest/categories';
+export async function getContestsDisciplineCategories(): Promise<
+  APIContestsDisciplineCategoriesResponse
 > {
   return axios
     .get(requestURL, axiosConfig(dummyResponse, 1000, false))
     .then(resp => {
-      const result = resp.data as APIRankingCategoriesResponse;
+      const result = resp.data as APIContestsDisciplineCategoriesResponse;
       return result;
     });
 }
 
-const dummyResponse = (): AxiosResponse<APIRankingCategoriesResponse> => {
+const dummyResponse = (): AxiosResponse<
+  APIContestsDisciplineCategoriesResponse
+> => {
   return {
     data: mockResponse(),
     status: 200,

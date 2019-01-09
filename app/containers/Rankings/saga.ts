@@ -40,7 +40,7 @@ export function* getAthleteSuggestions(
     const options = results.items.map(item => {
       const option: ISelectOption = {
         value: item.name,
-        label: item.name,
+        label: `${item.name} ${item.surname}`,
       };
       return option;
     });

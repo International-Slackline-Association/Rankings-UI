@@ -6,7 +6,7 @@ import {
 } from 'api/contests/contests';
 import { TableItem } from './types';
 import { getContestSuggestions } from 'api/contests/suggestions';
-import { getContestsCategories } from 'api/contests/categories';
+import { getContestsDisciplineCategories } from 'api/contests/discipline-categories';
 
 interface GetContestsResponse {
   items: TableItem[];
@@ -33,8 +33,8 @@ export async function apiGetContests(request: APIGetContestsRequest) {
   return resp;
 }
 
-export async function apiGetCategories() {
-  const results = await getContestsCategories();
+export async function apiGetDisciplineCategories() {
+  const results = await getContestsDisciplineCategories();
   return results;
 }
 

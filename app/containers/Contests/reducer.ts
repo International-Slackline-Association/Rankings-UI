@@ -9,7 +9,7 @@ export const initialState: ContainerState = {
   nextTableItemsCursor: null,
   isNextTableItemsLoading: false,
   categories: null,
-  contestFilter: { suggestions: [] },
+  contestFilter: { suggestions: undefined },
   // isCategoriesOpen: false,
   // isCategoriesOpenOnce: false,
 };
@@ -60,7 +60,7 @@ export default combineReducers<ContainerState, ContainerActions>({
       case ActionTypes.SET_CONTEST_SUGGESTIONS:
         return { ...state, suggestions: action.payload };
       case ActionTypes.LOAD_CONTEST_SUGGESTIONS:
-        return { ...state, suggestions: [] };
+        return { ...state, suggestions: undefined };
     }
     return state;
   },

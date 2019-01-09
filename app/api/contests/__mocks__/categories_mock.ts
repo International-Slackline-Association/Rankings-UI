@@ -1,6 +1,6 @@
-import { APIContestsCategoriesResponse } from '../categories';
+import { APIContestsDisciplineCategoriesResponse } from '../discipline-categories';
 
-const generator = (): APIContestsCategoriesResponse => {
+const generator = (): APIContestsDisciplineCategoriesResponse => {
   return {
     items: [
       {
