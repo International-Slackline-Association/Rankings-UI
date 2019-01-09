@@ -17,17 +17,14 @@ interface GetContestResponse {
 
 export async function apiGetContest(request: APIGetContestRequest) {
   const result: APIGetContestResponse = await getContest(request);
+  if (!result.contest) {
+    return result;
+  }
+  const { city, country, ...rest } = result.contest;
   const resp: GetContestResponse = {
     contest: {
-      date: moment.unix(result.contest.date).format('DD/MM/YYYY'),
-      discipline: result.contest.discipline,
-      id: result.contest.id,
-      location: `${result.contest.city}, ${result.contest.country}`,
-      name: result.contest.name,
-      prize: result.contest.prize,
-      profileUrl: result.contest.profileUrl,
-      contestCategory: result.contest.contestCategory,
-      infoUrl: result.contest.infoUrl,
+      ...rest,
+      location: `${city}, ${country}`,
     },
   };
   return resp;

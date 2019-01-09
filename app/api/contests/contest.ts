@@ -18,7 +18,7 @@ interface ContestItem {
   readonly name: string;
   readonly prize: string;
   readonly contestCategory: ContestCategory;
-  readonly date: number;
+  readonly date: string;
   readonly city: string;
   readonly country: string;
   readonly discipline: Discipline;
@@ -26,12 +26,12 @@ interface ContestItem {
   readonly infoUrl: string;
 }
 
-const requestURL = '';
+const requestURL = 'api/contest';
 export async function getContest(
   request: APIGetContestRequest,
 ): Promise<APIGetContestResponse> {
   const url = `${requestURL}/${request.id}/${request.discipline}`;
-  return axios.get(url, axiosConfig(dummyResponse, 1000)).then(resp => {
+  return axios.get(url, axiosConfig(dummyResponse, 1000, false)).then(resp => {
     const result = resp.data as APIGetContestResponse;
     return result;
   });

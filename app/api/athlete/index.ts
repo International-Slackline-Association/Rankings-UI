@@ -18,16 +18,16 @@ interface AthleteItem {
   readonly age: number;
   readonly country: string;
   readonly profileUrl: string;
-  readonly overallRank: number;
+  readonly overallRank: string;
   readonly infoUrl: string;
 }
 
-const requestURL = '';
+const requestURL = 'api/athlete';
 export const getAthlete = async (
   request: APIGetAthleteRequest,
 ): Promise<APIGetAthleteResponse> => {
   const url = `${requestURL}/${request.id}`;
-  return axios.get(url, axiosConfig(dummyResponse, 1000)).then(resp => {
+  return axios.get(url, axiosConfig(dummyResponse, 1000, false)).then(resp => {
     const result = resp.data as APIGetAthleteResponse;
     return result;
   });

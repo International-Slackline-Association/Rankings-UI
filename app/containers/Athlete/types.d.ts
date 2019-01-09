@@ -41,7 +41,7 @@ interface AthleteItem {
   readonly country: string;
   readonly age: number;
   readonly profileUrl: string;
-  readonly overallRank: number;
+  readonly overallRank: string;
   readonly infoUrl: string;
 }
 

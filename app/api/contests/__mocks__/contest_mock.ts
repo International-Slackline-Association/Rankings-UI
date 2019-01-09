@@ -5,7 +5,7 @@ const generator = (): APIGetContestResponse => {
     contest: {
       id: 'swiss-open_2018',
       name: 'Swiss Open',
-      date: 1539383654,
+      date: '25/10/2018',
       city: 'Bern',
       country: 'Switzerland',
       prize: '400€',
