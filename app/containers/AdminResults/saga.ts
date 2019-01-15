@@ -22,7 +22,7 @@ export function* getContestSuggestions(
   const value = action.payload;
   const request: APIGetContestSuggestionsRequest = {
     query: value,
-    // year: Utils.currentYear(),
+    selectedCategories: undefined,
   };
   try {
     const results: APIGetContestSuggestionsResponse = yield call(

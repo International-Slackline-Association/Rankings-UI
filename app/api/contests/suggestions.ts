@@ -5,9 +5,8 @@ import mockResponse from './__mocks__/contest_suggestions_mock';
 import { Discipline } from 'types/application';
 
 export interface APIGetContestSuggestionsRequest {
-  query: string;
-  year?: number;
-  discipline?: number;
+  readonly query: string;
+  readonly selectedCategories?: number[];
 }
 
 export interface APIGetContestSuggestionsResponse {

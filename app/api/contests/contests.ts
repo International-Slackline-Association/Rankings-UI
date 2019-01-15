@@ -5,13 +5,9 @@ import mockResponse from './__mocks__/contests_mock';
 import { Discipline, ContestCategory } from 'types/application';
 
 export interface APIGetContestsRequest {
-  readonly filters: SelectedFilter[];
-  readonly searchInput: string;
-}
-
-interface SelectedFilter {
-  readonly id: string;
-  readonly name: string;
+  readonly selectedCategories?: number[];
+  readonly contestId?: string;
+  readonly next?: any;
 }
 
 export interface APIGetContestsResponse {
@@ -29,12 +25,13 @@ interface ContestsItem {
   readonly smallProfileUrl: string;
 }
 
-const requestURL = '';
+const requestURL = 'api/contest/list';
 export async function getContests(
   request: APIGetContestsRequest,
 ): Promise<APIGetContestsResponse> {
+  const body = request;
   return axios
-    .post(requestURL, request, axiosConfig(dummyResponse, 1000))
+    .post(requestURL, body, axiosConfig(dummyResponse, 1000, false))
     .then(resp => {
       const result = resp.data as APIGetContestsResponse;
       return result;

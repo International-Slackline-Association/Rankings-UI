@@ -4,12 +4,10 @@ import { AxiosResponse } from 'axios';
 import mockResponse from './__mocks__/rankings_mock';
 
 export interface APIGetRankingsRequest {
-  readonly filters: SelectedFilter[];
-  readonly searchInput: string;
-}
-interface SelectedFilter {
-  readonly id: string;
-  readonly name: string;
+  readonly selectedCategories?: number[];
+  readonly athleteId?: string;
+  readonly country?: string;
+  readonly next?: string;
 }
 
 export interface APIRankingsResponse {
@@ -28,12 +26,13 @@ interface RankingsItem {
   readonly smallProfileUrl: string;
 }
 
-const requestURL = '';
+const requestURL = 'api/rankings/list';
 export async function getRankingResults(
   request: APIGetRankingsRequest,
 ): Promise<APIRankingsResponse> {
+  const body = request;
   return axios
-    .post(requestURL, request, axiosConfig(dummyResponse, 1000))
+    .post(requestURL, body, axiosConfig(dummyResponse, 1000, false))
     .then(resp => {
       const result = resp.data as APIRankingsResponse;
       return result;

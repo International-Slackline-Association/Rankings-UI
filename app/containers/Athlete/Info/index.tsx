@@ -4,7 +4,7 @@ import ComponentBackground from 'components/ComponentBackground';
 import ContestAvatar from 'components/Avatars/ContestAvatar';
 import IsaBlurBackground from 'components/ComponentBackground/isaBackground';
 import Title from './Title';
-import InfoField from './InfoField';
+import InfoField from 'components/InfoField';
 import media from 'styles/media';
 import { SmallLoading } from 'components/Loading';
 import { EmptyContainer } from 'components/Containers';

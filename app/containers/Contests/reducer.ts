@@ -6,12 +6,9 @@ import ActionTypes from './constants';
 export const initialState: ContainerState = {
   tableResult: { items: [], next: null },
   isTableItemsLoading: false,
-  nextTableItemsCursor: null,
   isNextTableItemsLoading: false,
   categories: null,
   contestFilter: { suggestions: undefined },
-  // isCategoriesOpen: false,
-  // isCategoriesOpenOnce: false,
 };
 
 export default combineReducers<ContainerState, ContainerActions>({
@@ -64,15 +61,6 @@ export default combineReducers<ContainerState, ContainerActions>({
     }
     return state;
   },
-  nextTableItemsCursor: (state = initialState.nextTableItemsCursor, action) => {
-    switch (action.type) {
-      case ActionTypes.LOAD_TABLE_ITEMS:
-        return {};
-      case ActionTypes.ADD_TABLE_ITEMS:
-        return action.payload.next;
-    }
-    return state;
-  },
   isNextTableItemsLoading: (
     state = initialState.isNextTableItemsLoading,
     action,
@@ -85,18 +73,4 @@ export default combineReducers<ContainerState, ContainerActions>({
     }
     return state;
   },
-  // isCategoriesOpen: (state = initialState.isCategoriesOpen, action) => {
-  //   switch (action.type) {
-  //     case ActionTypes.SET_CATEGORIES_STATUS:
-  //       return action.payload;
-  //   }
-  //   return state;
-  // },
-  // isCategoriesOpenOnce: (state = initialState.isCategoriesOpenOnce, action) => {
-  //   switch (action.type) {
-  //     case ActionTypes.SET_CATEGORIES_STATUS:
-  //       return true;
-  //   }
-  //   return state;
-  // },
 });

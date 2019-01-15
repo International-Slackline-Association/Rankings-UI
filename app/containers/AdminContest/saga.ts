@@ -25,6 +25,7 @@ export function* getContestSuggestions(
   const value = action.payload;
   const request: APIGetContestSuggestionsRequest = {
     query: value,
+    selectedCategories: undefined,
     // year: Utils.currentYear(),
   };
   try {

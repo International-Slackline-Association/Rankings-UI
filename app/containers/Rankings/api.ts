@@ -8,9 +8,11 @@ import {
   getRankingCategories,
   APIRankingCategoriesResponse,
 } from 'api/rankings/categories';
+
 import getAthleteSuggestions, {
   APIGetAthleteSuggestionsResponse,
 } from 'api/athlete/suggestions';
+
 import {
   getCountrySuggestions,
   APIGetCountrySuggestionsResponse,

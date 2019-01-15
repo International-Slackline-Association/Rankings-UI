@@ -26,7 +26,7 @@ interface ContestItem {
   readonly infoUrl: string;
 }
 
-const requestURL = 'api/contest';
+const requestURL = 'api/contest/details';
 export async function getContest(
   request: APIGetContestRequest,
 ): Promise<APIGetContestResponse> {

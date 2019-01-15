@@ -1,5 +1,5 @@
 import ActionTypes from './constants';
-import {} from './selectors';
+import * as selectors from './selectors';
 import * as actions from './actions';
 
 import { takeLatest, call, put, select } from 'redux-saga/effects';
@@ -17,6 +17,7 @@ import {
   apiGetCountrySuggestions,
 } from './api';
 import { ISelectOption } from 'types/application';
+import { ICategory, IFilter, TableItemsResult } from './types';
 
 export function* getCategories() {
   try {
@@ -74,16 +75,23 @@ export function* getCountrySuggestions(
 }
 
 export function* getRankings() {
-  // const username = yield select(selectSelectedSearchInput());
+  const athleteFilter: IFilter = yield select(selectors.selectAthleteFilter());
+  const countryFilter: IFilter = yield select(selectors.selectCountryFilter());
 
+  const athleteId =
+    athleteFilter.selectedValue && athleteFilter.selectedValue.value;
+  const country =
+    countryFilter.selectedValue && countryFilter.selectedValue.value;
+
+  const tableItemsResult: TableItemsResult = yield select(
+    selectors.selectTableResult(),
+  );
+  const categories: number[] = yield selectCategories();
   const request: APIGetRankingsRequest = {
-    filters: [
-      {
-        id: '',
-        name: '',
-      },
-    ],
-    searchInput: '',
+    selectedCategories: categories,
+    athleteId: athleteId,
+    country: country,
+    next: tableItemsResult.next,
   };
   try {
     const results: APIRankingsResponse = yield call(apiGetRankings, request);
@@ -91,6 +99,15 @@ export function* getRankings() {
   } catch (err) {
     console.log('err: ', err);
   }
+}
+
+function* selectCategories() {
+  const categories: ICategory[] | null = yield select(
+    selectors.selectCategories(),
+  );
+  const selectedCategories =
+    categories && categories.map(c => parseInt(c.selectedValue, 10));
+  return selectedCategories;
 }
 
 export default function* rankingsSaga() {

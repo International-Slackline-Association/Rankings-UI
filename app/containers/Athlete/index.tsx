@@ -21,10 +21,7 @@ import AthleteInfo from './Info';
 import CategoriesFilters from 'components/CategoriesFilters';
 import { ICategory } from 'components/CategoriesFilters/types';
 
-interface OwnProps extends RouteProps {
-  readonly id: string;
-  readonly discipline: string;
-}
+interface OwnProps extends RouteProps {}
 
 interface StateProps {
   readonly id: string;
@@ -60,7 +57,6 @@ class Athlete extends React.PureComponent<Props, State> {
     if (!this.props.tableResult || this.props.tableResult.items.length === 0) {
       this.props.dispatch(actions.loadTableItems());
       this.props.dispatch(actions.loadCategories());
-
     }
   }
 
@@ -71,7 +67,6 @@ class Athlete extends React.PureComponent<Props, State> {
   private onContestClick = (id: string, discipline: number) => {
     this.props.updateLocation('contest', id, discipline);
   };
-
 
   private onCategorySelected = (index: number) => (value: string) => {
     this.props.dispatch(actions.setCategorySelectedValue(index, value));
@@ -101,10 +96,7 @@ class Athlete extends React.PureComponent<Props, State> {
         <Header>Athlete</Header>
         <AthleteInfo isLoading={isAthleteLoading} item={athlete} />
         <Header>Contests</Header>
-        <CategoriesFilters
-          categories={categories}
-          filters={[]}
-        />
+        <CategoriesFilters categories={categories} filters={[]} />
         <MainTableSection>
           <MainTable
             tableItems={this.props.tableResult}

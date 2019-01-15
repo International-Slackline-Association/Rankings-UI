@@ -2,9 +2,6 @@ import { action } from 'typesafe-actions';
 import { TableItemsResult, ContestItem } from './types';
 import ActionTypes from './constants';
 
-export const setIdDiscipline = (id: string, discipline: number) =>
-  action(ActionTypes.SET_ID_DISCIPLINE, { id: id, discipline: discipline });
-
 export const loadContest = () => action(ActionTypes.LOAD_CONTEST);
 
 export const setContest = (item: ContestItem) =>

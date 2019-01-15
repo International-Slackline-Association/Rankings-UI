@@ -23,7 +23,6 @@ interface RankingsState {
   readonly countryFilter: IFilter;
   readonly tableResult: TableItemsResult;
   readonly isTableItemsLoading: boolean | null;
-  readonly nextTableItemsCursor: any;
   readonly isNextTableItemsLoading: boolean;
 }
 

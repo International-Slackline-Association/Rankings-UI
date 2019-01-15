@@ -4,31 +4,14 @@ import { ContainerState, ContainerActions } from './types';
 import ActionTypes from './constants';
 
 export const initialState: ContainerState = {
-  id: '',
-  discipline: 0,
   contest: null,
   isContestLoading: false,
   tableResult: { items: [], next: null },
   isTableItemsLoading: false,
-  nextTableItemsCursor: null,
   isNextTableItemsLoading: false,
 };
 
 export default combineReducers<ContainerState, ContainerActions>({
-  id: (state = initialState.id, action) => {
-    switch (action.type) {
-      case ActionTypes.SET_ID_DISCIPLINE:
-        return action.payload.id;
-    }
-    return state;
-  },
-  discipline: (state = initialState.discipline, action) => {
-    switch (action.type) {
-      case ActionTypes.SET_ID_DISCIPLINE:
-        return action.payload.discipline;
-    }
-    return state;
-  },
   contest: (state = initialState.contest, action) => {
     switch (action.type) {
       case ActionTypes.SET_CONTEST:
@@ -66,15 +49,7 @@ export default combineReducers<ContainerState, ContainerActions>({
     }
     return state;
   },
-  nextTableItemsCursor: (state = initialState.nextTableItemsCursor, action) => {
-    switch (action.type) {
-      case ActionTypes.LOAD_TABLE_ITEMS:
-        return {};
-      case ActionTypes.ADD_TABLE_ITEMS:
-        return action.payload.next;
-    }
-    return state;
-  },
+
   isNextTableItemsLoading: (
     state = initialState.isNextTableItemsLoading,
     action,

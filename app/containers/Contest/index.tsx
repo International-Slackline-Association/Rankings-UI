@@ -19,12 +19,11 @@ import { replace, push } from 'connected-react-router';
 import Header from './Header';
 import ContestInfo from './Info';
 
-interface OwnProps extends RouteProps {
-  readonly id: string;
-  readonly discipline: string;
-}
+interface OwnProps extends RouteProps {}
 
 interface StateProps {
+  readonly id: string;
+  readonly discipline: string | null;
   readonly contest: ContainerState['contest'];
   readonly isContestLoading: ContainerState['isContestLoading'];
   readonly tableResult: ContainerState['tableResult'];
@@ -45,16 +44,11 @@ interface State {}
 class Contest extends React.PureComponent<Props, State> {
   constructor(props: Props) {
     super(props);
-    const { id, discipline } = this.getIdDisciplineFromPath(
-      props.location!.pathname,
-    );
 
-    if (!id || !discipline) {
+    if (!this.props.id || !this.props.discipline) {
       this.props.dispatch(replace('/notfound'));
-    } else {
-      this.props.dispatch(actions.setIdDiscipline(id, discipline));
+      return;
     }
-
     if (!this.props.contest) {
       this.props.dispatch(actions.loadContest());
     }
@@ -62,11 +56,6 @@ class Contest extends React.PureComponent<Props, State> {
       this.props.dispatch(actions.loadTableItems());
     }
   }
-
-  private getIdDisciplineFromPath = (path: string) => {
-    const [{}, {}, id, discipline] = path.split('/');
-    return { id: id, discipline: parseInt(discipline, 10) };
-  };
 
   private loadMoreItems = () => {
     this.props.dispatch(actions.loadNextItems());
@@ -98,6 +87,8 @@ class Contest extends React.PureComponent<Props, State> {
 }
 
 const mapStateToProps = createStructuredSelector<RootState, StateProps>({
+  id: selectors.selectId(),
+  discipline: selectors.selectDiscipline(),
   contest: selectors.selectContest(),
   isContestLoading: selectors.isContestLoading(),
   tableResult: selectors.selectTableResult(),

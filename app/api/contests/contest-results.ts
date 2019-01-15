@@ -31,7 +31,7 @@ export async function getContestResults(
 ): Promise<APIContestResultsResponse> {
   const url = `${requestURL}/${request.id}/${request.discipline}`;
   const body = request.next;
-  return axios.post(url, body, axiosConfig(dummyResponse, 1000)).then(resp => {
+  return axios.post(url, body, axiosConfig(dummyResponse, 1000, false)).then(resp => {
     const result = resp.data as APIContestResultsResponse;
     return result;
   });

@@ -32,8 +32,6 @@ interface StateProps {
   tableResult: ContainerState['tableResult'];
   isTableItemsLoading: ContainerState['isTableItemsLoading'];
   isNextTableItemsLoading: ContainerState['isNextTableItemsLoading'];
-  // isCategoriesOpen: ContainerState['isCategoriesOpen'];
-  // isCategoriesOpenOnce: ContainerState['isCategoriesOpenOnce'];
 }
 
 interface DispatchProps {
@@ -136,8 +134,6 @@ const mapStateToProps = createStructuredSelector<RootState, StateProps>({
   tableResult: selectors.selectTableResult(),
   isTableItemsLoading: selectors.selectIsTableItemsLoading(),
   isNextTableItemsLoading: selectors.selectIsNextTableItemsLoading(),
-  // isCategoriesOpen: selectors.selectIsCategoriesOpen(),
-  // isCategoriesOpenOnce: selectors.selectIsCategoriesOpenOnce(),
 });
 
 function mapDispatchToProps(

@@ -1,5 +1,5 @@
 import ActionTypes from './constants';
-import {} from './selectors';
+import * as selectors from './selectors';
 import * as actions from './actions';
 
 import { takeLatest, call, put, select } from 'redux-saga/effects';
@@ -17,6 +17,14 @@ import {
 import { APIContestsDisciplineCategoriesResponse } from 'api/contests/discipline-categories';
 import { ISelectOption } from 'types/application';
 import { Utils } from 'utils';
+import { TableItemsResult, ICategory, IFilter } from './types';
+
+function* selectCategories() {
+  const categories: ICategory[] | null = yield select(selectors.selectCategories());
+  const selectedCategories =
+    categories && categories.map(c => parseInt(c.selectedValue, 10));
+  return selectedCategories;
+}
 
 export function* getCategories() {
   try {
@@ -34,9 +42,11 @@ export function* getContestSuggestions(
 ) {
   yield call(delay, 500);
   const value = action.payload;
+  const categories: number[] = yield selectCategories();
+
   const request: APIGetContestSuggestionsRequest = {
     query: value,
-    year: Utils.currentYear(),
+    selectedCategories: categories,
   };
   try {
     const results: APIGetContestSuggestionsResponse = yield call(
@@ -57,16 +67,18 @@ export function* getContestSuggestions(
 }
 
 export function* getContests() {
-  // const username = yield select(selectSelectedSearchInput());
+  const contestFilter: IFilter = yield select(selectors.selectContestFilter());
+  const contestId =
+    contestFilter.selectedValue && contestFilter.selectedValue.value;
+  const tableItemsResult: TableItemsResult = yield select(
+    selectors.selectTableResult(),
+  );
+  const categories: number[] = yield selectCategories();
 
   const request: APIGetContestsRequest = {
-    filters: [
-      {
-        id: '',
-        name: '',
-      },
-    ],
-    searchInput: '',
+    selectedCategories: categories,
+    contestId: contestId,
+    next: tableItemsResult.next,
   };
   try {
     const results: APIGetContestsResponse = yield call(apiGetContests, request);

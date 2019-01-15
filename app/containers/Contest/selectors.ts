@@ -5,15 +5,19 @@ import { initialState } from './reducer';
 export const selectDomain = (state: ApplicationRootState) => {
   return state.contest ? state.contest : initialState;
 };
+export const selectTopbarDomain = (state: ApplicationRootState) => {
+  return state.topBarTabs;
+};
 
 export const selectId = () =>
-  createSelector(selectDomain, substate => {
-    return substate.id;
+  createSelector(selectTopbarDomain, substate => {
+    return substate.selectedId;
   });
 
+
 export const selectDiscipline = () =>
-  createSelector(selectDomain, substate => {
-    return substate.discipline;
+  createSelector(selectTopbarDomain, substate => {
+    return substate.selectedDiscipline;
   });
 
 export const selectContest = () =>

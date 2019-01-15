@@ -6,7 +6,6 @@ import ActionTypes from './constants';
 export const initialState: ContainerState = {
   tableResult: { items: [], next: null },
   isTableItemsLoading: false,
-  nextTableItemsCursor: null,
   isNextTableItemsLoading: false,
   categories: null,
   athleteFilter: { suggestions: undefined },
@@ -71,15 +70,6 @@ export default combineReducers<ContainerState, ContainerActions>({
         return { ...state, suggestions: action.payload };
       case ActionTypes.LOAD_COUNTRY_SUGGESTIONS:
         return { ...state, suggestions: undefined };
-    }
-    return state;
-  },
-  nextTableItemsCursor: (state = initialState.nextTableItemsCursor, action) => {
-    switch (action.type) {
-      case ActionTypes.LOAD_TABLE_ITEMS:
-        return {};
-      case ActionTypes.ADD_TABLE_ITEMS:
-        return action.payload.next;
     }
     return state;
   },

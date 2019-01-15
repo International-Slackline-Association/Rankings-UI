@@ -6,7 +6,7 @@ import { Discipline, ContestCategory } from 'types/application';
 
 export interface APIGetAthleteContestsRequest {
   readonly id: string;
-  readonly selectedCategories: number[];
+  readonly selectedCategories?: number[];
   readonly next?: any;
 }
 
