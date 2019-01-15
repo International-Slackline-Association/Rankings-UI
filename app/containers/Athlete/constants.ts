@@ -1,6 +1,4 @@
 enum ActionTypes {
-  SET_ID = 'app/Athlete/SET_ID',
-
   LOAD_ATHLETE = 'app/Athlete/LOAD_ATHLETE',
   SET_ATHLETE = 'app/Athlete/SET_ATHLETE',
 

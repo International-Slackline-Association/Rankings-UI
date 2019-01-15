@@ -6,23 +6,22 @@ const selectTopBarDomain = (state: ApplicationRootState) => {
   return state.topBarTabs ? state.topBarTabs : initialState;
 };
 
-const selectRouterDomain = (state: ApplicationRootState) => {
+export const selectRouterDomain = (state: ApplicationRootState) => {
   return state.router;
 };
 
-const selectTabItems = () =>
+export const selectTabItems = () =>
   createSelector(selectTopBarDomain, state => {
     return state.items;
   });
 
-const selectSelectedId = () =>
+export const selectSelectedId = () =>
   createSelector(selectTopBarDomain, state => {
     return state.selectedId;
   });
 
-const selectLocationPath = () =>
+export const selectLocationPath = () =>
   createSelector(selectRouterDomain, state => {
     return state.location ? state.location.pathname : '';
   });
 
-export { selectTabItems, selectSelectedId, selectLocationPath };

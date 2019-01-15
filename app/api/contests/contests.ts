@@ -24,7 +24,7 @@ interface ContestsItem {
   readonly name: string;
   readonly prize: string;
   readonly contestCategory: ContestCategory;
-  readonly date: number;
+  readonly date: string;
   readonly discipline: Discipline;
   readonly smallProfileUrl: string;
 }

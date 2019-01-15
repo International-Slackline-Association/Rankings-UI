@@ -6,12 +6,8 @@ import injectSaga from 'utils/injectSaga';
 import { compose, Dispatch } from 'redux';
 import reducer, { modifyTabBarItemsByURL, findPathAndId } from './reducer';
 import saga from './saga';
-import {
-  selectTabItems,
-  selectSelectedId,
-  selectLocationPath,
-} from './selectors';
-import { changeTopBarIndex, setTopBarTabs } from './actions';
+import * as selectors from './selectors';
+import * as actions from './actions';
 import { ContainerState, RootState } from './types';
 import TopBarButton from 'components/TopBarButton';
 import { TopBarTabType, TopBarTabContentType } from 'types/enums';
@@ -102,9 +98,9 @@ class TopBarTabs extends React.Component<Props> {
 }
 
 const mapStateToProps = createStructuredSelector<RootState, StateProps>({
-  tabItems: selectTabItems(),
-  selectedId: selectSelectedId(),
-  locationPath: selectLocationPath(),
+  tabItems: selectors.selectTabItems(),
+  selectedId: selectors.selectSelectedId(),
+  locationPath: selectors.selectLocationPath(),
 });
 
 function mapDispatchToProps(
@@ -113,10 +109,10 @@ function mapDispatchToProps(
 ): DispatchProps {
   return {
     onSelectedIndexChanged: (id: string) => {
-      dispatch(changeTopBarIndex(id));
+      dispatch(actions.changeTopBarIndex(id));
     },
     setTabBarTabs: items => {
-      dispatch(setTopBarTabs(items));
+      dispatch(actions.setTopBarTabs(items));
     },
     updateLocation: (path: string, id?: string, discipline?: string) => {
       if (id) {

@@ -50,8 +50,8 @@ interface TableItem {
   readonly surname: string;
   readonly age: number;
   readonly country: string;
-  readonly points: string;
-  readonly smallProfileUrl: string;
+  readonly points: number;
+  readonly thumbnailUrl: string;
 }
 
 /* --- ACTIONS --- */

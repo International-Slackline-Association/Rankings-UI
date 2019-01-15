@@ -12,10 +12,12 @@ class InfoField extends React.PureComponent<Props> {
     return (
       <Wrapper>
         <Key>{this.props.keyField}: </Key>
-        {this.props.href ? (
-          <HrefValue href={this.props.valueField} target="_blank">{this.props.href}</HrefValue>
+        {this.props.href && this.props.valueField ? (
+          <HrefValue href={this.props.valueField} target="_blank">
+            {this.props.href}
+          </HrefValue>
         ) : (
-          <Value>{this.props.valueField}</Value>
+          <Value>{this.props.valueField || '-'}</Value>
         )}
       </Wrapper>
     );

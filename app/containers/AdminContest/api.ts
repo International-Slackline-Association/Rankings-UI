@@ -6,6 +6,7 @@ import {
 import {
   getContestSuggestions,
   APIGetContestSuggestionsResponse,
+  APIGetContestSuggestionsRequest,
 } from 'api/contests/suggestions';
 import { adminGetContest, APIAdminGetContestResponse } from 'api/admin/contest';
 import {
@@ -25,11 +26,13 @@ import {
   APIAdminGetCategoriesResponse,
 } from 'api/admin/contest/categories';
 
-export async function apiGetContestSuggestions(value: string) {
-  const results = await getContestSuggestions(value);
+export async function apiGetContestSuggestions(
+  request: APIGetContestSuggestionsRequest,
+) {
+  const results = await getContestSuggestions(request);
   return results;
 }
-export { APIGetContestSuggestionsResponse };
+export { APIGetContestSuggestionsRequest, APIGetContestSuggestionsResponse };
 
 export async function apiAdminGetContest(id: string, discipline: number) {
   const results = await adminGetContest(id, discipline);

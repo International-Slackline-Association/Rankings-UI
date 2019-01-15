@@ -22,7 +22,7 @@ interface AthleteItem {
   readonly infoUrl: string;
 }
 
-const requestURL = 'api/athlete';
+const requestURL = 'api/athlete/details';
 export const getAthlete = async (
   request: APIGetAthleteRequest,
 ): Promise<APIGetAthleteResponse> => {

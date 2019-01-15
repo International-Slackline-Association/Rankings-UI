@@ -1,4 +1,3 @@
-import moment from 'moment';
 
 import {
   getAthlete,
@@ -27,17 +26,8 @@ import {
 export async function apiGetAthleteContests(
   request: APIGetAthleteContestsRequest,
 ): Promise<TableItemsResult> {
-  const rsp: APIAthleteContestsResponse = await getAthleteContests(request);
-  const result: TableItemsResult = {
-    items: rsp.items.map(item => {
-      return {
-        ...item,
-        date: moment.unix(item.date).format('DD/MM/YYYY'),
-      };
-    }),
-    next: rsp.next,
-  };
-  return result;
+  const results = await getAthleteContests(request);
+  return results;
 }
 
 export { APIGetAthleteContestsRequest };

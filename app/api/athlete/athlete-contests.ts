@@ -6,7 +6,8 @@ import { Discipline, ContestCategory } from 'types/application';
 
 export interface APIGetAthleteContestsRequest {
   readonly id: string;
-  readonly year: string;
+  readonly selectedCategories: number[];
+  readonly next?: any;
 }
 
 export interface APIAthleteContestsResponse {
@@ -19,17 +20,18 @@ interface ContestItem {
   readonly name: string;
   readonly rank: number;
   readonly contestCategory: ContestCategory;
-  readonly date: number;
+  readonly date: string;
   readonly discipline: Discipline;
   readonly smallProfileUrl: string;
 }
 
-const requestURL = '';
+const requestURL = 'api/athlete/contests';
 export async function getAthleteContests(
   request: APIGetAthleteContestsRequest,
 ): Promise<APIAthleteContestsResponse> {
+  const body = request;
   return axios
-    .post(requestURL, request, axiosConfig(dummyResponse, 1000))
+    .post(requestURL, body, axiosConfig(dummyResponse, 1000, false))
     .then(resp => {
       const result = resp.data as APIAthleteContestsResponse;
       return result;

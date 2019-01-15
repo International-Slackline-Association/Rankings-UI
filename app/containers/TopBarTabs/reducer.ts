@@ -23,6 +23,7 @@ export const initialState: ContainerState = {
     },
   ],
   selectedId: '-2',
+  selectedDiscipline: null,
 };
 
 function isPathStaticType(path: string) {
@@ -139,6 +140,15 @@ export default combineReducers<ContainerState, ContainerActions>({
         return id ? id : state;
       case ActionTypes.CHANGE_TOPBAR_INDEX:
         return action.payload;
+      default:
+        return state;
+    }
+  },
+  selectedDiscipline: (state = initialState.selectedDiscipline, action) => {
+    switch (action.type) {
+      case LOCATION_CHANGE:
+        const { discipline } = findPathAndId(action.payload.location.pathname);
+        return discipline || null;
       default:
         return state;
     }

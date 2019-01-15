@@ -1,7 +1,7 @@
 import { Reducer, Store } from 'redux';
 import { RouterState } from 'connected-react-router';
 import { ILanguageProviderProps } from 'containers/LanguageProvider';
-// import { Map } from 'immutable';
+
 import { ContainerState as TopBarState } from 'containers/TopBarTabs/types';
 import { ContainerState as RankingsState } from 'containers/Rankings/types';
 import { ContainerState as ContestsState } from 'containers/Contests/types';

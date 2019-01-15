@@ -6,6 +6,7 @@ import mockResponse from './__mocks__/contest_results_mock';
 export interface APIGetContestResultsRequest {
   readonly id: string;
   readonly discipline: number;
+  readonly next: any;
 }
 
 export interface APIContestResultsResponse {
@@ -20,16 +21,17 @@ interface AthleteItem {
   readonly surname: string;
   readonly age: number;
   readonly country: string;
-  readonly points: string;
-  readonly smallProfileUrl: string;
+  readonly points: number;
+  readonly thumbnailUrl: string;
 }
 
-const requestURL = '';
+const requestURL = 'api/contest/results';
 export async function getContestResults(
   request: APIGetContestResultsRequest,
 ): Promise<APIContestResultsResponse> {
   const url = `${requestURL}/${request.id}/${request.discipline}`;
-  return axios.get(url, axiosConfig(dummyResponse, 1000)).then(resp => {
+  const body = request.next;
+  return axios.post(url, body, axiosConfig(dummyResponse, 1000)).then(resp => {
     const result = resp.data as APIContestResultsResponse;
     return result;
   });

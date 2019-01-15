@@ -11,11 +11,11 @@ import {
   apiGetCategories,
   APIAthleteContestsCategoriesResponse,
 } from './api';
-import { selectId } from './selectors';
-import { TableItemsResult } from './types';
+import * as selectors from './selectors';
+import { TableItemsResult, ICategory } from './types';
 
 export function* getAthlete() {
-  const id = yield select(selectId());
+  const id = yield select(selectors.selectId());
   const request: APIGetAthleteRequest = {
     id: id,
   };
@@ -39,16 +39,26 @@ export function* getCategories() {
 }
 
 export function* getResults() {
-  const id = yield select(selectId());
+  const id: string = yield select(selectors.selectId());
+  const categories: ICategory[] = yield select(selectors.selectCategories());
+  const tableItemsResult: TableItemsResult = yield select(
+    selectors.selectTableResult(),
+  );
+
+  const selectedCategories =
+    categories && categories.map(c => parseInt(c.selectedValue, 10));
+
   const request: APIGetAthleteContestsRequest = {
     id: id,
-    year: '2018',
+    selectedCategories: selectedCategories,
+    next: tableItemsResult.next,
   };
   try {
     const results: TableItemsResult = yield call(
       apiGetAthleteContests,
       request,
     );
+    console.log(results);
     yield put(actions.addTableItems(results));
   } catch (err) {
     console.log('err: ', err);

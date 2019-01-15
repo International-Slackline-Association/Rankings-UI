@@ -13,23 +13,29 @@ import {
   APIAdminGetDisciplinesResponse,
   apiGetCategories,
   APIAdminGetCategoriesResponse,
+  APIGetContestSuggestionsRequest,
 } from './api';
 import { ISelectOption } from 'types/application';
+import { Utils } from 'utils';
 
 export function* getContestSuggestions(
   action: ReturnType<typeof actions.loadContestSuggestions>,
 ) {
   yield call(delay, 500);
   const value = action.payload;
+  const request: APIGetContestSuggestionsRequest = {
+    query: value,
+    // year: Utils.currentYear(),
+  };
   try {
     const results: APIGetContestSuggestionsResponse = yield call(
       apiGetContestSuggestions,
-      value,
+      request,
     );
     const options = results.items.map(item => {
       const option: ISelectOption = {
         value: `${item.id}:${item.discipline.id}`,
-        label: `${item.name} - ${item.discipline.name}`,
+        label: `${item.name} ${item.year} - ${item.discipline.name}`,
       };
       return option;
     });

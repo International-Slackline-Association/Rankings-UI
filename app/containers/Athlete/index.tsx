@@ -27,6 +27,7 @@ interface OwnProps extends RouteProps {
 }
 
 interface StateProps {
+  readonly id: string;
   readonly athlete: ContainerState['athlete'];
   readonly isAthleteLoading: ContainerState['isAthleteLoading'];
   readonly categories: ContainerState['categories'];
@@ -48,14 +49,9 @@ interface State {}
 class Athlete extends React.PureComponent<Props, State> {
   constructor(props: Props) {
     super(props);
-    const id  = this.getIdFromPath(
-      props.location!.pathname,
-    );
-
-    if (!id) {
+    if (!this.props.id) {
       this.props.dispatch(replace('/notfound'));
-    } else {
-      this.props.dispatch(actions.setId(id));
+      return;
     }
 
     if (!this.props.athlete) {
@@ -67,11 +63,6 @@ class Athlete extends React.PureComponent<Props, State> {
 
     }
   }
-
-  private getIdFromPath = (path: string) => {
-    const [{}, {}, id] = path.split('/');
-    return id;
-  };
 
   private loadMoreItems = () => {
     this.props.dispatch(actions.loadNextItems());
@@ -129,6 +120,7 @@ class Athlete extends React.PureComponent<Props, State> {
 }
 
 const mapStateToProps = createStructuredSelector<RootState, StateProps>({
+  id: selectors.selectId(),
   athlete: selectors.selectAthlete(),
   isAthleteLoading: selectors.isAthleteLoading(),
   categories: selectors.selectCategories(),

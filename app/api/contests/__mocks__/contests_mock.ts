@@ -6,7 +6,7 @@ const generator = (): APIGetContestsResponse => {
       {
         id: 'swiss-open_2018',
         name: 'Swiss Open',
-        date: 1539383654,
+        date: '2015/10/17',
         prize: '400€',
         contestCategory: { id: 4, name: 'Open' },
         discipline: { id: 2, name: 'Trickline - Aerial' },
@@ -17,7 +17,7 @@ const generator = (): APIGetContestsResponse => {
       {
         id: 'china-masters_2018',
         name: 'China Master',
-        date: 1539383654,
+        date: '2015/10/17',
         prize: '300€',
         contestCategory: { id: 4, name: 'Open' },
         discipline: { id: 2, name: 'Trickline - Aerial' },
@@ -28,7 +28,7 @@ const generator = (): APIGetContestsResponse => {
       {
         id: 'redbull-slackship_2018',
         name: 'Redbull Slackship',
-        date: 1539383654,
+        date: '2015/10/17',
         prize: '300€',
         contestCategory: { id: 4, name: 'Open' },
         discipline: { id: 2, name: 'Trickline - Aerial' },

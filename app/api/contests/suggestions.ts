@@ -4,6 +4,12 @@ import { AxiosRequestConfig, AxiosResponse } from 'axios';
 import mockResponse from './__mocks__/contest_suggestions_mock';
 import { Discipline } from 'types/application';
 
+export interface APIGetContestSuggestionsRequest {
+  query: string;
+  year?: number;
+  discipline?: number;
+}
+
 export interface APIGetContestSuggestionsResponse {
   items: ContestSuggestionItem[];
 }
@@ -12,15 +18,16 @@ interface ContestSuggestionItem {
   id: string;
   name: string;
   discipline: Discipline;
+  year: number;
 }
 
 const requestURL = 'api/contest/suggestions';
 export async function getContestSuggestions(
-  value: string,
+  request: APIGetContestSuggestionsRequest,
 ): Promise<APIGetContestSuggestionsResponse> {
-  const url = `${requestURL}/${value}`;
+  const body = request;
   return axios
-    .get(url, axiosConfig(dummyContestsResponse, 1000, false))
+    .post(requestURL, body, axiosConfig(dummyContestsResponse, 1000, false))
     .then(resp => {
       const result = resp.data as APIGetContestSuggestionsResponse;
       return result;

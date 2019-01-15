@@ -10,15 +10,19 @@ import {
   apiGetDisciplineCategories,
   APIGetContestsRequest,
   apiGetContests,
-  GetContestsResponse,
+  APIGetContestSuggestionsRequest,
+  APIGetContestSuggestionsResponse,
+  APIGetContestsResponse,
 } from './api';
-import { APIGetContestSuggestionsResponse } from 'api/contests/suggestions';
 import { APIContestsDisciplineCategoriesResponse } from 'api/contests/discipline-categories';
 import { ISelectOption } from 'types/application';
+import { Utils } from 'utils';
 
 export function* getCategories() {
   try {
-    const results: APIContestsDisciplineCategoriesResponse = yield call(apiGetDisciplineCategories);
+    const results: APIContestsDisciplineCategoriesResponse = yield call(
+      apiGetDisciplineCategories,
+    );
     yield put(actions.setCategories(results.items));
   } catch (err) {
     console.log('err: ', err);
@@ -30,10 +34,14 @@ export function* getContestSuggestions(
 ) {
   yield call(delay, 500);
   const value = action.payload;
+  const request: APIGetContestSuggestionsRequest = {
+    query: value,
+    year: Utils.currentYear(),
+  };
   try {
     const results: APIGetContestSuggestionsResponse = yield call(
       apiGetContestSuggestions,
-      value,
+      request,
     );
     const options = results.items.map(item => {
       const option: ISelectOption = {
@@ -61,7 +69,7 @@ export function* getContests() {
     searchInput: '',
   };
   try {
-    const results: GetContestsResponse = yield call(apiGetContests, request);
+    const results: APIGetContestsResponse = yield call(apiGetContests, request);
     yield put(actions.addTableItems(results));
   } catch (err) {
     console.log('err: ', err);

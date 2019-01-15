@@ -5,32 +5,16 @@ import {
   APIGetContestsResponse,
 } from 'api/contests/contests';
 import { TableItem } from './types';
-import { getContestSuggestions } from 'api/contests/suggestions';
+import {
+  getContestSuggestions,
+  APIGetContestSuggestionsRequest,
+  APIGetContestSuggestionsResponse,
+} from 'api/contests/suggestions';
 import { getContestsDisciplineCategories } from 'api/contests/discipline-categories';
-
-interface GetContestsResponse {
-  items: TableItem[];
-  next: any;
-}
 
 export async function apiGetContests(request: APIGetContestsRequest) {
   const result: APIGetContestsResponse = await getContests(request);
-  const resp: GetContestsResponse = {
-    items: [],
-    next: result.next,
-  };
-  for (const item of result.items) {
-    resp.items.push({
-      date: moment.unix(item.date).format('DD/MM/YYYY'),
-      discipline: item.discipline,
-      id: item.id,
-      name: item.name,
-      prize: item.prize,
-      smallProfileUrl: item.smallProfileUrl,
-      contestCategory: item.contestCategory,
-    });
-  }
-  return resp;
+  return result;
 }
 
 export async function apiGetDisciplineCategories() {
@@ -38,9 +22,11 @@ export async function apiGetDisciplineCategories() {
   return results;
 }
 
-export async function apiGetContestSuggestions(value: string) {
-  const results = await getContestSuggestions(value);
+export async function apiGetContestSuggestions(
+  request: APIGetContestSuggestionsRequest,
+) {
+  const results = await getContestSuggestions(request);
   return results;
 }
-
-export { GetContestsResponse, APIGetContestsRequest };
+export { APIGetContestSuggestionsRequest, APIGetContestSuggestionsResponse };
+export { APIGetContestsResponse, APIGetContestsRequest };

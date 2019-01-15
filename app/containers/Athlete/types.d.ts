@@ -17,13 +17,11 @@ export { RootState, ContainerState, ContainerActions, TableItem, AthleteItem };
 /* --- STATE --- */
 
 interface AthleteState {
-  readonly id: string;
   readonly athlete: AthleteItem | null;
   readonly categories: ICategory[] | null;
   readonly isAthleteLoading: boolean;
   readonly tableResult: TableItemsResult;
   readonly isTableItemsLoading: boolean;
-  readonly nextTableItemsCursor: any;
   readonly isNextTableItemsLoading: boolean;
 }
 

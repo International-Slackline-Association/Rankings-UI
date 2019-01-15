@@ -22,6 +22,7 @@ export {
 interface TopBarTabsState {
   readonly items: TopBarTabsItem[];
   readonly selectedId: string;
+  readonly selectedDiscipline: string | null;
 }
 
 interface TopBarTabsItem {
