@@ -12,7 +12,7 @@ export interface Discipline {
   name: string;
 }
 
-export interface ContestCategory {
+export interface ContestType {
   id: number;
   name: string;
 }

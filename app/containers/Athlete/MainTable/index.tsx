@@ -69,7 +69,7 @@ class MainTable extends React.PureComponent<Props, State> {
                       </td>
                       <td>{item.discipline.name}</td>
                       <td>{item.rank}</td>
-                      <td>{item.contestCategory.name}</td>
+                      <td>{item.contestType.name}</td>
                       <td>{item.date}</td>
                     </tr>
                   );

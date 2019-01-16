@@ -15,7 +15,7 @@ interface ContestItem {
   readonly city: string;
   readonly country: string;
   readonly discipline: number;
-  readonly contestCategory: number;
+  readonly contestType: number;
   readonly prize: number;
   readonly profileUrl: string;
   readonly infoUrl: string;

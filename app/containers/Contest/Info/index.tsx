@@ -8,7 +8,7 @@ import InfoField from 'components/InfoField';
 import media from 'styles/media';
 import { SmallLoading } from 'components/Loading';
 import { EmptyContainer } from 'components/Containers';
-import { ContestCategory, Discipline } from 'types/application';
+import { ContestType, Discipline } from 'types/application';
 
 interface Props {
   readonly isLoading: boolean;
@@ -21,7 +21,7 @@ interface ContestItem {
   readonly discipline: Discipline;
   readonly location: string;
   readonly date: string;
-  readonly contestCategory: ContestCategory;
+  readonly contestType: ContestType;
   readonly prize: string;
   readonly infoUrl: string;
 }
@@ -51,7 +51,7 @@ class ContestInfo extends React.PureComponent<Props> {
                 <InfoField keyField={'Date'} valueField={item.date} />
                 <InfoField
                   keyField={'Size'}
-                  valueField={item.contestCategory.name}
+                  valueField={item.contestType.name}
                 />
                 <InfoField
                   keyField={'Further Info'}

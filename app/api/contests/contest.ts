@@ -2,7 +2,7 @@ import axios, { axiosConfig } from 'api/axios';
 import { AxiosResponse } from 'axios';
 
 import mockResponse from './__mocks__/contest_mock';
-import { ContestCategory, Discipline } from 'types/application';
+import { ContestType, Discipline } from 'types/application';
 
 export interface APIGetContestRequest {
   id: string;
@@ -17,7 +17,7 @@ interface ContestItem {
   readonly id: string;
   readonly name: string;
   readonly prize: string;
-  readonly contestCategory: ContestCategory;
+  readonly contestType: ContestType;
   readonly date: string;
   readonly city: string;
   readonly country: string;

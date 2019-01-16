@@ -3,7 +3,7 @@ import * as actions from './actions';
 import { ApplicationRootState } from 'types';
 import { TabContentState } from 'containers/GenericTabContent/types';
 import { ICategoryEntity } from 'components/CategoriesFilters/types';
-import { ContestCategory, Discipline, ISelectOption } from 'types/application';
+import { ContestType, Discipline, ISelectOption } from 'types/application';
 
 /* --- EXPORTS --- */
 
@@ -39,7 +39,7 @@ interface TableItem {
   readonly name: string;
   readonly discipline: Discipline;
   readonly prize: string;
-  readonly contestCategory: ContestCategory;
+  readonly contestType: ContestType;
   readonly date: string;
   readonly smallProfileUrl: string;
 }

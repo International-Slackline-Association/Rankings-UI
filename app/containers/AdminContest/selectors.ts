@@ -26,7 +26,7 @@ export const selectDisciplines = () =>
     return substate.disciplines;
   });
 
-export const selectContestCategories = () =>
+export const selectContestTypes = () =>
   createSelector(selectAdminContestDomain, substate => {
-    return substate.contestCategories;
+    return substate.contestTypes;
   });

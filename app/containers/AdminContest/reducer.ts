@@ -9,7 +9,7 @@ export const initialState: ContainerState = {
   isContestLoading: false,
   countryFilter: { suggestions: undefined },
   disciplines: [],
-  contestCategories: [],
+  contestTypes: [],
 };
 
 export default combineReducers<ContainerState, ContainerActions>({
@@ -64,7 +64,7 @@ export default combineReducers<ContainerState, ContainerActions>({
     }
     return state;
   },
-  contestCategories: (state = initialState.contestCategories, action) => {
+  contestTypes: (state = initialState.contestTypes, action) => {
     switch (action.type) {
       case ActionTypes.LOAD_CATEGORIES:
         return [];

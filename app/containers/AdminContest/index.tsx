@@ -35,7 +35,7 @@ interface StateProps {
   contestFilter: ContainerState['contestFilter'];
   contest: ContainerState['contest'];
   countryFilter: ContainerState['countryFilter'];
-  contestCategories: ContainerState['contestCategories'];
+  contestTypes: ContainerState['contestTypes'];
   disciplines: ContainerState['disciplines'];
 }
 
@@ -95,8 +95,6 @@ class AdminContest extends React.PureComponent<Props, State> {
     const request: APIAdminSubmitContestRequest = {
       contest: {
         ...values,
-        // contestCategory: values.contestCategory.id,
-        // discipline: values.discipline.id,
       },
     };
     return apiSubmitContest(request)
@@ -173,12 +171,12 @@ class AdminContest extends React.PureComponent<Props, State> {
   };
 
   public render() {
-    const { countryFilter, contestCategories, disciplines } = this.props;
+    const { countryFilter, contestTypes: contestCategories, disciplines } = this.props;
     let values: ContestFormValues | null = null;
     if (this.props.contest) {
       values = {
         ...this.props.contest,
-        contestCategory: this.props.contest.contestCategory.id,
+        contestType: this.props.contest.contestType.id,
         discipline: this.props.contest.discipline.id,
       };
     }
@@ -209,7 +207,7 @@ class AdminContest extends React.PureComponent<Props, State> {
             loadCountrySuggestions={this.loadCountrySuggestions}
             pictureSelected={this.profilePictureSelected}
             submit={this.submit}
-            categories={contestCategories}
+            contestTypes={contestCategories}
             disciplines={disciplines}
           />
         </Wrapper>
@@ -237,7 +235,7 @@ const mapStateToProps = createStructuredSelector<RootState, StateProps>({
   contest: selectors.selectContest(),
   countryFilter: selectors.selectCountryFilter(),
   disciplines: selectors.selectDisciplines(),
-  contestCategories: selectors.selectContestCategories(),
+  contestTypes: selectors.selectContestTypes(),
 });
 
 function mapDispatchToProps(

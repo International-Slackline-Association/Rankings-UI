@@ -8,10 +8,10 @@ import ErrorLabel from './ErrorLabel';
 import { ISelectOption } from 'types/application';
 
 interface Props {
-  categories: ISelectOption[];
+  contestTypes: ISelectOption[];
 }
 
-class CategoryInput extends React.PureComponent<
+class ContestTypeInput extends React.PureComponent<
   Props & FieldProps<ContestFormValues>
 > {
   public render() {
@@ -22,10 +22,10 @@ class CategoryInput extends React.PureComponent<
     return (
       <Wrapper>
         <div>
-          <Span>Category: </Span>
-          <select {...field} value={field.value} placeholder="Category">
+          <Span>Type: </Span>
+          <select {...field} value={field.value} placeholder="Contest Type">
             <option value={-1}>None</option>
-            {this.props.categories.map(category => (
+            {this.props.contestTypes.map(category => (
               <option key={category.value} value={category.value}>
                 {category.label}
               </option>
@@ -42,4 +42,4 @@ const Span = styled.span`
   color: ${props => props.theme.textPrimary};
 `;
 
-export default CategoryInput;
+export default ContestTypeInput;

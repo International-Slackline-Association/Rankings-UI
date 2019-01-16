@@ -8,7 +8,7 @@ const generator = (): APIGetContestsResponse => {
         name: 'Swiss Open',
         date: '2015/10/17',
         prize: '400€',
-        contestCategory: { id: 4, name: 'Open' },
+        contestType: { id: 4, name: 'Open' },
         discipline: { id: 2, name: 'Trickline - Aerial' },
         smallProfileUrl:
           // tslint:disable-next-line:max-line-length
@@ -19,7 +19,7 @@ const generator = (): APIGetContestsResponse => {
         name: 'China Master',
         date: '2015/10/17',
         prize: '300€',
-        contestCategory: { id: 4, name: 'Open' },
+        contestType: { id: 4, name: 'Open' },
         discipline: { id: 2, name: 'Trickline - Aerial' },
         smallProfileUrl:
           // tslint:disable-next-line:max-line-length
@@ -30,7 +30,7 @@ const generator = (): APIGetContestsResponse => {
         name: 'Redbull Slackship',
         date: '2015/10/17',
         prize: '300€',
-        contestCategory: { id: 4, name: 'Open' },
+        contestType: { id: 4, name: 'Open' },
         discipline: { id: 2, name: 'Trickline - Aerial' },
         smallProfileUrl:
           // tslint:disable-next-line:max-line-length

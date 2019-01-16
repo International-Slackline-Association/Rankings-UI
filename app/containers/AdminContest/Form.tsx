@@ -9,7 +9,7 @@ import ImageUpload from './inputs/ImageUpload';
 import DateInput from './inputs/DateInput';
 import media from 'styles/media';
 import Header from 'containers/AdminAthlete/Header';
-import CategoryInput from './inputs/CategoryInput';
+import ContestTypeInput from './inputs/ContestTypeInput';
 import DisciplineInput from './inputs/DisciplineInput';
 import AutoCompleteTextInput from 'containers/AdminAthlete/inputs/AutoCompleteTextInput';
 import { ISelectOption } from 'types/application';
@@ -17,7 +17,7 @@ import { ISelectOption } from 'types/application';
 interface Props {
   readonly values?: ContestFormValues | null;
   readonly countrySuggestions?: ISelectOption[];
-  readonly categories: ISelectOption[];
+  readonly contestTypes: ISelectOption[];
   readonly disciplines: ISelectOption[];
   loadCountrySuggestions(value: string): void;
   pictureSelected(file: any): void;
@@ -38,7 +38,7 @@ class FormikForm extends React.PureComponent<Props, State> {
         name: '',
         country: '',
         city: '',
-        contestCategory: -1,
+        contestType: -1,
         date: '',
         discipline: -1,
         prize: 0,
@@ -62,7 +62,7 @@ class FormikForm extends React.PureComponent<Props, State> {
     country: Yup.string()
       .min(1, 'Too Short!')
       .required('Required'),
-    contestCategory: Yup.number()
+    contestType: Yup.number()
       .min(0, 'Invalid Category')
       .required('Required'),
     date: Yup.string().required(),
@@ -118,9 +118,9 @@ class FormikForm extends React.PureComponent<Props, State> {
                 required
               />
               <Field
-                name="contestCategory"
-                component={CategoryInput}
-                categories={this.props.categories}
+                name="contestType"
+                component={ContestTypeInput}
+                contestTypes={this.props.contestTypes}
               />
               <Field name="infoUrl" component={TextInput} label={'Info Url'} />
 

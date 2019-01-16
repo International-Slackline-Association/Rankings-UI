@@ -9,7 +9,7 @@ const generator = (): APIGetContestResponse => {
       city: 'Bern',
       country: 'Switzerland',
       prize: '400€',
-      contestCategory: { id: 4, name: 'Open' },
+      contestType: { id: 4, name: 'Open' },
       discipline: { id: 2, name: 'Aerial' },
       infoUrl: 'https://www.facebook.com/events/529600260719152/',
       profileUrl:

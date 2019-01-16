@@ -1,7 +1,7 @@
 import { ActionType } from 'typesafe-actions';
 import * as actions from './actions';
 import { ApplicationRootState } from 'types';
-import { Discipline, ContestCategory, ISelectOption } from 'types/application';
+import { Discipline, ContestType, ISelectOption } from 'types/application';
 
 export interface Contest {
   readonly id: string;
@@ -10,7 +10,7 @@ export interface Contest {
   readonly city: string;
   readonly country: string;
   readonly discipline: Discipline;
-  readonly contestCategory: ContestCategory;
+  readonly contestType: ContestType;
   readonly prize: number;
   readonly profileUrl: string;
   readonly infoUrl: string;
@@ -24,7 +24,7 @@ export interface ContestFormValues {
   readonly city: string;
   readonly country: string;
   readonly discipline: number;
-  readonly contestCategory: number;
+  readonly contestType: number;
   readonly prize: number;
   readonly profileUrl: string;
   readonly infoUrl: string;
@@ -36,7 +36,7 @@ interface AdminContestState {
   readonly contest: Contest | null;
   readonly isContestLoading: boolean;
   readonly countryFilter: IFilter;
-  readonly contestCategories: ISelectOption[];
+  readonly contestTypes: ISelectOption[];
   readonly disciplines: ISelectOption[];
 }
 

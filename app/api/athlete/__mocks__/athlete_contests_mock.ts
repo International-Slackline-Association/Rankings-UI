@@ -8,7 +8,7 @@ const generator = (): APIAthleteContestsResponse => {
         name: 'Swiss Open',
         date: '2015-10-17',
         rank: 1,
-        contestCategory: { id: 2, name: 'Open Challenge' },
+        contestType: { id: 2, name: 'Open Challenge' },
         discipline: { id: 2, name: 'Aerial' },
         smallProfileUrl:
           // tslint:disable-next-line:max-line-length
@@ -19,7 +19,7 @@ const generator = (): APIAthleteContestsResponse => {
         name: 'China Master',
         date: '2015-11-17',
         rank: 3,
-        contestCategory: { id: 2, name: 'Masters' },
+        contestType: { id: 2, name: 'Masters' },
         discipline: { id: 2, name: 'Aerial' },
         smallProfileUrl:
           // tslint:disable-next-line:max-line-length
@@ -30,7 +30,7 @@ const generator = (): APIAthleteContestsResponse => {
         name: 'Redbull Slackship',
         date: '2015-12-17',
         rank: 12,
-        contestCategory: { id: 2, name: 'Masters' },
+        contestType: { id: 2, name: 'Masters' },
         discipline: { id: 2, name: 'Aerial' },
         smallProfileUrl:
           // tslint:disable-next-line:max-line-length
