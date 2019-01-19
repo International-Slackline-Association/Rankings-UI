@@ -57,7 +57,7 @@ class MainTable extends React.PureComponent<Props, State> {
                       <td>{item.rank}</td>
                       <td>
                         <Group alignLeft={true}>
-                          <ProfileAvatar imageUrl={item.smallProfileUrl} />
+                          <ProfileAvatar imageUrl={item.thumbnailUrl} />
 
                           <a
                             href={`/athlete/${item.id}`}

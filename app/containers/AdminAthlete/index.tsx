@@ -133,7 +133,7 @@ class AdminAthlete extends React.PureComponent<Props, State> {
     const options = {
       contentType: 'image/png',
     };
-    return Storage.put(`athlete/${athleteId}.png`, file, options)
+    return Storage.put(`athlete/${athleteId}.jpg`, file, options)
       .then(async (result: any) => {
         return Storage.get(result.key).then(async (presignedUrl: string) => {
           const imageUrl = presignedUrl.split('?')[0];

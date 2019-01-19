@@ -45,7 +45,7 @@ interface TableItem {
   readonly age: number;
   readonly country: string;
   readonly points: string;
-  readonly smallProfileUrl: string;
+  readonly thumbnailUrl: string;
 }
 
 /* --- ACTIONS --- */

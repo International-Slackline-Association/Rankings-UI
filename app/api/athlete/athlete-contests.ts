@@ -22,7 +22,7 @@ interface ContestItem {
   readonly contestType: ContestType;
   readonly date: string;
   readonly discipline: Discipline;
-  readonly smallProfileUrl: string;
+  readonly thumbnailUrl: string;
 }
 
 const requestURL = 'api/athlete/contests';

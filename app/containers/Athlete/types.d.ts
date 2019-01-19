@@ -50,7 +50,7 @@ interface TableItem {
   readonly date: string;
   readonly rank: number;
   readonly discipline: Discipline;
-  readonly smallProfileUrl: string;
+  readonly thumbnailUrl: string;
 }
 
 /* --- ACTIONS --- */

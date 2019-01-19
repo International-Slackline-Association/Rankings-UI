@@ -11,7 +11,7 @@ const resultsDefaultGenerator = (): APIRankingsResponse => {
         age: 27,
         country: 'TR',
         points: '240',
-        smallProfileUrl:
+        thumbnailUrl:
           // tslint:disable-next-line:max-line-length
           'https://scontent.fsaw1-9.fna.fbcdn.net/v/t31.0-8/11021292_10153626177784202_311162237992041659_o.jpg?_nc_cat=101&_nc_ht=scontent.fsaw1-9.fna&oh=9015a73d27b2a9e08c09af4b04403897&oe=5CD75C62',
       },
@@ -23,7 +23,7 @@ const resultsDefaultGenerator = (): APIRankingsResponse => {
         age: 32,
         country: 'CH',
         points: '230',
-        smallProfileUrl:
+        thumbnailUrl:
           'http://www.slackattack.ch/wp-content/uploads/2015/11/Vorstand_Tom2.jpg',
       },
       {
@@ -34,7 +34,7 @@ const resultsDefaultGenerator = (): APIRankingsResponse => {
         age: 30,
         country: 'AU',
         points: '220',
-        smallProfileUrl:
+        thumbnailUrl:
           'http://www.slackattack.ch/wp-content/uploads/2015/11/Vorstand_Tom.jpg',
       },
       {
@@ -45,7 +45,7 @@ const resultsDefaultGenerator = (): APIRankingsResponse => {
         age: 25,
         country: 'CH',
         points: '200',
-        smallProfileUrl: '',
+        thumbnailUrl: '',
       },
       {
         id: 'lukas-irmler',
@@ -55,7 +55,7 @@ const resultsDefaultGenerator = (): APIRankingsResponse => {
         age: 30,
         country: 'DE',
         points: '190',
-        smallProfileUrl:
+        thumbnailUrl:
           'http://www.slackattack.ch/wp-content/uploads/2015/11/Vorstand_Tom.jpg',
       },
       {
@@ -66,7 +66,7 @@ const resultsDefaultGenerator = (): APIRankingsResponse => {
         age: 33,
         country: 'CH',
         points: '180',
-        smallProfileUrl: '',
+        thumbnailUrl: '',
       },
     ],
     next: { a: true },

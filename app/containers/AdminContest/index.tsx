@@ -146,7 +146,7 @@ class AdminContest extends React.PureComponent<Props, State> {
     const options = {
       contentType: 'image/png',
     };
-    return Storage.put(`contest/${id}-${discipline}.png`, file, options)
+    return Storage.put(`contest/${id}-${discipline}.jpg`, file, options)
       .then(async (result: any) => {
         return Storage.get(result.key).then((presignedUrl: string) => {
           const imageUrl = presignedUrl.split('?')[0];

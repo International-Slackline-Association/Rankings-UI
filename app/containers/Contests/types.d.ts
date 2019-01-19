@@ -41,7 +41,7 @@ interface TableItem {
   readonly prize: string;
   readonly contestType: ContestType;
   readonly date: string;
-  readonly smallProfileUrl: string;
+  readonly thumbnailUrl: string;
 }
 
 /* --- ACTIONS --- */

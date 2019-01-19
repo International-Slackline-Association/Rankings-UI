@@ -55,7 +55,7 @@ class MainTable extends React.PureComponent<Props, State> {
                     >
                       <td>
                         <Group alignLeft={true}>
-                          <ContestAvatar imageUrl={item.smallProfileUrl} />
+                          <ContestAvatar imageUrl={item.thumbnailUrl} />
                           <a
                             href={`/contest/${item.id}/${item.discipline.id}`}
                             onClick={this.onItemClick(

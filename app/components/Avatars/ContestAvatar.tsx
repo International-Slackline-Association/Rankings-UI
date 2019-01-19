@@ -18,7 +18,7 @@ function ContestAvatar(props: Props) {
         src={props.imageUrl} // tslint:disable-next-line:jsx-no-lambda
         onError={(e: any) => {
           e.target.onerror = null;
-          e.target.src = '';
+          e.target.style = 'display: none';
         }}
       />
     </Wrapper>
@@ -27,10 +27,12 @@ function ContestAvatar(props: Props) {
 const Wrapper = styled<WrapperProps, 'div'>('div')`
   & img {
     flex: none;
-    max-height: 100%;
-    max-width: 100%;
+    height: 100%;
+    width: 100%;
+    background-color: transparent;
   }
   display: flex;
+  justify-content: center;
   width: ${props => (props.size === 'small' ? '30px' : '120px')};
   height: ${props => (props.size === 'small' ? '30px' : '120px')};
   overflow: hidden;

@@ -10,7 +10,7 @@ const generator = (): APIGetContestsResponse => {
         prize: '400€',
         contestType: { id: 4, name: 'Open' },
         discipline: { id: 2, name: 'Trickline - Aerial' },
-        smallProfileUrl:
+        thumbnailUrl:
           // tslint:disable-next-line:max-line-length
           'https://scontent-mxp1-1.xx.fbcdn.net/v/t1.0-9/18922028_1381229651962030_8607224956463366700_n.jpg?_nc_cat=107&oh=94312c53ae0b5745939e6e91ecbc1856&oe=5C4A3E47',
       },
@@ -21,7 +21,7 @@ const generator = (): APIGetContestsResponse => {
         prize: '300€',
         contestType: { id: 4, name: 'Open' },
         discipline: { id: 2, name: 'Trickline - Aerial' },
-        smallProfileUrl:
+        thumbnailUrl:
           // tslint:disable-next-line:max-line-length
           '',
       },
@@ -32,7 +32,7 @@ const generator = (): APIGetContestsResponse => {
         prize: '300€',
         contestType: { id: 4, name: 'Open' },
         discipline: { id: 2, name: 'Trickline - Aerial' },
-        smallProfileUrl:
+        thumbnailUrl:
           // tslint:disable-next-line:max-line-length
           'https://scontent-mxp1-1.xx.fbcdn.net/v/t1.0-9/18922028_1381229651962030_8607224956463366700_n.jpg?_nc_cat=107&oh=94312c53ae0b5745939e6e91ecbc1856&oe=5C4A3E47',
       },
