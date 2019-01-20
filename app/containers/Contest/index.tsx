@@ -49,7 +49,7 @@ class Contest extends React.PureComponent<Props, State> {
       this.props.dispatch(replace('/notfound'));
       return;
     }
-    if (!this.props.contest) {
+    if (!this.props.contest || this.props.id !== this.props.contest.id) {
       this.props.dispatch(actions.loadContest());
     }
     if (!this.props.tableResult || this.props.tableResult.items.length === 0) {

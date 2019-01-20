@@ -1,15 +1,9 @@
-import { Paper } from '@material-ui/core';
 import styled from 'styles/styled-components';
-import * as React from 'react';
+import ComponentBackground from 'components/ComponentBackground';
 
 interface OwnProps {}
 
-const paper = props => <Paper component="div" elevation={2} {...props} />;
-
-const Wrapper = styled(Paper).attrs({
-  component: 'div',
-  elevation: 2,
-})`
+const Wrapper = styled(ComponentBackground)`
   && {
     background-color: ${props => props.theme.componentBackground};
   }

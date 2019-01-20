@@ -14,11 +14,9 @@ import MainTable from './MainTable';
 import * as actions from './actions';
 import { replace, push } from 'connected-react-router';
 import CategoriesFilters from 'components/CategoriesFilters';
-import {
-  ICategory,
-  IFilter,
-} from 'components/CategoriesFilters/types';
+import { ICategory, IFilter } from 'components/CategoriesFilters/types';
 import { ISelectOption } from 'types/application';
+import Footer from 'components/Footer';
 
 interface OwnProps {}
 
@@ -74,9 +72,7 @@ class Rankings extends React.PureComponent<Props, State> {
   };
 
   private selectAthleteSuggestion = (suggestion: ISelectOption) => {
-    this.props.dispatch(
-      actions.setAthleteFilterSelectedValue(suggestion),
-    );
+    this.props.dispatch(actions.setAthleteFilterSelectedValue(suggestion));
     this.props.dispatch(actions.loadTableItems());
   };
 
@@ -85,9 +81,7 @@ class Rankings extends React.PureComponent<Props, State> {
   };
 
   private selectCountrySuggestion = (suggestion: ISelectOption) => {
-    this.props.dispatch(
-      actions.setCountryFilterSelectedValue(suggestion),
-    );
+    this.props.dispatch(actions.setCountryFilterSelectedValue(suggestion));
     this.props.dispatch(actions.loadTableItems());
   };
 
@@ -127,22 +121,25 @@ class Rankings extends React.PureComponent<Props, State> {
     const openCategories =
       (this.props.tableResult.items || []).length > 0 || categories.length > 0;
     return (
-      <TabPanel>
-        <CategoriesFilters
-          isOpen={openCategories}
-          categories={categories}
-          filters={filters}
-        />
-        <MainTableSection>
-          <MainTable
-            tableItems={this.props.tableResult}
-            onItemClick={this.onAthleteClick}
-            isItemsLoading={this.props.isTableItemsLoading}
-            showMoreClicked={this.loadMoreItems}
-            isNextItemsLoading={this.props.isNextTableItemsLoading}
+      <React.Fragment>
+        <TabPanel>
+          <CategoriesFilters
+            isOpen={openCategories}
+            categories={categories}
+            filters={filters}
           />
-        </MainTableSection>
-      </TabPanel>
+          <MainTableSection>
+            <MainTable
+              tableItems={this.props.tableResult}
+              onItemClick={this.onAthleteClick}
+              isItemsLoading={this.props.isTableItemsLoading}
+              showMoreClicked={this.loadMoreItems}
+              isNextItemsLoading={this.props.isNextTableItemsLoading}
+            />
+          </MainTableSection>
+        </TabPanel>
+        <Footer />
+      </React.Fragment>
     );
   }
 }

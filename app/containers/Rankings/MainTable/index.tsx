@@ -109,8 +109,11 @@ const tableItemsPrefixCSS = css`
     }
   }
   &:nth-child(2) {
-    &::before {
-      content: 'Name : ';
+    padding-left: 0px;
+    ${media.desktop`
+      padding-left: 48px;
+    `} &::before {
+      content: 'Name :';
     }
   }
   &:nth-child(3) {

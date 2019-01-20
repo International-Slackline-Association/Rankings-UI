@@ -18,11 +18,9 @@ import * as actions from './actions';
 
 import { replace, push } from 'connected-react-router';
 import CategoriesFilters from 'components/CategoriesFilters';
-import {
-  IFilter,
-  ICategory,
-} from 'components/CategoriesFilters/types';
+import { IFilter, ICategory } from 'components/CategoriesFilters/types';
 import { ISelectOption } from 'types/application';
+import Footer from 'components/Footer';
 
 interface OwnProps {}
 
@@ -77,9 +75,7 @@ class Contests extends React.PureComponent<Props, State> {
   };
 
   private selectContestSuggestion = (suggestion: ISelectOption) => {
-    this.props.dispatch(
-      actions.setContestFilterSelectedValue(suggestion),
-    );
+    this.props.dispatch(actions.setContestFilterSelectedValue(suggestion));
     this.props.dispatch(actions.loadTableItems());
   };
 
@@ -108,22 +104,25 @@ class Contests extends React.PureComponent<Props, State> {
     const filters = this.filters();
     const openCategories = false;
     return (
-      <TabPanel>
-        <CategoriesFilters
-          isOpen={openCategories}
-          categories={categories}
-          filters={filters}
-        />
-        <MainTableSection>
-          <MainTable
-            tableItems={this.props.tableResult}
-            onItemClick={this.onContestClick}
-            isItemsLoading={this.props.isTableItemsLoading}
-            showMoreClicked={this.loadMoreItems}
-            isNextItemsLoading={this.props.isNextTableItemsLoading}
+      <React.Fragment>
+        <TabPanel>
+          <CategoriesFilters
+            isOpen={openCategories}
+            categories={categories}
+            filters={filters}
           />
-        </MainTableSection>
-      </TabPanel>
+          <MainTableSection>
+            <MainTable
+              tableItems={this.props.tableResult}
+              onItemClick={this.onContestClick}
+              isItemsLoading={this.props.isTableItemsLoading}
+              showMoreClicked={this.loadMoreItems}
+              isNextItemsLoading={this.props.isNextTableItemsLoading}
+            />
+          </MainTableSection>
+        </TabPanel>
+        <Footer />
+      </React.Fragment>
     );
   }
 }

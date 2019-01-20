@@ -4,6 +4,7 @@ import { createGlobalStyle } from 'styles/styled-components';
 const GlobalStyle = createGlobalStyle`
   html {
     font-size: 75%;
+    background-color: ${props => props.theme.appBackground};
   }
   body {
     height: 100%;

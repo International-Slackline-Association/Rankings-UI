@@ -13,6 +13,8 @@ export interface IThemeInterface {
   textSecondary: string;
   textInverted: string;
   textInvertedSecondary: string;
+  textTopBar: string;
+
   error: string;
   warning: string;
   popBackground: string;
@@ -45,6 +47,7 @@ export const colors = {
   textSecondary: 'rgba(0, 0, 0, 0.54)',
   divider: 'rgba(0, 0, 0, 0.12)',
   appBackground: '#F0F0F0',
+  textTopBar: 'red',
 };
 
 export const theme = {
@@ -60,6 +63,7 @@ export const theme = {
     textSecondary: colors.textSecondary,
     textInverted: colors.white,
     textInvertedSecondary: colors.isaBlue,
+    textTopBar: colors.textTopBar,
     error: colors.red,
     warning: colors.orange,
     popBackground: colors.white,

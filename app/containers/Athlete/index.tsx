@@ -51,7 +51,7 @@ class Athlete extends React.PureComponent<Props, State> {
       return;
     }
 
-    if (!this.props.athlete) {
+    if (!this.props.athlete || this.props.id !== this.props.athlete.id) {
       this.props.dispatch(actions.loadAthlete());
     }
     if (!this.props.tableResult || this.props.tableResult.items.length === 0) {

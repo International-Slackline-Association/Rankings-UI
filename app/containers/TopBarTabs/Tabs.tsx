@@ -15,7 +15,6 @@ const StyledTabs = styled(tabs)`
   && {
     display: flex;
     align-items: center;
-
     z-index: ${zIndex('TopBarTabs')};
     justify-content: flex-start;
     overflow-x: scroll;
@@ -29,7 +28,7 @@ const StyledTabs = styled(tabs)`
       `};
 
       ${media.desktop`
-
+        height: ${AppConstants.TopBarHeight(breakpoints.desktop)}px;
       `};
     }
   }

@@ -87,17 +87,10 @@ const Button = styled<ButtonProps>(tab)`
     min-width: 0px;
     min-height: 0px;
     /* padding: 0 16px 0 16px; */
-    font-style: ${props => (props.isDynamicType ? 'italic' : 'inherit')};
-    text-transform: ${props => (props.isDynamicType ? 'none' : 'uppercase')};
-    color: ${props =>
-      props.isSelected ? props.theme.textPrimary : props.theme.textSecondary};
 
     white-space: nowrap;
     text-align: center;
 
-    &:hover {
-      color: ${props => props.theme.textPrimary};
-    }
     &:active {
       outline: none;
     }
@@ -105,14 +98,26 @@ const Button = styled<ButtonProps>(tab)`
       outline: none;
     }
     & .labelContainer {
-      padding: 0 16px 0 16px;
+      padding: 0 24px 0 24px;
     }
 
     & .label {
+      font-style: ${props => (props.isDynamicType ? 'italic' : 'inherit')};
+      font-weight: ${props => (props.isSelected ? 'bold' : '')};
+      text-transform: ${props => (props.isDynamicType ? 'none' : 'uppercase')};
+
+      color: ${props =>
+        props.isSelected ? props.theme.textPrimary : props.theme.textSecondary};
       font-size: ${props => (props.isDynamicType ? '0.8em' : '1em')};
 
+      &:hover {
+        color: ${props => props.theme.textTopBar};
+      }
       ${media.tablet`
         font-size: ${props => (props.isDynamicType ? '1.25em' : '1.5em')};
+      `};
+      ${media.desktop`
+        font-size: ${props => (props.isDynamicType ? '1.25em' : '1.75em')};
       `};
     }
     & .wrapper {

@@ -30,6 +30,7 @@ const Background = styled(paper)` && {
   `};
 
   ${media.desktop`
+    height: ${AppConstants.TopBarHeight(breakpoints.desktop)}px;
     padding-left: ${padding(breakpoints.desktop)}px;
     padding-right: ${padding(breakpoints.desktop)}px;
   `};

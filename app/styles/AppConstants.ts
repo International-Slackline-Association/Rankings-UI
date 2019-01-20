@@ -5,7 +5,7 @@ const AppConstants = {
     switch (size) {
       case breakpoints.desktopLarge:
       case breakpoints.desktop:
-        return 64;
+        return 48;
       case breakpoints.tablet:
         return 48;
       case breakpoints.mobile:
