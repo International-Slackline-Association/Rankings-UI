@@ -58,7 +58,6 @@ export function* getResults() {
       apiGetAthleteContests,
       request,
     );
-    console.log(results);
     yield put(actions.addTableItems(results));
   } catch (err) {
     console.log('err: ', err);

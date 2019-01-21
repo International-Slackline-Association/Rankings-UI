@@ -25,7 +25,7 @@ interface ButtonProps {
   isSelected: boolean;
   isDynamicType: boolean;
   onClick(): void;
-  label: string;
+  // label: string;
 }
 
 interface BorderProps {
@@ -48,13 +48,21 @@ class TopBarButton extends React.PureComponent<OwnProps> {
     //     ? `${name}-${discipline}`
     //     : name;
     const label = name;
+    const isDynamicType = this.props.type === TopBarTabType.Dynamic;
     return (
-      <Button
-        isDynamicType={this.props.type === TopBarTabType.Dynamic}
-        isSelected={this.props.isSelected}
-        onClick={this.handleSelect}
-        label={label}
-      />
+      <React.Fragment>
+        <VerticalBorder
+          shouldExists={isDynamicType}
+          isLarge={this.props.isFirstDynamicTab}
+        />
+        <Button
+          isDynamicType={isDynamicType}
+          isSelected={this.props.isSelected}
+          onClick={this.handleSelect}
+        >
+          {label}
+        </Button>
+      </React.Fragment>
     );
   }
 }
@@ -82,48 +90,39 @@ const tab = (props: ButtonProps) => {
   );
 };
 
-const Button = styled<ButtonProps>(tab)`
-  && {
-    min-width: 0px;
-    min-height: 0px;
-    /* padding: 0 16px 0 16px; */
+const Button = styled<ButtonProps, 'button'>('button')`
+  /* width: 100%; */
+  height: 100%;
+  white-space: nowrap;
+  text-align: center;
+  padding: 0 24px 0 24px;
+  border-bottom: ${props => (props.isSelected ? '2px solid red' : '')};
+  cursor: pointer;
+  font-style: ${props => (props.isDynamicType ? 'italic' : 'inherit')};
+  font-weight: ${props =>
+    props.isSelected && !props.isDynamicType ? 'bold' : ''};
+  text-transform: ${props => (props.isDynamicType ? 'none' : 'uppercase')};
+  transition: border-width 0.1s linear;
+  color: ${props =>
+    props.isSelected ? props.theme.textTopBar : props.theme.textSecondary};
+  font-size: ${props => (props.isDynamicType ? '0.8em' : '1em')};
 
-    white-space: nowrap;
-    text-align: center;
+  &:hover {
+    color: ${props => props.theme.textTopBar};
+  }
+  &:active {
+    outline: none;
+  }
+  &:focus {
+    outline: none;
+  }
 
-    &:active {
-      outline: none;
-    }
-    &:focus {
-      outline: none;
-    }
-    & .labelContainer {
-      padding: 0 24px 0 24px;
-    }
-
-    & .label {
-      font-style: ${props => (props.isDynamicType ? 'italic' : 'inherit')};
-      font-weight: ${props => (props.isSelected ? 'bold' : '')};
-      text-transform: ${props => (props.isDynamicType ? 'none' : 'uppercase')};
-
-      color: ${props =>
-        props.isSelected ? props.theme.textPrimary : props.theme.textSecondary};
-      font-size: ${props => (props.isDynamicType ? '0.8em' : '1em')};
-
-      &:hover {
-        color: ${props => props.theme.textTopBar};
-      }
-      ${media.tablet`
+  ${media.tablet`
         font-size: ${props => (props.isDynamicType ? '1.25em' : '1.5em')};
       `};
-      ${media.desktop`
-        font-size: ${props => (props.isDynamicType ? '1.25em' : '1.75em')};
+  ${media.desktop`
+        font-size: ${props => (props.isDynamicType ? '1.25em' : '1.5em')};
       `};
-    }
-    & .wrapper {
-      /* border-right: 1px solid ${rgba(colors.grayLight, 0.4)}; */
-    }
-  }
 `;
 
 export default TopBarButton;

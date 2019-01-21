@@ -67,31 +67,24 @@ class TopBarTabs extends React.Component<Props> {
     const selectedValue = tabItems.findIndex(x => x.id === selectedId);
     return (
       <Background>
-        <StyledTabs
-          scrollButtons={'off'}
-          scrollable={true}
-          fullWidth={true}
-          value={selectedValue}
-        >
-          {tabItems.map((item, index) => {
-            return (
-              <TopBarButton
-                key={item.id}
-                id={item.id}
-                name={item.name}
-                discipline={item.discipline}
-                type={item.type}
-                contentType={item.contentType}
-                onSelect={this.onButtonSelect}
-                isSelected={item.id === selectedId}
-                isFirstDynamicTab={
-                  item.type === TopBarTabType.Dynamic &&
-                  tabItems[index - 1].type === TopBarTabType.Static
-                }
-              />
-            );
-          })}
-        </StyledTabs>
+        {tabItems.map((item, index) => {
+          return (
+            <TopBarButton
+              key={item.id}
+              id={item.id}
+              name={item.name}
+              discipline={item.discipline}
+              type={item.type}
+              contentType={item.contentType}
+              onSelect={this.onButtonSelect}
+              isSelected={item.id === selectedId}
+              isFirstDynamicTab={
+                item.type === TopBarTabType.Dynamic &&
+                tabItems[index - 1].type === TopBarTabType.Static
+              }
+            />
+          );
+        })}
       </Background>
     );
   }

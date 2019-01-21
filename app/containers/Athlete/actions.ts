@@ -2,6 +2,9 @@ import { action } from 'typesafe-actions';
 import { TableItemsResult, AthleteItem, ICategory } from './types';
 import ActionTypes from './constants';
 
+export const setId = (id: string) =>
+  action(ActionTypes.SET_ID, id);
+
 export const loadAthlete = () => action(ActionTypes.LOAD_ATHLETE);
 
 export const setAthlete = (item: AthleteItem) =>

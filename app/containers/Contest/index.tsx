@@ -14,12 +14,12 @@ import TabPanel from 'components/TabPanel';
 import MainTableSection from 'components/MainTableSection';
 import MainTable from './MainTable';
 import * as actions from './actions';
-import { RouteProps } from 'react-router';
+import { RouteComponentProps } from 'react-router';
 import { replace, push } from 'connected-react-router';
 import Header from './Header';
 import ContestInfo from './Info';
 
-interface OwnProps extends RouteProps {}
+interface OwnProps extends RouteComponentProps {}
 
 interface StateProps {
   readonly id: string;
@@ -44,12 +44,17 @@ interface State {}
 class Contest extends React.PureComponent<Props, State> {
   constructor(props: Props) {
     super(props);
-
-    if (!this.props.id || !this.props.discipline) {
+    const urlParams = this.props.match.params as {
+      id: string;
+      discipline: string;
+    };
+    if (!urlParams.id || !urlParams.discipline) {
       this.props.dispatch(replace('/notfound'));
       return;
     }
-    if (!this.props.contest || this.props.id !== this.props.contest.id) {
+    this.props.dispatch(actions.setIdDiscipline(urlParams.id, urlParams.discipline));
+
+    if (!this.props.contest || urlParams.id !== this.props.contest.id) {
       this.props.dispatch(actions.loadContest());
     }
     if (!this.props.tableResult || this.props.tableResult.items.length === 0) {

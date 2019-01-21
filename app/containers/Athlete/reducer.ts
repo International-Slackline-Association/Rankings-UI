@@ -10,9 +10,17 @@ export const initialState: ContainerState = {
   tableResult: { items: [], next: null },
   isTableItemsLoading: false,
   isNextTableItemsLoading: false,
+  id: '',
 };
 
 export default combineReducers<ContainerState, ContainerActions>({
+  id: (state = initialState.id, action) => {
+    switch (action.type) {
+      case ActionTypes.SET_ID:
+        return action.payload;
+    }
+    return state;
+  },
   athlete: (state = initialState.athlete, action) => {
     switch (action.type) {
       case ActionTypes.SET_ATHLETE:

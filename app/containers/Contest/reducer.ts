@@ -9,9 +9,25 @@ export const initialState: ContainerState = {
   tableResult: { items: [], next: null },
   isTableItemsLoading: false,
   isNextTableItemsLoading: false,
+  id: '',
+  discipline: '',
 };
 
 export default combineReducers<ContainerState, ContainerActions>({
+  id: (state = initialState.id, action) => {
+    switch (action.type) {
+      case ActionTypes.SET_ID_DISCIPLINE:
+        return action.payload.id;
+    }
+    return state;
+  },
+  discipline: (state = initialState.discipline, action) => {
+    switch (action.type) {
+      case ActionTypes.SET_ID_DISCIPLINE:
+        return action.payload.discipline;
+    }
+    return state;
+  },
   contest: (state = initialState.contest, action) => {
     switch (action.type) {
       case ActionTypes.SET_CONTEST:

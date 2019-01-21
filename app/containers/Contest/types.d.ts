@@ -16,6 +16,8 @@ export { RootState, ContainerState, ContainerActions };
 /* --- STATE --- */
 
 interface ContestState {
+  readonly id: string;
+  readonly discipline: string;
   readonly contest: ContestItem | null;
   readonly isContestLoading: boolean;
   readonly tableResult: TableItemsResult;

@@ -90,7 +90,6 @@ class FormikForm extends React.PureComponent<Props, State> {
           validationSchema={this.validationSchema}
           // tslint:disable-next-line:jsx-no-lambda
           onSubmit={(values, { setSubmitting }) => {
-            console.log(values);
             this.props.submit(values).then(_ => setSubmitting(false));
           }}
         >

@@ -47,6 +47,12 @@ class Footer extends React.PureComponent<Props> {
           >
             Partners
           </Link>
+          <Link
+            href={'//github.com/International-Slackline-Association'}
+            target="_blank"
+          >
+            Open Source
+          </Link>
           <Info>
             Contact Us: <br />
             isa-rankings@slacklineinternational.org
@@ -54,7 +60,7 @@ class Footer extends React.PureComponent<Props> {
         </LinkGroup>
         <LinkGroup style={{ alignSelf: 'center' }}>
           <Link
-            style={{ alignSelf: 'flex-end', width: '50%' }}
+            style={{ width: '75%' }}
             href={'//www.slacklineinternational.org/'}
             target="_blank"
           >

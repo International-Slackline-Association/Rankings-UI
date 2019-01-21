@@ -14,14 +14,14 @@ import TabPanel from 'components/TabPanel';
 import MainTableSection from 'components/MainTableSection';
 import MainTable from './MainTable';
 import * as actions from './actions';
-import { RouteProps } from 'react-router';
+import { RouteProps, RouteComponentProps } from 'react-router';
 import { replace, push } from 'connected-react-router';
 import Header from './Header';
 import AthleteInfo from './Info';
 import CategoriesFilters from 'components/CategoriesFilters';
 import { ICategory } from 'components/CategoriesFilters/types';
 
-interface OwnProps extends RouteProps {}
+interface OwnProps extends RouteComponentProps {}
 
 interface StateProps {
   readonly id: string;
@@ -46,12 +46,17 @@ interface State {}
 class Athlete extends React.PureComponent<Props, State> {
   constructor(props: Props) {
     super(props);
-    if (!this.props.id) {
+    const urlParams = this.props.match.params as {
+      id: string;
+    };
+    if (!urlParams.id) {
       this.props.dispatch(replace('/notfound'));
       return;
     }
+    this.props.dispatch(actions.setId(urlParams.id));
 
-    if (!this.props.athlete || this.props.id !== this.props.athlete.id) {
+
+    if (!this.props.athlete || urlParams.id !== this.props.athlete.id) {
       this.props.dispatch(actions.loadAthlete());
     }
     if (!this.props.tableResult || this.props.tableResult.items.length === 0) {

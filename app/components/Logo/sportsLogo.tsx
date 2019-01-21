@@ -16,14 +16,13 @@ const IsaSportsLogo: React.SFC<{}> = () => {
 
 const Link = styled.a`
   height: 100%;
-  /* width: 150px; */
-  /* display: none; */
+
   &:hover {
     text-decoration: underline;
   }
   img {
-    width: 100%;
-    height: 100%;
+    max-width: 100%;
+    max-height: 100%;
   }
 `;
 export default IsaSportsLogo;
