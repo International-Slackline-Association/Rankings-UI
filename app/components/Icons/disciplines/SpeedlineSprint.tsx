@@ -1,7 +1,7 @@
 import * as React from 'react';
 
 /* tslint:disable:max-line-length */
-class Discipline14 extends React.PureComponent {
+class SpeedlineSprint extends React.PureComponent {
   public render() {
     return (
       <svg width="27" height="28" xmlns="http://www.w3.org/2000/svg">
@@ -15,4 +15,4 @@ class Discipline14 extends React.PureComponent {
   }
 }
 
-export default Discipline14;
+export default SpeedlineSprint;

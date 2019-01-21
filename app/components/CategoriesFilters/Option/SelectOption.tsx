@@ -3,10 +3,11 @@ import styled from 'styles/styled-components';
 import { clickEffect } from 'styles/mixins';
 import Divider from 'components/Divider';
 import { UISelectOption } from 'types/application';
-import DisciplineIcon from 'components/Icons/disciplines/DisciplineIcon';
+import DisciplineIcon from 'components/Icons/DisciplineIcon';
 
 interface Props extends UISelectOption {
   hideDivider?: boolean;
+  hasIcon?: boolean;
   onSelect(value: string);
 }
 
@@ -16,17 +17,24 @@ class SelectOption extends React.PureComponent<Props> {
   };
 
   public render() {
-    const { label, inlineLevel, isContainerStyle, hideDivider } = this.props;
+    const {
+      label,
+      inlineLevel,
+      isContainerStyle,
+      hideDivider,
+      hasIcon,
+    } = this.props;
     const wrapperMarginLeft = 16 * (1 + (inlineLevel || 0));
     const hasDivider = !isContainerStyle && !hideDivider;
     return (
       <Wrapper style={{ marginLeft: wrapperMarginLeft }}>
         <Button
           isContainerStyle={isContainerStyle}
+          hasIcon={hasIcon}
           disabled={isContainerStyle}
           onClick={this.onClick}
         >
-          <DisciplineIcon discipline={this.props.value} />
+          {hasIcon && <DisciplineIcon discipline={this.props.value} />}
           <span>{label}</span>
         </Button>
         {hasDivider && <Divider />}
@@ -42,6 +50,7 @@ const Wrapper = styled.div`
 
 interface ButtonProps {
   isContainerStyle?: boolean;
+  hasIcon?: boolean;
 }
 const Button = styled<ButtonProps, 'button'>('button')`
   ${props => (props.isContainerStyle ? '' : clickEffect)};
@@ -57,7 +66,7 @@ const Button = styled<ButtonProps, 'button'>('button')`
   & span {
     font-size: 1em;
     font-weight: inherit;
-    margin-left: 8px;
+    margin-left: ${props => (props.hasIcon ? '8px' : '0')};
     color: ${props =>
       props.isContainerStyle
         ? props.theme.textSecondary

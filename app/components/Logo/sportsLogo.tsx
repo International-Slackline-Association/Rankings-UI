@@ -16,7 +16,8 @@ const IsaSportsLogo: React.SFC<{}> = () => {
 
 const Link = styled.a`
   height: 100%;
-
+  display: flex;
+  align-items: center;
   &:hover {
     text-decoration: underline;
   }

@@ -5,6 +5,7 @@ import { UISelectOption } from 'types/application';
 export interface CategorySelectProps {
   options: UISelectOption[];
   categorySelected(value: string);
+  hasIcons?: boolean;
 }
 
 interface Props extends CategorySelectProps {}
@@ -21,7 +22,6 @@ class SelectOptionContainer extends React.PureComponent<Props> {
         {options.map((option, i) => {
           // const inlineLevel = option.inlineLevel || 0;
           // const hideDivider = inlineLevel > 2;
-
           return (
             <SelectOption
               key={i}
@@ -30,6 +30,7 @@ class SelectOptionContainer extends React.PureComponent<Props> {
               label={option.label}
               isContainerStyle={option.isContainerStyle}
               hideDivider={false}
+              hasIcon={this.props.hasIcons}
               onSelect={this.onSelect(option.value)}
             />
           );

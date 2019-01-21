@@ -1,7 +1,7 @@
 import * as React from 'react';
 
 /* tslint:disable:max-line-length */
-class Discipline11 extends React.PureComponent {
+class StaticJib extends React.PureComponent {
   public render() {
     return (
       <svg width="26" height="18" xmlns="http://www.w3.org/2000/svg">
@@ -15,4 +15,4 @@ class Discipline11 extends React.PureComponent {
   }
 }
 
-export default Discipline11;
+export default StaticJib;

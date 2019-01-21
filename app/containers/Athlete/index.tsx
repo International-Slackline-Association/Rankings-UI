@@ -20,6 +20,7 @@ import Header from './Header';
 import AthleteInfo from './Info';
 import CategoriesFilters from 'components/CategoriesFilters';
 import { ICategory } from 'components/CategoriesFilters/types';
+import Footer from 'components/Footer';
 
 interface OwnProps extends RouteComponentProps {}
 
@@ -54,7 +55,6 @@ class Athlete extends React.PureComponent<Props, State> {
       return;
     }
     this.props.dispatch(actions.setId(urlParams.id));
-
 
     if (!this.props.athlete || urlParams.id !== this.props.athlete.id) {
       this.props.dispatch(actions.loadAthlete());
@@ -97,21 +97,24 @@ class Athlete extends React.PureComponent<Props, State> {
     const categories = this.categories();
     const { isAthleteLoading, athlete } = this.props;
     return (
-      <TabPanel>
-        <Header>Athlete</Header>
-        <AthleteInfo isLoading={isAthleteLoading} item={athlete} />
-        <Header>Contests</Header>
-        <CategoriesFilters categories={categories} filters={[]} />
-        <MainTableSection>
-          <MainTable
-            tableItems={this.props.tableResult}
-            onItemClick={this.onContestClick}
-            isItemsLoading={this.props.isTableItemsLoading}
-            showMoreClicked={this.loadMoreItems}
-            isNextItemsLoading={this.props.isNextTableItemsLoading}
-          />
-        </MainTableSection>
-      </TabPanel>
+      <React.Fragment>
+        <TabPanel>
+          <Header>Athlete</Header>
+          <AthleteInfo isLoading={isAthleteLoading} item={athlete} />
+          <Header>Contests</Header>
+          <CategoriesFilters categories={categories} filters={[]} />
+          <MainTableSection>
+            <MainTable
+              tableItems={this.props.tableResult}
+              onItemClick={this.onContestClick}
+              isItemsLoading={this.props.isTableItemsLoading}
+              showMoreClicked={this.loadMoreItems}
+              isNextItemsLoading={this.props.isNextTableItemsLoading}
+            />
+          </MainTableSection>
+        </TabPanel>
+        <Footer />
+      </React.Fragment>
     );
   }
 }

@@ -19,7 +19,7 @@ import styled, {
 import { Switch, Route, Redirect } from 'react-router';
 import NotFoundPage from 'containers/NotFoundPage';
 import { hot } from 'react-hot-loader';
-import HeaderBar from 'components/NavBar';
+import NavBar from 'components/NavBar';
 import media from 'styles/media';
 
 import TopBarTabs from 'containers/TopBarTabs';
@@ -63,7 +63,7 @@ class App extends React.Component<{}, {}> {
             >
               <meta name="description" content="ISA Rankings" />
             </Helmet>
-            <HeaderBar />
+            <NavBar />
             <Switch>
               <Route path="/admin">
                 <React.Fragment>

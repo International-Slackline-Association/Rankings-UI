@@ -1,7 +1,7 @@
 import * as React from 'react';
 
 /* tslint:disable:max-line-length */
-class Discipline16 extends React.PureComponent {
+class Transfer extends React.PureComponent {
   public render() {
     return (
       <svg width="27" height="26" xmlns="http://www.w3.org/2000/svg">
@@ -15,4 +15,4 @@ class Discipline16 extends React.PureComponent {
   }
 }
 
-export default Discipline16;
+export default Transfer;

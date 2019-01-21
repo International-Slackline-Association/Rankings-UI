@@ -97,6 +97,7 @@ class CategorySelect extends React.PureComponent<Props, State> {
             <SelectOptionContainer
               categorySelected={this.handleSelect}
               options={this.props.category.options}
+              hasIcons={this.props.category.title === 'Discipline'}
             />
           </StyledSelect>
         </FormControl>

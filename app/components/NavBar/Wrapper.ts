@@ -10,7 +10,7 @@ const Wrapper = styled.div`
   background-color: ${props => props.theme.componentBackgroundSecondary};
   border-bottom: 1px solid ${props => props.theme.border};
   height: ${AppConstants.NavBarHeight(breakpoints.mobile)}px;
-  padding: 8px ${padding(breakpoints.mobile)}px;
+  padding: 4px ${padding(breakpoints.mobile)}px;
   display: flex;
   align-items: center;
   width: 100%;
@@ -19,7 +19,7 @@ const Wrapper = styled.div`
 
   ${media.tablet`
     height: ${AppConstants.NavBarHeight(breakpoints.tablet)}px;
-    padding: 8px ${padding(breakpoints.tablet)}px;
+    padding: 4px ${padding(breakpoints.tablet)}px;
     align-items: center;
   `};
 

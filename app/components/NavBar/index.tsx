@@ -1,17 +1,15 @@
 import * as React from 'react';
 import Wrapper from './Wrapper';
-import Title from 'components/Title';
 import IsaSportsLogo from 'components/Logo/sportsLogo';
+import RankingsLogo from 'components/Logo/rankingsLogo';
 
-const HeaderBar: React.SFC<{}> = () => {
+const NavBar: React.SFC<{}> = () => {
   return (
     <Wrapper>
-      <Title />
+      <RankingsLogo />
       <IsaSportsLogo />
     </Wrapper>
   );
 };
 
-// NavBar.propTypes = {};
-
-export default HeaderBar;
+export default NavBar;

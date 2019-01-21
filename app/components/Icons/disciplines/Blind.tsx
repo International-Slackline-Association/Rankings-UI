@@ -1,7 +1,7 @@
 import * as React from 'react';
 
 /* tslint:disable:max-line-length */
-class Discipline10 extends React.PureComponent {
+class Blind extends React.PureComponent {
   public render() {
     return (
       <svg width="23" height="16" xmlns="http://www.w3.org/2000/svg">
@@ -15,4 +15,4 @@ class Discipline10 extends React.PureComponent {
   }
 }
 
-export default Discipline10;
+export default Blind;
