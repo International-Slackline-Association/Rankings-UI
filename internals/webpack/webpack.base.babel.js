@@ -142,7 +142,6 @@ module.exports = options => ({
         USER_POOL_WEB_CLIENT_ID: JSON.stringify(
           process.env.USER_POOL_WEB_CLIENT_ID,
         ),
-        API_GATEWAY_ENDPOINT: JSON.stringify(process.env.API_GATEWAY_ENDPOINT),
       },
     }),
   ]),

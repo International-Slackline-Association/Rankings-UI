@@ -54,7 +54,7 @@ class MainTable extends React.PureComponent<Props, State> {
                       // onClick={this.onTableRowClick(item)}
                       key={item.id}
                     >
-                      <td>{item.rank}</td>
+                      <td>{item.rank || '-'}</td>
                       <td>
                         <Group alignLeft={true}>
                           <ProfileAvatar imageUrl={item.thumbnailUrl} />

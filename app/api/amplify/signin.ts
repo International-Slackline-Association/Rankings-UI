@@ -16,4 +16,13 @@ async function signin(email: string, password: string) {
     });
 }
 
+// Auth.signUp({
+//   username: '',
+//   password: '',
+//   attributes: {
+//     email: '',
+//   },
+// })
+//   .then(data => console.log(data))
+//   .catch(err => console.log(err));
 export default signin;

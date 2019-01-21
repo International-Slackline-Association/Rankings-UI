@@ -11,14 +11,4 @@ Amplify.configure({
     bucket: `isa.rankings.${process.env.REGION}.images`,
     region: process.env.REGION,
   },
-  API: {
-    endpoints: [
-      {
-        name: 'ApiGateway',
-        endpoint: process.env.API_GATEWAY_ENDPOINT,
-        service: 'lambda',
-        region: process.env.REGION,
-      },
-    ],
-  },
 });
