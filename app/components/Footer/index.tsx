@@ -45,7 +45,7 @@ class Footer extends React.PureComponent<Props> {
             href={'//www.slacklineinternational.org/members-partners/'}
             target="_blank"
           >
-            Partners
+            Members And Partners
           </Link>
           <Link
             href={'//github.com/International-Slackline-Association'}
@@ -53,10 +53,7 @@ class Footer extends React.PureComponent<Props> {
           >
             Open Source
           </Link>
-          <Info>
-            Contact Us: <br />
-            isa-rankings@slacklineinternational.org
-          </Info>
+
         </LinkGroup>
         <LinkGroup style={{ alignSelf: 'center' }}>
           <Link
@@ -65,6 +62,9 @@ class Footer extends React.PureComponent<Props> {
             target="_blank"
           >
             <TitleLogo />
+          </Link>
+          <Link href="mailto:isa-rankings@slacklineinternational.org">
+            Contact Us
           </Link>
         </LinkGroup>
       </Wrapper>

@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-import isaLogo from './isa-sports-logo.svg?file';
+import isaLogo from './isa-sport.svg?file';
 import styled from 'styles/styled-components';
 
 const IsaSportsLogo: React.SFC<{}> = () => {

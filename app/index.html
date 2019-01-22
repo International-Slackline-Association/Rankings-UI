@@ -1,21 +1,39 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
   <head>
     <!-- The first thing in any HTML file should be the charset -->
-    <meta charset="utf-8">
+    <meta charset="utf-8" />
     <!-- Make the page mobile compatible -->
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="mobile-web-app-capable" content="yes" />
     <title>ISA Rankings</title>
+
+    <meta property="og:title" content="ISA Rankings" />
+    <meta property="og:description" content="Slackline World Ranking List" />
+    <meta
+      property="og:image"
+      content="https://s3.eu-central-1.amazonaws.com/isa.rankings.eu-central-1.images/isa-sport.png"
+    />
+    <meta property="og:url" content="https://www.isa-rankings.org" />
   </head>
   <body>
     <!-- Display a message if JS has been disabled on the browser. -->
-    <noscript>If you're seeing this message, that means <strong>JavaScript has been disabled on your browser</strong>, please <strong>enable JS</strong> to make this app work.</noscript>
+    <noscript
+      >If you're seeing this message, that means
+      <strong>JavaScript has been disabled on your browser</strong>, please
+      <strong>enable JS</strong> to make this app work.</noscript
+    >
 
     <!-- The app hooks into this div -->
     <div id="app"></div>
-    <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,400i,600" rel="stylesheet">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500">
+    <link
+      href="https://fonts.googleapis.com/css?family=Open+Sans:400,400i,600"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css?family=Roboto:300,400,500"
+    />
     <!-- A lot of magic happens in this file. HtmlWebpackPlugin automatically includes all assets (e.g. bundle.js, main.css) with the correct HTML tags, which is why they are missing in this HTML file. Don't add any assets here! (Check out webpackconfig.js if you want to know more) -->
   </body>
 </html>

@@ -43,6 +43,8 @@ class Rankings extends React.PureComponent<Props, State> {
     super(props);
     if (!this.props.tableResult || this.props.tableResult.items.length === 0) {
       this.props.dispatch(actions.loadTableItems());
+    }
+    if (!this.props.categories) {
       this.props.dispatch(actions.loadCategories());
     }
   }
