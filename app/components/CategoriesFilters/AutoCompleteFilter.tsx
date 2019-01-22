@@ -6,10 +6,7 @@ import parse from 'autosuggest-highlight/parse';
 import TextField from '@material-ui/core/TextField';
 import ComponentBackground from 'components/ComponentBackground';
 import Popper from '@material-ui/core/Popper';
-import {
-  AutosuggestChildWrapperDiv,
-  AutosuggestsWrapperDiv,
-} from 'components/AutosuggestWrapper';
+import { AutosuggestChildWrapperDiv } from 'components/AutosuggestWrapper';
 import styled from 'styles/styled-components';
 import InputAdornment from '@material-ui/core/InputAdornment';
 import IconClose from 'components/Icons/IconClose';

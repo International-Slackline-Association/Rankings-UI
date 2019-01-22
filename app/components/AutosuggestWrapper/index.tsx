@@ -1,9 +1,4 @@
-import styled, { colors } from 'styles/styled-components';
-
-import * as React from 'react';
-import media from 'styles/media';
-import { TinyLoading } from '../Loading';
-import { lighten } from 'polished';
+import styled from 'styles/styled-components';
 
 const classNames: any = {
   container: 'react-autosuggest__container',
@@ -16,44 +11,6 @@ const classNames: any = {
   section_container_first: 'react-autosuggest__section-container--first',
   suggestion_highlighted: 'react-autosuggest__suggestion--highlighted',
 };
-
-interface Props {
-  isLoading: boolean;
-}
-
-export const AutosuggestWrapper: React.SFC<Props> = props => {
-  return (
-    <Wrapper>
-      <AutosuggestChildWrapperDiv>{props.children}</AutosuggestChildWrapperDiv>
-      {props.isLoading && (
-        <Empty>
-          <TinyLoading />
-        </Empty>
-      )}
-    </Wrapper>
-  );
-};
-
-const Wrapper = styled.div`
-  display: flex;
-  flex-wrap: nowrap;
-  position: relative;
-  margin-left: 1.2em;
-  margin-top: 1.2em;
-`;
-
-const Empty = styled.div`
-  position: absolute;
-  display: flex;
-  justify-content: center;
-  right: 10px;
-  align-items: center;
-  align-self: center;
-  font-weight: normal;
-  color: ${props => props.theme.textSecondary};
-  padding: 0 8px;
-  text-align: center;
-`;
 
 export const AutosuggestChildWrapperDiv = styled.div.attrs(classNames)`
   display: flex;
@@ -72,17 +29,5 @@ export const AutosuggestChildWrapperDiv = styled.div.attrs(classNames)`
   }
   .${classNames.suggestion_highlighted} {
     background-color: ${props => props.theme.divider};
-  }
-`;
-
-export const AutosuggestsWrapperDiv = styled.div.attrs(classNames)`
-  /* display: flex; */
-  /* align-items: center; */
-
-  .${classNames.suggestion_list} {
-    width: 100%;
-    margin: 0;
-    padding: 0;
-    list-style-type: none;
   }
 `;
