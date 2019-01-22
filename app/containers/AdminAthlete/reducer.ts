@@ -50,6 +50,8 @@ export default combineReducers<ContainerState, ContainerActions>({
         return { ...state, suggestions: action.payload };
       case ActionTypes.LOAD_COUNTRY_SUGGESTIONS:
         return { ...state, suggestions: undefined };
+      case ActionTypes.CLEAR_FORM:
+        return initialState.countryFilter;
     }
     return state;
   },

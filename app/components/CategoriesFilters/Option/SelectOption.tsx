@@ -65,7 +65,8 @@ const Button = styled<ButtonProps, 'button'>('button')`
 
   & span {
     font-size: 1em;
-    font-weight: inherit;
+    font-weight: ${props =>
+      props.isContainerStyle ? 'bold' : 'inherit'};
     margin-left: ${props => (props.hasIcon ? '8px' : '0')};
     color: ${props =>
       props.isContainerStyle

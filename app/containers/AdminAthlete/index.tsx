@@ -84,6 +84,7 @@ class AdminAthlete extends React.PureComponent<Props, State> {
     const request: APIAdminSubmitAthleteRequest = {
       athlete: values,
     };
+    this.props.dispatch(actions.setAthlete(values));
     return apiSubmitAthlete(request)
       .then(async response => {
         let text = 'Saved Successfully.';
@@ -177,7 +178,7 @@ class AdminAthlete extends React.PureComponent<Props, State> {
           />
           <FormikForm
             key={formikKey}
-            values={this.props.athlete}
+            values={athlete}
             countrySuggestions={countryFilter.suggestions}
             loadCountrySuggestions={this.loadCountrySuggestions}
             pictureSelected={this.profilePictureSelected}
