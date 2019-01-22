@@ -146,10 +146,11 @@ class AdminContest extends React.PureComponent<Props, State> {
     const options = {
       contentType: 'image/png',
     };
-    return Storage.put(`contest/${id}-${discipline}.jpg`, file, options)
+    const key = `contest/${id}-${discipline}.jpg`;
+    return Storage.put(key, file, options)
       .then(async (result: any) => {
         return Storage.get(result.key).then((presignedUrl: string) => {
-          const imageUrl = presignedUrl.split('?')[0];
+          const imageUrl = `${process.env.S3_IMAGES_BUCKET_URL}/public/${key}`;
           if (imageUrl) {
             return apiSubmitContestPicture({
               id: id,

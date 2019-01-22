@@ -134,10 +134,11 @@ class AdminAthlete extends React.PureComponent<Props, State> {
     const options = {
       contentType: 'image/png',
     };
-    return Storage.put(`athlete/${athleteId}.jpg`, file, options)
+    const key = `athlete/${athleteId}.jpg`;
+    return Storage.put(key, file, options)
       .then(async (result: any) => {
         return Storage.get(result.key).then(async (presignedUrl: string) => {
-          const imageUrl = presignedUrl.split('?')[0];
+          const imageUrl = `${process.env.S3_IMAGES_BUCKET_URL}/public/${key}`;
           if (imageUrl) {
             return apiSubmitAthletePicture({
               id: athleteId,

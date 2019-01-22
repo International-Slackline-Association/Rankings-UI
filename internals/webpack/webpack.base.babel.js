@@ -142,6 +142,10 @@ module.exports = options => ({
         USER_POOL_WEB_CLIENT_ID: JSON.stringify(
           process.env.USER_POOL_WEB_CLIENT_ID,
         ),
+        S3_IMAGES_BUCKET_NAME: JSON.stringify(
+          process.env.S3_IMAGES_BUCKET_NAME,
+        ),
+        S3_IMAGES_BUCKET_URL: JSON.stringify(process.env.S3_IMAGES_BUCKET_URL),
       },
     }),
   ]),
