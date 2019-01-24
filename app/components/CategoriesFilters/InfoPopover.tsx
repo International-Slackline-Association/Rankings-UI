@@ -55,7 +55,23 @@ class InfoPopover extends React.PureComponent<Props, State> {
           disableRestoreFocus
         >
           <TextArea>
-            <span>Info about how categories work</span>
+            <span>
+              <p>Categories are how athletes ranked in a group.</p>
+              <p>
+                Each category combination
+                <i> (for instance, Overall-2018-Men-Youth) </i>
+                provides rankings of the athletes in the same group.
+              </p>
+              <p>
+                Given this, a single athlete might have different rankings in
+                multiple groups(category combinations).
+              </p>
+              <p>
+                However, filters does not effect the athlete's rank. It works
+                only within a category group and filters the rankings inside the
+                group
+              </p>
+            </span>
           </TextArea>
         </Popover>
       </div>

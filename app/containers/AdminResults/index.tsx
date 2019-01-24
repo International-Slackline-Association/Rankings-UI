@@ -220,7 +220,7 @@ export class AdminResults extends React.PureComponent<Props, State> {
                 <StyledAutoCompleteFilter
                   // key={athleteFilter.selectedValue}
                   title={'Name'}
-                  placeholder={'Searh Athlete'}
+                  placeholder={'Search Athlete'}
                   loadSuggestions={this.loadAthleteSuggestions(index)}
                   suggestionSelected={this.selectAthleteSuggestion(index)}
                   suggestions={athleteFilter.suggestions}
