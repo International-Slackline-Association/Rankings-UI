@@ -43,36 +43,4 @@ const Logo = styled.div`
   opacity: 0.35;
 `;
 
-const IsaBlurBackground2 = css`
-  position: relative;
-  overflow: hidden;
-  background-color: transparent;
-  /* &::before {
-    content: '';
-    display: block;
-    position: absolute;
-    top: 0px;
-    left: 0px;
-    right: 0px;
-    bottom: 0px;
-    background-position: center;
-    background-color: #333C4E;
-    filter: blur(40px);
-  } */
-  &::after {
-    content: '';
-    display: block;
-    position: absolute;
-    top: 0px;
-    left: 0px;
-    right: 0px;
-    bottom: 0px;
-    background-image: url(${isaLogo});
-    background-size: 120%;
-    background-position: center;
-    background-color: #333c4e;
-    filter: blur(40px);
-    opacity: 0.2;
-  }
-`;
 export default IsaBlurBackground;

@@ -8,7 +8,7 @@ import DisciplineIcon from 'components/Icons/DisciplineIcon';
 interface Props extends UISelectOption {
   hideDivider?: boolean;
   hasIcon?: boolean;
-  onSelect(value: string);
+  onSelect(value: string): void;
 }
 
 class SelectOption extends React.PureComponent<Props> {
@@ -65,8 +65,7 @@ const Button = styled<ButtonProps, 'button'>('button')`
 
   & span {
     font-size: 1em;
-    font-weight: ${props =>
-      props.isContainerStyle ? 'bold' : 'inherit'};
+    font-weight: ${props => (props.isContainerStyle ? 'bold' : 'inherit')};
     margin-left: ${props => (props.hasIcon ? '8px' : '0')};
     color: ${props =>
       props.isContainerStyle

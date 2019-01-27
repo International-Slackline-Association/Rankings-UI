@@ -8,24 +8,16 @@ interface Props {
 }
 
 const TableWrapper = styled<Props, 'div'>('div')`
-  /* border: 1px solid ${props => props.theme.border}; */
-  /* background-color: ${colors.orange}; */
-  /* border-radius: 3px; */
   position: relative;
   margin-bottom: 24px;
 
   table {
     width: 100%;
     text-align: center;
-    /* border-top: 1px solid ${props => props.theme.border}; */
-    /* border-bottom: 1px solid ${props => props.theme.border}; */
     thead {
       text-transform: uppercase;
       border-bottom: 1px solid ${props => props.theme.divider};
       font-size: 1em;
-      /* font-weight: bold; */
-      /* background-color: ${props =>
-        props.theme.componentBackgroundSecondary}; */
       color: ${props => props.theme.textSecondary};
       display: none;
 
@@ -61,8 +53,6 @@ const TableWrapper = styled<Props, 'div'>('div')`
         ${media.desktop`
           display: table-row;
           padding-top: 0;
-          /* border-bottom: none; */
-
           &:nth-child(even) {
             background-color: transparent;
           }

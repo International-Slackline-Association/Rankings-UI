@@ -1,5 +1,4 @@
 import * as React from 'react';
-import { IThemeInterface } from 'styles/styled-components';
 
 /* tslint:disable:max-line-length */
 class InfoIcon extends React.PureComponent {

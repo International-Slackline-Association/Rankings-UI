@@ -1,15 +1,10 @@
 import * as React from 'react';
-import { IThemeInterface } from 'styles/styled-components';
 
-interface IconProps {
-  // color?: keyof IThemeInterface['colors'];
-}
+interface IconProps {}
 
 /* tslint:disable:max-line-length */
 class IconClose extends React.PureComponent<IconProps> {
   public render() {
-    // const { color } = this.props;
-    // const fill = color ? this.props.theme.colors[color] : 'currentColor';
     return (
       <svg width="100%" height="100%" viewBox="0 0 13 13" xmlns="http://www.w3.org/2000/svg">
         <path

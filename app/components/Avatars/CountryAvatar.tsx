@@ -1,6 +1,5 @@
 import * as React from 'react';
 import styled from 'styles/styled-components';
-// import silhoutte from './silhoutte.svg?file';
 import ReactCountryFlag from 'react-country-flag';
 
 interface Props {
@@ -23,11 +22,6 @@ function CountryAvatar(props: Props) {
   );
 }
 const Wrapper = styled.div`
-  & span {
-    /* flex: 1; */
-    /* max-height: 100%;
-    max-width: 100%; */
-  }
   display: flex;
   align-items: center;
   width: 25px;

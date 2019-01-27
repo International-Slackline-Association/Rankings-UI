@@ -94,7 +94,7 @@ class Rankings extends React.PureComponent<Props, State> {
   private filters(): IFilter[] {
     const athleteFilter: IFilter = {
       title: 'Athlete',
-      placeholder: 'Name of the athlete',
+      placeholder: 'First name of the athlete',
       loadSuggestions: this.loadAthleteSuggestions,
       suggestionSelected: this.selectAthleteSuggestion,
       suggestions: this.props.athleteFilter.suggestions,

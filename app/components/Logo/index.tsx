@@ -13,9 +13,6 @@ const TitleLogo: React.SFC<{}> = () => {
 
 const Wrapper = styled.div`
   height: 100%;
-  /* width: 150px; */
-  /* display: flex; */
-  /* justify-content: center; */
 
   img {
     width: 100%;

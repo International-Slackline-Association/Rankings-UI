@@ -6,7 +6,7 @@ import Section from './Section';
 
 interface Props {
   isOpen: boolean;
-  onClick();
+  onClick(): void;
 }
 
 class CategoryFilterButton extends React.PureComponent<Props> {

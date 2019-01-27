@@ -1,7 +1,6 @@
 import styled, { keyframes } from 'styles/styled-components';
 import { rgba } from 'polished';
 import * as React from 'react';
-import { Collapse } from '@material-ui/core';
 import {
   SmallLoadingContainer,
   TinyLoadingContainer,

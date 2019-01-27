@@ -20,5 +20,4 @@ export interface IFilterEntity {
 export interface IFilter extends IFilterEntity {
   loadSuggestions(searchValue: string): void;
   suggestionSelected(suggestion: UISelectOption): void;
-  // clearSuggestions(value: string);
 }

@@ -12,22 +12,19 @@ const TabPanel: React.SFC<{ className?: string }> = props => {
 const padding = (size: number) => AppConstants.LeftPadding(size);
 
 const Wrapper = styled.div`
-  /* background-color: ${props => props.theme.appBackground}; */
   width: 100%;
   height: 100%;
   display: flex;
-  /* justify-content: stretch; */
   flex-direction: column;
-  /* align-items: flex-start; */
-  /* max-width: 100%;
-  max-height: 100%; */
   padding: 24px ${padding(breakpoints.mobile)}px 8px
     ${padding(breakpoints.mobile)}px;
-    min-height: calc(100vh - ${AppConstants.TopBarHeight(
+
+  min-height: calc(100vh - ${AppConstants.TopBarHeight(
       breakpoints.mobile,
     )}px - ${AppConstants.NavBarHeight(breakpoints.mobile)})px;
+
   ${media.tablet`
-  min-height: calc(100vh - ${AppConstants.TopBarHeight(breakpoints.tablet)}px -
+    min-height: calc(100vh - ${AppConstants.TopBarHeight(breakpoints.tablet)}px -
     ${AppConstants.NavBarHeight(breakpoints.tablet)}px
   );
     padding: 24px ${padding(breakpoints.tablet)}px 8px ${padding(

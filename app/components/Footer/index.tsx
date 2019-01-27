@@ -1,6 +1,6 @@
 import * as React from 'react';
 import Wrapper from './Wrapper';
-import Link, { Info } from './Link';
+import Link from './Link';
 import styled from 'styles/styled-components';
 import media from 'styles/media';
 import TitleLogo from 'components/Logo';

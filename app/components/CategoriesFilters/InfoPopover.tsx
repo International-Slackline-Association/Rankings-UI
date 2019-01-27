@@ -2,7 +2,7 @@ import * as React from 'react';
 import { Popover } from '@material-ui/core';
 import InfoIcon from 'components/Icons/InfoIcon';
 import styled from 'styles/styled-components';
-import { clickEffect, DefaultButton } from 'styles/mixins';
+import { DefaultButton } from 'styles/mixins';
 import ComponentBackground from 'components/ComponentBackground';
 interface Props {}
 

@@ -77,14 +77,4 @@ const LoadableButton = styled<Props, 'button'>('button')`
   }
 `;
 
-// export const LargeButton = Button.extend`
-//   font-size: 18px;
-//   padding: 17px 30px;
-//   line-height: 20px;
-
-//   ${media.tablet`
-//     padding: 20px 30px;
-//   `};
-// `;
-
 export default LoadableButton;
