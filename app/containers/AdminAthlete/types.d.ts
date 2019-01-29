@@ -16,12 +16,15 @@ export interface Athlete {
   readonly infoUrl: string;
 }
 
-export interface AthleteFormValues extends Athlete {}
+export interface AthleteFormValues extends Athlete {
+  readonly profilePictureFile?: any;
+  readonly profilePictureData?: any;
+}
 
 /* --- STATE --- */
 interface AdminAthleteState {
   readonly athleteFilter: IFilter;
-  readonly athlete: Athlete | null;
+  readonly athlete: Athlete;
   readonly isAthleteLoading: boolean;
   readonly countryFilter: IFilter;
 }

@@ -17,7 +17,6 @@ interface Props {
   readonly values?: AthleteFormValues | null;
   readonly countrySuggestions?: ISelectOption[];
   loadCountrySuggestions(value: string): void;
-  pictureSelected(file: any): void;
   submit(values: AthleteFormValues): Promise<void>;
 }
 
@@ -41,13 +40,12 @@ class FormikForm extends React.PureComponent<Props, State> {
         email: '',
         city: '',
         infoUrl: '',
+        profilePictureFile: null,
+        profilePictureData: null,
       };
     }
     return values;
   }
-  private profilePictureSelected = (file: any) => {
-    this.props.pictureSelected(file);
-  };
 
   private validationSchema = Yup.object<AthleteFormValues>().shape({
     id: Yup.string(),
@@ -73,6 +71,7 @@ class FormikForm extends React.PureComponent<Props, State> {
     infoUrl: Yup.string()
       .url('Invalid Url')
       .notRequired(),
+    profilePictureFile: Yup.mixed().notRequired(),
   });
 
   public render() {
@@ -103,13 +102,11 @@ class FormikForm extends React.PureComponent<Props, State> {
                 loadSuggestions={this.props.loadCountrySuggestions}
               />
               <Field name="city" component={TextInput} />
-              <Field name="infoUrl" component={TextInput} label={'Info Url'}/>
-
-              <ImageUpload
-                fileSelected={this.profilePictureSelected}
-                url={initialValues.profileUrl}
+              <Field name="infoUrl" component={TextInput} label={'Info Url'} />
+              <Field
+                name="profilePictureFile"
+                component={ImageUpload}
               />
-
               <StyledLoadableButton
                 loading={isSubmitting}
                 disabled={isSubmitting}

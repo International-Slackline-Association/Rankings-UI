@@ -5,7 +5,18 @@ import { ContainerState, ContainerActions } from './types';
 
 export const initialState: ContainerState = {
   athleteFilter: { suggestions: undefined },
-  athlete: null,
+  athlete: {
+    id: '',
+    name: '',
+    surname: '',
+    profileUrl: '',
+    country: '',
+    gender: 1,
+    birthdate: '',
+    email: '',
+    city: '',
+    infoUrl: '',
+  },
   isAthleteLoading: false,
   countryFilter: { suggestions: undefined },
 };
@@ -27,11 +38,11 @@ export default combineReducers<ContainerState, ContainerActions>({
   athlete: (state = initialState.athlete, action) => {
     switch (action.type) {
       case ActionTypes.LOAD_ATHLETE:
-        return null;
+        return initialState.athlete;
       case ActionTypes.SET_ATHLETE:
         return action.payload;
       case ActionTypes.CLEAR_FORM:
-        return null;
+        return initialState.athlete;
     }
     return state;
   },

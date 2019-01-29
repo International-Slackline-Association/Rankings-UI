@@ -54,7 +54,6 @@ interface State {
 }
 
 class AdminContest extends React.PureComponent<Props, State> {
-  private profilePicture: any;
   constructor(props: Props) {
     super(props);
     this.state = {
@@ -73,9 +72,7 @@ class AdminContest extends React.PureComponent<Props, State> {
   };
 
   private selectSuggestion = (suggestion: ISelectOption) => {
-    this.props.dispatch(
-      actions.setContestFilterSelectedValue(suggestion),
-    );
+    this.props.dispatch(actions.setContestFilterSelectedValue(suggestion));
     if (suggestion.value.length > 0) {
       const [id, discipline] = suggestion.value.split(':');
       this.props.dispatch(actions.loadContest(id, parseInt(discipline, 10)));
@@ -92,21 +89,25 @@ class AdminContest extends React.PureComponent<Props, State> {
   };
 
   private submit = async (values: ContestFormValues): Promise<void> => {
+    const { profilePictureData, profilePictureFile, ...contest } = values;
+
     const request: APIAdminSubmitContestRequest = {
-      contest: {
-        ...values,
-      },
+      contest: contest,
     };
     return apiSubmitContest(request)
       .then(async response => {
         let text = 'Saved Successfully.';
-        if (this.profilePicture) {
+        if (values.profilePictureFile) {
           text += ' Uploading picture...';
         }
         this.openSnackbar(true, text, 'success');
 
-        if (this.profilePicture) {
-          await this.uploadProfilePicture(this.profilePicture, response.id, response.discipline);
+        if (values.profilePictureFile) {
+          await this.uploadProfilePicture(
+            values.profilePictureFile,
+            response.id,
+            response.discipline,
+          );
         }
 
         this.props.dispatch(actions.clearForm());
@@ -138,13 +139,13 @@ class AdminContest extends React.PureComponent<Props, State> {
     this.openSnackbar(false);
   };
 
-  private profilePictureSelected = (file: any) => {
-    this.profilePicture = file;
-  };
-
-  private uploadProfilePicture = (file: any, id: string, discipline: number) => {
+  private uploadProfilePicture = (
+    file: any,
+    id: string,
+    discipline: number,
+  ) => {
     const options = {
-      contentType: 'image/png',
+      contentType: 'image/jpg',
     };
     const key = `contest/${id}-${discipline}.jpg`;
     return Storage.put(key, file, options)
@@ -172,7 +173,11 @@ class AdminContest extends React.PureComponent<Props, State> {
   };
 
   public render() {
-    const { countryFilter, contestTypes: contestCategories, disciplines } = this.props;
+    const {
+      countryFilter,
+      contestTypes: contestCategories,
+      disciplines,
+    } = this.props;
     let values: ContestFormValues | null = null;
     if (this.props.contest) {
       values = {
@@ -206,7 +211,6 @@ class AdminContest extends React.PureComponent<Props, State> {
             values={values}
             countrySuggestions={countryFilter.suggestions}
             loadCountrySuggestions={this.loadCountrySuggestions}
-            pictureSelected={this.profilePictureSelected}
             submit={this.submit}
             contestTypes={contestCategories}
             disciplines={disciplines}

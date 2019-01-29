@@ -60,6 +60,7 @@ class AutoCompleteTextInput extends React.PureComponent<Props, State> {
     return (
       <Wrapper>
         <AutoCompleteFilter
+          key={selectedValue}
           title={field.name}
           placeholder={field.name}
           loadSuggestions={this.loadSuggestions}

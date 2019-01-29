@@ -5,7 +5,18 @@ import { ContainerState, ContainerActions } from './types';
 
 export const initialState: ContainerState = {
   contestFilter: { suggestions: undefined },
-  contest: null,
+  contest: {
+    id: '',
+    name: '',
+    country: '',
+    city: '',
+    contestType: { id: -1, name: '' },
+    date: '',
+    discipline: { id: -1, name: '' },
+    prize: 0,
+    profileUrl: '',
+    infoUrl: '',
+  },
   isContestLoading: false,
   countryFilter: { suggestions: undefined },
   disciplines: [],
@@ -29,11 +40,11 @@ export default combineReducers<ContainerState, ContainerActions>({
   contest: (state = initialState.contest, action) => {
     switch (action.type) {
       case ActionTypes.LOAD_CONTEST:
-        return null;
+        return initialState.contest;
       case ActionTypes.SET_CONTEST:
         return action.payload;
       case ActionTypes.CLEAR_FORM:
-        return null;
+        return initialState.contest;
     }
     return state;
   },

@@ -5,7 +5,6 @@ import { ContestFormValues } from './types';
 import LoadableButton from 'components/LoadableButton';
 import TextInput from './inputs/TextInput';
 import * as Yup from 'yup';
-import ImageUpload from './inputs/ImageUpload';
 import DateInput from './inputs/DateInput';
 import media from 'styles/media';
 import Header from 'containers/AdminAthlete/Header';
@@ -13,6 +12,7 @@ import ContestTypeInput from './inputs/ContestTypeInput';
 import DisciplineInput from './inputs/DisciplineInput';
 import AutoCompleteTextInput from 'containers/AdminAthlete/inputs/AutoCompleteTextInput';
 import { ISelectOption } from 'types/application';
+import ImageUpload from './inputs/ImageUpload';
 
 interface Props {
   readonly values?: ContestFormValues | null;
@@ -20,7 +20,6 @@ interface Props {
   readonly contestTypes: ISelectOption[];
   readonly disciplines: ISelectOption[];
   loadCountrySuggestions(value: string): void;
-  pictureSelected(file: any): void;
   submit(values: ContestFormValues): Promise<void>;
 }
 
@@ -44,13 +43,12 @@ class FormikForm extends React.PureComponent<Props, State> {
         prize: 0,
         profileUrl: '',
         infoUrl: '',
+        profilePictureData: null,
+        profilePictureFile: null,
       };
     }
     return values;
   }
-  private profilePictureSelected = (file: any) => {
-    this.props.pictureSelected(file);
-  };
 
   private validationSchema = Yup.object().shape({
     id: Yup.string(),
@@ -123,10 +121,7 @@ class FormikForm extends React.PureComponent<Props, State> {
               />
               <Field name="infoUrl" component={TextInput} label={'Info Url'} />
 
-              <ImageUpload
-                fileSelected={this.profilePictureSelected}
-                url={initialValues.profileUrl}
-              />
+              <Field name="profilePictureFile" component={ImageUpload} />
 
               <StyledLoadableButton
                 loading={isSubmitting}

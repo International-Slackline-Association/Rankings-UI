@@ -24,7 +24,7 @@ export const adminSubmitAthlete = async (
       axiosConfig(
         dummyResponse,
         1000,
-        false,
+        true,
         await axiosConfigWithAuthToken(),
       ),
     )

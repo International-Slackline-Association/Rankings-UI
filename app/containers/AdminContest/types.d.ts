@@ -28,12 +28,14 @@ export interface ContestFormValues {
   readonly prize: number;
   readonly profileUrl: string;
   readonly infoUrl: string;
+  readonly profilePictureFile?: any;
+  readonly profilePictureData?: any;
 }
 
 /* --- STATE --- */
 interface AdminContestState {
   readonly contestFilter: IFilter;
-  readonly contest: Contest | null;
+  readonly contest: Contest;
   readonly isContestLoading: boolean;
   readonly countryFilter: IFilter;
   readonly contestTypes: ISelectOption[];

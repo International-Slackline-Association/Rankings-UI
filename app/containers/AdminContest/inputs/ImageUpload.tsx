@@ -1,44 +1,41 @@
 import * as React from 'react';
 import styled from 'styles/styled-components';
 import InputWrapper from './Wrapper';
+import { FieldProps } from 'formik';
+import { ContestFormValues } from '../types';
 interface Props {
   fileSelected(file: any): void;
   url?: string;
 }
 
-interface State {
-  previewSrc: string;
-  file: any;
-}
-
-class ImageUpload extends React.PureComponent<Props, State> {
-  constructor(props: Props) {
-    super(props);
-    this.state = {
-      previewSrc: this.props.url || '',
-      file: null,
-    };
-  }
-
+class ImageUpload extends React.PureComponent<
+  Props & FieldProps<ContestFormValues>
+> {
   private handleImageChange = (e: any) => {
     e.preventDefault();
 
-    const reader = new FileReader();
     const file = e.target.files[0];
+    const reader = new FileReader();
 
     reader.onloadend = () => {
-      this.setState({
-        file: file,
-        previewSrc: reader.result as string,
-      });
+      this.props.form.setFieldValue(
+        'profilePictureData',
+        reader.result as string,
+      );
     };
 
     reader.readAsDataURL(file);
-
-    this.props.fileSelected(file);
+    // this.props.fileSelected(file);
+    // console.log('file: ', file);
+    // this.props.field.onChange(e);
+    this.props.form.setFieldValue(this.props.field.name, file);
   };
   public render() {
-    const previewSrc = this.state.previewSrc || this.props.url;
+    console.log(this.props);
+    const previewSrc =
+      this.props.form.values.profilePictureData ||
+      this.props.form.values.profileUrl;
+
 
     return (
       <Wrapper>
@@ -48,7 +45,7 @@ class ImageUpload extends React.PureComponent<Props, State> {
         {previewSrc && (
           <React.Fragment>
             <span>Preview</span>
-            <Img src={previewSrc} />{' '}
+            <Img src={previewSrc} />
           </React.Fragment>
         )}
       </Wrapper>
