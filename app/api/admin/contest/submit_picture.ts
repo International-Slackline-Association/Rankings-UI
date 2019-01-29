@@ -23,7 +23,7 @@ export const adminSubmitContestPicture = async (
       axiosConfig(
         dummyResponse,
         1000,
-        true,
+        false,
         await axiosConfigWithAuthToken(),
       ),
     )
