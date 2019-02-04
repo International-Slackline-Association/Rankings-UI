@@ -21,6 +21,7 @@ class GenderInput extends React.PureComponent<
           <select {...field} placeholder="Gender">
             <option value="1">Male</option>
             <option value="2">Female</option>
+            <option value="3">Other</option>
           </select>
         </div>
         {isError && <ErrorLabel>{errors[field.name]}</ErrorLabel>}

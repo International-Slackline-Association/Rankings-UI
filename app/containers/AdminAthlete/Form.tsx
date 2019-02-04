@@ -63,7 +63,7 @@ class FormikForm extends React.PureComponent<Props, State> {
       .required('Required'),
     gender: Yup.number()
       .min(1)
-      .max(2)
+      .max(3)
       .required('Required'),
     birthdate: Yup.string().required(),
     email: Yup.string().email('Invalid Email!'),
