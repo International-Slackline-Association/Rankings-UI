@@ -42,11 +42,11 @@ class MainTable extends React.PureComponent<Props, State> {
           <table>
             <thead>
               <tr>
-                <td title="Rank">Rank</td>
-                <td title="Name">Name</td>
-                <td title="Age">Age</td>
-                <td title="Country">Country</td>
-                <td title="Points">Points</td>
+                <td>Rank</td>
+                <td>Name</td>
+                <td>Age</td>
+                <td>Country</td>
+                <td>Points</td>
               </tr>
             </thead>
             <tbody>

@@ -125,7 +125,7 @@ const tableItemsPrefixCSS = css`
     ${media.desktop`
       padding-left: 48px;
     `} &::before {
-      content: 'Name :';
+      content: 'Contest Name :';
     }
   }
   &:nth-child(2) {
@@ -135,17 +135,17 @@ const tableItemsPrefixCSS = css`
   }
   &:nth-child(3) {
     &::before {
-      content: 'Prize : ';
+      content: 'Rank : ';
     }
   }
   &:nth-child(4) {
     &::before {
-      content: 'Size : ';
+      content: 'ContestType : ';
     }
   }
   &:nth-child(5) {
     &::before {
-      content: 'Date : ';
+      content: 'Start Date : ';
     }
   }
 `;

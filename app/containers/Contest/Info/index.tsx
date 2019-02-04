@@ -41,7 +41,7 @@ class ContestInfo extends React.PureComponent<Props> {
               </LeftSection>
               <RightSection>
                 <InfoField keyField={'Location'} valueField={item.location} />
-                <InfoField keyField={'Prize'} valueField={item.prize} />
+                <InfoField keyField={'Total Prize Money'} valueField={item.prize} />
                 <InfoField
                   keyField={'Discipline'}
                   valueField={item.discipline.name}
@@ -50,7 +50,7 @@ class ContestInfo extends React.PureComponent<Props> {
               <RightSection style={{ marginTop: 0 }}>
                 <InfoField keyField={'Date'} valueField={item.date} />
                 <InfoField
-                  keyField={'Size'}
+                  keyField={'Contest Type'}
                   valueField={item.contestType.name}
                 />
                 <InfoField
