@@ -53,10 +53,9 @@ class AutoCompleteFilter extends React.PureComponent<Props, State> {
   private popperNode: any;
   constructor(props: Props) {
     super(props);
-
     this.state = {
       value:
-        (this.props.selectedOption && this.props.selectedOption.value) || '',
+        (this.props.selectedOption && this.props.selectedOption.label) || '',
       suggestions: this.props.suggestions || [],
     };
   }

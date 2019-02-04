@@ -103,7 +103,7 @@ class Rankings extends React.PureComponent<Props, State> {
 
     const countryFilter: IFilter = {
       title: 'Country',
-      placeholder: 'Country Code',
+      placeholder: 'Country name',
       loadSuggestions: this.loadCountrySuggestions,
       suggestionSelected: this.selectCountrySuggestion,
       suggestions: this.props.countryFilter.suggestions,

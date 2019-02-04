@@ -1,7 +1,7 @@
 import axios, { axiosConfig, axiosConfigWithAuthToken } from 'api/axios';
 import { AxiosResponse } from 'axios';
 
-import mockResponse from './__mocks__/contest_results_mock';
+import mockResponse from './__mocks__/submit_contest_results_mock';
 
 export interface APIAdminSubmitContestResultsResponse {}
 
@@ -14,6 +14,7 @@ interface ContestResultsItem {
 interface Athlete {
   athleteId: string;
   place: number;
+  points?: number;
 }
 
 export interface APIAdminSubmitContestResultsRequest {

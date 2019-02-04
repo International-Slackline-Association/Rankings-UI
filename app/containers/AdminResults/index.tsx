@@ -16,6 +16,7 @@ import * as selectors from './selectors';
 import * as actions from './actions';
 import reducer from './reducer';
 import saga from './saga';
+import { Utils } from 'utils';
 
 import { RootState, ContainerState } from './types';
 import { ISelectOption } from 'types/application';
@@ -80,6 +81,12 @@ export class AdminResults extends React.PureComponent<Props, State> {
 
   private selectContestSuggestion = (suggestion: ISelectOption) => {
     this.props.dispatch(actions.setContestFilterSelectedValue(suggestion));
+    if (suggestion.value.length > 0) {
+      const [id, discipline] = suggestion.value.split(':');
+      this.props.dispatch(actions.loadResults(id, parseInt(discipline, 10)));
+    } else {
+      this.props.dispatch(actions.setResults([]));
+    }
   };
 
   private numberInputOnChanged = (index: number) => {
@@ -89,6 +96,15 @@ export class AdminResults extends React.PureComponent<Props, State> {
       );
     };
   };
+
+  private pointsInputOnChanged = (index: number) => {
+    return (evt: any) => {
+      this.props.dispatch(
+        actions.changeAthleteFilterPoints(parseInt(evt.target.value, 10), index),
+      );
+    };
+  };
+
   private loadAthleteSuggestions = (index: number) => {
     return (value: string) => {
       this.props.dispatch(actions.loadAthleteSuggestions(value, index));
@@ -171,6 +187,7 @@ export class AdminResults extends React.PureComponent<Props, State> {
           return {
             athleteId: athleteFilter.selectedValue!.value,
             place: athleteFilter.orderNumber,
+            points: athleteFilter.points,
           };
         }),
       },
@@ -193,6 +210,8 @@ export class AdminResults extends React.PureComponent<Props, State> {
 
   public render() {
     const { athleteFilters, contestFilter } = this.props;
+    console.log(athleteFilters);
+
     return (
       <TabPanel>
         <Helmet>
@@ -212,7 +231,13 @@ export class AdminResults extends React.PureComponent<Props, State> {
           <Header>Results</Header>
           <ResultsWrapper>
             {athleteFilters.map((athleteFilter, index) => (
-              <AthleteFilterWrapper key={index}>
+              <AthleteFilterWrapper
+                key={
+                  athleteFilter.selectedValue
+                    ? athleteFilter.selectedValue.value
+                    : index
+                }
+              >
                 <NumberInput
                   defaultValue={`${athleteFilter.orderNumber}`}
                   onChange={this.numberInputOnChanged(index)}
@@ -226,6 +251,15 @@ export class AdminResults extends React.PureComponent<Props, State> {
                   suggestions={athleteFilter.suggestions}
                   selectedOption={athleteFilter.selectedValue}
                 />
+                {!Utils.isNil(athleteFilter.points) && (
+                  <React.Fragment>
+                    <span>Points: </span>
+                    <PointsInput
+                      defaultValue={`${athleteFilter.points || 0}`}
+                      onChange={this.pointsInputOnChanged(index)}
+                    />
+                  </React.Fragment>
+                )}
               </AthleteFilterWrapper>
             ))}
             <AthleteFilterWrapper>
@@ -257,12 +291,18 @@ const NumberInput = styled.input.attrs({ type: 'number', min: 1 })`
   width: 30px;
 `;
 
+const PointsInput = styled.input.attrs({ type: 'number', min: 0 })`
+  width: 60px;
+`;
+
 const AthleteFilterWrapper = styled.div`
   display: flex;
   align-items: center;
 
   & span {
     color: ${props => props.theme.textPrimary};
+    margin-left: 16px;
+
     margin-right: 16px;
   }
 `;

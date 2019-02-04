@@ -13,7 +13,12 @@ import {
   APIGetAthleteSuggestionsResponse,
   apiGetAthleteSuggestions,
 } from 'containers/AdminAthlete/api';
-import { Utils } from 'utils';
+import {
+  apiGetContestResults,
+  APIAdminGetResultsRequest,
+  APIAdminResultsResponse,
+} from './api';
+import { AthleteFilter } from './types';
 
 export function* getContestSuggestions(
   action: ReturnType<typeof actions.loadContestSuggestions>,
@@ -64,7 +69,24 @@ export function* getAthleteSuggestions(
     console.log('err: ', err);
   }
 }
+
+export function* getResults(action: ReturnType<typeof actions.loadResults>) {
+  const { id, discipline } = action.payload;
+
+  const request: APIAdminGetResultsRequest = {
+    id: id,
+    discipline: discipline,
+  };
+  try {
+    const results: AthleteFilter[] = yield call(apiGetContestResults, request);
+    yield put(actions.setResults(results));
+  } catch (err) {
+    console.log('err: ', err);
+  }
+}
+
 export default function* adminResultsSaga() {
   yield takeLatest(ActionTypes.LOAD_CONTEST_SUGGESTIONS, getContestSuggestions);
   yield takeLatest(ActionTypes.LOAD_ATHLETE_SUGGESTIONS, getAthleteSuggestions);
+  yield takeLatest(ActionTypes.LOAD_RESULTS, getResults);
 }

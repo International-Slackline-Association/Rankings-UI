@@ -23,30 +23,35 @@ export default combineReducers<ContainerState, ContainerActions>({
     return state;
   },
   athleteFilters: (state = initialState.athleteFilters, action) => {
+    let filters = [...state];
     switch (action.type) {
+      case ActionTypes.SET_RESULTS:
+        return action.payload;
       case ActionTypes.SET_ATHLETE_FILTER_SELECTED_VALUE:
-        let filters = [...state];
         filters[action.payload.index] = {
           ...filters[action.payload.index],
           selectedValue: action.payload.value,
         };
         return filters;
       case ActionTypes.CHANGE_ATHLETE_FILTER_ORDER:
-        filters = [...state];
         filters[action.payload.index] = {
           ...filters[action.payload.index],
           orderNumber: action.payload.value,
         };
         return filters;
+      case ActionTypes.CHANGE_ATHLETE_FILTER_POINTS:
+        filters[action.payload.index] = {
+          ...filters[action.payload.index],
+          points: action.payload.value,
+        };
+        return filters;
       case ActionTypes.SET_ATHLETE_SUGGESTIONS:
-        filters = [...state];
         filters[action.payload.index] = {
           ...filters[action.payload.index],
           suggestions: action.payload.items,
         };
         return filters;
       case ActionTypes.LOAD_ATHLETE_SUGGESTIONS:
-        filters = [...state];
         filters[action.payload.index] = {
           ...filters[action.payload.index],
           suggestions: undefined,
