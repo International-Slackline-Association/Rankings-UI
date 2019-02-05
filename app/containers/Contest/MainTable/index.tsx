@@ -10,6 +10,8 @@ import ShowMoreButton from 'components/LoadableButton/ShowMoreButton';
 import { TableItemsResult } from '../types';
 import { EmptyContainer } from 'components/Containers';
 
+const countryList = require('country-list');
+
 interface Props {
   tableItems: TableItemsResult;
   onItemClick(id: string): void;
@@ -70,7 +72,7 @@ class MainTable extends React.PureComponent<Props, State> {
                       <td>
                         <Group>
                           <CountryAvatar code={item.country} />
-                          {item.country}
+                          {countryList.getName(item.country) || item.country}
                         </Group>
                       </td>
                       <td>{item.points} points</td>

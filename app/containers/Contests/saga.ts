@@ -55,7 +55,7 @@ export function* getContestSuggestions(
     );
     const options = results.items.map(item => {
       const option: ISelectOption = {
-        value: item.name,
+        value: item.id,
         label: item.name,
       };
       return option;

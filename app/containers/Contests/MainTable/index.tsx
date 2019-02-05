@@ -51,7 +51,7 @@ class MainTable extends React.PureComponent<Props, State> {
                   return (
                     <tr
                       // onClick={this.onTableRowClick(item)}
-                      key={item.id}
+                      key={`${item.id}-${item.discipline.id}`}
                     >
                       <td>
                         <Group alignLeft={true}>
