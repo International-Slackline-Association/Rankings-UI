@@ -1,4 +1,4 @@
-import axios, { axiosConfig } from 'api/axios';
+import axios, { axiosConfig, axiosConfigWithAuthToken } from 'api/axios';
 import { AxiosResponse } from 'axios';
 
 import mockResponse from './__mocks__/contest_results_mock';
@@ -25,10 +25,15 @@ export async function adminGetResults(
   request: APIAdminGetResultsRequest,
 ): Promise<APIAdminResultsResponse> {
   const url = `${requestURL}/${request.id}/${request.discipline}`;
-  return axios.get(url, axiosConfig(dummyResponse, 1000, false)).then(resp => {
-    const result = resp.data as APIAdminResultsResponse;
-    return result;
-  });
+  return axios
+    .get(
+      url,
+      axiosConfig(dummyResponse, 1000, false, await axiosConfigWithAuthToken()),
+    )
+    .then(resp => {
+      const result = resp.data as APIAdminResultsResponse;
+      return result;
+    });
 }
 
 const dummyResponse = (): AxiosResponse<APIAdminResultsResponse> => {
