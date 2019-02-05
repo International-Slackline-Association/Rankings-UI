@@ -26,6 +26,7 @@ const Wrapper = styled.div`
   align-items: center;
   width: 25px;
   height: 25px;
+  flex: none;
   overflow: hidden;
   border-radius: 50%;
   background-size: 100%;

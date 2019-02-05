@@ -34,6 +34,7 @@ const Wrapper = styled<WrapperProps, 'div'>('div')`
   justify-content: center;
   width: ${props => (props.size === 'small' ? '30px' : '120px')};
   height: ${props => (props.size === 'small' ? '30px' : '120px')};
+  flex: none;
   overflow: hidden;
   border-radius: 50%;
   background-size: contain;

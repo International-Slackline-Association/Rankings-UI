@@ -59,6 +59,7 @@ class Contest extends React.PureComponent<Props, State> {
 
     if (!this.props.contest || urlParams.id !== this.props.contest.id) {
       this.props.dispatch(actions.loadContest());
+      this.props.dispatch(actions.loadTableItems());
     }
     if (!this.props.tableResult || this.props.tableResult.items.length === 0) {
       this.props.dispatch(actions.loadTableItems());
