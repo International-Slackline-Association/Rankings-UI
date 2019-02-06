@@ -51,11 +51,11 @@ class FormikForm extends React.PureComponent<Props, State> {
     id: Yup.string(),
     name: Yup.string()
       .min(2, 'Too Short!')
-      .max(25, 'Too Long!')
+      .max(50, 'Too Long!')
       .required('Required'),
     surname: Yup.string()
       .min(2, 'Too Short!')
-      .max(25, 'Too Long!')
+      .max(50, 'Too Long!')
       .required('Required'),
     profileUrl: Yup.string().notRequired(),
     country: Yup.string()

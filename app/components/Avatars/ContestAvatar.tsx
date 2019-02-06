@@ -15,7 +15,12 @@ function ContestAvatar(props: Props) {
   return (
     <Wrapper size={size}>
       <img
-        src={props.imageUrl} // tslint:disable-next-line:jsx-no-lambda
+        src={props.imageUrl}
+        // tslint:disable-next-line:jsx-no-lambda
+        onLoad={(e: any) => {
+          e.target.style = 'background-color: black;';
+        }}
+        // tslint:disable-next-line:jsx-no-lambda
         onError={(e: any) => {
           e.target.onerror = null;
           e.target.style = 'display: none';
