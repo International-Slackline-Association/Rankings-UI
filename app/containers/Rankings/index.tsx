@@ -17,8 +17,9 @@ import CategoriesFilters from 'components/CategoriesFilters';
 import { ICategory, IFilter } from 'components/CategoriesFilters/types';
 import { ISelectOption } from 'types/application';
 import Footer from 'components/Footer';
+import { RouteComponentProps } from 'react-router';
 
-interface OwnProps {}
+interface OwnProps extends RouteComponentProps {}
 
 interface StateProps {
   categories: ContainerState['categories'];
@@ -39,7 +40,7 @@ type Props = StateProps & DispatchProps & OwnProps;
 interface State {}
 
 class Rankings extends React.PureComponent<Props, State> {
-  constructor(props) {
+  constructor(props: Props) {
     super(props);
     if (!this.props.tableResult || this.props.tableResult.items.length === 0) {
       this.props.dispatch(actions.loadTableItems());

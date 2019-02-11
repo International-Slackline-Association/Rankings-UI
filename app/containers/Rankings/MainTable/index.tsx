@@ -50,13 +50,12 @@ class MainTable extends React.PureComponent<Props, State> {
             </thead>
             <tbody>
               {items &&
-                items.map(item => {
+                items.map((item, index) => {
                   return (
                     <tr
-                      // onClick={this.onTableRowClick(item)}
                       key={item.id}
                     >
-                      <td>{item.rank || '-'}</td>
+                      <td>{item.rank || index + 1}</td>
                       <td>
                         <Group alignLeft={true}>
                           <ProfileAvatar imageUrl={item.thumbnailUrl} />
@@ -69,7 +68,7 @@ class MainTable extends React.PureComponent<Props, State> {
                           </a>
                         </Group>
                       </td>
-                      <td>{item.age}</td>
+                      <td id="hide-mobile">{item.age}</td>
                       <td>
                         <Group>
                           <CountryAvatar code={item.country} />

@@ -38,11 +38,11 @@ class MainTable extends React.PureComponent<Props, State> {
           <table>
             <thead>
               <tr>
+                <td>Start Date</td>
                 <td>Contest Name</td>
                 <td>Discipline</td>
                 <td>Total Prize Money</td>
                 <td>Contest Type</td>
-                <td>Start Date</td>
               </tr>
             </thead>
             <tbody>
@@ -53,6 +53,7 @@ class MainTable extends React.PureComponent<Props, State> {
                       // onClick={this.onTableRowClick(item)}
                       key={`${item.id}-${item.discipline.id}`}
                     >
+                      <td>{item.date}</td>
                       <td>
                         <Group alignLeft={true}>
                           <ContestAvatar imageUrl={item.thumbnailUrl} />
@@ -68,9 +69,8 @@ class MainTable extends React.PureComponent<Props, State> {
                         </Group>
                       </td>
                       <td>{item.discipline.name}</td>
-                      <td>{item.prize}</td>
+                      <td id="hide-mobile">{item.prize}</td>
                       <td>{item.contestType.name}</td>
-                      <td>{item.date}</td>
                     </tr>
                   );
                 })}
@@ -99,12 +99,12 @@ class MainTable extends React.PureComponent<Props, State> {
 
 const tableItemsRatioCSS = css`
   &:nth-child(1) {
+    width: 15%;
+  }
+  &:nth-child(2) {
     width: 20%;
     text-align: left;
     padding-left: 48px;
-  }
-  &:nth-child(2) {
-    width: 15%;
   }
   &:nth-child(3) {
     width: 15%;
@@ -122,6 +122,11 @@ const tableItemsRatioCSS = css`
 
 const tableItemsPrefixCSS = css`
   &:nth-child(1) {
+    &::before {
+      content: 'Start Date : ';
+    }
+  }
+  &:nth-child(2) {
     padding-left: 0px;
     ${media.desktop`
       padding-left: 48px;
@@ -129,24 +134,19 @@ const tableItemsPrefixCSS = css`
       content: 'Contest Name :';
     }
   }
-  &:nth-child(2) {
+  &:nth-child(3) {
     &::before {
       content: 'Discipline : ';
     }
   }
-  &:nth-child(3) {
+  &:nth-child(4) {
     &::before {
       content: 'Total Prize Money : ';
     }
   }
-  &:nth-child(4) {
-    &::before {
-      content: 'Contest Type : ';
-    }
-  }
   &:nth-child(5) {
     &::before {
-      content: 'Start Date : ';
+      content: 'Contest Type : ';
     }
   }
 `;

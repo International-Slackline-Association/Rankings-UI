@@ -27,13 +27,25 @@ const TableWrapper = styled<Props, 'div'>('div')`
 
       td {
         padding: 16px 0;
-        &:nth-child(1) { width: 15%; }
-        &:nth-child(2) { width: 17%; }
-        &:nth-child(3) { width: 17%; }
-        &:nth-child(4) { width: 17%; }
-        &:nth-child(5) { width: 17%; }
-        &:nth-child(6) { width: 17%; }
-        ${props => props.trCSS}
+        &:nth-child(1) {
+          width: 15%;
+        }
+        &:nth-child(2) {
+          width: 17%;
+        }
+        &:nth-child(3) {
+          width: 17%;
+        }
+        &:nth-child(4) {
+          width: 17%;
+        }
+        &:nth-child(5) {
+          width: 17%;
+        }
+        &:nth-child(6) {
+          width: 17%;
+        }
+        ${props => props.trCSS};
       }
     }
 
@@ -49,7 +61,6 @@ const TableWrapper = styled<Props, 'div'>('div')`
           background-color: ${props => rgba(props.theme.appBackground, 1)};
         }
 
-
         ${media.desktop`
           display: table-row;
           padding-top: 0;
@@ -58,6 +69,12 @@ const TableWrapper = styled<Props, 'div'>('div')`
           }
         `};
 
+        td#hide-mobile {
+          display: none;
+          ${media.tablet`
+            display: table-cell;
+          `};
+        }
         td {
           padding: 0;
           width: 100%;
@@ -76,10 +93,9 @@ const TableWrapper = styled<Props, 'div'>('div')`
             padding-right: 10px;
             overflow: hidden;
             text-overflow: ellipsis;
-            text-align: right
+            text-align: right;
           }
-          ${props => props.tdCSS}
-
+          ${props => props.tdCSS};
 
           ${media.tablet`
             width: 50%;

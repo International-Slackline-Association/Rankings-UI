@@ -30,11 +30,13 @@ export async function getContestResults(
   request: APIGetContestResultsRequest,
 ): Promise<APIContestResultsResponse> {
   const url = `${requestURL}/${request.id}/${request.discipline}`;
-  const body = request.next;
-  return axios.post(url, body, axiosConfig(dummyResponse, 1000, false)).then(resp => {
-    const result = resp.data as APIContestResultsResponse;
-    return result;
-  });
+  const body = request.next ? { next: request.next } : undefined;
+  return axios
+    .post(url, body, axiosConfig(dummyResponse, 1000, false))
+    .then(resp => {
+      const result = resp.data as APIContestResultsResponse;
+      return result;
+    });
 }
 
 const dummyResponse = (): AxiosResponse<APIContestResultsResponse> => {
