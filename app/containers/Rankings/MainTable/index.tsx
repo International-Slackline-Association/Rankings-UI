@@ -52,10 +52,10 @@ class MainTable extends React.PureComponent<Props, State> {
               {items &&
                 items.map((item, index) => {
                   return (
-                    <tr
-                      key={item.id}
-                    >
-                      <td>{item.rank || index + 1}</td>
+                    <tr key={item.id}>
+                      <td>
+                        {item.rank === null ? '-' : item.rank || index + 1}
+                      </td>
                       <td>
                         <Group alignLeft={true}>
                           <ProfileAvatar imageUrl={item.thumbnailUrl} />

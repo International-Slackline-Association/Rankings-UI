@@ -3,7 +3,8 @@ import { ICategory, TableItemsResult } from './types';
 import ActionTypes from './constants';
 import { ISelectOption } from 'types/application';
 
-export const loadCategories = () => action(ActionTypes.LOAD_CATEGORIES);
+export const loadCategories = (autoSelect?: string[]) =>
+  action(ActionTypes.LOAD_CATEGORIES, autoSelect);
 
 export const setCategories = (categories: ICategory[]) =>
   action(ActionTypes.SET_CATEGORIES, categories);

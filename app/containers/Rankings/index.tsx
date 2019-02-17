@@ -18,6 +18,7 @@ import { ICategory, IFilter } from 'components/CategoriesFilters/types';
 import { ISelectOption } from 'types/application';
 import Footer from 'components/Footer';
 import { RouteComponentProps } from 'react-router';
+import { Utils } from 'utils';
 
 interface OwnProps extends RouteComponentProps {}
 
@@ -33,6 +34,7 @@ interface StateProps {
 interface DispatchProps {
   dispatch: Dispatch;
   updateLocation(path: string, id: string): void;
+  changeQueryParams(param: string): void;
 }
 
 type Props = StateProps & DispatchProps & OwnProps;
@@ -42,17 +44,45 @@ interface State {}
 class Rankings extends React.PureComponent<Props, State> {
   constructor(props: Props) {
     super(props);
+    const selectedCategoryArray = this.getCategoriesFromPathSearch(
+      this.props.location.search,
+    );
     if (!this.props.tableResult || this.props.tableResult.items.length === 0) {
-      this.props.dispatch(actions.loadTableItems());
+      if (props.categories) {
+        this.props.dispatch(actions.loadTableItems());
+      }
     }
     if (!this.props.categories) {
-      this.props.dispatch(actions.loadCategories());
+      this.props.dispatch(actions.loadCategories(selectedCategoryArray));
     }
   }
 
+  private getCategoriesFromPathSearch = (searchParam: string) => {
+    const categories = Utils.getUrlQueryVariable(searchParam, 'category');
+    if (categories) {
+      return categories.split(',');
+    }
+    return undefined;
+  };
+
+  private changeCategoryQueryParams = (index: number, value: string) => {
+    const categories = this.props.categories;
+    if (categories) {
+      const selectedCategories = categories.map(c => c.selectedValue);
+      selectedCategories[index] = value;
+      const categoryQueryParam = `category=${selectedCategories.join(',')}`;
+      this.props.changeQueryParams(categoryQueryParam);
+    }
+  };
+
   private onCategorySelected = (index: number) => (value: string) => {
-    this.props.dispatch(actions.setCategorySelectedValue(index, value));
+    this.selectCategory(index, value);
     this.props.dispatch(actions.loadTableItems());
+  };
+
+  private selectCategory = (index: number, value: string) => {
+    this.props.dispatch(actions.setCategorySelectedValue(index, value));
+    this.changeCategoryQueryParams(index, value);
   };
 
   private categories(): ICategory[] {
@@ -165,6 +195,11 @@ function mapDispatchToProps(
     updateLocation: (path: string, id: string) => {
       if (id) {
         dispatch(push(`/${path}/${id}`));
+      }
+    },
+    changeQueryParams: (param: string) => {
+      if (true) {
+        dispatch(replace({ search: `?${param}` }));
       }
     },
   };

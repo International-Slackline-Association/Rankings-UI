@@ -19,10 +19,19 @@ import {
 import { ISelectOption } from 'types/application';
 import { ICategory, IFilter, TableItemsResult } from './types';
 
-export function* getCategories() {
+export function* getCategories(
+  action: ReturnType<typeof actions.loadCategories>,
+) {
   try {
+    const preSelected = action.payload;
     const results: APIRankingCategoriesResponse = yield call(apiGetCategories);
+    if (preSelected && preSelected.length > 0) {
+      results.items.map((category, index) => {
+        category.selectedValue = preSelected[index].toString();
+      });
+    }
     yield put(actions.setCategories(results.items));
+    yield put(actions.loadTableItems());
   } catch (err) {
     console.log('err: ', err);
   }

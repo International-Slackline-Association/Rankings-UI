@@ -5,7 +5,7 @@ import ActionTypes from './constants';
 
 export const initialState: ContainerState = {
   tableResult: { items: [], next: null },
-  isTableItemsLoading: false,
+  isTableItemsLoading: true,
   isNextTableItemsLoading: false,
   categories: null,
   athleteFilter: { suggestions: undefined },
