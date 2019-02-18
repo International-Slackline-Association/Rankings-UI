@@ -23,6 +23,7 @@ interface Props {
 interface State {}
 
 class MainTable extends React.PureComponent<Props, State> {
+  private ranks = {};
   public constructor(props) {
     super(props);
     this.state = {
@@ -35,6 +36,16 @@ class MainTable extends React.PureComponent<Props, State> {
       this.props.onItemClick(id);
     };
   };
+
+  private getRank = (index: number, points: number): number => {
+    const rank = this.ranks[points];
+    if (rank) {
+      return rank;
+    }
+    this.ranks[points] = index + 1;
+    return index + 1;
+  };
+
   public render() {
     const { isItemsLoading, tableItems } = this.props;
     const { items, next } = tableItems;
@@ -56,7 +67,7 @@ class MainTable extends React.PureComponent<Props, State> {
                 items.map((item, index) => {
                   return (
                     <tr key={item.id}>
-                      <td>{index + 1}</td>
+                      <td>{this.getRank(index, item.points)}</td>
                       <td>
                         <Group alignLeft={true}>
                           <ProfileAvatar imageUrl={item.thumbnailUrl} />
