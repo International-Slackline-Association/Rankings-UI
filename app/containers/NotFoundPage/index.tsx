@@ -9,8 +9,8 @@ export default class NotFound extends React.PureComponent {
     return (
       <StyledTabPanel>
         <Wrapper>
-          <Header big> Very soon!</Header>
-          {/* <Header> PAGE NOT FOUND</Header> */}
+          <Header big>OOPS!</Header>
+          <Header> PAGE NOT FOUND</Header>
         </Wrapper>
         <Footer />
       </StyledTabPanel>
