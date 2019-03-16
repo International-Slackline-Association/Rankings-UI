@@ -146,7 +146,7 @@ const tableItemsPrefixCSS = css`
   }
   &:nth-child(5) {
     &::before {
-      content: 'Contest Type : ';
+      content: 'Contest Size : ';
     }
   }
 `;

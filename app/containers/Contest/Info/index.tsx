@@ -50,7 +50,7 @@ class ContestInfo extends React.PureComponent<Props> {
               <RightSection style={{ marginTop: 0 }}>
                 <InfoField keyField={'Date'} valueField={item.date} />
                 <InfoField
-                  keyField={'Contest Type'}
+                  keyField={'Contest Size'}
                   valueField={item.contestType.name}
                 />
                 <InfoField
