@@ -56,6 +56,7 @@ const TableWrapper = styled<Props, 'div'>('div')`
         display: flex;
         flex-wrap: wrap;
         padding-top: 12px;
+        position: relative;
         border-bottom: 1px solid ${props => props.theme.divider};
         &:nth-child(even) {
           background-color: ${props => rgba(props.theme.appBackground, 1)};
@@ -71,7 +72,7 @@ const TableWrapper = styled<Props, 'div'>('div')`
 
         td#hide-mobile {
           display: none;
-          ${media.tablet`
+          ${media.desktop`
             display: table-cell;
           `};
         }
@@ -84,7 +85,6 @@ const TableWrapper = styled<Props, 'div'>('div')`
           margin-bottom: 12px;
           font-size: 1em;
           &::before {
-            display: block;
             text-transform: uppercase;
             font-size: 1em;
             color: ${props => props.theme.textSecondary};
@@ -95,7 +95,6 @@ const TableWrapper = styled<Props, 'div'>('div')`
             text-overflow: ellipsis;
             text-align: right;
           }
-          ${props => props.tdCSS};
 
           ${media.tablet`
             width: 50%;
@@ -107,12 +106,14 @@ const TableWrapper = styled<Props, 'div'>('div')`
             text-align: center;
             display: table-cell;
             a {
-              color: inherit
+              color: inherit;
             }
             &::before {
               display: none;
             }
           `};
+          ${props => props.tdCSS};
+
         }
       }
     }

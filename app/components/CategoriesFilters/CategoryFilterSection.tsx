@@ -6,6 +6,7 @@ import Categories, { CategoryProps } from './Categories';
 import media from 'styles/media';
 import Filters, { FilterProps } from './Filters';
 import { Collapse } from '@material-ui/core';
+import LeftArrowIcon from 'components/Icons/LeftArrowIcon';
 
 export type CategoryFilterProps = FilterProps & CategoryProps;
 
@@ -55,6 +56,7 @@ const StyledCollapse = styled(CustomCollapse)`
   }
 `;
 const Wrapper = styled(ComponentBackground)`
+  position: relative;
   margin-bottom: 16px;
   overflow: hidden;
   overflow-x: scroll;

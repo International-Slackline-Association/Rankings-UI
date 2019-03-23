@@ -14,7 +14,7 @@ class CategoryFilterButton extends React.PureComponent<Props> {
     return (
       <Wrapper>
         <Button onClick={this.props.onClick}>
-          <Section type={'category'} />
+          {/* <Section type={'category'} /> */}
           <Section type={'filter'} />
           {this.props.isOpen ? <CaretUp /> : <CaretDown />}
         </Button>

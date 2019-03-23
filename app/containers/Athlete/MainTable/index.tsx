@@ -140,7 +140,7 @@ const tableItemsPrefixCSS = css`
   }
   &:nth-child(4) {
     &::before {
-      content: 'ContestType : ';
+      content: 'Contest Size : ';
     }
   }
   &:nth-child(5) {

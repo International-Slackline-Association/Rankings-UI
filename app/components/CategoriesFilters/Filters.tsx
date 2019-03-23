@@ -16,8 +16,8 @@ class Filters extends React.PureComponent<Props> {
     const filters = this.props.filters;
     return (
       <Wrapper>
-        <Section type="filter" width="87.44px" />
-        <VerticalDivider />
+        {/* <Section type="filter" width="87.44px" />
+        <VerticalDivider /> */}
         {filters.map(filter => (
           <FilterWrapper key={filter.title}>
             <AutoCompleteFilter

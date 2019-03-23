@@ -106,30 +106,42 @@ class MainTable extends React.PureComponent<Props, State> {
 const tableItemsPrefixCSS = css`
   &:nth-child(1) {
     &::before {
+      width: 50%;
       content: 'Rank :';
     }
   }
   &:nth-child(2) {
-    padding-left: 0px;
-    ${media.desktop`
-      padding-left: 48px;
-    `} &::before {
-      content: 'Name :';
-    }
-  }
-  &:nth-child(3) {
+    width: 66%;
+    display: flex;
+    ${media.tablet`
+      width: auto;
+    `};
     &::before {
-      content: 'Age : ';
+      width: 25%;
+      content: '';
+      ${media.desktop`
+          display: block;
+          width: 20%;
+      `};
     }
   }
+
   &:nth-child(4) {
+    display: flex;
+
+    width: auto;
     &::before {
-      content: 'Country : ';
+      ${media.desktop`
+          display: block;
+          width: 33%;
+          content: '';
+      `};
     }
   }
   &:nth-child(5) {
     &::before {
-      content: 'Points : ';
+      width: 50%;
+      content: 'Points :';
     }
   }
 `;

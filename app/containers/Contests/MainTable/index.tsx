@@ -42,7 +42,7 @@ class MainTable extends React.PureComponent<Props, State> {
                 <td>Contest Name</td>
                 <td>Discipline</td>
                 <td>Total Prize Money</td>
-                <td>Contest Type</td>
+                <td>Contest Size</td>
               </tr>
             </thead>
             <tbody>
