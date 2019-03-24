@@ -23,6 +23,8 @@ interface ContestsItem {
   readonly date: string;
   readonly discipline: Discipline;
   readonly thumbnailUrl: string;
+  readonly country: string;
+  readonly resultsAvailable: boolean;
 }
 
 const requestURL = 'api/contest/list';

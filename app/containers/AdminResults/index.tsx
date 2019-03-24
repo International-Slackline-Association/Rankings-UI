@@ -210,7 +210,6 @@ export class AdminResults extends React.PureComponent<Props, State> {
 
   public render() {
     const { athleteFilters, contestFilter } = this.props;
-    console.log(athleteFilters);
 
     return (
       <TabPanel>

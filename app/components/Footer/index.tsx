@@ -4,6 +4,7 @@ import Link from './Link';
 import styled from 'styles/styled-components';
 import media from 'styles/media';
 import TitleLogo from 'components/Logo';
+import IsaSportsLogo from 'components/Logo/sportsLogo';
 interface Props {}
 
 class Footer extends React.PureComponent<Props> {
@@ -53,16 +54,11 @@ class Footer extends React.PureComponent<Props> {
           >
             Open Source
           </Link>
-
         </LinkGroup>
         <LinkGroup style={{ alignSelf: 'center' }}>
-          <Link
-            style={{ width: '75%' }}
-            href={'//www.slacklineinternational.org/'}
-            target="_blank"
-          >
-            <TitleLogo />
-          </Link>
+          <div style={{ width: '33%' }}>
+            <IsaSportsLogo />
+          </div>
           <Link href="mailto:isa-rankings@slacklineinternational.org">
             Contact Us
           </Link>

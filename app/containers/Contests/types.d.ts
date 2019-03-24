@@ -42,6 +42,8 @@ interface TableItem {
   readonly contestType: ContestType;
   readonly date: string;
   readonly thumbnailUrl: string;
+  readonly country: string;
+  readonly resultsAvailable: boolean;
 }
 
 /* --- ACTIONS --- */

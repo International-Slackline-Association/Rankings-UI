@@ -24,6 +24,7 @@ interface RankingsItem {
   readonly country: string;
   readonly points: string;
   readonly thumbnailUrl: string;
+  readonly contestCount?: number;
 }
 
 const requestURL = 'api/rankings/list';

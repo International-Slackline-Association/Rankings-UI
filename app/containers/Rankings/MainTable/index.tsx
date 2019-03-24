@@ -23,7 +23,7 @@ interface Props {
 interface State {}
 
 class MainTable extends React.PureComponent<Props, State> {
-  public constructor(props) {
+  public constructor(props: Props) {
     super(props);
   }
   private onItemClick = (id: string) => {
@@ -46,6 +46,7 @@ class MainTable extends React.PureComponent<Props, State> {
                 <td title="Age">Age</td>
                 <td title="Country">Country</td>
                 <td title="Points">Points</td>
+                <td title="Contests">Total Contests</td>
               </tr>
             </thead>
             <tbody>
@@ -76,6 +77,7 @@ class MainTable extends React.PureComponent<Props, State> {
                         </Group>
                       </td>
                       <td>{item.points} points</td>
+                      <td id="hide-mobile">{item.contestCount || 'N/A'}</td>
                     </tr>
                   );
                 })}
@@ -121,6 +123,7 @@ const tableItemsPrefixCSS = css`
       content: '';
       ${media.desktop`
           display: block;
+          min-width: 20%;
           width: 20%;
       `};
     }
@@ -133,6 +136,7 @@ const tableItemsPrefixCSS = css`
     &::before {
       ${media.desktop`
           display: block;
+          min-width: 33%;
           width: 33%;
           content: '';
       `};

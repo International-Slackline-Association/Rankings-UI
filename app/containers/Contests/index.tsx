@@ -104,7 +104,8 @@ class Contests extends React.PureComponent<Props, State> {
   public render() {
     const categories = this.categories();
     const filters = this.filters();
-    const openCategories = false;
+    const openCategories =
+      (this.props.tableResult.items || []).length > 0 || categories.length > 0;
     return (
       <React.Fragment>
         <TabPanel>

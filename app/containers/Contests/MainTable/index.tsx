@@ -8,6 +8,11 @@ import ContestAvatar from 'components/Avatars/ContestAvatar';
 import { EmptyContainer } from 'components/Containers';
 import { TableItemsResult } from '../types';
 import ShowMoreButton from 'components/LoadableButton/ShowMoreButton';
+import CountryAvatar from 'components/Avatars/CountryAvatar';
+import StackedGroup from './StackedGroup';
+import ResultsIndicatorText from './ResultsIndicatorText';
+
+const countryList = require('country-list');
 
 interface Props {
   tableItems: TableItemsResult;
@@ -40,6 +45,7 @@ class MainTable extends React.PureComponent<Props, State> {
               <tr>
                 <td>Start Date</td>
                 <td>Contest Name</td>
+                <td>Country</td>
                 <td>Discipline</td>
                 <td>Total Prize Money</td>
                 <td>Contest Size</td>
@@ -49,23 +55,35 @@ class MainTable extends React.PureComponent<Props, State> {
               {items &&
                 items.map(item => {
                   return (
-                    <tr
-                      // onClick={this.onTableRowClick(item)}
-                      key={`${item.id}-${item.discipline.id}`}
-                    >
+                    <tr key={`${item.id}-${item.discipline.id}`}>
                       <td>{item.date}</td>
                       <td>
                         <Group alignLeft={true}>
                           <ContestAvatar imageUrl={item.thumbnailUrl} />
-                          <a
-                            href={`/contest/${item.id}/${item.discipline.id}`}
-                            onClick={this.onItemClick(
-                              item.id,
-                              item.discipline.id,
-                            )}
-                          >
-                            {item.name}
-                          </a>
+                          <StackedGroup>
+                            <a
+                              href={`/contest/${item.id}/${item.discipline.id}`}
+                              onClick={this.onItemClick(
+                                item.id,
+                                item.discipline.id,
+                              )}
+                            >
+                              {item.name}
+                            </a>
+                            <ResultsIndicatorText
+                              type={
+                                item.resultsAvailable
+                                  ? 'Available'
+                                  : 'NotAvailable'
+                              }
+                            />
+                          </StackedGroup>
+                        </Group>
+                      </td>
+                      <td>
+                        <Group>
+                          <CountryAvatar code={item.country} />
+                          {countryList.getName(item.country) || item.country}
                         </Group>
                       </td>
                       <td>{item.discipline.name}</td>
@@ -135,18 +153,31 @@ const tableItemsPrefixCSS = css`
     }
   }
   &:nth-child(3) {
+    display: flex;
     &::before {
-      content: 'Discipline : ';
+      content: 'Country :';
+      ${media.desktop`
+        display: block;
+        min-width: 33%;
+        width: 33%;
+        content: '';
+      `};
     }
   }
+
   &:nth-child(4) {
     &::before {
-      content: 'Total Prize Money : ';
+      content: 'Discipline :';
     }
   }
   &:nth-child(5) {
     &::before {
-      content: 'Contest Size : ';
+      content: 'Total Prize Money :';
+    }
+  }
+  &:nth-child(6) {
+    &::before {
+      content: 'Contest Size :';
     }
   }
 `;

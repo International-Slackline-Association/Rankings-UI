@@ -88,6 +88,7 @@ const TableWrapper = styled<Props, 'div'>('div')`
             text-transform: uppercase;
             font-size: 1em;
             color: ${props => props.theme.textSecondary};
+            min-width: 40%;
             width: 40%;
             display: block;
             padding-right: 10px;

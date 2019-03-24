@@ -7,7 +7,6 @@ const NavBar: React.SFC<{}> = () => {
   return (
     <Wrapper>
       <RankingsLogo />
-      <IsaSportsLogo />
     </Wrapper>
   );
 };

@@ -5,6 +5,7 @@ interface Props {
 }
 const Group = styled<Props, 'span'>('span')`
   display: flex;
+  flex-direction: row;
   justify-content: ${props => (props.alignLeft ? 'flex-start' : 'center')};
   align-items: center;
   text-align: left;

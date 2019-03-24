@@ -46,6 +46,7 @@ interface TableItem {
   readonly country: string;
   readonly points: string;
   readonly thumbnailUrl: string;
+  readonly contestCount?: number;
 }
 
 /* --- ACTIONS --- */

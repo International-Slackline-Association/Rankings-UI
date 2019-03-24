@@ -9,6 +9,7 @@ import ReactDOM from 'react-dom';
 import SelectOptionContainer from './Option/SelectOptionContainer';
 import { ICategory } from './types';
 import styled from 'styles/styled-components';
+import ToggleSwitchSelect from './Option/ToggleSwitchSelect';
 
 const InputLabel = IL as any;
 interface Props {
@@ -72,35 +73,39 @@ class CategorySelect extends React.PureComponent<Props, State> {
   public render() {
     return (
       <Wrapper>
-        <FormControl variant="outlined">
-          <InputLabel
-            ref={this.InputLabelRef}
-            htmlFor="outlined-age-native-simple"
-          >
-            {this.props.category.title}
-          </InputLabel>
-          <StyledSelect
-            open={this.state.open}
-            value={this.state.title}
-            onOpen={this.changeSelectMenuStatus(true)}
-            onClose={this.changeSelectMenuStatus(false)}
-            input={
-              // tslint:disable-next-line:jsx-wrap-multiline
-              <OutlinedInput
-                name={this.props.category.title}
-                labelWidth={this.state.labelWidth!}
-                id="outlined-age-native-simple"
+        {this.props.category.title === 'World' ? (
+          <ToggleSwitchSelect category={this.props.category} />
+        ) : (
+          <FormControl variant="outlined">
+            <InputLabel
+              ref={this.InputLabelRef}
+              htmlFor="outlined-age-native-simple"
+            >
+              {this.props.category.title}
+            </InputLabel>
+            <StyledSelect
+              open={this.state.open}
+              value={this.state.title}
+              onOpen={this.changeSelectMenuStatus(true)}
+              onClose={this.changeSelectMenuStatus(false)}
+              input={
+                // tslint:disable-next-line:jsx-wrap-multiline
+                <OutlinedInput
+                  name={this.props.category.title}
+                  labelWidth={this.state.labelWidth!}
+                  id="outlined-age-native-simple"
+                />
+              }
+              renderValue={this.renderValue}
+            >
+              <SelectOptionContainer
+                categorySelected={this.handleSelect}
+                options={this.props.category.options}
+                hasIcons={this.props.category.title === 'Discipline'}
               />
-            }
-            renderValue={this.renderValue}
-          >
-            <SelectOptionContainer
-              categorySelected={this.handleSelect}
-              options={this.props.category.options}
-              hasIcons={this.props.category.title === 'Discipline'}
-            />
-          </StyledSelect>
-        </FormControl>
+            </StyledSelect>
+          </FormControl>
+        )}
       </Wrapper>
     );
   }
@@ -108,11 +113,10 @@ class CategorySelect extends React.PureComponent<Props, State> {
 
 const Wrapper = styled.div`
   margin: 0px 16px;
+  align-items: center;
+  display: flex;
 `;
 
-interface StyledSelectProps {
-  width: number;
-}
 const CustomSelect = props => <Select {...props} />;
 
 const StyledSelect = styled(CustomSelect)`
