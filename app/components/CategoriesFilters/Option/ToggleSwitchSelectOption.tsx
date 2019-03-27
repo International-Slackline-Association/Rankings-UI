@@ -1,16 +1,19 @@
 import * as React from 'react';
 import styled from 'styles/styled-components';
-import DisciplineIcon from 'components/Icons/DisciplineIcon';
+import DisciplineIcon from 'components/Icons/categories/DisciplineIcon';
+import WorldIcon from 'components/Icons/categories/WorldIcon';
 interface Props {
   title: string;
   isSelected: boolean;
+  selectedValue: string;
 }
 
 class ToggleSwitchSelectOption extends React.PureComponent<Props> {
   public render() {
+    console.log(this.props.selectedValue);
     return (
       <Wrapper disabled={!this.props.isSelected}>
-        {/* <DisciplineIcon discipline={'3'} /> */}
+        <WorldIcon value={this.props.selectedValue} />
         <span>{this.props.title}</span>
       </Wrapper>
     );

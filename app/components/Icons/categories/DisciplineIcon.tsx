@@ -9,21 +9,24 @@ import SpeedlineHighLong from './disciplines/SpeedlineHighLong';
 import SpeedlineSprint from './disciplines/SpeedlineSprint';
 import Endurance from './disciplines/Endurance';
 import Transfer from './disciplines/Transfer';
+import Overall from './disciplines/Overall';
 
 interface DisciplineIconProps {
-  readonly discipline: string;
+  readonly value: string;
 }
 
 /* tslint:disable:max-line-length */
 class DisciplineIcon extends React.PureComponent<DisciplineIconProps> {
   public render() {
-    const discipline = this.props.discipline;
-    return <Wrapper>{renderSwitch(discipline)}</Wrapper>;
+    const value = this.props.value;
+    return renderSwitch(value);
   }
 }
 
 function renderSwitch(param: string) {
   switch (param) {
+    case '0':
+      return <Overall />;
     case '2':
       return <Aerial />;
     case '3':
@@ -46,9 +49,4 @@ function renderSwitch(param: string) {
       return <div />;
   }
 }
-
-const Wrapper = styled.div`
-  max-width: 30px;
-  max-height: 30px;
-`;
 export default DisciplineIcon;

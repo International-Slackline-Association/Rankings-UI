@@ -103,6 +103,7 @@ const TableWrapper = styled<Props, 'div'>('div')`
 
           ${media.desktop`
             padding: 14px 0;
+            margin-bottom: 0px;
             width: auto;
             text-align: center;
             display: table-cell;

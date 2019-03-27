@@ -24,7 +24,7 @@ interface TextProps {
 
 const Text = styled<TextProps, 'span'>('span')`
   font-style: italic;
-  font-size: 0.5em;
+  font-size: 0.9em;
   color: ${props => (props.type === 'Available' ? 'green' : 'red')};
 `;
 

@@ -5,7 +5,7 @@ import { UISelectOption } from 'types/application';
 export interface CategorySelectProps {
   options: UISelectOption[];
   categorySelected(value: string);
-  hasIcons?: boolean;
+  type: string;
 }
 
 interface Props extends CategorySelectProps {}
@@ -30,8 +30,8 @@ class SelectOptionContainer extends React.PureComponent<Props> {
               label={option.label}
               isContainerStyle={option.isContainerStyle}
               hideDivider={false}
-              hasIcon={this.props.hasIcons}
               onSelect={this.onSelect(option.value)}
+              type={this.props.type}
             />
           );
         })}

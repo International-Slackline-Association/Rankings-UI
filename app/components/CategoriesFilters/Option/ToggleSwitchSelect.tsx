@@ -34,6 +34,7 @@ class ToggleSwitchSelect extends React.PureComponent<Props> {
         <ToggleSwitchSelectOption
           title={labels[0]}
           isSelected={defaultChecked === false}
+          selectedValue={category.options[0].value}
         />
         <Input
           onChange={this.inputSelected}
@@ -45,6 +46,7 @@ class ToggleSwitchSelect extends React.PureComponent<Props> {
         <ToggleSwitchSelectOption
           title={labels[1]}
           isSelected={defaultChecked === true}
+          selectedValue={category.options[1].value}
         />
         <Divider />
       </Wrapper>

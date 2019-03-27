@@ -10,6 +10,8 @@ import SelectOptionContainer from './Option/SelectOptionContainer';
 import { ICategory } from './types';
 import styled from 'styles/styled-components';
 import ToggleSwitchSelect from './Option/ToggleSwitchSelect';
+import DisciplineIcon from 'components/Icons/categories/DisciplineIcon';
+import CategoryIcon from 'components/Icons/categories/CategoryIcon';
 
 const InputLabel = IL as any;
 interface Props {
@@ -50,6 +52,10 @@ class CategorySelect extends React.PureComponent<Props, State> {
     }
   }
 
+  private findOptionFromLabel = (label: string) => {
+    const option = this.props.category.options.find(x => x.label === label);
+    return option;
+  };
   private changeSelectMenuStatus = (status: boolean) => event => {
     this.setState({ open: status });
   };
@@ -67,7 +73,18 @@ class CategorySelect extends React.PureComponent<Props, State> {
     }
   }
   private renderValue = (value: string) => {
-    return value;
+    const selectedOption = this.findOptionFromLabel(value);
+    return (
+      <RenderWrapper>
+        {selectedOption && (
+          <CategoryIcon
+            type={this.props.category.title}
+            value={selectedOption.value}
+          />
+        )}
+        <span>{value}</span>
+      </RenderWrapper>
+    );
   };
 
   public render() {
@@ -101,7 +118,7 @@ class CategorySelect extends React.PureComponent<Props, State> {
               <SelectOptionContainer
                 categorySelected={this.handleSelect}
                 options={this.props.category.options}
-                hasIcons={this.props.category.title === 'Discipline'}
+                type={this.props.category.title}
               />
             </StyledSelect>
           </FormControl>
@@ -115,6 +132,11 @@ const Wrapper = styled.div`
   margin: 0px 16px;
   align-items: center;
   display: flex;
+`;
+
+const RenderWrapper = styled.div`
+  display: flex;
+  align-items: center;
 `;
 
 const CustomSelect = props => <Select {...props} />;

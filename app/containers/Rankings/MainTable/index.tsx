@@ -115,6 +115,7 @@ const tableItemsPrefixCSS = css`
   &:nth-child(2) {
     width: 66%;
     display: flex;
+    align-items:center;
     ${media.tablet`
       width: auto;
     `};
