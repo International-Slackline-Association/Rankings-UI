@@ -143,11 +143,11 @@ module.exports = require('./webpack.base.babel')({
       ios: true,
       icons: [
         {
-          src: path.resolve('app/images/isa-sport.png'),
+          src: path.resolve('app/images/android-chrome-512x512.png'),
           sizes: [72, 96, 128, 144, 192, 384, 512],
         },
         {
-          src: path.resolve('app/images/isa-sport.png'),
+          src: path.resolve('app/images/apple-touch-icon.png'),
           sizes: [120, 152, 167, 180],
           ios: true,
         },
