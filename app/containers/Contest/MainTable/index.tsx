@@ -79,7 +79,7 @@ class MainTable extends React.PureComponent<Props, State> {
                           </a>
                         </Group>
                       </td>
-                      <td>{item.age}</td>
+                      <td>{item.age || '-'}</td>
                       <td>
                         <Group>
                           <CountryAvatar code={item.country} />

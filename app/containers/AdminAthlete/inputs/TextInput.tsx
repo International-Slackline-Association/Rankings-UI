@@ -34,7 +34,6 @@ class TextInput extends React.PureComponent<
   ForminInputComponentProps & FieldProps<AthleteFormValues>
 > {
   public render() {
-    // console.log(this.props);
     const field = this.props.field;
     const { touched, errors } = this.props.form;
     const isError = touched[field.name] && !isNil(errors[field.name]);

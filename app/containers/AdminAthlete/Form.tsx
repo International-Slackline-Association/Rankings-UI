@@ -37,7 +37,7 @@ class FormikForm extends React.PureComponent<Props, State> {
         country: '',
         gender: 1,
         birthdate: '',
-        email: '',
+        email: 'name@test.com',
         city: '',
         infoUrl: '',
         profilePictureFile: null,
@@ -65,9 +65,9 @@ class FormikForm extends React.PureComponent<Props, State> {
       .min(1)
       .max(3)
       .required('Required'),
-    birthdate: Yup.string().required(),
+    birthdate: Yup.string(),
     email: Yup.string().email('Invalid Email!'),
-    city: Yup.string().min(2, 'Too Short!'),
+    city: Yup.string().min(2, 'Too Short!').notRequired(),
     infoUrl: Yup.string()
       .url('Invalid Url')
       .notRequired(),
@@ -85,6 +85,7 @@ class FormikForm extends React.PureComponent<Props, State> {
           validationSchema={this.validationSchema}
           // tslint:disable-next-line:jsx-no-lambda
           onSubmit={(values, { setSubmitting }) => {
+            // console.log('values: ', values);
             this.props.submit(values).then(_ => setSubmitting(false));
           }}
         >

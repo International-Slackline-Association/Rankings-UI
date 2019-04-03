@@ -13,7 +13,7 @@ export const initialState: ContainerState = {
     country: '',
     gender: 1,
     birthdate: '',
-    email: '',
+    email: 'name@test.com',
     city: '',
     infoUrl: '',
   },

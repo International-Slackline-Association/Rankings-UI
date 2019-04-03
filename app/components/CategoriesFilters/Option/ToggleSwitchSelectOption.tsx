@@ -10,7 +10,6 @@ interface Props {
 
 class ToggleSwitchSelectOption extends React.PureComponent<Props> {
   public render() {
-    console.log(this.props.selectedValue);
     return (
       <Wrapper disabled={!this.props.isSelected}>
         <WorldIcon value={this.props.selectedValue} />

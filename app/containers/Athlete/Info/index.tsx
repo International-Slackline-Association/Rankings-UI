@@ -42,10 +42,10 @@ class AthleteInfo extends React.PureComponent<Props> {
                 </Title>
               </LeftSection>
               <RightSection>
-                <InfoField keyField={'Age'} valueField={item.age.toString()} />
+                <InfoField keyField={'Age'} valueField={item.age ? item.age.toString() : '-'} />
                 <InfoField keyField={'Country'} valueField={item.country} />
                 <InfoField
-                  keyField={'OverallRank'}
+                  keyField={'Overall Rank'}
                   valueField={item.overallRank}
                 />
                 <InfoField
