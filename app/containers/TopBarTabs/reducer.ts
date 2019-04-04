@@ -70,6 +70,21 @@ export function findPathAndId(pathname: string) {
   return { path: null, id: null };
 }
 
+function changeSelectedIdsName(
+  items: TopBarTabsItem[],
+  id: string,
+  name: string,
+) {
+  const tabItem = items.find(t => t.id === id);
+  if (tabItem) {
+    const index = items.indexOf(tabItem);
+    const replaceTab = { ...tabItem };
+    replaceTab.name = name;
+    items[index] = replaceTab;
+  }
+  return items;
+}
+
 export function modifyTabBarItemsByURL(
   items: TopBarTabsItem[],
   pathname: string,
@@ -87,7 +102,8 @@ export function modifyTabBarItemsByURL(
           const index = items.indexOf(sameTypeTab);
           const replaceTab = { ...sameTypeTab };
           replaceTab.id = id;
-          replaceTab.name = parseNameFromId(id);
+          replaceTab.name =
+            path === TopBarTabContentType.contest ? '-' : parseNameFromId(id);
           replaceTab.discipline = startCase(discipline);
           items[index] = replaceTab;
         } else {
@@ -98,7 +114,10 @@ export function modifyTabBarItemsByURL(
               id: id,
               contentType: TopBarTabContentType[path],
               type: TopBarTabType.Dynamic,
-              name: parseNameFromId(id),
+              name:
+                path === TopBarTabContentType.contest
+                  ? '-'
+                  : parseNameFromId(id),
               discipline: startCase(discipline),
             });
           }
@@ -113,7 +132,7 @@ export default combineReducers<ContainerState, ContainerActions>({
   items: (state = initialState.items, action) => {
     switch (action.type) {
       case LOCATION_CHANGE:
-        const items = modifyTabBarItemsByURL(
+        let items = modifyTabBarItemsByURL(
           [...state],
           action.payload.location.pathname,
         );
@@ -124,6 +143,13 @@ export default combineReducers<ContainerState, ContainerActions>({
         return state.concat(action.payload);
       case ActionTypes.SET_TOPBAR_TABS:
         return action.payload;
+      case ActionTypes.CHANGE_TOPBAR_NAME:
+        items = changeSelectedIdsName(
+          [...state],
+          action.payload.id,
+          action.payload.name,
+        );
+        return items;
       default:
         return state;
     }

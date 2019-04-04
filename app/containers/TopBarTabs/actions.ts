@@ -9,3 +9,5 @@ export const addTopBarTab = (item: TopBarTabsItem) =>
   action(ActionTypes.ADD_TOPBAR_TAB, item);
 export const setTopBarTabs = (items: TopBarTabsItem[]) =>
   action(ActionTypes.SET_TOPBAR_TABS, items);
+export const changeTopBarName = (id: string, name: string) =>
+  action(ActionTypes.CHANGE_TOPBAR_NAME, {id: id, name: name});

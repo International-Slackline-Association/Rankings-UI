@@ -22,6 +22,8 @@ export function* getAthlete() {
   try {
     const result: APIGetAthleteResponse = yield call(apiGetAthlete, request);
     yield put(actions.setAthlete(result.athlete));
+    yield put(actions.changeTopBarName(id, `${result.athlete.name} ${result.athlete.surname}`));
+
   } catch (err) {
     console.log('err: ', err);
   }

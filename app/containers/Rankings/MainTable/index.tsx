@@ -113,7 +113,7 @@ const tableItemsPrefixCSS = css`
     }
   }
   &:nth-child(2) {
-    width: 66%;
+    width: 60%;
     display: flex;
     align-items:center;
     ${media.tablet`

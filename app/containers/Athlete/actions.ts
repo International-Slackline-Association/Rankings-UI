@@ -1,6 +1,7 @@
 import { action } from 'typesafe-actions';
 import { TableItemsResult, AthleteItem, ICategory } from './types';
 import ActionTypes from './constants';
+import { changeTopBarName as _changeTopBarName } from 'containers/TopBarTabs/actions';
 
 export const setId = (id: string) =>
   action(ActionTypes.SET_ID, id);
@@ -28,3 +29,5 @@ export const addTableItems = (result: TableItemsResult) => {
 };
 
 export const loadNextItems = () => action(ActionTypes.LOAD_NEXT_TABLE_ITEMS);
+
+export const changeTopBarName = _changeTopBarName;

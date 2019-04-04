@@ -22,6 +22,7 @@ export function* getContest() {
   try {
     const result: GetContestResponse = yield call(apiGetContest, request);
     yield put(actions.setContest(result.contest));
+    yield put(actions.changeTopBarName(id, result.contest.name));
   } catch (err) {
     console.log('err: ', err);
   }
