@@ -8,6 +8,7 @@ import ShowMoreButton from 'components/LoadableButton/ShowMoreButton';
 import { TableItemsResult } from '../types';
 import { EmptyContainer } from 'components/Containers';
 import ContestAvatar from 'components/Avatars/ContestAvatar';
+import DisciplineIcon from 'components/Icons/categories/DisciplineIcon';
 
 interface Props {
   tableItems: TableItemsResult;
@@ -67,7 +68,14 @@ class MainTable extends React.PureComponent<Props, State> {
                           </a>
                         </Group>
                       </td>
-                      <td>{item.discipline.name}</td>
+                      <td>
+                        <Group alignLeft={true}>
+                          <DisciplineIcon
+                            value={item.discipline.id.toString()}
+                          />
+                          {item.discipline.name}
+                        </Group>
+                      </td>
                       <td>{item.rank}</td>
                       <td>{item.contestType.name}</td>
                       <td>{item.date}</td>
@@ -100,7 +108,7 @@ const tableItemsRatioCSS = css`
   &:nth-child(1) {
     width: 20%;
     text-align: left;
-    padding-left: 48px;
+    padding-left: 64px;
   }
   &:nth-child(2) {
     width: 15%;
@@ -129,7 +137,10 @@ const tableItemsPrefixCSS = css`
     }
   }
   &:nth-child(2) {
-    &::before {
+    padding-left: 0px;
+    ${media.desktop`
+      padding-left: 48px;
+    `} &::before {
       content: 'Discipline : ';
     }
   }

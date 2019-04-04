@@ -30,3 +30,7 @@ export const selectContestTypes = () =>
   createSelector(selectAdminContestDomain, substate => {
     return substate.contestTypes;
   });
+export const selectContestGenders = () =>
+  createSelector(selectAdminContestDomain, substate => {
+    return substate.contestGenders;
+  });

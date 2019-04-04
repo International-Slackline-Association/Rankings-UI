@@ -16,3 +16,8 @@ export interface ContestType {
   id: number;
   name: string;
 }
+
+export interface ContestGender {
+  id: number;
+  name: string;
+}

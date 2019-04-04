@@ -36,3 +36,8 @@ export const loadContestCategories = () => action(ActionTypes.LOAD_CATEGORIES);
 
 export const setContestCategories = (categories: ISelectOption[]) =>
   action(ActionTypes.SET_CATEGORIES, categories);
+
+export const loadContestGenders = () => action(ActionTypes.LOAD_GENDERS);
+
+export const setContestGenders = (genders: ISelectOption[]) =>
+  action(ActionTypes.SET_GENDERS, genders);

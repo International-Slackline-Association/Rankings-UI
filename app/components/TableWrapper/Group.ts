@@ -10,7 +10,7 @@ const Group = styled<Props, 'span'>('span')`
   align-items: center;
   text-align: left;
 
-  div {
+  & div {
     margin-right: 8px;
   }
 

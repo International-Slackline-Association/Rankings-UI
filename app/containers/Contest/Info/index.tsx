@@ -8,22 +8,12 @@ import InfoField from 'components/InfoField';
 import media from 'styles/media';
 import { SmallLoading } from 'components/Loading';
 import { EmptyContainer } from 'components/Containers';
-import { ContestType, Discipline } from 'types/application';
+import { ContestType, Discipline, ContestGender } from 'types/application';
+import { ContestItem } from '../types';
 
 interface Props {
   readonly isLoading: boolean;
   readonly item: ContestItem | null;
-}
-
-interface ContestItem {
-  readonly profileUrl: string;
-  readonly name: string;
-  readonly discipline: Discipline;
-  readonly location: string;
-  readonly date: string;
-  readonly contestType: ContestType;
-  readonly prize: string;
-  readonly infoUrl: string;
 }
 
 class ContestInfo extends React.PureComponent<Props> {
@@ -41,10 +31,17 @@ class ContestInfo extends React.PureComponent<Props> {
               </LeftSection>
               <RightSection>
                 <InfoField keyField={'Location'} valueField={item.location} />
-                <InfoField keyField={'Total Prize Money'} valueField={item.prize} />
+                <InfoField
+                  keyField={'Total Prize Money'}
+                  valueField={item.prize}
+                />
                 <InfoField
                   keyField={'Discipline'}
                   valueField={item.discipline.name}
+                />
+                <InfoField
+                  keyField={'Gender'}
+                  valueField={item.contestGender.name}
                 />
               </RightSection>
               <RightSection style={{ marginTop: 0 }}>

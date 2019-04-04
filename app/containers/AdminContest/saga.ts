@@ -14,6 +14,8 @@ import {
   apiGetCategories,
   APIAdminGetCategoriesResponse,
   APIGetContestSuggestionsRequest,
+  apiGetGenders,
+  APIAdminGetGendersResponse,
 } from './api';
 import { ISelectOption } from 'types/application';
 import { Utils } from 'utils';
@@ -26,7 +28,7 @@ export function* getContestSuggestions(
   const request: APIGetContestSuggestionsRequest = {
     query: value,
     selectedCategories: undefined,
-    // year: Utils.currentYear(),
+    returnCount: 10,
   };
   try {
     const results: APIGetContestSuggestionsResponse = yield call(
@@ -103,10 +105,20 @@ export function* getContestCategories() {
   }
 }
 
+export function* getContestGenders() {
+  try {
+    const result: APIAdminGetGendersResponse = yield call(apiGetGenders);
+    yield put(actions.setContestGenders(result.genders));
+  } catch (err) {
+    console.log('err: ', err);
+  }
+}
+
 export default function* adminAthleteSaga() {
   yield takeLatest(ActionTypes.LOAD_CONTEST_SUGGESTIONS, getContestSuggestions);
   yield takeLatest(ActionTypes.LOAD_CONTEST, getContest);
   yield takeLatest(ActionTypes.LOAD_COUNTRY_SUGGESTIONS, getCountrySuggestions);
   yield takeLatest(ActionTypes.LOAD_DISCIPLINES, getDisciplines);
   yield takeLatest(ActionTypes.LOAD_CATEGORIES, getContestCategories);
+  yield takeLatest(ActionTypes.LOAD_GENDERS, getContestGenders);
 }

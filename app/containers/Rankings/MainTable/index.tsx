@@ -52,10 +52,16 @@ class MainTable extends React.PureComponent<Props, State> {
             <tbody>
               {items &&
                 items.map((item, index) => {
+                  const prevItem = items[index - 1];
                   return (
                     <tr key={item.id}>
                       <td>
-                        {item.rank === null ? '-' : item.rank || index + 1}
+                        {item.rank === null
+                          ? '-'
+                          : item.rank ||
+                            (prevItem && prevItem.points === item.points
+                              ? '“'
+                              : index + 1)}
                       </td>
                       <td>
                         <Group alignLeft={true}>
@@ -115,7 +121,7 @@ const tableItemsPrefixCSS = css`
   &:nth-child(2) {
     width: 60%;
     display: flex;
-    align-items:center;
+    align-items: center;
     ${media.tablet`
       width: auto;
     `};

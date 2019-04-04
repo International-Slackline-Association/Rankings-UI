@@ -13,11 +13,13 @@ import DisciplineInput from './inputs/DisciplineInput';
 import AutoCompleteTextInput from 'containers/AdminAthlete/inputs/AutoCompleteTextInput';
 import { ISelectOption } from 'types/application';
 import ImageUpload from './inputs/ImageUpload';
+import ContestGenderInput from './inputs/ContestGenderInput';
 
 interface Props {
   readonly values?: ContestFormValues | null;
   readonly countrySuggestions?: ISelectOption[];
   readonly contestTypes: ISelectOption[];
+  readonly contestGenders: ISelectOption[];
   readonly disciplines: ISelectOption[];
   loadCountrySuggestions(value: string): void;
   submit(values: ContestFormValues): Promise<void>;
@@ -38,6 +40,7 @@ class FormikForm extends React.PureComponent<Props, State> {
         country: '',
         city: '',
         contestType: -1,
+        contestGender: -1,
         date: '',
         discipline: -1,
         prize: 0,
@@ -62,6 +65,9 @@ class FormikForm extends React.PureComponent<Props, State> {
       .required('Required'),
     contestType: Yup.number()
       .min(0, 'Invalid Category')
+      .required('Required'),
+    contestGender: Yup.number()
+      .min(0, 'Invalid Gender')
       .required('Required'),
     date: Yup.string().required(),
     discipline: Yup.number()
@@ -118,6 +124,11 @@ class FormikForm extends React.PureComponent<Props, State> {
                 name="contestType"
                 component={ContestTypeInput}
                 contestTypes={this.props.contestTypes}
+              />
+              <Field
+                name="contestGender"
+                component={ContestGenderInput}
+                contestGenders={this.props.contestGenders}
               />
               <Field name="infoUrl" component={TextInput} label={'Info Url'} />
 

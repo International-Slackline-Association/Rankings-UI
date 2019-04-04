@@ -11,6 +11,8 @@ enum ActionTypes {
   SET_DISCIPLINES = 'app/AdminContest/SET_DISCIPLINES',
   LOAD_CATEGORIES = 'app/AdminContest/LOAD_CATEGORIES',
   SET_CATEGORIES = 'app/AdminContest/SET_CATEGORIES',
+  LOAD_GENDERS = 'app/AdminContest/LOAD_GENDERS',
+  SET_GENDERS = 'app/AdminContest/SET_GENDERS',
 }
 
 export default ActionTypes;

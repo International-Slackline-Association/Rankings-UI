@@ -3,7 +3,7 @@ import * as actions from './actions';
 import { ApplicationRootState } from 'types';
 import { TabContentState } from 'containers/GenericTabContent/types';
 import { LocationChangeAction } from 'connected-react-router';
-import { Discipline, ContestType } from 'types/application';
+import { Discipline, ContestType, ContestGender } from 'types/application';
 
 /* --- EXPORTS --- */
 
@@ -30,6 +30,7 @@ export interface ContestItem {
   readonly name: string;
   readonly prize: string;
   readonly contestType: ContestType;
+  readonly contestGender: ContestGender;
   readonly date: string;
   readonly location: string;
   readonly discipline: Discipline;

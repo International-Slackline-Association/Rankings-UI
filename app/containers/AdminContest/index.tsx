@@ -36,6 +36,7 @@ interface StateProps {
   contest: ContainerState['contest'];
   countryFilter: ContainerState['countryFilter'];
   contestTypes: ContainerState['contestTypes'];
+  contestGenders: ContainerState['contestGenders'];
   disciplines: ContainerState['disciplines'];
 }
 
@@ -65,6 +66,7 @@ class AdminContest extends React.PureComponent<Props, State> {
     };
     this.props.dispatch(actions.loadDisciplines());
     this.props.dispatch(actions.loadContestCategories());
+    this.props.dispatch(actions.loadContestGenders());
   }
 
   private loadSuggestions = (value: string) => {
@@ -176,6 +178,7 @@ class AdminContest extends React.PureComponent<Props, State> {
     const {
       countryFilter,
       contestTypes: contestCategories,
+      contestGenders: contestGenders,
       disciplines,
     } = this.props;
     let values: ContestFormValues | null = null;
@@ -183,6 +186,7 @@ class AdminContest extends React.PureComponent<Props, State> {
       values = {
         ...this.props.contest,
         contestType: this.props.contest.contestType.id,
+        contestGender: this.props.contest.contestGender.id,
         discipline: this.props.contest.discipline.id,
       };
     }
@@ -213,6 +217,7 @@ class AdminContest extends React.PureComponent<Props, State> {
             loadCountrySuggestions={this.loadCountrySuggestions}
             submit={this.submit}
             contestTypes={contestCategories}
+            contestGenders={contestGenders}
             disciplines={disciplines}
           />
         </Wrapper>
@@ -241,6 +246,7 @@ const mapStateToProps = createStructuredSelector<RootState, StateProps>({
   countryFilter: selectors.selectCountryFilter(),
   disciplines: selectors.selectDisciplines(),
   contestTypes: selectors.selectContestTypes(),
+  contestGenders: selectors.selectContestGenders(),
 });
 
 function mapDispatchToProps(

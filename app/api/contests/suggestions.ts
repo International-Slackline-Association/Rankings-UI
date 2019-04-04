@@ -7,6 +7,7 @@ import { Discipline } from 'types/application';
 export interface APIGetContestSuggestionsRequest {
   readonly query: string;
   readonly selectedCategories?: number[];
+  readonly returnCount?: number;
 }
 
 export interface APIGetContestSuggestionsResponse {

@@ -18,7 +18,7 @@ class PeopleIcon extends React.PureComponent<PeopleIconProps> {
 function renderSwitch(param: string) {
   switch (param) {
     case '0':
-      return <AllPeople />;
+      return <AllPeople  />;
     case '1':
       return <Male />;
     case '2':

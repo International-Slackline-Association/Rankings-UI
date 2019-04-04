@@ -11,6 +11,7 @@ export const initialState: ContainerState = {
     country: '',
     city: '',
     contestType: { id: -1, name: '' },
+    contestGender: { id: -1, name: '' },
     date: '',
     discipline: { id: -1, name: '' },
     prize: 0,
@@ -21,6 +22,7 @@ export const initialState: ContainerState = {
   countryFilter: { suggestions: undefined },
   disciplines: [],
   contestTypes: [],
+  contestGenders: [],
 };
 
 export default combineReducers<ContainerState, ContainerActions>({
@@ -80,6 +82,15 @@ export default combineReducers<ContainerState, ContainerActions>({
       case ActionTypes.LOAD_CATEGORIES:
         return [];
       case ActionTypes.SET_CATEGORIES:
+        return action.payload;
+    }
+    return state;
+  },
+  contestGenders: (state = initialState.contestGenders, action) => {
+    switch (action.type) {
+      case ActionTypes.LOAD_GENDERS:
+        return [];
+      case ActionTypes.SET_GENDERS:
         return action.payload;
     }
     return state;

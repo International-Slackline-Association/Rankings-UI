@@ -25,6 +25,7 @@ import {
   adminGetCategories,
   APIAdminGetCategoriesResponse,
 } from 'api/admin/contest/categories';
+import { adminGetGenders, APIAdminGetGendersResponse } from 'api/admin/contest/genders';
 
 export async function apiGetContestSuggestions(
   request: APIGetContestSuggestionsRequest,
@@ -66,4 +67,11 @@ export { APIAdminGetDisciplinesResponse };
 export async function apiGetCategories() {
   return adminGetCategories();
 }
+
 export { APIAdminGetCategoriesResponse };
+
+export async function apiGetGenders() {
+  return adminGetGenders();
+}
+
+export { APIAdminGetGendersResponse };

@@ -11,6 +11,7 @@ const generator = (): APIAdminGetContestResponse => {
       date: '2017-10-25',
       city: 'Bern',
       contestType: { id: 3, name: 'Open' },
+      contestGender: {id: 0, name: 'Mixed'},
       discipline: { id: 2, name: 'Trickline Aerial' },
       prize: 1,
       infoUrl: 'https://www.facebook.com/events/529600260719152',

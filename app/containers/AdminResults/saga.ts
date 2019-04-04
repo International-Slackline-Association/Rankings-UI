@@ -28,6 +28,7 @@ export function* getContestSuggestions(
   const request: APIGetContestSuggestionsRequest = {
     query: value,
     selectedCategories: undefined,
+    returnCount: 10,
   };
   try {
     const results: APIGetContestSuggestionsResponse = yield call(

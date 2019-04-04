@@ -23,8 +23,7 @@ interface Props {
 interface State {}
 
 class MainTable extends React.PureComponent<Props, State> {
-  private ranks = {};
-  public constructor(props) {
+  public constructor(props: Props) {
     super(props);
     this.state = {
       selectedItem: null,
@@ -35,15 +34,6 @@ class MainTable extends React.PureComponent<Props, State> {
       event.preventDefault();
       this.props.onItemClick(id);
     };
-  };
-
-  private getRank = (index: number, points: number): number => {
-    const rank = this.ranks[points];
-    if (rank) {
-      return rank;
-    }
-    this.ranks[points] = index + 1;
-    return index + 1;
   };
 
   public render() {
@@ -65,9 +55,14 @@ class MainTable extends React.PureComponent<Props, State> {
             <tbody>
               {items &&
                 items.map((item, index) => {
+                  const prevItem = items[index - 1];
                   return (
                     <tr key={item.id}>
-                      <td>{this.getRank(index, item.points)}</td>
+                      <td>
+                        {prevItem && prevItem.points === item.points
+                          ? '“'
+                          : index + 1}
+                      </td>
                       <td>
                         <Group alignLeft={true}>
                           <ProfileAvatar imageUrl={item.thumbnailUrl} />

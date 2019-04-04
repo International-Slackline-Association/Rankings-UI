@@ -10,7 +10,8 @@ import { TableItemsResult } from '../types';
 import ShowMoreButton from 'components/LoadableButton/ShowMoreButton';
 import CountryAvatar from 'components/Avatars/CountryAvatar';
 import StackedGroup from './StackedGroup';
-import ResultsIndicatorText from './ResultsIndicatorText';
+import CaptionText from './CaptionText';
+import DisciplineIcon from 'components/Icons/categories/DisciplineIcon';
 
 const countryList = require('country-list');
 
@@ -70,12 +71,9 @@ class MainTable extends React.PureComponent<Props, State> {
                             >
                               {item.name}
                             </a>
-                            <ResultsIndicatorText
-                              type={
-                                item.resultsAvailable
-                                  ? 'Available'
-                                  : 'NotAvailable'
-                              }
+                            <CaptionText
+                              resultsAvailable={item.resultsAvailable}
+                              gender={item.contestGender}
                             />
                           </StackedGroup>
                         </Group>
@@ -86,7 +84,12 @@ class MainTable extends React.PureComponent<Props, State> {
                           {countryList.getName(item.country) || item.country}
                         </Group>
                       </td>
-                      <td>{item.discipline.name}</td>
+                      <td>
+                        <Group alignLeft={true}>
+                          <DisciplineIcon value={item.discipline.id.toString()} />
+                          {item.discipline.name}
+                        </Group>
+                      </td>
                       <td id="hide-mobile">{item.prize}</td>
                       <td>{item.contestType.name}</td>
                     </tr>
@@ -125,10 +128,12 @@ const tableItemsRatioCSS = css`
     padding-left: 48px;
   }
   &:nth-child(3) {
-    width: 15%;
+    width: 12%;
   }
   &:nth-child(4) {
-    width: 15%;
+    width: 18%;
+    text-align: left;
+    padding-left: 48px;
   }
   &:nth-child(5) {
     width: 15%;
@@ -147,7 +152,7 @@ const tableItemsPrefixCSS = css`
   &:nth-child(2) {
     padding-left: 0px;
     ${media.desktop`
-      padding-left: 48px;
+      padding-left: 24px;
     `} &::before {
       content: 'Contest Name :';
     }
@@ -158,15 +163,18 @@ const tableItemsPrefixCSS = css`
       content: 'Country :';
       ${media.desktop`
         display: block;
-        min-width: 33%;
-        width: 33%;
+        min-width: 25%;
+        width: 25%;
         content: '';
       `};
     }
   }
 
   &:nth-child(4) {
-    &::before {
+    padding-left: 0px;
+    ${media.desktop`
+      padding-left: 24px;
+    `} &::before {
       content: 'Discipline :';
     }
   }

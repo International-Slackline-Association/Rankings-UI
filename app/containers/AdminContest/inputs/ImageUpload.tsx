@@ -31,7 +31,6 @@ class ImageUpload extends React.PureComponent<
     this.props.form.setFieldValue(this.props.field.name, file);
   };
   public render() {
-    console.log(this.props);
     const previewSrc =
       this.props.form.values.profilePictureData ||
       this.props.form.values.profileUrl;
