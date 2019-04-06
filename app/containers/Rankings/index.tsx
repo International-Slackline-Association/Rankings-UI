@@ -44,18 +44,20 @@ interface State {}
 class Rankings extends React.PureComponent<Props, State> {
   constructor(props: Props) {
     super(props);
+
+    if (!this.props.tableResult || this.props.tableResult.items.length === 0) {
+      this.props.dispatch(actions.loadTableItems());
+    }
+    if (!this.props.categories) {
+      this.loadCategories();
+    }
+  }
+  private loadCategories = () => {
     const selectedCategoryArray = this.getCategoriesFromPathSearch(
       this.props.location.search,
     );
-    if (!this.props.tableResult || this.props.tableResult.items.length === 0) {
-      if (props.categories) {
-        this.props.dispatch(actions.loadTableItems());
-      }
-    }
-    if (!this.props.categories) {
-      this.props.dispatch(actions.loadCategories(selectedCategoryArray));
-    }
-  }
+    this.props.dispatch(actions.loadCategories(selectedCategoryArray));
+  };
 
   private getCategoriesFromPathSearch = (searchParam: string) => {
     const categories = Utils.getUrlQueryVariable(searchParam, 'category');
@@ -78,6 +80,7 @@ class Rankings extends React.PureComponent<Props, State> {
   private onCategorySelected = (index: number) => (value: string) => {
     this.selectCategory(index, value);
     this.props.dispatch(actions.loadTableItems());
+    this.loadCategories();
   };
 
   private selectCategory = (index: number, value: string) => {

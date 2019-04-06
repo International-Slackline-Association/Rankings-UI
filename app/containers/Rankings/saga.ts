@@ -11,6 +11,7 @@ import {
   APIGetRankingsRequest,
   apiGetCategories,
   APIRankingCategoriesResponse,
+  APIRankingCategoriesRequest,
   apiGetAthleteSuggestions,
   APIGetAthleteSuggestionsResponse,
   APIGetCountrySuggestionsResponse,
@@ -24,14 +25,23 @@ export function* getCategories(
 ) {
   try {
     const preSelected = action.payload;
-    const results: APIRankingCategoriesResponse = yield call(apiGetCategories);
+    let categories: number[] = yield selectCategories();
+    if (!categories && preSelected) {
+      categories = preSelected.map(s => parseInt(s, 10));
+    }
+    const request: APIRankingCategoriesRequest = {
+      selectedCategories: categories,
+    };
+    const results: APIRankingCategoriesResponse = yield call(
+      apiGetCategories,
+      request,
+    );
     if (preSelected && preSelected.length > 0) {
       results.items.map((category, index) => {
-        category.selectedValue = preSelected[index].toString();
+        category.selectedValue = categories[index].toString();
       });
     }
     yield put(actions.setCategories(results.items));
-    yield put(actions.loadTableItems());
   } catch (err) {
     console.log('err: ', err);
   }

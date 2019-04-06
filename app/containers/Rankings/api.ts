@@ -7,6 +7,7 @@ import {
 import {
   getRankingCategories,
   APIRankingCategoriesResponse,
+  APIRankingCategoriesRequest,
 } from 'api/rankings/categories';
 
 import getAthleteSuggestions, {
@@ -23,8 +24,8 @@ export async function apiGetRankings(request: APIGetRankingsRequest) {
   return results;
 }
 
-export async function apiGetCategories() {
-  const results = await getRankingCategories();
+export async function apiGetCategories(request: APIRankingCategoriesRequest) {
+  const results = await getRankingCategories(request);
   return results;
 }
 
@@ -42,6 +43,7 @@ export {
   APIRankingsResponse,
   APIGetRankingsRequest,
   APIRankingCategoriesResponse,
+  APIRankingCategoriesRequest,
   APIGetAthleteSuggestionsResponse,
   APIGetCountrySuggestionsResponse,
 };

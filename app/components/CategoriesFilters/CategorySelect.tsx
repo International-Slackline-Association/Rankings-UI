@@ -81,10 +81,6 @@ class CategorySelect extends React.PureComponent<Props, State> {
   }
   private renderValue = (value: string) => {
     const selectedOption = this.findOptionFromLabel(value);
-    if (this.props.category.title === 'Year') {
-      // console.log('Options: ', this.props.category.options);
-      // console.log('selected: ', selectedOption, value, this.state.title);
-    }
     return (
       <RenderWrapper>
         {selectedOption && (
