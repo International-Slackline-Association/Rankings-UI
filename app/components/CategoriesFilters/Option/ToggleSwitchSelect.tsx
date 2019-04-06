@@ -3,6 +3,7 @@ import styled from 'styles/styled-components';
 import { ICategory } from '../types';
 import ToggleSwitchSelectOption from './ToggleSwitchSelectOption';
 import { VerticalDivider } from 'components/Divider';
+import InfoPopover from '../InfoPopover';
 
 interface Props {
   category: ICategory;
@@ -36,13 +37,17 @@ class ToggleSwitchSelect extends React.PureComponent<Props> {
           isSelected={defaultChecked === false}
           selectedValue={category.options[0].value}
         />
-        <Input
-          onChange={this.inputSelected}
-          defaultChecked={defaultChecked}
-          type="checkbox"
-          id="switch"
-        />
-        <Label htmlFor="switch">Toggle</Label>
+        <SwitchWrapper>
+          <Input
+            onChange={this.inputSelected}
+            defaultChecked={defaultChecked}
+            type="checkbox"
+            id="switch"
+          />
+          <Label htmlFor="switch">Toggle</Label>
+          <InfoPopover />
+        </SwitchWrapper>
+
         <ToggleSwitchSelectOption
           title={labels[1]}
           isSelected={defaultChecked === true}
@@ -54,6 +59,14 @@ class ToggleSwitchSelect extends React.PureComponent<Props> {
   }
 }
 
+const SwitchWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
+  height: 120%;
+`;
+
 const Label = styled.label`
   cursor: pointer;
   text-indent: -9999px;
@@ -64,6 +77,7 @@ const Label = styled.label`
   display: block;
   border-radius: 100px;
   position: relative;
+  margin-bottom: 8px;
   &::after {
     content: '';
     position: absolute;

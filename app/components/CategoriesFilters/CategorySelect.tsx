@@ -30,9 +30,7 @@ class CategorySelect extends React.PureComponent<Props, State> {
   constructor(props: Props) {
     super(props);
     let title = '';
-    const option = this.props.category.options.find(
-      x => x.value === this.props.category.selectedValue,
-    );
+    const option = this.findOptionFromValue(this.props.category.selectedValue);
     if (option) {
       title = option.label;
     }
@@ -51,11 +49,20 @@ class CategorySelect extends React.PureComponent<Props, State> {
       });
     }
   }
+  public componentDidUpdate(prevProps: Props) {
+    this.setSelected(this.props.category.selectedValue);
+  }
 
   private findOptionFromLabel = (label: string) => {
     const option = this.props.category.options.find(x => x.label === label);
     return option;
   };
+
+  private findOptionFromValue = (value: string) => {
+    const option = this.props.category.options.find(x => x.value === value);
+    return option;
+  };
+
   private changeSelectMenuStatus = (status: boolean) => event => {
     this.setState({ open: status });
   };
@@ -74,6 +81,10 @@ class CategorySelect extends React.PureComponent<Props, State> {
   }
   private renderValue = (value: string) => {
     const selectedOption = this.findOptionFromLabel(value);
+    if (this.props.category.title === 'Year') {
+      // console.log('Options: ', this.props.category.options);
+      // console.log('selected: ', selectedOption, value, this.state.title);
+    }
     return (
       <RenderWrapper>
         {selectedOption && (
