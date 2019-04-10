@@ -33,7 +33,8 @@ export const setAthleteFilterSelectedValue = (option: ISelectOption) =>
 export const setCountryFilterSelectedValue = (option: ISelectOption) =>
   action(ActionTypes.SET_COUNTRY_FILTER_SELECTED_VALUE, option);
 
-export const loadTableItems = () => action(ActionTypes.LOAD_TABLE_ITEMS);
+export const loadTableItems = (selectedCategories?: string[]) =>
+  action(ActionTypes.LOAD_TABLE_ITEMS, selectedCategories);
 
 export const addTableItems = (result: TableItemsResult) => {
   return action(ActionTypes.ADD_TABLE_ITEMS, result);

@@ -19,7 +19,7 @@ interface DisciplineIconProps {
 class DisciplineIcon extends React.PureComponent<DisciplineIconProps> {
   public render() {
     const value = this.props.value;
-    return renderSwitch(value);
+    return <div>{renderSwitch(value)}</div>;
   }
 }
 

@@ -93,7 +93,9 @@ export function* getCountrySuggestions(
   }
 }
 
-export function* getRankings() {
+export function* getRankings(
+  action: ReturnType<typeof actions.loadTableItems>,
+) {
   const athleteFilter: IFilter = yield select(selectors.selectAthleteFilter());
   const countryFilter: IFilter = yield select(selectors.selectCountryFilter());
 
@@ -105,7 +107,10 @@ export function* getRankings() {
   const tableItemsResult: TableItemsResult = yield select(
     selectors.selectTableResult(),
   );
-  const categories: number[] = yield selectCategories();
+  let categories: number[] = yield selectCategories();
+  if (!categories && action.payload) {
+    categories = action.payload.map(s => parseInt(s, 10));
+  }
   const request: APIGetRankingsRequest = {
     selectedCategories: categories,
     athleteId: athleteId,

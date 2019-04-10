@@ -57,10 +57,8 @@ class InfoPopover extends React.PureComponent<Props, State> {
           <TextArea>
             <span>
               <p>
-                <strong>* Top Score</strong> sums up the highest point rankings
-                collected from the largest
-                <span style={{ color: '#ff0000' }}> <strong>TWO out of THREE</strong> </span>
-                contests joined.
+                <strong>* Top Score</strong> sums up the highest point rankings collected from the last
+                <span style={{ color: '#ff0000' }}> <strong>TWO years</strong> </span>
                 <br />
                 <br />
                 <strong>* Point Score</strong> combines the points from all
