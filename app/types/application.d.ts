@@ -12,6 +12,11 @@ export interface Discipline {
   name: string;
 }
 
+export interface Gender {
+  id: number;
+  name: string;
+}
+
 export interface ContestType {
   id: number;
   name: string;

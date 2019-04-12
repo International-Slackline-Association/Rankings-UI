@@ -36,9 +36,12 @@ export function* getContestSuggestions(
       request,
     );
     const options = results.items.map(item => {
+      const genderString = item.gender.id ? `-[${item.gender.name}]` : '';
       const option: ISelectOption = {
         value: `${item.id}:${item.discipline.id}`,
-        label: `${item.name} ${item.year} ${item.discipline.name}`,
+        label: `${item.name} ${genderString} | ${item.year} | ${
+          item.discipline.name
+        }`,
       };
       return option;
     });

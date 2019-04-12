@@ -2,7 +2,7 @@ import axios, { axiosConfig } from 'api/axios';
 import { AxiosRequestConfig, AxiosResponse } from 'axios';
 
 import mockResponse from './__mocks__/contest_suggestions_mock';
-import { Discipline } from 'types/application';
+import { Discipline, Gender } from 'types/application';
 
 export interface APIGetContestSuggestionsRequest {
   readonly query: string;
@@ -19,6 +19,7 @@ interface ContestSuggestionItem {
   name: string;
   discipline: Discipline;
   year: number;
+  gender: Gender;
 }
 
 const requestURL = 'api/contest/suggestions';
