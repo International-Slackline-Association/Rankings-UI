@@ -34,6 +34,14 @@ class Footer extends React.PureComponent<Props> {
           >
             Contest Registration
           </Link>
+          <Link
+            href={
+              '//data.slacklineinternational.org/sport/ranking-list-faq/'
+            }
+            target="_blank"
+          >
+            FAQ
+          </Link>
         </LinkGroup>
         <LinkGroup>
           <Link

@@ -167,6 +167,7 @@ class Rankings extends React.PureComponent<Props, State> {
             isOpen={openCategories}
             categories={categories}
             filters={filters}
+            showInfoPopover={true}
           />
           <MainTableSection>
             <MainTable

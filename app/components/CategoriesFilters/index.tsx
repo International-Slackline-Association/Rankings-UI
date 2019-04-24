@@ -8,6 +8,7 @@ import InfoPopover from './InfoPopover';
 
 interface Props extends CategoryFilterProps {
   isOpen?: boolean;
+  showInfoPopover?: boolean;
 }
 
 interface State {
@@ -41,7 +42,7 @@ class CategoriesFilters extends React.PureComponent<Props, State> {
             isOpen={this.state.isOpen}
             onClick={this.handleClick}
           />
-          {/* <InfoPopover /> */}
+          {this.props.showInfoPopover && <InfoPopover />}
         </ButtonSectionWrapper>
         <CategoryFilterSection {...this.props} isOpen={this.state.isOpen} />
       </React.Fragment>

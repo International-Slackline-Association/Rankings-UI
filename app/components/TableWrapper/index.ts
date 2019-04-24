@@ -5,12 +5,16 @@ import styled, { colors } from 'styles/styled-components';
 interface Props {
   tdCSS?: any;
   trCSS?: any;
+  hideOnMobile?: boolean;
 }
 
 const TableWrapper = styled<Props, 'div'>('div')`
   position: relative;
   margin-bottom: 24px;
-
+  display: ${props => (props.hideOnMobile ? 'none' : 'inherit')};
+  ${media.tablet`
+    display: inherit;
+  `};
   table {
     width: 100%;
     text-align: center;
@@ -21,7 +25,7 @@ const TableWrapper = styled<Props, 'div'>('div')`
       color: ${props => props.theme.textSecondary};
       display: none;
 
-      ${media.desktop`
+      ${media.tablet`
         display: table-header-group;
       `};
 
@@ -62,7 +66,7 @@ const TableWrapper = styled<Props, 'div'>('div')`
           background-color: ${props => rgba(props.theme.appBackground, 1)};
         }
 
-        ${media.desktop`
+        ${media.tablet`
           display: table-row;
           padding-top: 0;
           &:nth-child(even) {
@@ -72,10 +76,11 @@ const TableWrapper = styled<Props, 'div'>('div')`
 
         td#hide-mobile {
           display: none;
-          ${media.desktop`
+          ${media.tablet`
             display: table-cell;
           `};
         }
+
         td {
           padding: 0;
           width: 100%;
@@ -98,10 +103,6 @@ const TableWrapper = styled<Props, 'div'>('div')`
           }
 
           ${media.tablet`
-            width: 50%;
-          `};
-
-          ${media.desktop`
             padding: 14px 0;
             margin-bottom: 0px;
             width: auto;
@@ -115,7 +116,6 @@ const TableWrapper = styled<Props, 'div'>('div')`
             }
           `};
           ${props => props.tdCSS};
-
         }
       }
     }

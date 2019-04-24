@@ -5,10 +5,13 @@ import { SmallLoading } from 'components/Loading';
 import ProfileAvatar from 'components/Avatars/ProfileAvatar';
 import CountryAvatar from 'components/Avatars/CountryAvatar';
 import TableWrapper from 'components/TableWrapper';
-import Group from 'components/TableWrapper/Group';
 import ShowMoreButton from 'components/LoadableButton/ShowMoreButton';
 import { TableItemsResult } from '../types';
 import { EmptyContainer } from 'components/Containers';
+import RankingsTableWrapper from './RankingsTableWrapper';
+import DivGroup from './DivGroup';
+import { VerticalDivider } from 'components/Divider';
+import Group from 'components/TableWrapper/Group';
 
 const countryList = require('country-list');
 
@@ -37,7 +40,7 @@ class MainTable extends React.PureComponent<Props, State> {
     const { items, next } = tableItems;
     return (
       <Wrapper>
-        <TableWrapper tdCSS={tableItemsPrefixCSS}>
+        <TableWrapper hideOnMobile>
           <table>
             <thead>
               <tr>
@@ -89,15 +92,66 @@ class MainTable extends React.PureComponent<Props, State> {
                 })}
             </tbody>
           </table>
-          {isItemsLoading ? (
-            <SmallLoading minHeight={'100px'} />
-          ) : !items || !items.length ? (
-            <EmptyContainer minHeight={'100px'}>
-              There is no data to display
-              {/* <FormattedMessage {...messages.} /> */}
-            </EmptyContainer>
-          ) : null}
         </TableWrapper>
+
+        {/* Displayed in mobile only */}
+        <RankingsTableWrapper>
+          <table>
+            <thead>
+              <tr>
+                <td>Rank</td>
+                <td>Name</td>
+              </tr>
+            </thead>
+            <tbody>
+              {items &&
+                items.map((item, index) => {
+                  const prevItem = items[index - 1];
+                  return (
+                    <tr key={item.id}>
+                      <td>
+                        {item.rank === null
+                          ? '-'
+                          : item.rank ||
+                            (prevItem && prevItem.points === item.points
+                              ? '“'
+                              : index + 1)}
+                      </td>
+
+                      <td>
+                        <DivGroup>
+                          <ProfileAvatar imageUrl={item.thumbnailUrl} />
+                          <DivGroup vertical>
+                            <a
+                              href={`/athlete/${item.id}`}
+                              onClick={this.onItemClick(item.id)}
+                            >
+                              {item.name + ' ' + item.surname}
+                            </a>
+                            <DivGroup>
+                              <CountryAvatar small code={item.country} />
+                              <div>
+                                {countryList.getName(item.country) ||
+                                  item.country}
+                              </div>
+                              <div> | {item.points} points</div>
+                            </DivGroup>
+                          </DivGroup>
+                        </DivGroup>
+                      </td>
+                    </tr>
+                  );
+                })}
+            </tbody>
+          </table>
+        </RankingsTableWrapper>
+        {isItemsLoading ? (
+          <SmallLoading minHeight={'100px'} />
+        ) : !items || !items.length ? (
+          <EmptyContainer minHeight={'100px'}>
+            There is no data to display
+          </EmptyContainer>
+        ) : null}
         {next && (
           <ShowMoreButton
             onClick={this.props.showMoreClicked}
@@ -110,52 +164,6 @@ class MainTable extends React.PureComponent<Props, State> {
     );
   }
 }
-
-const tableItemsPrefixCSS = css`
-  &:nth-child(1) {
-    &::before {
-      width: 50%;
-      content: 'Rank :';
-    }
-  }
-  &:nth-child(2) {
-    width: 60%;
-    display: flex;
-    align-items: center;
-    ${media.tablet`
-      width: auto;
-    `};
-    &::before {
-      width: 25%;
-      content: '';
-      ${media.desktop`
-          display: block;
-          min-width: 20%;
-          width: 20%;
-      `};
-    }
-  }
-
-  &:nth-child(4) {
-    display: flex;
-
-    width: auto;
-    &::before {
-      ${media.desktop`
-          display: block;
-          min-width: 33%;
-          width: 33%;
-          content: '';
-      `};
-    }
-  }
-  &:nth-child(5) {
-    &::before {
-      width: 50%;
-      content: 'Points :';
-    }
-  }
-`;
 
 const Wrapper = styled.div`
   /* background-color: ${colors.green}; */

@@ -4,15 +4,16 @@ import ReactCountryFlag from 'react-country-flag';
 
 interface Props {
   code: string;
+  small?: boolean;
 }
 
 function CountryAvatar(props: Props) {
   return (
-    <Wrapper>
+    <Wrapper small={props.small}>
       <ReactCountryFlag
         styleProps={{
-          width: '25px',
-          height: '25px',
+          width: props.small ? '15px' : '25px',
+          height: props.small ? '15px' : '25px',
           backgroundSize: 'cover',
         }}
         code={props.code}
@@ -21,11 +22,14 @@ function CountryAvatar(props: Props) {
     </Wrapper>
   );
 }
-const Wrapper = styled.div`
+interface WrapperProps {
+  small?: boolean;
+}
+const Wrapper = styled<WrapperProps, 'div'>('div')`
   display: flex;
   align-items: center;
-  width: 25px;
-  height: 25px;
+  width: ${props => (props.small ? '15px' : '25px')};
+  height: ${props => (props.small ? '15px' : '25px')};
   flex: none;
   overflow: hidden;
   border-radius: 50%;

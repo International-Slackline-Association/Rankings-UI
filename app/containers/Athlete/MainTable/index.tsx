@@ -130,7 +130,7 @@ const tableItemsRatioCSS = css`
 const tableItemsPrefixCSS = css`
   &:nth-child(1) {
     padding-left: 0px;
-    ${media.desktop`
+    ${media.tablet`
       padding-left: 48px;
     `} &::before {
       content: 'Contest Name :';
@@ -138,7 +138,7 @@ const tableItemsPrefixCSS = css`
   }
   &:nth-child(2) {
     padding-left: 0px;
-    ${media.desktop`
+    ${media.tablet`
       padding-left: 48px;
     `} &::before {
       content: 'Discipline : ';

@@ -151,7 +151,7 @@ const tableItemsPrefixCSS = css`
   }
   &:nth-child(2) {
     padding-left: 0px;
-    ${media.desktop`
+    ${media.tablet`
       padding-left: 24px;
     `} &::before {
       content: 'Contest Name :';
@@ -161,7 +161,7 @@ const tableItemsPrefixCSS = css`
     display: flex;
     &::before {
       content: 'Country :';
-      ${media.desktop`
+      ${media.tablet`
         display: block;
         min-width: 25%;
         width: 25%;
@@ -172,7 +172,7 @@ const tableItemsPrefixCSS = css`
 
   &:nth-child(4) {
     padding-left: 0px;
-    ${media.desktop`
+    ${media.tablet`
       padding-left: 24px;
     `} &::before {
       content: 'Discipline :';

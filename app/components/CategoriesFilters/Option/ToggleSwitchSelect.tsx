@@ -45,7 +45,6 @@ class ToggleSwitchSelect extends React.PureComponent<Props> {
             id="switch"
           />
           <Label htmlFor="switch">Toggle</Label>
-          <InfoPopover />
         </SwitchWrapper>
 
         <ToggleSwitchSelectOption
@@ -64,7 +63,7 @@ const SwitchWrapper = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: flex-end;
-  height: 120%;
+  /* height: 120%; */
 `;
 
 const Label = styled.label`

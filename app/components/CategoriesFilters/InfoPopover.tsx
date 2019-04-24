@@ -81,8 +81,8 @@ const Button = styled(DefaultButton)`
   display: flex;
   flex: none;
 
-  width: 12px;
-  height: 12px;
+  width: 15px;
+  height: 15px;
 `;
 
 export default InfoPopover;
