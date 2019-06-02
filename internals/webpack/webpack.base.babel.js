@@ -11,6 +11,8 @@ const webpack = require('webpack');
 // in the next major version of loader-utils.'
 process.noDeprecation = true;
 
+const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin');
+
 module.exports = options => ({
   mode: options.mode,
   entry: options.entry,
@@ -148,6 +150,7 @@ module.exports = options => ({
         S3_IMAGES_BUCKET_URL: JSON.stringify(process.env.S3_IMAGES_BUCKET_URL),
       },
     }),
+    new ForkTsCheckerWebpackPlugin({ checkSyntacticErrors: true }),
   ]),
   resolve: {
     modules: ['node_modules', 'app'],
