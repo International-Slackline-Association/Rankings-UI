@@ -36,7 +36,7 @@ module.exports = options => ({
         },
       },
       {
-        test: /\.tsx?$/,
+        test: /\.ts(x?)$/,
         exclude: /node_modules/,
         use: options.tsLoaders,
       },
