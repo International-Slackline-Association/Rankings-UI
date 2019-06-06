@@ -25,6 +25,7 @@ interface RankingsItem {
   readonly points: string;
   readonly thumbnailUrl: string;
   readonly contestCount?: number;
+  readonly changeInRank: number;
 }
 
 const requestURL = 'api/rankings/list';
@@ -33,20 +34,9 @@ export async function getRankingResults(
 ): Promise<APIRankingsResponse> {
   const body = request;
   return axios
-    .post(requestURL, body, axiosConfig(dummyResponse, 1000, false))
+    .post(requestURL, body, axiosConfig(undefined, 1000, false))
     .then(resp => {
       const result = resp.data as APIRankingsResponse;
       return result;
     });
 }
-
-const dummyResponse = (): AxiosResponse<APIRankingsResponse> => {
-  return {
-    data: mockResponse(),
-    status: 200,
-    statusText: '',
-    config: axios.defaults,
-    headers: undefined,
-    request: undefined,
-  };
-};

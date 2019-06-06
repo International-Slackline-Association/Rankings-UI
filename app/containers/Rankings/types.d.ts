@@ -47,6 +47,7 @@ interface TableItem {
   readonly points: string;
   readonly thumbnailUrl: string;
   readonly contestCount?: number;
+  readonly changeInRank: number;
 }
 
 /* --- ACTIONS --- */

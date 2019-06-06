@@ -1,6 +1,6 @@
 import { APIRankingsResponse } from '../results';
 
-const resultsDefaultGenerator = (): APIRankingsResponse => {
+const resultsDefaultGenerator = () => {
   return {
     items: [
       {

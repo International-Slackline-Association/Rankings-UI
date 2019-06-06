@@ -12,6 +12,10 @@ import RankingsTableWrapper from './RankingsTableWrapper';
 import DivGroup from './DivGroup';
 import { VerticalDivider } from 'components/Divider';
 import Group from 'components/TableWrapper/Group';
+import RankUpIcon from '../../../components/Icons/rankUpIcon';
+import RankDownIcon from '../../../components/Icons/rankDownIcon';
+import RankNoChangeIcon from '../../../components/Icons/rankNoChangeIcon';
+import RankChangeIcon from './RankChangeIcon';
 
 const countryList = require('country-list');
 
@@ -40,16 +44,21 @@ class MainTable extends React.PureComponent<Props, State> {
     const { items, next } = tableItems;
     return (
       <Wrapper>
-        <TableWrapper hideOnMobile>
+        <TableWrapper
+          hideOnMobile
+          trCSS={tableItemsRatioCSS}
+          tdCSS={tableItemsPrefixCSS}
+        >
           <table>
             <thead>
               <tr>
-                <td title="Rank">Rank</td>
-                <td title="Name">Name</td>
-                <td title="Age">Age</td>
-                <td title="Country">Country</td>
-                <td title="Points">Points</td>
-                <td title="Contests">Total Contests</td>
+                <td>Rank</td>
+                <td title="Change in the rank with the last contest">Δ</td>
+                <td>Name</td>
+                <td>Age</td>
+                <td>Country</td>
+                <td>Points</td>
+                <td>Total Contests</td>
               </tr>
             </thead>
             <tbody>
@@ -65,6 +74,9 @@ class MainTable extends React.PureComponent<Props, State> {
                             (prevItem && prevItem.points === item.points
                               ? '“'
                               : index + 1)}
+                      </td>
+                      <td title="Change in the rank with the last contest">
+                        <RankChangeIcon changeInRank={item.changeInRank} />
                       </td>
                       <td>
                         <Group alignLeft={true}>
@@ -100,6 +112,7 @@ class MainTable extends React.PureComponent<Props, State> {
             <thead>
               <tr>
                 <td>Rank</td>
+                <td>Δ</td>
                 <td>Name</td>
               </tr>
             </thead>
@@ -107,17 +120,21 @@ class MainTable extends React.PureComponent<Props, State> {
               {items &&
                 items.map((item, index) => {
                   const prevItem = items[index - 1];
+                  const rank =
+                    item.rank === null
+                      ? '-'
+                      : item.rank ||
+                        (prevItem && prevItem.points === item.points
+                          ? '“'
+                          : index + 1);
                   return (
                     <tr key={item.id}>
                       <td>
-                        {item.rank === null
-                          ? '-'
-                          : item.rank ||
-                            (prevItem && prevItem.points === item.points
-                              ? '“'
-                              : index + 1)}
+                        {rank}
                       </td>
-
+                      <td>
+                        <RankChangeIcon changeInRank={item.changeInRank} />
+                      </td>
                       <td>
                         <DivGroup>
                           <ProfileAvatar imageUrl={item.thumbnailUrl} />
@@ -164,6 +181,51 @@ class MainTable extends React.PureComponent<Props, State> {
     );
   }
 }
+
+const tableItemsRatioCSS = css`
+  &:nth-child(1) {
+    width: 10%;
+  }
+  &:nth-child(2) {
+    width: 5%;
+  }
+  &:nth-child(3) {
+    width: 25%;
+  }
+  &:nth-child(4) {
+    width: 10%;
+  }
+  &:nth-child(5) {
+    width: 20%;
+  }
+  &:nth-child(6) {
+    width: 20%;
+  }
+  &:nth-child(6) {
+    width: 10%;
+  }
+`;
+
+const tableItemsPrefixCSS = css`
+  &:nth-child(3) {
+    display: flex;
+    &::before {
+      display: block;
+      min-width: 25%;
+      width: 25%;
+      content: '';
+    }
+  }
+  &:nth-child(5) {
+    display: flex;
+    &::before {
+      display: block;
+      min-width: 33%;
+      width: 33%;
+      content: '';
+    }
+  }
+`;
 
 const Wrapper = styled.div`
   /* background-color: ${colors.green}; */
