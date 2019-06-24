@@ -57,8 +57,13 @@ class InfoPopover extends React.PureComponent<Props, State> {
           <TextArea>
             <span>
               <p>
+                The Slackline World Ranking List shows athletes who compete at
+                contests.
+                <br />
+                <br />
                 <strong>* Top Score</strong> sums up the
-                <strong> TWO </strong>highest point rankings collected
+                <strong> TWO </strong>
+                highest point rankings collected.
                 <br />
                 <br />
                 <strong>* Point Score</strong> combines the points from all

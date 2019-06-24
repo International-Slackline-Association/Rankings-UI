@@ -19,6 +19,7 @@ import { ISelectOption } from 'types/application';
 import Footer from 'components/Footer';
 import { RouteComponentProps } from 'react-router';
 import { Utils } from 'utils';
+import DisciplineCategory from 'components/CategoriesFilters/Data/DisciplineCategories';
 
 interface OwnProps extends RouteComponentProps {}
 
@@ -168,7 +169,16 @@ class Rankings extends React.PureComponent<Props, State> {
             categories={categories}
             filters={filters}
             showInfoPopover={true}
-          />
+          >
+            <DisciplineCategory
+              categorySelected={this.onCategorySelected(0)}
+              type="z"
+            />
+            <DisciplineCategory
+              categorySelected={this.onCategorySelected(0)}
+              type="z"
+            />
+          </CategoriesFilters>
           <MainTableSection>
             <MainTable
               tableItems={this.props.tableResult}

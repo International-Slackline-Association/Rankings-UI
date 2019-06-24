@@ -7,7 +7,7 @@ import {
 } from '@material-ui/core';
 import ReactDOM from 'react-dom';
 import SelectOptionContainer from './Option/SelectOptionContainer';
-import { ICategory } from './types';
+import { ICategory, CategoryType } from './types';
 import styled from 'styles/styled-components';
 import ToggleSwitchSelect from './Option/ToggleSwitchSelect';
 import DisciplineIcon from 'components/Icons/categories/DisciplineIcon';
@@ -16,6 +16,7 @@ import CategoryIcon from 'components/Icons/categories/CategoryIcon';
 const InputLabel = IL as any;
 interface Props {
   category: ICategory;
+  type: CategoryType;
 }
 
 interface State {
@@ -125,7 +126,7 @@ class CategorySelect extends React.PureComponent<Props, State> {
               <SelectOptionContainer
                 categorySelected={this.handleSelect}
                 options={this.props.category.options}
-                type={this.props.category.title}
+                type={this.props.type}
               />
             </StyledSelect>
           </FormControl>

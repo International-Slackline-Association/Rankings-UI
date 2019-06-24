@@ -44,7 +44,9 @@ class CategoriesFilters extends React.PureComponent<Props, State> {
           />
           {this.props.showInfoPopover && <InfoPopover />}
         </ButtonSectionWrapper>
-        <CategoryFilterSection {...this.props} isOpen={this.state.isOpen} />
+        <CategoryFilterSection {...this.props} isOpen={this.state.isOpen}>
+          {this.props.children}
+        </CategoryFilterSection>
       </React.Fragment>
     );
   }

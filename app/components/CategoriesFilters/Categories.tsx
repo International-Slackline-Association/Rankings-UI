@@ -20,13 +20,13 @@ class Categories extends React.PureComponent<Props> {
       <Wrapper>
         {/* <Section type="category" /> */}
         {/* <VerticalDivider /> */}
-        {categories.length > 0 ? (
+        {/* {categories.length > 0 ? (
           categories.map(category => (
             <CategorySelect key={category.title} category={category} />
           ))
         ) : (
           <SmallLoading />
-        )}
+        )} */}
       </Wrapper>
     );
   }
