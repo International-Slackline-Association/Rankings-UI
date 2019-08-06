@@ -21,6 +21,7 @@ import CategoriesFilters from 'components/CategoriesFilters';
 import { IFilter, ICategory } from 'components/CategoriesFilters/types';
 import { ISelectOption } from 'types/application';
 import Footer from 'components/Footer';
+import { Helmet } from 'react-helmet';
 
 interface OwnProps {}
 
@@ -108,6 +109,10 @@ class Contests extends React.PureComponent<Props, State> {
       (this.props.tableResult.items || []).length > 0 || categories.length > 0;
     return (
       <React.Fragment>
+        <Helmet>
+          <title>Contests</title>
+          <meta name="description" content="Slackline Contests" />
+        </Helmet>
         <TabPanel>
           <CategoriesFilters
             isOpen={openCategories}

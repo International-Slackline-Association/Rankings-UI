@@ -19,6 +19,7 @@ import { ISelectOption } from 'types/application';
 import Footer from 'components/Footer';
 import { RouteComponentProps } from 'react-router';
 import { Utils } from 'utils';
+import { Helmet } from 'react-helmet';
 
 interface OwnProps extends RouteComponentProps {}
 
@@ -162,6 +163,10 @@ class Rankings extends React.PureComponent<Props, State> {
       (this.props.tableResult.items || []).length > 0 || categories.length > 0;
     return (
       <React.Fragment>
+        <Helmet>
+          <title>Athlete Rankings</title>
+          <meta name="description" content="Slackline Athlete Rankings" />
+        </Helmet>
         <TabPanel>
           <CategoriesFilters
             isOpen={openCategories}
