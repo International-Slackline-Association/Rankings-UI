@@ -7,7 +7,7 @@ import { clickEffect } from 'styles/mixins';
 interface Props {
   value?: string;
   text: string;
-  isMain?: boolean;
+  highlihted?: boolean;
 }
 
 class DisciplineButton extends React.PureComponent<Props> {
@@ -15,7 +15,7 @@ class DisciplineButton extends React.PureComponent<Props> {
     return (
       <Wrapper>
         <MainWrapper>
-          <Border isMain={this.props.isMain} />
+          <Border isMain={this.props.highlihted} />
           {this.props.value && <Icon value={this.props.value} />}
           <Text>{this.props.text}</Text>
         </MainWrapper>
@@ -26,10 +26,10 @@ class DisciplineButton extends React.PureComponent<Props> {
 }
 const Shade = styled.div`
   display: flex;
-  border-radius: 20px;
+  /* border-radius: 20px; */
   opacity: 0.2;
   background-color: ${props => props.theme.primaryDarkest};
-  box-shadow: rgba(0, 0, 0, 0.5) 0px 1px 4px 2px;
+  box-shadow: rgba(0, 0, 0, 0.5) 0px 2px 4px 2px;
   width: 80%;
   height: 2px;
   transform: skew(-15deg);
@@ -52,9 +52,9 @@ const Text = styled.span`
   word-wrap: break-word;
   width: 50px;
   ${media.desktop`
-    font-size: 1.2rem;
+    font-size: 1rem;
     margin: 4px 16px 16px 16px;
-    width: 80px;
+    width: 70px;
   `};
 `;
 
@@ -94,7 +94,7 @@ const Wrapper = styled.div`
   align-items: flex-start;
   justify-content: center;
   ${clickEffect};
-  margin: 8px;
+  margin: 8px 16px;
   ${media.desktop`
   `};
 `;

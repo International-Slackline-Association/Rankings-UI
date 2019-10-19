@@ -9,20 +9,21 @@ class DisciplineSection extends React.PureComponent<Props> {
   public render() {
     return (
       <Wrapper>
+        <Title>SELECT A DISCIPLINE</Title>
         <DisciplineWrapper>
-          <Title>SELECT A DISCIPLINE</Title>
-          <DisciplineButton value={'2'} text={'Aerial'} />
+          <DisciplineButton value={'2'} text={'Aerial'} highlihted/>
           <DisciplineButton value={'3'} text={'Jib Static'} />
           <DisciplineButton value={'4'} text={'Transfer'} />
-          <DisciplineButton value={'7'} text={'Sprint'} />
+          <DisciplineButton value={'7'} text={'Sprint'} highlihted/>
           <DisciplineButton value={'8'} text={'Speed Highline'} />
+          <DisciplineButton value={'5'} text={'Freestyle Highline'} highlihted/>
           <DisciplineButton value={'10'} text={'Blind Walking'} />
           <DisciplineButton value={'9'} text={'Endurance'} />
           <DisciplineButton value={'11'} text={'Rigging'} />
-          <DisciplineButton value={'0'} text={'Overall Trickline'} isMain />
-          <DisciplineButton value={'0'} text={'Overall Speedline'} isMain/>
-          <DisciplineButton value={'0'} text={'Overall Highline'} isMain/>
-          <DisciplineButton value={'0'} text={'Overall Slackliner'} isMain/>
+          <DisciplineButton value={'0'} text={'Overall Trickline'}  />
+          <DisciplineButton value={'0'} text={'Overall Speedline'} />
+          <DisciplineButton value={'0'} text={'Overall Highline'} />
+          <DisciplineButton value={'0'} text={'Overall Slackliner'} />
         </DisciplineWrapper>
       </Wrapper>
     );
@@ -34,11 +35,11 @@ const Title = styled.span`
   font-size: 1.5rem;
   font-weight: bold;
   align-self: center;
-  flex-basis: 100%;
-  margin: 8px 0px;
+  /* flex-basis: 100%; */
+  margin: 32px 0px 0px 0px;
   ${media.desktop`
     font-size: 2.5rem;
-    /* margin: 32px 33% 0px 0px; */
+    /* margin-left: 10%; */
   `};
 `;
 
@@ -51,9 +52,10 @@ const DisciplineWrapper = styled.div`
   justify-content: center;
   align-items: center;
   ${media.desktop`
-    width: 75%;
-    justify-content: flex-start;
-    margin: 32px 3vw 32px 0px;
+    width: 100%;
+    /* justify-content: flex-start; */
+    padding: 0px 5vw;
+    margin: 16px 0px 32px 0;
   `};
 `;
 
@@ -73,7 +75,7 @@ const Wrapper = styled.div`
   clip-path: ellipse(137% 100% at 50% 100%);
   ${media.desktop`
     justify-content: center;
-    align-items: flex-end;
+    /* align-items: flex-end; */
     clip-path: ellipse(100% 60% at 100% 50%);
   `};
 `;
