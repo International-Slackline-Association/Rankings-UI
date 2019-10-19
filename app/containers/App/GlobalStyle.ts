@@ -1,4 +1,5 @@
 import { createGlobalStyle } from 'styles/styled-components';
+import '../../styles/font-face.css';
 
 /* tslint:disable:max-line-length */
 const GlobalStyle = createGlobalStyle`
@@ -12,12 +13,12 @@ const GlobalStyle = createGlobalStyle`
   }
 
   body {
-    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-family: 'metropolis', 'Helvetica Neue', Helvetica, Arial, sans-serif;
   }
 
-  body.fontLoaded {
+  /* body.fontLoaded {
     font-family: 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
-  }
+  } */
 
   #app {
     background-color: #fafafa;
@@ -27,7 +28,7 @@ const GlobalStyle = createGlobalStyle`
 
   p,
   label {
-    font-family: 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-family: 'metropolis', 'Helvetica Neue', Helvetica, Arial, sans-serif;
     line-height: 1.5em;
   }
 `;

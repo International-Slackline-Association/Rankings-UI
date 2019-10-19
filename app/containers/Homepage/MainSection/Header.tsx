@@ -1,6 +1,7 @@
 import * as React from 'react';
 import styled from 'styles/styled-components';
 import media from 'styles/media';
+import { clickEffect } from 'styles/mixins';
 
 interface Props {}
 
@@ -18,13 +19,13 @@ class Header extends React.PureComponent<Props> {
 }
 
 const Link = styled.a`
-  color: ${props => props.theme.componentBackgroundInverted};
+  ${clickEffect};
+  color: ${props => props.theme.newTextPrimaryLighter};
   font-size: 0.8rem;
   font-weight: bold;
   text-align: center;
   margin: 0px 16px 8px 0px;
   text-decoration: none;
-  cursor: pointer;
   &:hover {
     text-decoration: underline;
   }

@@ -1,4 +1,5 @@
 import breakpoints, { IBreakpoints } from './breakpoints';
+import {rgba} from 'polished';
 
 // theme.ts
 export interface IThemeInterface {
@@ -29,6 +30,9 @@ export interface IThemeInterface {
 
   accent: string;
   accentSecondary: string;
+
+  newTextPrimary: string;
+  newTextPrimaryLighter: string;
 }
 
 import * as styledComponents from 'styled-components';
@@ -86,6 +90,9 @@ export const theme = {
 
     accent: colors.isaRed,
     accentSecondary: '#FBBC72',
+
+    newTextPrimary: colors.grayDark,
+    newTextPrimaryLighter: rgba(colors.grayDark, 0.5),
   },
 };
 

@@ -48,14 +48,14 @@ const DisciplineWrapper = styled.div`
   flex-direction: row;
   flex-wrap: wrap;
   width: 100%;
-  margin: 16px 0px;
+  margin: 8px 0px;
   justify-content: center;
   align-items: center;
   ${media.desktop`
     width: 100%;
     /* justify-content: flex-start; */
     padding: 0px 5vw;
-    margin: 16px 0px 32px 0;
+    margin: 8px 0px 32px 0;
   `};
 `;
 

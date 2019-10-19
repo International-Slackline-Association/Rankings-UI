@@ -60,7 +60,7 @@ const SmallButton = styled(LinkButton)`
 const Button = styled(LinkButton)`
   ${elevatedShadow};
   border-radius: 4px;
-  background-color: ${props => props.theme.accentSecondary};
+  background-color: ${props => props.theme.primary};
   color: ${props => props.theme.textInverted};
   font-weight: bold;
   padding: 8px;
@@ -75,7 +75,7 @@ const Button = styled(LinkButton)`
 
 const Subtitle = styled.span`
   display: flex;
-  color: ${props => props.theme.componentBackgroundInverted};
+  color: ${props => props.theme.newTextPrimary};
   font-weight: bold;
   text-align: center;
   font-size: 1rem;
@@ -92,7 +92,7 @@ const Subtitle = styled.span`
 
 const Title = styled.span`
   display: flex;
-  color: ${props => props.theme.primaryDarker};
+  color: ${props => props.theme.primary};
   font-weight: bold;
   text-align: center;
   font-size: 2rem;
