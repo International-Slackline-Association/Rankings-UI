@@ -34,6 +34,7 @@ import AdminAthlete from 'containers/AdminAthlete/Loadable';
 import AdminTopBarTabs from 'containers/AdminTopBarTabs';
 import AdminContest from 'containers/AdminContest/Loadable';
 import AdminResults from 'containers/AdminResults/Loadable';
+import Homepage from 'containers/Homepage/Loadable';
 
 const AppWrapper = styled.div`
   width: 100%;
@@ -63,50 +64,59 @@ class App extends React.Component<{}, {}> {
             >
               <meta name="description" content="ISA Rankings" />
             </Helmet>
-            <NavBar />
             <Switch>
-              <Route path="/admin">
-                <React.Fragment>
-                  <AdminTopBarTabs />
-                  <Switch>
-                    <Redirect exact from="/admin" to="/admin/athlete" />
-                    <Route
-                      exact
-                      path="/admin/athlete"
-                      component={AuthenticatorHoc(AdminAthlete)}
-                    />
-                    <Route
-                      exact
-                      path="/admin/contest"
-                      component={AuthenticatorHoc(AdminContest)}
-                    />
-                    <Route
-                      exact
-                      path="/admin/results"
-                      component={AuthenticatorHoc(AdminResults)}
-                    />
-                  </Switch>
-                </React.Fragment>
-              </Route>
-              <Route path="/">
-                <React.Fragment>
-                  <TopBarTabs />
-                  <Switch>
-                    <Redirect exact from="/" to="/rankings" />
-                    <Route exact path="/rankings" component={Rankings} />
-                    <Route exact path="/contests" component={Contests} />
-                    <Route
-                      exact
-                      path="/contest/:id/:discipline"
-                      component={Contest}
-                    />
-                    <Route exact path="/athlete/:id" component={Athlete} />
-                    <Route exact path="/notfound" component={NotFoundPage} />
-                    <Route component={NotFoundPage} />
-                  </Switch>
-                </React.Fragment>
-              </Route>
+              <Route exact path="/" component={Homepage} />
+              <React.Fragment>
+                <NavBar />
+                <Switch>
+                  <Route path="/admin">
+                    <React.Fragment>
+                      <AdminTopBarTabs />
+                      <Switch>
+                        <Redirect exact from="/admin" to="/admin/athlete" />
+                        <Route
+                          exact
+                          path="/admin/athlete"
+                          component={AuthenticatorHoc(AdminAthlete)}
+                        />
+                        <Route
+                          exact
+                          path="/admin/contest"
+                          component={AuthenticatorHoc(AdminContest)}
+                        />
+                        <Route
+                          exact
+                          path="/admin/results"
+                          component={AuthenticatorHoc(AdminResults)}
+                        />
+                      </Switch>
+                    </React.Fragment>
+                  </Route>
+                  <Route path="/">
+                    <React.Fragment>
+                      <TopBarTabs />
+                      <Switch>
+                        <Route exact path="/rankings" component={Rankings} />
+                        <Route exact path="/contests" component={Contests} />
+                        <Route
+                          exact
+                          path="/contest/:id/:discipline"
+                          component={Contest}
+                        />
+                        <Route exact path="/athlete/:id" component={Athlete} />
+                        <Route
+                          exact
+                          path="/notfound"
+                          component={NotFoundPage}
+                        />
+                        <Route component={NotFoundPage} />
+                      </Switch>
+                    </React.Fragment>
+                  </Route>
+                </Switch>
+              </React.Fragment>
             </Switch>
+
             <GlobalStyle />
           </AppWrapper>
         </MuiThemeProvider>

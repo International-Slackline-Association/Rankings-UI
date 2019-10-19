@@ -1,10 +1,11 @@
 import styled, { css } from 'styles/styled-components';
 
 export const clickEffect = css`
-  transition: all 0.2s;
+  transition: opacity 0.2s;
+  cursor: pointer;
 
   &:hover {
-    transition: all 0.2s;
+    transition: opacity 0.2s;
     opacity: 0.7;
   }
 

@@ -21,6 +21,14 @@ export interface IThemeInterface {
   modalBackground: string;
   // fontFamily: string;
   breakpoints: IBreakpoints;
+
+  primaryDarker: string;
+  primaryDarkest: string;
+  primaryLighter: string;
+  primaryLightest: string;
+
+  accent: string;
+  accentSecondary: string;
 }
 
 import * as styledComponents from 'styled-components';
@@ -36,7 +44,7 @@ export const colors = {
   white: '#FFF',
   grayLight: '#9098A6',
   red: '#F46060',
-  isaRed: '#f04d32',
+  isaRed: '#E05E5E',
   orange: '#F7931A',
   isaBlue: '#00A099',
   paleWhite: '#F0F0F0',
@@ -46,7 +54,7 @@ export const colors = {
   textPrimary: 'rgba(0, 0, 0, 0.87)',
   textSecondary: 'rgba(0, 0, 0, 0.54)',
   divider: 'rgba(0, 0, 0, 0.12)',
-  appBackground: '#F0F0F0',
+  appBackground: '#F5F8FF',
   textTopBar: 'red',
 };
 
@@ -70,6 +78,14 @@ export const theme = {
     modalBackground: '#222',
     // fontFamily: '\'Source Sans Pro\', sans-serif;',
     breakpoints: breakpoints,
+
+    primaryDarker: '#00807B',
+    primaryDarkest: '#006965',
+    primaryLighter: '#21ACA7',
+    primaryLightest: '#46C5C0',
+
+    accent: colors.isaRed,
+    accentSecondary: '#FBBC72',
   },
 };
 

@@ -13,13 +13,14 @@ import Overall from './disciplines/Overall';
 
 interface DisciplineIconProps {
   readonly value: string;
+  className?: string;
 }
 
 /* tslint:disable:max-line-length */
 class DisciplineIcon extends React.PureComponent<DisciplineIconProps> {
   public render() {
     const value = this.props.value;
-    return <div>{renderSwitch(value)}</div>;
+    return <div className={this.props.className}>{renderSwitch(value)}</div>;
   }
 }
 
