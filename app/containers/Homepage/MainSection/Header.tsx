@@ -9,10 +9,27 @@ class Header extends React.PureComponent<Props> {
   public render() {
     return (
       <Wrapper>
-        <Link>About ISA Sport</Link>
-        <Link>Members & Partners</Link>
-        <Link>FAQ</Link>
-        <Link>Open Source</Link>
+        <Link href={'//www.slacklineinternational.org/about/'} target="_blank">
+          About ISA Sport
+        </Link>
+        <Link
+          href={'//www.slacklineinternational.org/members-partners/'}
+          target="_blank"
+        >
+          Members & Partners
+        </Link>
+        <Link
+          href={'//data.slacklineinternational.org/sport/ranking-list-faq/'}
+          target="_blank"
+        >
+          FAQ
+        </Link>
+        <Link
+          href={'//github.com/International-Slackline-Association'}
+          target="_blank"
+        >
+          Open Source
+        </Link>
       </Wrapper>
     );
   }

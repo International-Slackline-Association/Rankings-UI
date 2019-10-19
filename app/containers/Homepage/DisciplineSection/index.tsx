@@ -3,7 +3,9 @@ import styled from 'styles/styled-components';
 import media from 'styles/media';
 import DisciplineButton from './DisciplineButton';
 
-interface Props {}
+interface Props {
+  onClick: (value: string) => void;
+}
 
 class DisciplineSection extends React.PureComponent<Props> {
   public render() {
@@ -11,19 +13,74 @@ class DisciplineSection extends React.PureComponent<Props> {
       <Wrapper>
         <Title>SELECT A DISCIPLINE</Title>
         <DisciplineWrapper>
-          <DisciplineButton value={'2'} text={'Aerial'} highlihted/>
-          <DisciplineButton value={'3'} text={'Jib Static'} />
-          <DisciplineButton value={'4'} text={'Transfer'} />
-          <DisciplineButton value={'7'} text={'Sprint'} highlihted/>
-          <DisciplineButton value={'8'} text={'Speed Highline'} />
-          <DisciplineButton value={'5'} text={'Freestyle Highline'} highlihted/>
-          <DisciplineButton value={'10'} text={'Blind Walking'} />
-          <DisciplineButton value={'9'} text={'Endurance'} />
-          <DisciplineButton value={'11'} text={'Rigging'} />
-          <DisciplineButton value={'0'} text={'Overall Trickline'}  />
-          <DisciplineButton value={'0'} text={'Overall Speedline'} />
-          <DisciplineButton value={'0'} text={'Overall Highline'} />
-          <DisciplineButton value={'0'} text={'Overall Slackliner'} />
+          <DisciplineButton
+            onClick={this.props.onClick}
+            value={'2'}
+            text={'Aerial'}
+            highlihted
+          />
+          <DisciplineButton
+            onClick={this.props.onClick}
+            value={'3'}
+            text={'Jib Static'}
+          />
+          <DisciplineButton
+            onClick={this.props.onClick}
+            value={'4'}
+            text={'Transfer'}
+          />
+          <DisciplineButton
+            onClick={this.props.onClick}
+            value={'7'}
+            text={'Sprint'}
+            highlihted
+          />
+          <DisciplineButton
+            onClick={this.props.onClick}
+            value={'8'}
+            text={'Speed Highline'}
+          />
+          <DisciplineButton
+            onClick={this.props.onClick}
+            value={'5'}
+            text={'Freestyle Highline'}
+            highlihted
+          />
+          <DisciplineButton
+            onClick={this.props.onClick}
+            value={'10'}
+            text={'Blind Walking'}
+          />
+          <DisciplineButton
+            onClick={this.props.onClick}
+            value={'9'}
+            text={'Endurance'}
+          />
+          <DisciplineButton
+            onClick={this.props.onClick}
+            value={'11'}
+            text={'Rigging'}
+          />
+          <DisciplineButton
+            onClick={this.props.onClick}
+            value={'0'}
+            text={'Overall Trickline'}
+          />
+          <DisciplineButton
+            onClick={this.props.onClick}
+            value={'0'}
+            text={'Overall Speedline'}
+          />
+          <DisciplineButton
+            onClick={this.props.onClick}
+            value={'0'}
+            text={'Overall Highline'}
+          />
+          <DisciplineButton
+            onClick={this.props.onClick}
+            value={'0'}
+            text={'Overall Slackliner'}
+          />
         </DisciplineWrapper>
       </Wrapper>
     );

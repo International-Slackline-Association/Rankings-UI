@@ -2,16 +2,18 @@ import * as React from 'react';
 
 import rankingsLogo from './Rankings-Logo-Text.svg';
 import styled from 'styles/styled-components';
+import { clickEffect } from 'styles/mixins';
 
 const RankingsLogo: React.SFC<{}> = () => {
   return (
-    <Wrapper>
+    <Wrapper href="/">
       <img src={rankingsLogo as any} />
     </Wrapper>
   );
 };
 
-const Wrapper = styled.div`
+const Wrapper = styled.a`
+  ${clickEffect};
   height: 100%;
   display: flex;
   align-items: center;

@@ -2,7 +2,13 @@ import * as React from 'react';
 import styled from 'styles/styled-components';
 import media from 'styles/media';
 import Header from './Header';
-import { DefaultButton, elevatedShadow, clickEffect, LinkButton } from 'styles/mixins';
+import {
+  DefaultButton,
+  elevatedShadow,
+  clickEffect,
+  LinkButton,
+} from 'styles/mixins';
+import isaSportLogo from './isaSportLogo.svg?file';
 
 interface Props {}
 
@@ -11,24 +17,55 @@ class MainSection extends React.PureComponent<Props> {
     return (
       <Wrapper>
         <Header />
+        <ISASportLogo />
         <Title>
           Slackline World <br />
           Ranking List
         </Title>
         <Subtitle>
-          Lorem Ipsum is simply dummy text of the printing and typesetting
-          industry. Lorem Ipsum has been the industry's standard dummy text ever
-          since the 1500s, when an unknown printer took a galley
+          Official slackline world rankings from International Slackline
+          Association <br />
+          <br />
+          <span>9 disciplines | 180+ contests | 700+ athletes</span>
         </Subtitle>
-        <Button>Learn More</Button>
+        <Button
+          href={'//www.slacklineinternational.org/ranking-list/'}
+          target="_blank"
+        >
+          Learn More
+        </Button>
         <ButtonWrapper>
-          <SmallButton>Athlete Registration</SmallButton>
-          <SmallButton>Contest Registration</SmallButton>
+          <SmallButton
+            href={
+              '//data.slacklineinternational.org/sport/athlete-registration/'
+            }
+            target="_blank"
+          >
+            Athlete Registration
+          </SmallButton>
+          <SmallButton
+            href={
+              '//data.slacklineinternational.org/sport/contest-registration/'
+            }
+            target="_blank"
+          >
+            Contest Registration
+          </SmallButton>
         </ButtonWrapper>
       </Wrapper>
     );
   }
 }
+
+const ISASportLogo = styled.img.attrs({
+  src: isaSportLogo,
+})`
+  height: 64px;
+  margin-top: 16px;
+  ${media.desktop`
+    margin-top: 15vh;
+  `};
+`;
 
 const ButtonWrapper = styled.div`
   display: flex;
@@ -60,11 +97,11 @@ const SmallButton = styled(LinkButton)`
 const Button = styled(LinkButton)`
   ${elevatedShadow};
   border-radius: 4px;
-  background-color: ${props => props.theme.primary};
+  background-color: ${props => props.theme.primaryLighter};
   color: ${props => props.theme.textInverted};
   font-weight: bold;
   padding: 8px;
-  margin-top: 8px;
+  margin-top: 16px;
   width: 75%;
   ${media.desktop`
     font-size: 1.5rem;
@@ -75,6 +112,7 @@ const Button = styled(LinkButton)`
 
 const Subtitle = styled.span`
   display: flex;
+  flex-direction: column;
   color: ${props => props.theme.newTextPrimary};
   font-weight: bold;
   text-align: center;
@@ -82,12 +120,18 @@ const Subtitle = styled.span`
   margin-top: 8px;
   ${media.desktop`
     text-align: left;
-    font-size: 1.5rem;
-    margin-top: 5vh;
+    font-size: 1.2rem;
+    margin-top: 32px;
     /* line-height: 1.5rem; */
-
     width: 50%;
   `};
+
+  & span {
+    font-size: 1.2rem;
+    ${media.desktop`
+      font-size: 1.5rem;
+  `};
+  }
 `;
 
 const Title = styled.span`
@@ -96,12 +140,12 @@ const Title = styled.span`
   font-weight: bold;
   text-align: center;
   font-size: 2rem;
-  margin-top: 16px;
+  margin-top: 8px;
   ${media.desktop`
     text-align: left;
     font-size: 4rem;
-    margin-top: 15vh;
-    letter-spacing: 5px;
+    margin-top: 16px;
+    letter-spacing: 2px;
     line-height: 50px;
   `};
 `;

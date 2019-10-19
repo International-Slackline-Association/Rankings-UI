@@ -8,12 +8,20 @@ interface Props {
   value?: string;
   text: string;
   highlihted?: boolean;
+  onClick: (value: string) => void;
 }
 
 class DisciplineButton extends React.PureComponent<Props> {
+  private onSelect = (value?: string) => {
+    return evt => {
+      if (value) {
+        this.props.onClick(value);
+      }
+    };
+  };
   public render() {
     return (
-      <Wrapper>
+      <Wrapper onClick={this.onSelect(this.props.value)}>
         <MainWrapper>
           <Border isMain={this.props.highlihted} />
           {this.props.value && <Icon value={this.props.value} />}

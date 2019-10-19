@@ -13,7 +13,7 @@ interface OwnProps extends RouteComponentProps {}
 interface StateProps {}
 
 interface DispatchProps {
-  updateLocation(path: string, id: string): void;
+  loadRankings(discipline: string): void;
 }
 
 type Props = StateProps & DispatchProps & OwnProps;
@@ -25,8 +25,10 @@ class Homepage extends React.PureComponent<Props, State> {
     super(props);
   }
 
-  private onAthleteClick = (id: string) => {
-    this.props.updateLocation('athlete', id);
+  private onDisciplineSelect = (id: string) => {
+    if (id) {
+      this.props.loadRankings(id);
+    }
   };
 
   public render() {
@@ -38,7 +40,7 @@ class Homepage extends React.PureComponent<Props, State> {
         </Helmet>
         <Wrapper>
           <MainSection />
-          <DisciplineSection />
+          <DisciplineSection onClick={this.onDisciplineSelect} />
         </Wrapper>
       </React.Fragment>
     );
@@ -50,14 +52,14 @@ function mapDispatchToProps(
   ownProps: OwnProps,
 ): DispatchProps {
   return {
-    updateLocation: (path: string, id: string) => {
+    loadRankings: (id: string) => {
       if (id) {
-        dispatch(push(`/${path}/${id}`));
+        dispatch(push(`/rankings?category=1,${id},0,0,0`));
       }
     },
   };
 }
 
-const withConnect = connect(mapDispatchToProps);
+const withConnect = connect(undefined, mapDispatchToProps);
 
 export default compose(withConnect)(Homepage);
