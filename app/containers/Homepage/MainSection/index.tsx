@@ -17,50 +17,64 @@ class MainSection extends React.PureComponent<Props> {
     return (
       <Wrapper>
         <Header />
-        <ISASportLogo />
-        <Title>
-          Slackline World <br />
-          Ranking List
-        </Title>
-        <Subtitle>
-          Explore the world ranking of slackline sports.
-          <br />
-          <br />
-          The 3 disciplines highlighted
-          (Trickline Aerial, Speedline Sprint and Freestyle Highline) gather the
-          largest number of Athletes. The overall categories combine discipline
-          rankings to show the best allround and most versatile slackliners.
-          {/* <br />
+        <CenterWrapper>
+          <ISASportLogo />
+          <Title>
+            Slackline World <br />
+            Ranking List
+          </Title>
+          <Subtitle>
+            Explore the world ranking of slackline sports.
+            <br />
+            <br />
+            The 3 disciplines highlighted (Trickline Aerial, Speedline Sprint
+            and Freestyle Highline) gather the largest number of Athletes. The
+            overall categories combine discipline rankings to show the best
+            allround and most versatile slackliners.
+            {/* <br />
           <span>9 disciplines | 180+ contests | 700+ athletes</span> */}
-        </Subtitle>
-        <Button
-          href={'//www.slacklineinternational.org/ranking-list/'}
-          target="_blank"
-        >
-          Learn More
-        </Button>
-        <ButtonWrapper>
-          <SmallButton
-            href={
-              '//data.slacklineinternational.org/sport/athlete-registration/'
-            }
+          </Subtitle>
+          <Button
+            href={'//www.slacklineinternational.org/ranking-list/'}
             target="_blank"
           >
-            Athlete Registration
-          </SmallButton>
-          <SmallButton
-            href={
-              '//data.slacklineinternational.org/sport/contest-registration/'
-            }
-            target="_blank"
-          >
-            Contest Registration
-          </SmallButton>
-        </ButtonWrapper>
+            Learn More
+          </Button>
+          <ButtonWrapper>
+            <SmallButton
+              href={
+                '//data.slacklineinternational.org/sport/athlete-registration/'
+              }
+              target="_blank"
+            >
+              Athlete Registration
+            </SmallButton>
+            <SmallButton
+              href={
+                '//data.slacklineinternational.org/sport/contest-registration/'
+              }
+              target="_blank"
+            >
+              Contest Registration
+            </SmallButton>
+          </ButtonWrapper>
+        </CenterWrapper>
       </Wrapper>
     );
   }
 }
+
+const CenterWrapper = styled.div`
+  display: flex;
+  justify-self: center;
+  flex-direction: column;
+  align-items: center;
+  margin: auto 0px;
+  ${media.desktop`
+    align-items: flex-start;
+    /* justify-content: space-between; */
+  `};
+`;
 
 const ISASportLogo = styled.img.attrs({
   src: isaSportLogo,
@@ -68,7 +82,7 @@ const ISASportLogo = styled.img.attrs({
   height: 64px;
   margin-top: 16px;
   ${media.desktop`
-    margin-top: 15vh;
+    margin-top: 32px;
   `};
 `;
 
@@ -125,9 +139,9 @@ const Subtitle = styled.p`
   ${media.desktop`
     text-align: left;
     font-size: 1.2rem;
-    margin-top: 32px;
+    margin-top: 16px;
     /* line-height: 1.5rem; */
-    width: 50%;
+    width: 75%;
   `};
 `;
 
@@ -141,7 +155,7 @@ const Title = styled.span`
   ${media.desktop`
     text-align: left;
     font-size: 4rem;
-    margin-top: 16px;
+    margin-top: 8px;
     letter-spacing: 2px;
     line-height: 50px;
   `};
@@ -154,6 +168,7 @@ const Wrapper = styled.div`
   padding: 8px 16px 16px 32px;
   ${media.desktop`
     align-items: flex-start;
+    justify-content: space-between;
     height: 100%;
     width: 45vw;
     padding: 32px 32px 32px 128px;
