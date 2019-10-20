@@ -15,6 +15,8 @@ import { Provider } from 'react-redux';
 import { ConnectedRouter } from 'connected-react-router';
 import FontFaceObserver from 'fontfaceobserver';
 import history from 'utils/history';
+import * as OfflinePluginRuntime from 'offline-plugin/runtime';
+
 import 'sanitize.css/sanitize.css';
 
 // Import root app
@@ -41,7 +43,6 @@ import { translationMessages } from 'i18n';
 // openSansObserver.load().then(() => {
 //   document.body.classList.add('fontLoaded');
 // });
-
 
 // Create redux store with history
 const initialState = {};
@@ -93,5 +94,10 @@ if (!(window as any).Intl) {
 // it's not most important operation and if main code fails,
 // we do not want it installed
 if (process.env.NODE_ENV === 'production') {
-  require('offline-plugin/runtime').install();
+  OfflinePluginRuntime.install({
+    onUpdateReady: () => {
+      // Tells to new SW to take control immediately
+      OfflinePluginRuntime.applyUpdate();
+    },
+  });
 }

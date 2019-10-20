@@ -23,10 +23,15 @@ class MainSection extends React.PureComponent<Props> {
           Ranking List
         </Title>
         <Subtitle>
-          Official slackline world rankings from International Slackline
-          Association <br />
+          Explore the world ranking of slackline sports.
           <br />
-          <span>9 disciplines | 180+ contests | 700+ athletes</span>
+          <br />
+          The 3 disciplines highlighted
+          (Trickline Aerial, Speedline Sprint and Freestyle Highline) gather the
+          largest number of Athletes. The overall categories combine discipline
+          rankings to show the best allround and most versatile slackliners.
+          {/* <br />
+          <span>9 disciplines | 180+ contests | 700+ athletes</span> */}
         </Subtitle>
         <Button
           href={'//www.slacklineinternational.org/ranking-list/'}
@@ -105,11 +110,11 @@ const Button = styled(LinkButton)`
   ${media.desktop`
     font-size: 1.5rem;
     width: 25rem;
-    margin-top: 5vh
+    margin-top: 32px;
   `};
 `;
 
-const Subtitle = styled.span`
+const Subtitle = styled.p`
   display: flex;
   flex-direction: column;
   color: ${props => props.theme.newTextPrimary};
@@ -124,13 +129,6 @@ const Subtitle = styled.span`
     /* line-height: 1.5rem; */
     width: 50%;
   `};
-
-  & span {
-    font-size: 1.2rem;
-    ${media.desktop`
-      font-size: 1.5rem;
-  `};
-  }
 `;
 
 const Title = styled.span`

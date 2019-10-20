@@ -25,7 +25,7 @@ class DisciplineButton extends React.PureComponent<Props> {
       <Wrapper onClick={this.onSelect(this.props.value)}>
         <MainWrapper>
           <Border isMain={this.props.highlihted} />
-          {this.props.value && <Icon value={this.props.iconValue || this.props.value} />}
+          <Icon value={this.props.iconValue || this.props.value} />
           <Text>{this.props.text}</Text>
         </MainWrapper>
         <Shade />
@@ -45,12 +45,15 @@ const Shade = styled.div`
 `;
 
 const Icon = styled(DisciplineIcon)`
-  width: 50%;
+  width: 50px;
   margin: 16px 16px 4px 16px;
   & svg {
     width: 100%;
     height: 100%;
   }
+  ${media.desktop`
+    width: 70px;
+  `};
 `;
 
 const Text = styled.span`

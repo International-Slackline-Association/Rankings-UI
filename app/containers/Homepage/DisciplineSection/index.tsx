@@ -73,11 +73,6 @@ class DisciplineSection extends React.PureComponent<Props> {
             iconValue={'0'}
             text={'Overall Speedline'}
           />
-          {/* <DisciplineButton
-            onClick={this.props.onClick}
-            value={'8'}
-            text={'Overall Highline'}
-          /> */}
           <DisciplineButton
             onClick={this.props.onClick}
             value={'0'}
@@ -111,7 +106,6 @@ const DisciplineWrapper = styled.div`
   justify-content: center;
   align-items: center;
   ${media.desktop`
-    width: 100%;
     /* justify-content: flex-start; */
     padding: 0px 5vw;
     margin: 16px 0px 32px 0;
