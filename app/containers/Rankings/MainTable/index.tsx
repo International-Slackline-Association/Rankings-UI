@@ -58,7 +58,7 @@ class MainTable extends React.PureComponent<Props, State> {
                 <td>Age</td>
                 <td>Country</td>
                 <td>Points</td>
-                <td>Total Contests</td>
+                {/* <td>Total Contests</td> */}
               </tr>
             </thead>
             <tbody>
@@ -98,7 +98,7 @@ class MainTable extends React.PureComponent<Props, State> {
                         </Group>
                       </td>
                       <td>{item.points} points</td>
-                      <td id="hide-mobile">{item.contestCount || 'N/A'}</td>
+                      {/* <td id="hide-mobile">{item.contestCount || 'N/A'}</td> */}
                     </tr>
                   );
                 })}
