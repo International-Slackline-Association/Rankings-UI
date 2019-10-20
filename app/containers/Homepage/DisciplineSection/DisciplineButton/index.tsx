@@ -5,14 +5,15 @@ import DisciplineIcon from 'components/Icons/categories/DisciplineIcon';
 import { clickEffect } from 'styles/mixins';
 
 interface Props {
-  value?: string;
+  value: string;
+  iconValue?: string;
   text: string;
   highlihted?: boolean;
   onClick: (value: string) => void;
 }
 
 class DisciplineButton extends React.PureComponent<Props> {
-  private onSelect = (value?: string) => {
+  private onSelect = (value: string) => {
     return evt => {
       if (value) {
         this.props.onClick(value);
@@ -24,7 +25,7 @@ class DisciplineButton extends React.PureComponent<Props> {
       <Wrapper onClick={this.onSelect(this.props.value)}>
         <MainWrapper>
           <Border isMain={this.props.highlihted} />
-          {this.props.value && <Icon value={this.props.value} />}
+          {this.props.value && <Icon value={this.props.iconValue || this.props.value} />}
           <Text>{this.props.text}</Text>
         </MainWrapper>
         <Shade />
@@ -57,7 +58,7 @@ const Text = styled.span`
   font-size: 0.8em;
   font-weight: bold;
   margin: 4px 16px 16px 16px;
-  word-wrap: break-word;
+  /* word-wrap: break-word; */
   width: 50px;
   ${media.desktop`
     font-size: 1rem;

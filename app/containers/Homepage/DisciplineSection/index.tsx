@@ -16,29 +16,29 @@ class DisciplineSection extends React.PureComponent<Props> {
           <DisciplineButton
             onClick={this.props.onClick}
             value={'2'}
-            text={'Aerial'}
+            text={'Trickline Aerial'}
             highlihted
           />
           <DisciplineButton
             onClick={this.props.onClick}
             value={'3'}
-            text={'Jib Static'}
+            text={'Trickline Jib Static'}
           />
           <DisciplineButton
             onClick={this.props.onClick}
             value={'4'}
-            text={'Transfer'}
+            text={'Trickline Transfer'}
           />
           <DisciplineButton
             onClick={this.props.onClick}
             value={'7'}
-            text={'Sprint'}
+            text={'Speedline Sprint'}
             highlihted
           />
           <DisciplineButton
             onClick={this.props.onClick}
             value={'8'}
-            text={'Speed Highline'}
+            text={'Speedline Long'}
           />
           <DisciplineButton
             onClick={this.props.onClick}
@@ -63,19 +63,21 @@ class DisciplineSection extends React.PureComponent<Props> {
           />
           <DisciplineButton
             onClick={this.props.onClick}
-            value={'0'}
+            value={'1'}
+            iconValue={'0'}
             text={'Overall Trickline'}
           />
           <DisciplineButton
             onClick={this.props.onClick}
-            value={'0'}
+            value={'6'}
+            iconValue={'0'}
             text={'Overall Speedline'}
           />
-          <DisciplineButton
+          {/* <DisciplineButton
             onClick={this.props.onClick}
-            value={'0'}
+            value={'8'}
             text={'Overall Highline'}
-          />
+          /> */}
           <DisciplineButton
             onClick={this.props.onClick}
             value={'0'}
@@ -112,7 +114,7 @@ const DisciplineWrapper = styled.div`
     width: 100%;
     /* justify-content: flex-start; */
     padding: 0px 5vw;
-    margin: 8px 0px 32px 0;
+    margin: 16px 0px 32px 0;
   `};
 `;
 

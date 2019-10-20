@@ -45,6 +45,40 @@ interface State {}
 class Rankings extends React.PureComponent<Props, State> {
   constructor(props: Props) {
     super(props);
+    // const selectedCategories = this.getCategoriesFromPathSearch(
+    //   this.props.location.search,
+    // );
+    // if (selectedCategories && selectedCategories.length > 0) {
+    //   for (let index = 0; index < selectedCategories.length; index++) {
+    //     const value = selectedCategories[index];
+    //     this.selectCategory(index, value);
+    //   }
+    // }
+
+    if (this.props.categories) {
+      const selectedCategories = this.getCategoriesFromPathSearch(
+        this.props.location.search,
+      );
+      if (selectedCategories && selectedCategories.length > 0) {
+        for (let index = 0; index < selectedCategories.length; index++) {
+          const selectedValue = selectedCategories[index];
+          const currentSelectedValue = this.props.categories[index]
+            .selectedValue;
+          if (selectedValue !== currentSelectedValue) {
+            this.selectCategory(index, selectedValue);
+          }
+        }
+        this.props.dispatch(actions.loadTableItems(selectedCategories));
+        // const selectedDiscipline = selectedCategories[1];
+        // const currentDiscipline = this.props.categories[1];
+        // if (currentDiscipline.selectedValue !== selectedDiscipline) {
+        //   this.selectCategory(1, selectedDiscipline);
+        //   this.props.dispatch(actions.loadTableItems(selectedCategories));
+        // }
+      }
+    } else {
+      this.loadCategories();
+    }
 
     if (!this.props.tableResult || this.props.tableResult.items.length === 0) {
       this.props.dispatch(
@@ -53,14 +87,12 @@ class Rankings extends React.PureComponent<Props, State> {
         ),
       );
     }
-    if (!this.props.categories) {
-      this.loadCategories();
-    }
   }
   private loadCategories = () => {
     const selectedCategoryArray = this.getCategoriesFromPathSearch(
       this.props.location.search,
     );
+    console.log(selectedCategoryArray && selectedCategoryArray[1]);
     this.props.dispatch(actions.loadCategories(selectedCategoryArray));
   };
 
@@ -85,12 +117,15 @@ class Rankings extends React.PureComponent<Props, State> {
   private onCategorySelected = (index: number) => (value: string) => {
     this.selectCategory(index, value);
     this.props.dispatch(actions.loadTableItems());
-    this.loadCategories();
+    if (index === 0) {
+      // Ranking type category causes other categories to change.
+      this.loadCategories();
+    }
   };
 
   private selectCategory = (index: number, value: string) => {
-    this.props.dispatch(actions.setCategorySelectedValue(index, value));
     this.changeCategoryQueryParams(index, value);
+    this.props.dispatch(actions.setCategorySelectedValue(index, value));
   };
 
   private categories(): ICategory[] {
@@ -158,6 +193,7 @@ class Rankings extends React.PureComponent<Props, State> {
 
   public render() {
     const categories = this.categories();
+    // console.log(categories[1]);
     const filters = this.filters();
     const openCategories =
       (this.props.tableResult.items || []).length > 0 || categories.length > 0;

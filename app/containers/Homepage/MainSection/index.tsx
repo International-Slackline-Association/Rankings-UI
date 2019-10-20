@@ -74,8 +74,7 @@ const ButtonWrapper = styled.div`
   justify-content: space-between;
   width: 75%;
   ${media.desktop`
-    width: 50%;
-
+    width: 25rem;
   `};
 `;
 
@@ -105,7 +104,7 @@ const Button = styled(LinkButton)`
   width: 75%;
   ${media.desktop`
     font-size: 1.5rem;
-    width: 50%;
+    width: 25rem;
     margin-top: 5vh
   `};
 `;
