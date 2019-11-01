@@ -27,8 +27,8 @@ class MainSection extends React.PureComponent<Props> {
             Explore the world ranking of slackline sports.
             <br />
             <br />
-            The 3 disciplines highlighted (Trickline Aerial, Speedline Sprint
-            and Freestyle Highline) gather the largest number of Athletes. The
+            The 3 highlighted disciplines (Trickline Aerial, Speedline Sprint
+            and Freestyle Highline) gather the largest number of athletes. The
             overall categories combine discipline rankings to show the best
             allround and most versatile slackliners.
             {/* <br />

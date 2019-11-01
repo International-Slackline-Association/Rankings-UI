@@ -90,7 +90,7 @@ const Title = styled.span`
   font-weight: bold;
   align-self: center;
   /* flex-basis: 100%; */
-  margin: 32px 0px 0px 0px;
+  margin: 32px 0px 0px 2vw;
   ${media.desktop`
     font-size: 2.5rem;
     /* margin-left: 10%; */
@@ -107,7 +107,7 @@ const DisciplineWrapper = styled.div`
   align-items: center;
   ${media.desktop`
     /* justify-content: flex-start; */
-    padding: 0px 5vw;
+    padding: 0px 2vw 0px 4vw;
     margin: 16px 0px 32px 0;
   `};
 `;

@@ -52,7 +52,7 @@ const Icon = styled(DisciplineIcon)`
     height: 100%;
   }
   ${media.desktop`
-    width: 70px;
+    width: 40px;
   `};
 `;
 
@@ -66,7 +66,7 @@ const Text = styled.span`
   ${media.desktop`
     font-size: 1rem;
     margin: 4px 16px 16px 16px;
-    width: 70px;
+    width: 65px;
   `};
 `;
 
