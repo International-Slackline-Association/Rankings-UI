@@ -1,4 +1,5 @@
 import styled, { css } from 'styles/styled-components';
+import media from './media';
 
 export const clickEffect = css`
   transition: opacity 0.2s;
@@ -47,4 +48,14 @@ export const LinkButton = styled.a`
 export const elevatedShadow = css`
   box-shadow: rgba(0, 0, 0, 0.2) 0px 1px 5px 0px,
     rgba(0, 0, 0, 0.14) 0px 2px 2px 0px, rgba(0, 0, 0, 0.12) 0px 3px 1px -2px;
+`;
+
+export const hideScrollBar = css`
+  ${media.desktop`
+    ::-webkit-scrollbar {
+      width: 0px;
+      height: 0px;
+      background: transparent; /* make scrollbar transparent */
+    }
+  `};
 `;

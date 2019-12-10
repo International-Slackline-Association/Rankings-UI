@@ -7,6 +7,7 @@ import media from 'styles/media';
 import Filters, { FilterProps } from './Filters';
 import { Collapse } from '@material-ui/core';
 import LeftArrowIcon from 'components/Icons/LeftArrowIcon';
+import { hideScrollBar } from 'styles/mixins';
 
 export type CategoryFilterProps = FilterProps & CategoryProps;
 
@@ -61,6 +62,7 @@ const Wrapper = styled(ComponentBackground)`
   overflow: hidden;
   overflow-x: scroll;
   overflow-y: hidden;
+  ${hideScrollBar};
   display: flex;
   flex-direction: column;
   align-self: flex-start;

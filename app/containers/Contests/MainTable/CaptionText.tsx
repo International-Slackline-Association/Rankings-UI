@@ -17,7 +17,7 @@ class CaptionText extends React.PureComponent<Props> {
         {gender.id !== 0 && (
           <React.Fragment>
             <GenderWrapper>
-              <PeopleIcon value={gender.id.toString()} />
+              <GenderIcon value={gender.id.toString()} />
             </GenderWrapper>
             <GenderText gender={gender.id}>{gender.name}</GenderText>
           </React.Fragment>
@@ -29,6 +29,18 @@ class CaptionText extends React.PureComponent<Props> {
     );
   }
 }
+
+const GenderIcon = styled(PeopleIcon)`
+  height: 15px;
+  width: 15px;
+  align-items: center;
+  margin-right: 0px !important; /* override div */
+  display: flex;
+  & svg {
+    width: 100%;
+    height: 100%;
+  }
+`;
 
 const Wrapper = styled.div`
   display: flex;

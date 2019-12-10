@@ -92,7 +92,6 @@ class Rankings extends React.PureComponent<Props, State> {
     const selectedCategoryArray = this.getCategoriesFromPathSearch(
       this.props.location.search,
     );
-    console.log(selectedCategoryArray && selectedCategoryArray[1]);
     this.props.dispatch(actions.loadCategories(selectedCategoryArray));
   };
 

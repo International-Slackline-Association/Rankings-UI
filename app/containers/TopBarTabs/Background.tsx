@@ -4,6 +4,7 @@ import zIndex from 'styles/zIndex';
 import media from 'styles/media';
 import styled from 'styles/styled-components';
 import ComponentBackground from 'components/ComponentBackground';
+import { hideScrollBar } from 'styles/mixins';
 
 const padding = (size: number) => AppConstants.LeftPadding(size);
 
@@ -17,6 +18,8 @@ const Background = styled(ComponentBackground)` && {
   z-index: ${zIndex('TopBarTabs')};
   justify-content: flex-start;
   overflow-x: scroll;
+  ${hideScrollBar};
+
 
   ${media.tablet`
     height: ${AppConstants.TopBarHeight(breakpoints.tablet)}px;

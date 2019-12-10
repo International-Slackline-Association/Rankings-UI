@@ -10,7 +10,9 @@ import {
 } from 'styles/mixins';
 import isaSportLogo from './isaSportLogo.svg?file';
 
-interface Props {}
+interface Props {
+  contestsClicked: () => void;
+}
 
 class MainSection extends React.PureComponent<Props> {
   public render() {
@@ -27,25 +29,28 @@ class MainSection extends React.PureComponent<Props> {
             Explore the world ranking of slackline sports.
             <br />
             <br />
-            The 3 highlighted disciplines (Trickline Aerial, Speedline Sprint
-            and Freestyle Highline) gather the largest number of athletes. The
-            overall categories combine discipline rankings to show the best
-            allround and most versatile slackliners.
-            {/* <br />
-          <span>9 disciplines | 180+ contests | 700+ athletes</span> */}
+            Slacklining is broader than you think! Athletes are currently
+            competing in a wide range of disciplines, the most popular being
+            Trickline Aerial, Freestyle Highline and Speedline Sprint.
+            <br />
+            <br />
+            Explore the worldwide ranking of slackline athletes. Click on any
+            discipline to discover the best ranking athletes.
           </Subtitle>
-          <Button
-            href={'//www.slacklineinternational.org/ranking-list/'}
-            target="_blank"
-          >
-            Learn More
-          </Button>
           <ButtonWrapper>
+            <SmallButton
+              href={'//www.slacklineinternational.org/ranking-list/'}
+              target="_blank"
+              isPrimaryColor
+            >
+              Learn More
+            </SmallButton>
             <SmallButton
               href={
                 '//data.slacklineinternational.org/sport/athlete-registration/'
               }
               target="_blank"
+              isPrimaryColor
             >
               Athlete Registration
             </SmallButton>
@@ -56,6 +61,9 @@ class MainSection extends React.PureComponent<Props> {
               target="_blank"
             >
               Contest Registration
+            </SmallButton>
+            <SmallButton onClick={this.props.contestsClicked}>
+              Contests
             </SmallButton>
           </ButtonWrapper>
         </CenterWrapper>
@@ -82,7 +90,7 @@ const ISASportLogo = styled.img.attrs({
   height: 64px;
   margin-top: 16px;
   ${media.desktop`
-    margin-top: 32px;
+    margin-top: 16px;
   `};
 `;
 
@@ -91,42 +99,44 @@ const ButtonWrapper = styled.div`
   margin-top: 8px;
   align-items: center;
   justify-content: space-between;
+  flex-wrap: wrap;
   width: 75%;
   ${media.desktop`
     width: 25rem;
   `};
 `;
 
-const SmallButton = styled(LinkButton)`
+const SmallButton = styled<any>(LinkButton)`
   ${elevatedShadow};
   border-radius: 4px;
-  background-color: ${props => props.theme.accent};
+  background-color: ${props =>
+    props.isPrimaryColor ? props.theme.primaryLighter : props.theme.accent};
   color: ${props => props.theme.textInverted};
   font-weight: bold;
   padding: 8px;
   margin-top: 8px;
   width: 48%;
-  font-size: 0.5rem;
+  font-size: 0.7rem;
   ${media.desktop`
     font-size: 1rem;
   `};
 `;
 
-const Button = styled(LinkButton)`
-  ${elevatedShadow};
-  border-radius: 4px;
-  background-color: ${props => props.theme.primaryLighter};
-  color: ${props => props.theme.textInverted};
-  font-weight: bold;
-  padding: 8px;
-  margin-top: 16px;
-  width: 75%;
-  ${media.desktop`
-    font-size: 1.5rem;
-    width: 25rem;
-    margin-top: 32px;
-  `};
-`;
+// const Button = styled(LinkButton)`
+//   ${elevatedShadow};
+//   border-radius: 4px;
+//   background-color: ${props => props.theme.primaryLighter};
+//   color: ${props => props.theme.textInverted};
+//   font-weight: bold;
+//   padding: 8px;
+//   margin-top: 16px;
+//   width: 75%;
+//   ${media.desktop`
+//     font-size: 1.5rem;
+//     width: 25rem;
+//     margin-top: 16px;
+//   `};
+// `;
 
 const Subtitle = styled.p`
   display: flex;
@@ -138,7 +148,7 @@ const Subtitle = styled.p`
   margin-top: 8px;
   ${media.desktop`
     text-align: left;
-    font-size: 1.2rem;
+    font-size: 1rem;
     margin-top: 16px;
     /* line-height: 1.5rem; */
     width: 75%;
@@ -169,7 +179,7 @@ const Wrapper = styled.div`
   ${media.desktop`
     align-items: flex-start;
     justify-content: space-between;
-    height: 100%;
+    /* height: 100%; */
     width: 45vw;
     padding: 32px 32px 32px 128px;
   `};

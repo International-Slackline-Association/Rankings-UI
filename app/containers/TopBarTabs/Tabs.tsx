@@ -6,6 +6,7 @@ import AppConstants from 'styles/AppConstants';
 import breakpoints from 'styles/breakpoints';
 import media from 'styles/media';
 import { TabsProps } from '@material-ui/core/Tabs/Tabs';
+import { hideScrollBar } from 'styles/mixins';
 
 const tabs = (props: TabsProps) => (
   <Tabs classes={{ flexContainer: 'flexContainer' }} {...props} />
@@ -18,6 +19,7 @@ const StyledTabs = styled(tabs)`
     z-index: ${zIndex('TopBarTabs')};
     justify-content: flex-start;
     overflow-x: scroll;
+    ${hideScrollBar};
 
     & .flexContainer {
       height: ${AppConstants.TopBarHeight(breakpoints.mobile)}px;

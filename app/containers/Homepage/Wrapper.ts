@@ -1,5 +1,6 @@
 import styled from 'styles/styled-components';
 import media from 'styles/media';
+import { hideScrollBar } from 'styles/mixins';
 
 export const Wrapper = styled.div`
   display: flex;
@@ -9,6 +10,6 @@ export const Wrapper = styled.div`
   ${media.desktop`
     flex-direction: row;
     width: 100vw;
-    height: 100vh;
+    min-height: 100vh;
   `};
 `;

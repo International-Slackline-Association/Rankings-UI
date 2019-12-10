@@ -3,30 +3,47 @@ import styled from 'styles/styled-components';
 import media from 'styles/media';
 import DisciplineIcon from 'components/Icons/categories/DisciplineIcon';
 import { clickEffect } from 'styles/mixins';
+import PeopleIcon from 'components/Icons/categories/PeopleIcon';
 
 interface Props {
   value: string;
   iconValue?: string;
   text: string;
-  highlihted?: boolean;
-  onClick: (value: string) => void;
+  gender?: '1' | '2';
+  onClick: (id: string, gender?: string) => void;
 }
 
 class DisciplineButton extends React.PureComponent<Props> {
-  private onSelect = (value: string) => {
+  private onSelect = (id: string, gender?: string) => {
     return evt => {
-      if (value) {
-        this.props.onClick(value);
+      if (id) {
+        this.props.onClick(id, gender);
       }
     };
   };
   public render() {
     return (
-      <Wrapper onClick={this.onSelect(this.props.value)}>
+      <Wrapper onClick={this.onSelect(this.props.value, this.props.gender)}>
         <MainWrapper>
-          <Border isMain={this.props.highlihted} />
+          <Border />
+          {this.props.gender && <GenderIcon value={this.props.gender} />}
           <Icon value={this.props.iconValue || this.props.value} />
-          <Text>{this.props.text}</Text>
+          <Text>
+            {this.props.text}
+            {/* {this.props.gender && (
+              <span>
+                <br />
+                {this.props.gender === '1' ? 'Men' : 'Women'}
+              </span>
+            )} */}
+          </Text>
+
+          {/* {this.props.gender && (
+            <GenderWrapper>
+              <GenderIcon value={this.props.gender === 'men' ? '1' : '2'} />
+              <GenderText gender={1}>{this.props.gender}</GenderText>
+            </GenderWrapper>
+          )} */}
         </MainWrapper>
         <Shade />
       </Wrapper>
@@ -46,27 +63,69 @@ const Shade = styled.div`
 
 const Icon = styled(DisciplineIcon)`
   width: 50px;
-  margin: 16px 16px 4px 16px;
+  margin: 16px 8px 4px 16px;
   & svg {
     width: 100%;
     height: 100%;
   }
   ${media.desktop`
-    width: 40px;
+    width: 40%;
   `};
 `;
 
 const Text = styled.span`
   text-align: center;
-  font-size: 0.8em;
+  font-size: 0.8rem;
   font-weight: bold;
   margin: 4px 16px 16px 16px;
   /* word-wrap: break-word; */
   width: 50px;
   ${media.desktop`
-    font-size: 1rem;
-    margin: 4px 16px 16px 16px;
-    width: 65px;
+    font-size: 0.9rem;
+    margin: 4px 16px 16px 8px;
+    width: 5rem;
+  `};
+
+  & span {
+    font-style: italic;
+    font-weight: normal;
+  }
+`;
+
+const GenderWrapper = styled.div`
+  display: flex;
+  align-items: center;
+  margin: 4px 16px 16px 16px;
+  ${media.desktop`
+    font-size: 0.9rem;
+    margin: 4px 16px 16px 8px;
+    /* width: 5rem; */
+  `};
+`;
+interface GenderTextProps {
+  gender: number;
+}
+const GenderIcon = styled(PeopleIcon)`
+  width: 30%;
+  top: 10px;
+  right: 0px;
+  position: absolute;
+  ${media.desktop`
+      width: auto;
+      height: 25px;
+  `};
+  & svg {
+    width: 100%;
+    height: 100%;
+  }
+`;
+
+const GenderText = styled(Text)`
+  font-style: italic;
+  font-weight: normal;
+  margin: 0px 16px 8px 16px;
+  ${media.desktop`
+    margin: 0px 16px 8px 8px;
   `};
 `;
 
@@ -82,9 +141,7 @@ const Border = styled<{ isMain?: boolean }, 'div'>('div')`
   border-bottom-left-radius: 40px;
   border-bottom-right-radius: 20px;
 
-  border: 2px solid
-    ${props =>
-      props.isMain ? props.theme.accentSecondary : props.theme.textInverted};
+  border: 2px solid ${props => props.theme.textInverted};
   transform: skew(-15deg);
 `;
 
@@ -95,7 +152,7 @@ const MainWrapper = styled.div`
   align-items: center;
   justify-content: center;
   ${clickEffect};
-  margin-bottom: 16px;
+  margin-bottom: 12px;
   ${media.desktop`
   `};
 `;
@@ -108,6 +165,7 @@ const Wrapper = styled.div`
   ${clickEffect};
   margin: 8px 16px;
   ${media.desktop`
+    margin: 8px 32px;
   `};
 `;
 

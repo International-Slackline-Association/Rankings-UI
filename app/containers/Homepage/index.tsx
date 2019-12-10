@@ -13,7 +13,8 @@ interface OwnProps extends RouteComponentProps {}
 interface StateProps {}
 
 interface DispatchProps {
-  loadRankings(discipline: string): void;
+  loadRankings(discipline: string, gender?: string): void;
+  loadContests(): void;
 }
 
 type Props = StateProps & DispatchProps & OwnProps;
@@ -25,10 +26,14 @@ class Homepage extends React.PureComponent<Props, State> {
     super(props);
   }
 
-  private onDisciplineSelect = (id: string) => {
+  private onDisciplineSelect = (id: string, gender?: string) => {
     if (id) {
-      this.props.loadRankings(id);
+      this.props.loadRankings(id, gender);
     }
+  };
+
+  private onContestsSelect = () => {
+    this.props.loadContests();
   };
 
   public render() {
@@ -39,7 +44,7 @@ class Homepage extends React.PureComponent<Props, State> {
           <meta name="description" content="Slackline Ranking List" />
         </Helmet>
         <Wrapper>
-          <MainSection />
+          <MainSection contestsClicked={this.onContestsSelect}/>
           <DisciplineSection onClick={this.onDisciplineSelect} />
         </Wrapper>
       </React.Fragment>
@@ -52,14 +57,20 @@ function mapDispatchToProps(
   ownProps: OwnProps,
 ): DispatchProps {
   return {
-    loadRankings: (id: string) => {
+    loadRankings: (id: string, gender?: string) => {
       if (id) {
-        dispatch(push(`/rankings?category=1,${id},0,0,0`));
+        dispatch(push(`/rankings?category=1,${id},0,${gender || '0'},0`));
       }
+    },
+    loadContests: () => {
+      dispatch(push(`/contests`));
     },
   };
 }
 
-const withConnect = connect(undefined, mapDispatchToProps);
+const withConnect = connect(
+  undefined,
+  mapDispatchToProps,
+);
 
 export default compose(withConnect)(Homepage);
