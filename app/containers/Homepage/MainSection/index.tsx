@@ -9,6 +9,8 @@ import {
   LinkButton,
 } from 'styles/mixins';
 import isaSportLogo from './isaSportLogo.svg?file';
+import tttmLogo from './SponsorLogos/tttm.png';
+import blackrollLogo from './SponsorLogos/blackroll.png';
 
 interface Props {
   contestsClicked: () => void;
@@ -34,16 +36,17 @@ class MainSection extends React.PureComponent<Props> {
             Trickline Aerial, Freestyle Highline and Speedline Sprint.
             <br />
             <br />
-            Explore the worldwide ranking of slackline athletes. Click on any
-            discipline to discover the best ranking athletes.
+            Click on any discipline to discover the best ranking athletes.
           </Subtitle>
           <ButtonWrapper>
             <SmallButton
-              href={'//www.slacklineinternational.org/ranking-list/'}
+              href={
+                '//data.slacklineinternational.org/sport/ranking-list-faq/)'
+              }
               target="_blank"
               isPrimaryColor
             >
-              Learn More
+              How does it work?
             </SmallButton>
             <SmallButton
               href={
@@ -63,34 +66,68 @@ class MainSection extends React.PureComponent<Props> {
               Contest Registration
             </SmallButton>
             <SmallButton onClick={this.props.contestsClicked}>
-              Contests
+              Contest List
             </SmallButton>
           </ButtonWrapper>
         </CenterWrapper>
+        <SponsorWrapper>
+          <span>Official Partners</span>
+          <SponsorLogoWrapper>
+            <SponsorLogo href={'//www.ticketothemoon.com/'} target="_blank">
+              <img src={tttmLogo} />
+            </SponsorLogo>
+            <SponsorLogo href={'//www.blackroll.com/'} target="_blank">
+              <img src={blackrollLogo} />
+            </SponsorLogo>
+          </SponsorLogoWrapper>
+        </SponsorWrapper>
       </Wrapper>
     );
   }
 }
 
-const CenterWrapper = styled.div`
-  display: flex;
-  justify-self: center;
-  flex-direction: column;
-  align-items: center;
-  margin: auto 0px;
-  ${media.desktop`
-    align-items: flex-start;
-    /* justify-content: space-between; */
-  `};
-`;
-
 const ISASportLogo = styled.img.attrs({
   src: isaSportLogo,
 })`
-  height: 64px;
+  height: 96px;
   margin-top: 16px;
   ${media.desktop`
     margin-top: 16px;
+  `};
+`;
+
+const SponsorLogo = styled(LinkButton)`
+  /* margin-right: 2rem; */
+  width: 45%;
+  img {
+    width: 100%;
+    flex: none;
+    /* max-height: 100%; */
+  }
+`;
+
+const SponsorLogoWrapper = styled.div`
+  display: flex;
+  margin-top: 4px;
+  align-items: center;
+  justify-content: space-between;
+`;
+
+const SponsorWrapper = styled.div`
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  margin-top: 16px;
+  width: 75%;
+  & span {
+    font-size: 1rem;
+    /* font-weight: bold; */
+    color: ${props => props.theme.newTextPrimaryLighter};
+  }
+  ${media.desktop`
+    align-items: flex-start;
+    margin-top: auto;
+    width: 25rem;
   `};
 `;
 
@@ -100,7 +137,7 @@ const ButtonWrapper = styled.div`
   align-items: center;
   justify-content: space-between;
   flex-wrap: wrap;
-  width: 75%;
+  width: 100%;
   ${media.desktop`
     width: 25rem;
   `};
@@ -116,27 +153,11 @@ const SmallButton = styled<any>(LinkButton)`
   padding: 8px;
   margin-top: 8px;
   width: 48%;
-  font-size: 0.7rem;
+  font-size: 0.8rem;
   ${media.desktop`
     font-size: 1rem;
   `};
 `;
-
-// const Button = styled(LinkButton)`
-//   ${elevatedShadow};
-//   border-radius: 4px;
-//   background-color: ${props => props.theme.primaryLighter};
-//   color: ${props => props.theme.textInverted};
-//   font-weight: bold;
-//   padding: 8px;
-//   margin-top: 16px;
-//   width: 75%;
-//   ${media.desktop`
-//     font-size: 1.5rem;
-//     width: 25rem;
-//     margin-top: 16px;
-//   `};
-// `;
 
 const Subtitle = styled.p`
   display: flex;
@@ -170,6 +191,19 @@ const Title = styled.span`
     line-height: 50px;
   `};
 `;
+
+const CenterWrapper = styled.div`
+  display: flex;
+  justify-self: center;
+  flex-direction: column;
+  align-items: center;
+  margin: auto 0px;
+  ${media.desktop`
+    align-items: flex-start;
+  `};
+`;
+
+
 const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
