@@ -45,15 +45,6 @@ interface State {}
 class Rankings extends React.PureComponent<Props, State> {
   constructor(props: Props) {
     super(props);
-    // const selectedCategories = this.getCategoriesFromPathSearch(
-    //   this.props.location.search,
-    // );
-    // if (selectedCategories && selectedCategories.length > 0) {
-    //   for (let index = 0; index < selectedCategories.length; index++) {
-    //     const value = selectedCategories[index];
-    //     this.selectCategory(index, value);
-    //   }
-    // }
 
     if (this.props.categories) {
       const selectedCategories = this.getCategoriesFromPathSearch(
@@ -69,12 +60,6 @@ class Rankings extends React.PureComponent<Props, State> {
           }
         }
         this.props.dispatch(actions.loadTableItems(selectedCategories));
-        // const selectedDiscipline = selectedCategories[1];
-        // const currentDiscipline = this.props.categories[1];
-        // if (currentDiscipline.selectedValue !== selectedDiscipline) {
-        //   this.selectCategory(1, selectedDiscipline);
-        //   this.props.dispatch(actions.loadTableItems(selectedCategories));
-        // }
       }
     } else {
       this.loadCategories();
@@ -192,7 +177,6 @@ class Rankings extends React.PureComponent<Props, State> {
 
   public render() {
     const categories = this.categories();
-    // console.log(categories[1]);
     const filters = this.filters();
     const openCategories =
       (this.props.tableResult.items || []).length > 0 || categories.length > 0;
@@ -216,6 +200,7 @@ class Rankings extends React.PureComponent<Props, State> {
               isItemsLoading={this.props.isTableItemsLoading}
               showMoreClicked={this.loadMoreItems}
               isNextItemsLoading={this.props.isNextTableItemsLoading}
+              isFilterActive={filters.some(f => !Utils.isNil(f.selectedOption))}
             />
           </MainTableSection>
         </TabPanel>

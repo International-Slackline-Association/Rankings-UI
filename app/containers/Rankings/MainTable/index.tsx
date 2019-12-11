@@ -24,6 +24,7 @@ interface Props {
   onItemClick(id: string): void;
   isItemsLoading: boolean | null;
   isNextItemsLoading: boolean | null;
+  isFilterActive?: boolean;
   showMoreClicked(): void;
 }
 
@@ -129,9 +130,7 @@ class MainTable extends React.PureComponent<Props, State> {
                           : index + 1);
                   return (
                     <tr key={item.id}>
-                      <td>
-                        {rank}
-                      </td>
+                      <td>{rank}</td>
                       <td>
                         <RankChangeIcon changeInRank={item.changeInRank} />
                       </td>
@@ -166,7 +165,9 @@ class MainTable extends React.PureComponent<Props, State> {
           <SmallLoading minHeight={'100px'} />
         ) : !items || !items.length ? (
           <EmptyContainer minHeight={'100px'}>
-            There is no data to display
+            {this.props.isFilterActive
+              ? 'Change Categories above to expand search results'
+              : 'There is no data to display'}
           </EmptyContainer>
         ) : null}
         {next && (
