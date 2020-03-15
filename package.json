@@ -87,7 +87,7 @@
     "ip": "1.1.5",
     "loadable-components": "2.2.3",
     "lodash": "4.17.11",
-    "minimist": "1.2.0",
+    "minimist": "1.2.2",
     "moment": "^2.22.2",
     "polished": "^1.9.3",
     "prop-types": "15.6.2",
