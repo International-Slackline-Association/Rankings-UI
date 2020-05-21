@@ -40,9 +40,7 @@ class MainSection extends React.PureComponent<Props> {
           </Subtitle>
           <ButtonWrapper>
             <SmallButton
-              href={
-                '//data.slacklineinternational.org/sport/ranking-list-faq/)'
-              }
+              href={'//data.slacklineinternational.org/sport/ranking-list-faq/'}
               target="_blank"
               isPrimaryColor
             >
@@ -202,7 +200,6 @@ const CenterWrapper = styled.div`
     align-items: flex-start;
   `};
 `;
-
 
 const Wrapper = styled.div`
   display: flex;
