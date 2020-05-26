@@ -1,5 +1,4 @@
 import { createGlobalStyle } from 'styled-components';
-import './font-face.css';
 
 export const GlobalStyle = createGlobalStyle`
  html {
@@ -12,7 +11,7 @@ export const GlobalStyle = createGlobalStyle`
   }
 
   body {
-    font-family: 'metropolis', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-family: 'Inter', 'Helvetica Neue', Helvetica, Arial, sans-serif;
   }
 
   #app {
@@ -23,7 +22,7 @@ export const GlobalStyle = createGlobalStyle`
 
   p,
   label {
-    font-family: 'metropolis', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-family: 'Inter', 'Helvetica Neue', Helvetica, Arial, sans-serif;
     line-height: 1.5em;
   }
 `;
