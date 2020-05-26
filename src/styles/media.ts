@@ -11,32 +11,24 @@ import {
   Interpolation,
   FlattenInterpolation,
 } from 'styled-components/macro';
+import { breakpoints } from './breakpoints';
 
 /*
  * Taken from https://github.com/DefinitelyTyped/DefinitelyTyped/issues/32914
  */
 
-// Update your breakpoints if you want
-export const sizes = {
-  mobile: 0,
-  tablet: 640,
-  desktop: 1024,
-  desktopLarge: 1140,
-};
-
 // Iterate through the sizes and create a media template
-export const media = (Object.keys(sizes) as Array<keyof typeof sizes>).reduce(
-  (acc, label) => {
-    acc[label] = (first: any, ...interpolations: any[]) => css`
-      @media (min-width: ${sizes[label]}px) {
-        ${css(first, ...interpolations)}
-      }
-    `;
+export const media = (Object.keys(breakpoints) as Array<
+  keyof typeof breakpoints
+>).reduce((acc, label) => {
+  acc[label] = (first: any, ...interpolations: any[]) => css`
+    @media (min-width: ${breakpoints[label]}px) {
+      ${css(first, ...interpolations)}
+    }
+  `;
 
-    return acc;
-  },
-  {} as { [key in keyof typeof sizes]: MediaFunction },
-);
+  return acc;
+}, {} as { [key in keyof typeof breakpoints]: MediaFunction });
 
 /*
  * @types/styled-component is not working properly as explained in the github issue referenced above.

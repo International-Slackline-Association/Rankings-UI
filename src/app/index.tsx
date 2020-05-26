@@ -9,27 +9,53 @@
 import * as React from 'react';
 import { Helmet } from 'react-helmet-async';
 import { Switch, Route, BrowserRouter } from 'react-router-dom';
+import styled from 'styled-components/macro';
 
 import { GlobalStyle } from 'styles/global-styles';
 
 import { HomePage } from './containers/HomePage/Loadable';
 import { NotFoundPage } from './components/NotFoundPage/Loadable';
+import { NavBar } from './components/NavBar';
+import { TopBarTabs } from './containers/TopBarTabs';
 
 export function App() {
   return (
     <BrowserRouter>
-      <Helmet
-        titleTemplate="%s - React Boilerplate"
-        defaultTitle="React Boilerplate"
-      >
-        <meta name="description" content="A React Boilerplate application" />
-      </Helmet>
-
-      <Switch>
-        <Route exact path="/" component={HomePage} />
-        <Route component={NotFoundPage} />
-      </Switch>
-      <GlobalStyle />
+      <AppWrapper>
+        <Helmet defaultTitle="ISA Rankings">
+          <meta name="description" content="ISA Slackline Rankings" />
+        </Helmet>
+        <Switch>
+          <Route exact path="/" component={HomePage} />
+          <Switch>
+            <>
+              <NavBar />
+              <TopBarTabs />
+              <Switch>
+                <Route exact path="/rankings" component={HomePage} />
+                <Route component={NotFoundPage} />
+              </Switch>
+            </>
+          </Switch>
+        </Switch>
+        <GlobalStyle />
+      </AppWrapper>
     </BrowserRouter>
   );
 }
+
+const AppWrapper = styled.div`
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  /* flex: 1; */
+  background-color: ${props => props.theme.appBackground};
+  color: ${props => props.theme.textPrimary};
+  /* padding-top: 48px; */
+  -webkit-font-smoothing: antialiased;
+
+  ${media.tablet`
+    /* padding-top: 64px; */
+  `};
+`;
