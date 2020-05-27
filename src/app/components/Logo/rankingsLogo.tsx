@@ -1,16 +1,16 @@
 import * as React from 'react';
 
 import rankingsLogo from './Rankings-Logo-Text.svg';
-import styled from 'styles/styled-components';
+import styled from 'styled-components/macro';
 import { clickEffect } from 'styles/mixins';
 
-const RankingsLogo: React.SFC<{}> = () => {
+export function RankingsLogo() {
   return (
     <Wrapper href="/">
-      <img src={rankingsLogo as any} />
+      <img src={rankingsLogo} alt="" />
     </Wrapper>
   );
-};
+}
 
 const Wrapper = styled.a`
   ${clickEffect};
@@ -23,4 +23,3 @@ const Wrapper = styled.a`
     max-height: 100%;
   }
 `;
-export default RankingsLogo;

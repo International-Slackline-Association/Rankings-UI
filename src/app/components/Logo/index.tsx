@@ -1,15 +1,15 @@
 import * as React from 'react';
 
-import isaLogo from './isaLogo.svg?file';
-import styled from 'styles/styled-components';
+import isaLogo from './isaLogo.svg';
+import styled from 'styled-components/macro';
 
-const TitleLogo: React.SFC<{}> = () => {
+export function TitleLogo() {
   return (
     <Wrapper>
-      <img src={isaLogo as any} />
+      <img src={isaLogo} alt="" />
     </Wrapper>
   );
-};
+}
 
 const Wrapper = styled.div`
   height: 100%;
@@ -19,4 +19,3 @@ const Wrapper = styled.div`
     height: 100%;
   }
 `;
-export default TitleLogo;

@@ -1,18 +1,18 @@
 import * as React from 'react';
 
-import isaLogo from './isa-sport.svg?file';
-import styled from 'styles/styled-components';
+import isaLogo from './isa-sport.svg';
+import styled from 'styled-components/macro';
 
-const IsaSportsLogo: React.SFC<{}> = () => {
+export function IsaSportsLogo() {
   return (
     <Link
       href={'//www.slacklineinternational.org/ranking-list/'}
       target="_blank"
     >
-      <img src={isaLogo as any} />
+      <img src={isaLogo} alt="" />
     </Link>
   );
-};
+}
 
 const Link = styled.a`
   height: 100%;
@@ -26,4 +26,3 @@ const Link = styled.a`
     max-height: 100%;
   }
 `;
-export default IsaSportsLogo;

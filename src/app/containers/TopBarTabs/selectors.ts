@@ -1,27 +1,15 @@
-import { createSelector } from 'reselect';
-import { ApplicationRootState } from 'types';
-import { initialState } from './reducer';
+import { RootState } from 'types';
+import { initialState } from './slice';
+import { createSelector } from '@reduxjs/toolkit';
 
-const selectTopBarDomain = (state: ApplicationRootState) => {
-  return state.topBarTabs ? state.topBarTabs : initialState;
+const selectTopBarDomain = (state: RootState) => {
+  return state.topBarTabs || initialState;
 };
 
-export const selectRouterDomain = (state: ApplicationRootState) => {
-  return state.router;
-};
+export const selectTabItems = createSelector([selectTopBarDomain], state => {
+  return state.items;
+});
 
-export const selectTabItems = () =>
-  createSelector(selectTopBarDomain, state => {
-    return state.items;
-  });
-
-export const selectSelectedId = () =>
-  createSelector(selectTopBarDomain, state => {
-    return state.selectedId;
-  });
-
-export const selectLocationPath = () =>
-  createSelector(selectRouterDomain, state => {
-    return state.location ? state.location.pathname : '';
-  });
-
+export const selectSelectedId = createSelector([selectTopBarDomain], state => {
+  return state.selectedId;
+});

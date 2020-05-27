@@ -1,5 +1,5 @@
 import * as React from 'react';
-import RankingsLogo from 'app/components/Logo/rankingsLogo';
+import { RankingsLogo } from 'app/components/Logo/rankingsLogo';
 import { media } from 'styles/media';
 import zIndex from 'styles/zIndex';
 import { breakpoints } from 'styles/breakpoints';

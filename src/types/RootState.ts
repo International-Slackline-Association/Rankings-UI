@@ -1,6 +1,7 @@
 // [IMPORT NEW CONTAINERSTATE ABOVE] < Needed for generating containers seamlessly
 
 import { ThemeState } from 'styles/theme/types';
+import { TopBarTabsState } from 'app/containers/TopBarTabs/types';
 
 /* 
   Because the redux-injectors injects your reducers asynchronously somewhere in your code
@@ -8,5 +9,6 @@ import { ThemeState } from 'styles/theme/types';
 */
 export interface RootState {
   theme?: ThemeState;
+  topBarTabs?: TopBarTabsState;
   // [INSERT NEW REDUCER KEY ABOVE] < Needed for generating containers seamlessly
 }
