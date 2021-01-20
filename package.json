@@ -79,7 +79,7 @@
     "file-saver": "^2.0.0",
     "fontfaceobserver": "2.0.13",
     "formik": "^1.4.1",
-    "gsap": "^2.0.2",
+    "gsap": "^3.6.0",
     "history": "4.7.2",
     "hoist-non-react-statics": "3.0.1",
     "intl": "1.2.5",
