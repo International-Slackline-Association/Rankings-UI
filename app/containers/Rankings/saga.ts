@@ -42,21 +42,7 @@ export function* getCategories(
         category.selectedValue = categories[index].toString();
       });
     }
-
-    // FIXME: temporarily remove 2019 and 2020 categories
-    const modifiedCategories = results.items.map<CategoryItem>(item => {
-      if (item.title === 'Year') {
-        return {
-          options: item.options.filter(
-            o => o.label !== '2019' && o.label !== '2020',
-          ),
-          selectedValue: item.selectedValue,
-          title: item.title,
-        };
-      }
-      return item;
-    });
-    yield put(actions.setCategories(modifiedCategories));
+    yield put(actions.setCategories(results.items));
   } catch (err) {
     console.log('err: ', err);
   }

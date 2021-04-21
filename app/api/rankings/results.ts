@@ -25,7 +25,6 @@ interface RankingsItem {
   readonly points: string;
   readonly thumbnailUrl: string;
   readonly contestCount?: number;
-  readonly changeInRank: number;
 }
 
 const requestURL = 'api/rankings/list';

@@ -12,10 +12,6 @@ import RankingsTableWrapper from './RankingsTableWrapper';
 import DivGroup from './DivGroup';
 import { VerticalDivider } from 'components/Divider';
 import Group from 'components/TableWrapper/Group';
-import RankUpIcon from '../../../components/Icons/rankUpIcon';
-import RankDownIcon from '../../../components/Icons/rankDownIcon';
-import RankNoChangeIcon from '../../../components/Icons/rankNoChangeIcon';
-import RankChangeIcon from './RankChangeIcon';
 
 const countryList = require('country-list');
 
@@ -54,12 +50,10 @@ class MainTable extends React.PureComponent<Props, State> {
             <thead>
               <tr>
                 <td>Rank</td>
-                <td title="Change in the rank with the last contest">Δ</td>
                 <td>Name</td>
                 <td>Age</td>
                 <td>Country</td>
                 <td>Points</td>
-                {/* <td>Total Contests</td> */}
               </tr>
             </thead>
             <tbody>
@@ -75,9 +69,6 @@ class MainTable extends React.PureComponent<Props, State> {
                             (prevItem && prevItem.points === item.points
                               ? '“'
                               : index + 1)}
-                      </td>
-                      <td title="Change in the rank with the last contest">
-                        <RankChangeIcon changeInRank={item.changeInRank} />
                       </td>
                       <td>
                         <Group alignLeft={true}>
@@ -131,9 +122,6 @@ class MainTable extends React.PureComponent<Props, State> {
                   return (
                     <tr key={item.id}>
                       <td>{rank}</td>
-                      <td>
-                        <RankChangeIcon changeInRank={item.changeInRank} />
-                      </td>
                       <td>
                         <DivGroup>
                           <ProfileAvatar imageUrl={item.thumbnailUrl} />
