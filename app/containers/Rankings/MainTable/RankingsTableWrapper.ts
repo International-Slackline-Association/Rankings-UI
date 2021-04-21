@@ -28,13 +28,10 @@ const RankingsTableWrapper = styled<Props, 'div'>('div')`
         td {
           padding: 16px 0;
           &:nth-child(1) {
-            width: 13%;
+            width: 15%;
           }
           &:nth-child(2) {
-            width: 12%;
-          }
-          &:nth-child(3) {
-            width: 75%;
+            width: 85%;
           }
         }
       }

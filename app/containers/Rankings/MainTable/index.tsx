@@ -90,7 +90,6 @@ class MainTable extends React.PureComponent<Props, State> {
                         </Group>
                       </td>
                       <td>{item.points} points</td>
-                      {/* <td id="hide-mobile">{item.contestCount || 'N/A'}</td> */}
                     </tr>
                   );
                 })}

@@ -35,19 +35,16 @@ const TableWrapper = styled<Props, 'div'>('div')`
           width: 15%;
         }
         &:nth-child(2) {
-          width: 17%;
+          width: 20%;
         }
         &:nth-child(3) {
-          width: 17%;
+          width: 20%;
         }
         &:nth-child(4) {
-          width: 17%;
+          width: 20%;
         }
         &:nth-child(5) {
-          width: 17%;
-        }
-        &:nth-child(6) {
-          width: 17%;
+          width: 20%;
         }
         ${props => props.trCSS};
       }
