@@ -104,7 +104,6 @@ class MainTable extends React.PureComponent<Props, State> {
             <thead>
               <tr>
                 <td>Rank</td>
-                <td>Δ</td>
                 <td>Name</td>
               </tr>
             </thead>
