@@ -19,6 +19,7 @@ interface ContestItem {
   readonly id: string;
   readonly name: string;
   readonly rank: number;
+  readonly points: number;
   readonly contestType: ContestType;
   readonly date: string;
   readonly discipline: Discipline;

@@ -44,6 +44,7 @@ class MainTable extends React.PureComponent<Props, State> {
               <tr>
                 <td>Contest Name</td>
                 <td>Discipline</td>
+                <td>Points</td>
                 <td>Rank</td>
                 <td>Contest Size</td>
                 <td>Start Date</td>
@@ -76,6 +77,7 @@ class MainTable extends React.PureComponent<Props, State> {
                           {item.discipline.name}
                         </Group>
                       </td>
+                      <td>{item.points}</td>
                       <td>{item.rank}</td>
                       <td>{item.contestType.name}</td>
                       <td>{item.date}</td>

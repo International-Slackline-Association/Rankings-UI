@@ -45,7 +45,7 @@ class Footer extends React.PureComponent<Props> {
         </LinkGroup>
         <LinkGroup>
           <Link
-            href={'//www.slacklineinternational.org/about/'}
+            href={'//www.slacklineinternational.org/sport/'}
             target="_blank"
           >
             About ISA Sports

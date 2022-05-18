@@ -48,7 +48,7 @@ class MainTable extends React.PureComponent<Props, State> {
                 <td>Contest Name</td>
                 <td>Country</td>
                 <td>Discipline</td>
-                <td>Total Prize Money</td>
+                <td>Total Prize Value</td>
                 <td>Contest Size</td>
               </tr>
             </thead>
@@ -180,7 +180,7 @@ const tableItemsPrefixCSS = css`
   }
   &:nth-child(5) {
     &::before {
-      content: 'Total Prize Money :';
+      content: 'Total Prize Value :';
     }
   }
   &:nth-child(6) {

@@ -50,6 +50,7 @@ interface TableItem {
   readonly contestType: ContestType;
   readonly date: string;
   readonly rank: number;
+  readonly points: number;
   readonly discipline: Discipline;
   readonly thumbnailUrl: string;
 }

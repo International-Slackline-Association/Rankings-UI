@@ -8,6 +8,7 @@ const generator = (): APIAthleteContestsResponse => {
         name: 'Swiss Open',
         date: '2015-10-17',
         rank: 1,
+        points: 10,
         contestType: { id: 2, name: 'Open Challenge' },
         discipline: { id: 2, name: 'Aerial' },
         thumbnailUrl:
@@ -19,6 +20,7 @@ const generator = (): APIAthleteContestsResponse => {
         name: 'China Master',
         date: '2015-11-17',
         rank: 3,
+        points: 10,
         contestType: { id: 2, name: 'Masters' },
         discipline: { id: 2, name: 'Aerial' },
         thumbnailUrl:
@@ -30,6 +32,7 @@ const generator = (): APIAthleteContestsResponse => {
         name: 'Redbull Slackship',
         date: '2015-12-17',
         rank: 12,
+        points: 10,
         contestType: { id: 2, name: 'Masters' },
         discipline: { id: 2, name: 'Aerial' },
         thumbnailUrl:

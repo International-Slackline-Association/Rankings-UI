@@ -32,7 +32,7 @@ class ContestInfo extends React.PureComponent<Props> {
               <RightSection>
                 <InfoField keyField={'Location'} valueField={item.location} />
                 <InfoField
-                  keyField={'Total Prize Money'}
+                  keyField={'Total Prize Value'}
                   valueField={item.prize}
                 />
                 <InfoField
