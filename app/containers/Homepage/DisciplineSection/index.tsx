@@ -18,36 +18,38 @@ class DisciplineSection extends React.PureComponent<Props> {
             <DisciplineButton
               onClick={this.props.onClick}
               value={'2'}
-              text={'Trickline Aerial'}
-              gender={'1'}
+              text={'Trickline Freestyle'}
+              gender={'2'}
             />
             <DisciplineButton
               onClick={this.props.onClick}
               value={'5'}
               text={'Freestyle Highline'}
-              gender={'1'}
+              gender={'2'}
             />
             <DisciplineButton
               onClick={this.props.onClick}
               value={'7'}
-              text={'Speedline Short'}
-              gender={'1'}
+              text={'Speed Short'}
+              gender={'2'}
             />
             <DisciplineButton
               onClick={this.props.onClick}
               value={'8'}
-              text={'Speedline Highline'}
-              gender={'1'}
+              text={'Speed Highline'}
+              gender={'2'}
             />
             <DisciplineButton
               onClick={this.props.onClick}
               value={'3'}
               text={'Trickline Jib Static'}
+              gender={'2'}
             />
             <DisciplineButton
               onClick={this.props.onClick}
               value={'11'}
               text={'Rigging'}
+              gender={'2'}
             />
           </DisciplineGroup>
           {/* <Title>Further Disciplines</Title>

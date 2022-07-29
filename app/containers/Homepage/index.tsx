@@ -59,7 +59,7 @@ function mapDispatchToProps(
   return {
     loadRankings: (id: string, gender?: string) => {
       if (id) {
-        dispatch(push(`/rankings?category=1,${id},0,${gender || '0'},0`));
+        dispatch(push(`/rankings?category=1,${id},${gender || '0'},0,0`));
       }
     },
     loadContests: () => {

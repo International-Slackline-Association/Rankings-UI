@@ -57,10 +57,9 @@ class InfoPopover extends React.PureComponent<Props, State> {
           <TextArea>
             <span>
               <p>
-                Ranking points are sum of the <strong>TWO</strong> highest
-                points of the <strong>any</strong> competition in the
-                <strong> selected discipline</strong> taken place in the
-                <strong> selected year</strong>.
+                The ranks are calculated by adding up the
+                <strong> TWO highest point scores </strong>
+                within the selected timeframe.
               </p>
             </span>
           </TextArea>
