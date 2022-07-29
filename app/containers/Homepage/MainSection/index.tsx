@@ -41,7 +41,7 @@ class MainSection extends React.PureComponent<Props> {
           <ButtonWrapper>
             <SmallButton
               href={
-                '//data.slacklineinternational.org/sport/ranking-list-faq/)'
+                '//data.slacklineinternational.org/sport/ranking-list-faq/'
               }
               target="_blank"
               isPrimaryColor
@@ -70,7 +70,7 @@ class MainSection extends React.PureComponent<Props> {
             </SmallButton>
           </ButtonWrapper>
         </CenterWrapper>
-        <SponsorWrapper>
+        {/* <SponsorWrapper>
           <span>Official Partners</span>
           <SponsorLogoWrapper>
             <SponsorLogo href={'//www.ticketothemoon.com/'} target="_blank">
@@ -80,7 +80,7 @@ class MainSection extends React.PureComponent<Props> {
               <img src={blackrollLogo} />
             </SponsorLogo>
           </SponsorLogoWrapper>
-        </SponsorWrapper>
+        </SponsorWrapper> */}
       </Wrapper>
     );
   }

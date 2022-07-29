@@ -9,7 +9,7 @@ class Header extends React.PureComponent<Props> {
   public render() {
     return (
       <Wrapper>
-        <Link href={'//www.slacklineinternational.org/about/'} target="_blank">
+        <Link href={'//www.slacklineinternational.org/sport/'} target="_blank">
           About ISA Sport
         </Link>
         <Link

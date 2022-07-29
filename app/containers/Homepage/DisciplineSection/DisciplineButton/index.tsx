@@ -26,7 +26,7 @@ class DisciplineButton extends React.PureComponent<Props> {
       <Wrapper onClick={this.onSelect(this.props.value, this.props.gender)}>
         <MainWrapper>
           <Border />
-          {this.props.gender && <GenderIcon value={this.props.gender} />}
+          {/* {this.props.gender && <GenderIcon value={this.props.gender} />} */}
           <Icon value={this.props.iconValue || this.props.value} />
           <Text>
             {this.props.text}

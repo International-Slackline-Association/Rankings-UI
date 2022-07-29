@@ -14,7 +14,7 @@ interface Props extends CategoryProps {}
 
 class Categories extends React.PureComponent<Props> {
   public render() {
-    const categories = this.props.categories;
+    const categories = this.props.categories.filter(c => c.title !== 'World');
 
     return (
       <Wrapper>

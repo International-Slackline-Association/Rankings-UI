@@ -12,7 +12,7 @@ class DisciplineSection extends React.PureComponent<Props> {
     return (
       <Wrapper>
         <DisciplineWrapper>
-          <Title>Main Disciplines</Title>
+          <Title>Disciplines</Title>
           <Divider />
           <DisciplineGroup>
             <DisciplineButton
@@ -23,36 +23,34 @@ class DisciplineSection extends React.PureComponent<Props> {
             />
             <DisciplineButton
               onClick={this.props.onClick}
-              value={'2'}
-              text={'Trickline Aerial'}
-              gender={'2'}
-            />
-            <DisciplineButton
-              onClick={this.props.onClick}
               value={'5'}
               text={'Freestyle Highline'}
               gender={'1'}
             />
             <DisciplineButton
               onClick={this.props.onClick}
-              value={'5'}
-              text={'Freestyle Highline'}
-              gender={'2'}
-            />
-            <DisciplineButton
-              onClick={this.props.onClick}
               value={'7'}
-              text={'Speedline Sprint'}
+              text={'Speedline Short'}
               gender={'1'}
             />
             <DisciplineButton
               onClick={this.props.onClick}
-              value={'7'}
-              text={'Speedline Sprint'}
-              gender={'2'}
+              value={'8'}
+              text={'Speedline Highline'}
+              gender={'1'}
+            />
+            <DisciplineButton
+              onClick={this.props.onClick}
+              value={'3'}
+              text={'Trickline Jib Static'}
+            />
+            <DisciplineButton
+              onClick={this.props.onClick}
+              value={'11'}
+              text={'Rigging'}
             />
           </DisciplineGroup>
-          <Title>Further Disciplines</Title>
+          {/* <Title>Further Disciplines</Title>
           <Divider />
           <DisciplineGroup>
             <DisciplineButton
@@ -62,30 +60,10 @@ class DisciplineSection extends React.PureComponent<Props> {
             />
             <DisciplineButton
               onClick={this.props.onClick}
-              value={'4'}
-              text={'Trickline Transfer'}
-            />
-            <DisciplineButton
-              onClick={this.props.onClick}
-              value={'8'}
-              text={'Speedline Long'}
-            />
-            <DisciplineButton
-              onClick={this.props.onClick}
-              value={'10'}
-              text={'Blind Walking'}
-            />
-            <DisciplineButton
-              onClick={this.props.onClick}
-              value={'9'}
-              text={'Endurance'}
-            />
-            <DisciplineButton
-              onClick={this.props.onClick}
               value={'11'}
               text={'Rigging'}
             />
-          </DisciplineGroup>
+          </DisciplineGroup> */}
         </DisciplineWrapper>
       </Wrapper>
     );

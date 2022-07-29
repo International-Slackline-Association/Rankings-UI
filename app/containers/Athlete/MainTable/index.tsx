@@ -148,15 +148,20 @@ const tableItemsPrefixCSS = css`
   }
   &:nth-child(3) {
     &::before {
-      content: 'Rank : ';
+      content: 'Points : ';
     }
   }
   &:nth-child(4) {
     &::before {
-      content: 'Contest Size : ';
+      content: 'Rank : ';
     }
   }
   &:nth-child(5) {
+    &::before {
+      content: 'Contest Size : ';
+    }
+  }
+  &:nth-child(6) {
     &::before {
       content: 'Start Date : ';
     }
