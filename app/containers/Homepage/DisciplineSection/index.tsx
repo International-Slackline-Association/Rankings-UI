@@ -18,7 +18,7 @@ class DisciplineSection extends React.PureComponent<Props> {
             <DisciplineButton
               onClick={this.props.onClick}
               value={'2'}
-              text={'Trickline Freestyle'}
+              text={'Freestyle Trickline'}
               gender={'2'}
             />
             <DisciplineButton
@@ -42,7 +42,7 @@ class DisciplineSection extends React.PureComponent<Props> {
             <DisciplineButton
               onClick={this.props.onClick}
               value={'3'}
-              text={'Trickline Jib Static'}
+              text={'Freestyle Jib Static'}
               gender={'2'}
             />
             <DisciplineButton

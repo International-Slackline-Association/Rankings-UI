@@ -31,18 +31,15 @@ class MainSection extends React.PureComponent<Props> {
             Explore the world ranking of slackline sports.
             <br />
             <br />
-            Slacklining is broader than you think! Athletes are currently
-            competing in a wide range of disciplines, the most popular being
-            Trickline Aerial, Freestyle Highline and Speedline Sprint.
+            Athletes are currently competing in a range of disciplines, the most
+            popular being Trickline, Freestyle Highline and Speedline.
             <br />
             <br />
             Click on any discipline to discover the best ranking athletes.
           </Subtitle>
           <ButtonWrapper>
             <SmallButton
-              href={
-                '//data.slacklineinternational.org/sport/ranking-list-faq/'
-              }
+              href={'//data.slacklineinternational.org/sport/ranking-list-faq/'}
               target="_blank"
               isPrimaryColor
             >
@@ -202,7 +199,6 @@ const CenterWrapper = styled.div`
     align-items: flex-start;
   `};
 `;
-
 
 const Wrapper = styled.div`
   display: flex;
