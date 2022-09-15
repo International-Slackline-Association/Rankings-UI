@@ -20,7 +20,7 @@ interface Props {
 
 interface State {
   title: string;
-  optionValue: String;
+  optionValue: string;
   labelWidth?: number;
   open: boolean;
 }
