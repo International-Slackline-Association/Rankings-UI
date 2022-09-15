@@ -20,6 +20,7 @@ interface Props {
 
 interface State {
   title: string;
+  optionValue: String;
   labelWidth?: number;
   open: boolean;
 }
@@ -30,12 +31,15 @@ class CategorySelect extends React.PureComponent<Props, State> {
   constructor(props: Props) {
     super(props);
     let title = '';
+    let optionValue = '';
     const option = this.findOptionFromValue(this.props.category.selectedValue);
     if (option) {
       title = option.label;
+      optionValue = option.value;
     }
     this.state = {
       title: title,
+      optionValue: optionValue,
       labelWidth: 0,
       open: false,
     };
@@ -76,11 +80,11 @@ class CategorySelect extends React.PureComponent<Props, State> {
   private setSelected(value: string) {
     const option = this.props.category.options.find(x => x.value === value);
     if (option) {
-      this.setState({ title: option.label });
+      this.setState({ title: option.label, optionValue: option.value });
     }
   }
-  private renderValue = (value: string) => {
-    const selectedOption = this.findOptionFromLabel(value);
+  private renderValue = (value: { title: string; optionValue: string }) => {
+    const selectedOption = this.findOptionFromValue(value.optionValue);
     return (
       <RenderWrapper>
         {selectedOption && (
@@ -89,7 +93,7 @@ class CategorySelect extends React.PureComponent<Props, State> {
             value={selectedOption.value}
           />
         )}
-        <span>{value}</span>
+        <span>{value.title}</span>
       </RenderWrapper>
     );
   };
@@ -109,7 +113,10 @@ class CategorySelect extends React.PureComponent<Props, State> {
             </InputLabel>
             <StyledSelect
               open={this.state.open}
-              value={this.state.title}
+              value={{
+                title: this.state.title,
+                optionValue: this.state.optionValue,
+              }}
               onOpen={this.changeSelectMenuStatus(true)}
               onClose={this.changeSelectMenuStatus(false)}
               input={
