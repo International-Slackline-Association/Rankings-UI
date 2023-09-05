@@ -10,7 +10,7 @@ import ShowMoreButton from 'components/LoadableButton/ShowMoreButton';
 import { TableItemsResult } from '../types';
 import { EmptyContainer } from 'components/Containers';
 
-const countryList = require('country-list');
+const countryList = require('country-code-lookup');
 
 interface Props {
   tableItems: TableItemsResult;
@@ -78,7 +78,7 @@ class MainTable extends React.PureComponent<Props, State> {
                       <td>
                         <Group>
                           <CountryAvatar code={item.country} />
-                          {countryList.getName(item.country) || item.country}
+                          {countryList.byIso(item.country).country || item.country}
                         </Group>
                       </td>
                       <td>{item.points} points</td>

@@ -13,7 +13,7 @@ import StackedGroup from './StackedGroup';
 import CaptionText from './CaptionText';
 import DisciplineIcon from 'components/Icons/categories/DisciplineIcon';
 
-const countryList = require('country-list');
+const countryList = require('country-code-lookup');
 
 interface Props {
   tableItems: TableItemsResult;
@@ -81,7 +81,7 @@ class MainTable extends React.PureComponent<Props, State> {
                       <td>
                         <Group>
                           <CountryAvatar code={item.country} />
-                          {countryList.getName(item.country) || item.country}
+                          {countryList.byIso(item.country).country || item.country}
                         </Group>
                       </td>
                       <td>
